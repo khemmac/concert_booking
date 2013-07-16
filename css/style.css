@@ -1,0 +1,157 @@
+body{
+	margin:0px; padding:0px;
+	background:#cccccc url("../images/common/body-bg.jpg") repeat-y center;
+}
+
+form input {
+	font: 12px tahoma, arial, helvetica, sans-serif;
+	height:20px;
+}
+
+#container {
+	margin:0 auto;
+	width:1000px;
+	background:transparent url('../images/common/bg.jpg') no-repeat;
+	position:relative;
+}
+
+/* login */
+.page-login { height:750px; }
+
+.page-login #menu { width:965px; height:60px; position:absolute; top:17px; left:19px; margin:0px; padding:0px; list-style:none; }
+.page-login #menu li { display:block; float:left; }
+
+.page-login #menu li a {
+	display:block; text-indent:-3000px; height:60px; float:left;
+	background:transparent url('../images/login/menu.gif') no-repeat 0px 0px;
+}
+
+.page-login #menu li a.menu-boost { background-position: 0px 0px; width:151px; }
+.page-login #menu li a.menu-boost:hover,
+.page-login #menu li.active a.menu-boost { background-position: 0px -60px; }
+
+.page-login #menu li a.menu-facebook { background-position: -151px 0px; width:89px; }
+.page-login #menu li a.menu-facebook:hover,
+.page-login #menu li.active a.menu-facebook { background-position: -151px -60px; }
+
+.page-login #menu li a.menu-1 { background-position: -240px 0px; width:159px; }
+.page-login #menu li a.menu-1:hover,
+.page-login #menu li.active a.menu-1 { background-position: -240px -60px; }
+
+.page-login #menu li a.menu-2 { background-position: -399px 0px; width:139px; }
+.page-login #menu li a.menu-2:hover,
+.page-login #menu li.active a.menu-2 { background-position: -399px -60px; }
+
+.page-login #menu li a.menu-3 { background-position: -538px 0px; width:216px; }
+.page-login #menu li a.menu-3:hover,
+.page-login #menu li.active a.menu-3 { background-position: -538px -60px; }
+
+.page-login #menu li a.menu-4 { background-position: -754px 0px; width:211px; }
+.page-login #menu li a.menu-4:hover,
+.page-login #menu li.active a.menu-4 { background-position: -754px -60px; }
+
+.page-login #sub-menu { /*border:1px solid #f00;*/ width:156px; position:absolute; top:89px; left:806px; margin:0px; padding:0px; list-style:none; }
+.page-login #sub-menu li { display:block; float:left; }
+.page-login #sub-menu li a {
+	display:block; text-indent:-3000px; height:23px; float:left;
+	background:transparent url('../images/login/b-text.gif') no-repeat 0px 0px;
+}
+.page-login #sub-menu li a.sub-menu-login { width:72px; background-position: 0px 0px; }
+.page-login #sub-menu li a.sub-menu-register { width:84px; background-position: -72px 0px; }
+
+.page-login #dialog {
+	width:445px; height:240px; background:transparent url("../images/login/dialog.gif") no-repeat 0px 0px;
+	position:absolute; top:295px; left:285px;
+}
+.page-login input { border:0px; -webkit-box-shadow: none !important; box-shadow: none !important; }
+.page-login #dialog .username { position:absolute; top:37px; left:151px; width:224px; background:transparent; }
+.page-login #dialog .password { position:absolute; top:78px; left:151px; width:224px; background:transparent; }
+.page-login #dialog .submit {
+	position:absolute; top:122px; left:181px; width:86px; height:32px; text-indent:-2000px;
+	background:transparent url("../images/login/b-submit.gif") no-repeat 0px 0px; cursor:pointer;
+}
+.page-login #dialog .submit:hover { background-position:0px -32px; }
+/* end login */
+
+/* register */
+
+.page-register { height:750px; }
+
+.page-register #menu { width:965px; height:60px; position:absolute; top:17px; left:19px; margin:0px; padding:0px; list-style:none; }
+.page-register #menu li { display:block; float:left; }
+
+.page-register #menu li, .page-register #menu li a {
+	display:block; text-indent:-3000px; height:60px; float:left;
+	background:transparent url('../images/register/menu.gif') no-repeat 0px 0px;
+}
+
+.page-register #menu li,
+.page-register #menu li a.menu-boost { width:150px; }
+.page-register #menu li a.menu-boost:hover,
+.page-register #menu li.active a.menu-boost { background-position: 1px -60px; }
+
+.page-register #menu li.menu-register { width:814px; background-position: -150px 0px; }
+
+.page-register #form {
+	position:absolute; top:110px; left:265px;
+	width:477px; height:535px; background:transparent url("../images/register/form.gif") no-repeat;
+}
+.page-register input,
+.page-register select { border:0px; -webkit-box-shadow: none !important; box-shadow: none !important; background:transparent; }
+.page-register #form .username { position:absolute; top:53px; left:140px; width:224px; }
+.page-register #form .password { position:absolute; top:85px; left:140px; width:224px; }
+.page-register #form .password-confirm { position:absolute; top:115px; left:140px; width:224px; }
+.page-register #form .thName { position:absolute; top:169px; left:140px; width:224px; }
+.page-register #form .enName { position:absolute; top:214px; left:140px; width:224px; }
+.page-register #form .nickName { position:absolute; top:260px; left:140px; width:124px; }
+
+.page-register #form .sexy-combo-sex { position:absolute; top:259px; left:310px; }
+.page-register #form .sexy-combo-sex input { width:47px; padding-left:3px; }
+.page-register #form .sexy-combo-sex .icon { left:31px; }
+.page-register #form .sexy-combo-sex div.list-wrapper { width:50px; }
+
+.page-register #form .sexy-combo-birth_date { position:absolute; top:290px; left:142px; width:51px; }
+.page-register #form .sexy-combo-birth_date input { width:45px; padding-left:5px; }
+.page-register #form .sexy-combo-birth_date .icon { left:31px; }
+.page-register #form .sexy-combo-birth_date div.list-wrapper { width:50px; }
+
+.page-register #form .sexy-combo-birth_month { position:absolute; top:290px; left:207px; width:99px; }
+.page-register #form .sexy-combo-birth_month input { width:76px; padding-left:5px; }
+.page-register #form .sexy-combo-birth_month .icon { left:81px; }
+.page-register #form .sexy-combo-birth_month div.list-wrapper { width:99px; }
+
+.page-register #form .sexy-combo-birth_year { position:absolute; top:290px; left:324px; width:99px; }
+.page-register #form .sexy-combo-birth_year input { width:51px; padding-left:5px; }
+.page-register #form .sexy-combo-birth_year .icon { left:56px; }
+.page-register #form .sexy-combo-birth_year div.list-wrapper { width:75px; }
+
+.page-register #form .address { position:absolute; top:341px; left:140px; width:224px; }
+.page-register #form .tel { position:absolute; top:371px; left:140px; width:224px; }
+.page-register #form .email { position:absolute; top:403px; left:140px; width:224px; }
+.page-register #form .job { position:absolute; top:435px; left:140px; width:224px; }
+.page-register #form .job_area { position:absolute; top:466px; left:140px; width:224px; }
+.page-register #form .favorite_artist { position:absolute; top:511px; left:140px; width:224px; }
+
+.page-register #form #form-button {
+	position:relative; top:547px; left:82px; width:316px; height:62px;
+	background:transparent url("../images/register/button-form-bg.gif") no-repeat 0px 0px;
+	margin:0px; padding:0px; list-style:none;
+}
+.page-register #form #form-button li,
+.page-register #form #form-button li a,
+.page-register #form #form-button li .submit { height:42px; text-indent:-2000px; }
+
+.page-register #form #form-button li .submit {
+	position:absolute; top:0px; left:6px; width:132px;
+	background:transparent url("../images/register/button-form.gif") no-repeat 0px 0px; cursor:pointer;
+}
+.page-register #form #form-button .submit:hover { background-position:0px -42px; }
+
+.page-register #form #form-button li a {
+	position:absolute; top:0px; left:176px; width:132px;
+	background:transparent url("../images/register/button-form.gif") no-repeat -171px 0px; cursor:pointer;
+}
+.page-register #form #form-button li a:hover { background-position:-171px -42px; }
+
+
+/* end register */

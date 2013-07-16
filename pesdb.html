@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<script type="text/javascript" src="js/lib/jquery.js"></script>
+	</head>
+	<body>
+		<div id="result">
+
+		</div>
+		<script type="text/javascript">
+			$(function(){
+				var page = 1;
+				var datas = [];
+
+					$.get('page.html', function(data) {
+
+						var content = $(data),
+							rows = content
+									.find('table:eq(2)')
+									;//.find('tr');
+
+						$('body').append(rows);
+						return;
+						for(var i=0;i<rows.length;i++){
+							$('#datas').append(rows[i].find('td:eq(0)').text + '<br />');
+							//datas.push(rows[i].find('td:eq(0)').text);
+						}
+
+
+					});
+			});
+		</script>
+	</body>
+</html>
