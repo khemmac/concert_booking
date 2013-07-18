@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = '';
-$db['default']['password'] = '';
-$db['default']['database'] = '';
+$db['default']['hostname'] = '54.251.188.145';//'localhost';
+$db['default']['username'] = 'concert';//'root';
+$db['default']['password'] = 'concert_aws_pass';//'1234';
+$db['default']['database'] = 'concert';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

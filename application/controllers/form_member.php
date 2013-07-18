@@ -11,6 +11,12 @@ class Form_member extends CI_Controller {
 		$this->output->set_header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
 	}
 
+	public function db(){
+		$query = $this->db->get('bluecard');
+		$result = $query->result_array();
+		echo json_encode($result);
+	}
+
 	public function register(){
 
 		$rules = array(
