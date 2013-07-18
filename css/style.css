@@ -18,56 +18,45 @@ form input {
 /* login */
 .page-login { height:750px; }
 
-.page-login #menu { width:965px; height:60px; position:absolute; top:17px; left:19px; margin:0px; padding:0px; list-style:none; }
+.page-login #menu { width:962px; height:58px; position:absolute; top:19px; left:23px; margin:0px; padding:0px; list-style:none; }
 .page-login #menu li { display:block; float:left; }
 
 .page-login #menu li a {
-	display:block; text-indent:-3000px; height:60px; float:left;
+	display:block; text-indent:-3000px; height:58px; float:left;
 	background:transparent url('../images/login/menu.gif') no-repeat 0px 0px;
 }
 
-.page-login #menu li a.menu-boost { background-position: 0px 0px; width:151px; }
+.page-login #menu li a.menu-boost { background-position: 0px 0px; width:153px; }
 .page-login #menu li a.menu-boost:hover,
-.page-login #menu li.active a.menu-boost { background-position: 0px -60px; }
+.page-login #menu li.active a.menu-boost { background-position: 0px -58px; }
 
-.page-login #menu li a.menu-facebook { background-position: -151px 0px; width:89px; }
+.page-login #menu li a.menu-facebook { background-position: -153px 0px; width:89px; }
 .page-login #menu li a.menu-facebook:hover,
-.page-login #menu li.active a.menu-facebook { background-position: -151px -60px; }
+.page-login #menu li.active a.menu-facebook { background-position: -153px -58px; }
 
-.page-login #menu li a.menu-1 { background-position: -240px 0px; width:159px; }
+.page-login #menu li a.menu-1 { background-position: -242px 0px; width:361px; }
 .page-login #menu li a.menu-1:hover,
-.page-login #menu li.active a.menu-1 { background-position: -240px -60px; }
+.page-login #menu li.active a.menu-1 { background-position: -242px -58px; }
 
-.page-login #menu li a.menu-2 { background-position: -399px 0px; width:139px; }
+.page-login #menu li a.menu-2 { background-position: -603px 0px; width:359px; }
 .page-login #menu li a.menu-2:hover,
-.page-login #menu li.active a.menu-2 { background-position: -399px -60px; }
+.page-login #menu li.active a.menu-2 { background-position: -603px -58px; }
 
-.page-login #menu li a.menu-3 { background-position: -538px 0px; width:216px; }
-.page-login #menu li a.menu-3:hover,
-.page-login #menu li.active a.menu-3 { background-position: -538px -60px; }
-
-.page-login #menu li a.menu-4 { background-position: -754px 0px; width:211px; }
-.page-login #menu li a.menu-4:hover,
-.page-login #menu li.active a.menu-4 { background-position: -754px -60px; }
-
-.page-login #sub-menu { /*border:1px solid #f00;*/ width:156px; position:absolute; top:89px; left:806px; margin:0px; padding:0px; list-style:none; }
+.page-login #sub-menu { width:146px; position:absolute; top:103px; left:224px; margin:0px; padding:0px; list-style:none; }
 .page-login #sub-menu li { display:block; float:left; }
-.page-login #sub-menu li a {
-	display:block; text-indent:-3000px; height:23px; float:left;
-	background:transparent url('../images/login/b-text.gif') no-repeat 0px 0px;
-}
-.page-login #sub-menu li a.sub-menu-login { width:72px; background-position: 0px 0px; }
-.page-login #sub-menu li a.sub-menu-register { width:84px; background-position: -72px 0px; }
+.page-login #sub-menu li a { display:block; text-indent:-3000px; height:24px; }
+.page-login #sub-menu li a.sub-menu-1 { width:52px; }
+.page-login #sub-menu li a.sub-menu-2 { width:94px; }
 
 .page-login #dialog {
-	width:445px; height:240px; background:transparent url("../images/login/dialog.gif") no-repeat 0px 0px;
-	position:absolute; top:295px; left:285px;
+	width:439px; height:267px; background:transparent url("../images/login/dialog.gif") no-repeat 0px 0px;
+	position:absolute; top:228px; left:302px;
 }
 .page-login input { border:0px; -webkit-box-shadow: none !important; box-shadow: none !important; }
-.page-login #dialog .username { position:absolute; top:37px; left:151px; width:224px; background:transparent; }
-.page-login #dialog .password { position:absolute; top:78px; left:151px; width:224px; background:transparent; }
+.page-login #dialog .username { position:absolute; top:35px; left:149px; width:225px; background:transparent; }
+.page-login #dialog .password { position:absolute; top:76px; left:149px; width:225px; background:transparent; }
 .page-login #dialog .submit {
-	position:absolute; top:122px; left:181px; width:86px; height:32px; text-indent:-2000px;
+	position:absolute; top:145px; left:178px; width:86px; height:32px; text-indent:-2000px;
 	background:transparent url("../images/login/b-submit.gif") no-repeat 0px 0px; cursor:pointer;
 }
 .page-login #dialog .submit:hover { background-position:0px -32px; }

@@ -3,17 +3,10 @@
 ?>
 <div id="container" class="page-login">
 	<ul id="menu">
-		<li><a href="#" class="menu-boost">Boost plus</a></li>
-		<li><a href="#" class="menu-facebook">Facebook</a></li>
-		<li><a href="#" class="menu-1">เลือกโซนที่นั่ง</a></li>
-		<li><a href="#" class="menu-2">แจ้งโอนเงิน</a></li>
-		<li><a href="#" class="menu-3">ตรวจสอบสถานะบัตร</a></li>
-		<li><a href="#" class="menu-4">ข้อกำหนดและเงื่อนไข</a></li>
-	</ul>
-
-	<ul id="sub-menu">
-		<li><a href="login" class="sub-menu-login">Login</a></li>
-		<li><a href="register" class="sub-menu-register">Register</a></li>
+		<li><a href="#" class="menu-boost"></a></li>
+		<li><a href="#" class="menu-facebook"></a></li>
+		<li><a href="#" class="menu-1"></a></li>
+		<li><a href="#" class="menu-2"></a></li>
 	</ul>
 
 	<div id="dialog">
@@ -42,6 +35,10 @@
 			}
 			echo form_input($password);
 		?>
+		<ul id="sub-menu">
+			<li><a href="register" class="sub-menu-1"></a></li>
+			<li><a href="forgot" class="sub-menu-2"></a></li>
+		</ul>
 		<?= form_submit(array(
 				'id'		=> 'submit',
 				'value'		=> 'Submit',
