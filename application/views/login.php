@@ -2,12 +2,7 @@
 	$errors_message = $this->session->flashdata('errors_message');
 ?>
 <div id="container" class="page-login">
-	<ul id="menu">
-		<li><a href="#" class="menu-boost"></a></li>
-		<li><a href="#" class="menu-facebook"></a></li>
-		<li><a href="#" class="menu-1"></a></li>
-		<li><a href="#" class="menu-2"></a></li>
-	</ul>
+	<?=$this->load->view('includes/inc-menu-1','', TRUE)?>
 
 	<div id="dialog">
 		<?= form_open('controller/form_member/login'); ?>

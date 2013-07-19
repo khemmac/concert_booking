@@ -8,6 +8,14 @@ form input {
 	height:20px;
 }
 
+/* popup */
+#common-popup-container { position:fixed; top:0px; left:0px; width:100%; height:100%; margin:0 auto; }
+#common-popup {
+	width:677px; height:522px;
+	background:transparent url('../images/common/popup.png') no-repeat;
+}
+/* end popup */
+
 #container {
 	margin:0 auto;
 	width:1000px;
@@ -15,32 +23,55 @@ form input {
 	position:relative;
 }
 
-/* login */
-.page-login { height:750px; }
-
-.page-login #menu { width:962px; height:58px; position:absolute; top:19px; left:23px; margin:0px; padding:0px; list-style:none; }
-.page-login #menu li { display:block; float:left; }
-
-.page-login #menu li a {
+/* menu 1 */
+#menu-1 { width:962px; height:58px; position:absolute; top:19px; left:23px; margin:0px; padding:0px; list-style:none; }
+#menu-1 li { display:block; float:left; }
+#menu-1 li a {
 	display:block; text-indent:-3000px; height:58px; float:left;
 	background:transparent url('../images/login/menu.gif') no-repeat 0px 0px;
 }
 
-.page-login #menu li a.menu-boost { background-position: 0px 0px; width:153px; }
-.page-login #menu li a.menu-boost:hover,
-.page-login #menu li.active a.menu-boost { background-position: 0px -58px; }
+#menu-1 li a.menu-boost { background-position: 0px 0px; width:153px; }
+#menu-1 li a.menu-boost:hover,
+#menu-1 li.active a.menu-boost { background-position: 0px -58px; }
 
-.page-login #menu li a.menu-facebook { background-position: -153px 0px; width:89px; }
-.page-login #menu li a.menu-facebook:hover,
-.page-login #menu li.active a.menu-facebook { background-position: -153px -58px; }
+#menu-1 li a.menu-facebook { background-position: -153px 0px; width:89px; }
+#menu-1 li a.menu-facebook:hover,
+#menu-1 li.active a.menu-facebook { background-position: -153px -58px; }
 
-.page-login #menu li a.menu-1 { background-position: -242px 0px; width:361px; }
-.page-login #menu li a.menu-1:hover,
-.page-login #menu li.active a.menu-1 { background-position: -242px -58px; }
+#menu-1 li a.menu-1 { background-position: -242px 0px; width:361px; }
+#menu-1 li a.menu-1:hover,
+#menu-1 li.active a.menu-1 { background-position: -242px -58px; }
 
-.page-login #menu li a.menu-2 { background-position: -603px 0px; width:359px; }
-.page-login #menu li a.menu-2:hover,
-.page-login #menu li.active a.menu-2 { background-position: -603px -58px; }
+#menu-1 li a.menu-2 { background-position: -603px 0px; width:359px; }
+#menu-1 li a.menu-2:hover,
+#menu-1 li.active a.menu-2 { background-position: -603px -58px; }
+/* end menu 1 */
+
+/* home */
+.page-home { height:750px; }
+
+.page-home #content {
+	width:1000px; height:540px; background:transparent url('../images/home/bg.jpg') no-repeat;
+	position:absolute; top:164px;
+}
+.page-home #content #box {
+	width:377px; height:314px; background:transparent url('../images/home/box.gif') no-repeat;
+	position:absolute; top:19px; left:571px;
+}
+.page-home #content .b-presale,
+.page-home #content .b-early {
+	display:block; width:482px; height:52px; background: transparent url('../images/home/buttons.gif') no-repeat;
+	position:absolute; top:456px; left:259px;
+}
+.page-home #content .b-early:hover { background-position: 0px -52px; }
+.page-home #content .b-presale { background-position: 0px -104px; }
+.page-home #content .b-presale:hover { background-position: 0px -156px; }
+
+/* end home */
+
+/* login */
+.page-login { height:750px; }
 
 .page-login #sub-menu { width:146px; position:absolute; top:103px; left:224px; margin:0px; padding:0px; list-style:none; }
 .page-login #sub-menu li { display:block; float:left; }
