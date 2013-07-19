@@ -1,7 +1,7 @@
 <?php
 	$errors_message = $this->session->flashdata('errors_message');
 ?>
-<div id="container" class="page-login">
+<div id="content-body" class="page-login">
 	<?=$this->load->view('includes/inc-menu-1','', TRUE)?>
 
 	<div id="dialog">

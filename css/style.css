@@ -23,31 +23,6 @@ form input {
 	position:relative;
 }
 
-/* menu 1 */
-#menu-1 { width:962px; height:58px; position:absolute; top:19px; left:23px; margin:0px; padding:0px; list-style:none; }
-#menu-1 li { display:block; float:left; }
-#menu-1 li a {
-	display:block; text-indent:-3000px; height:58px; float:left;
-	background:transparent url('../images/common/menu-1.gif') no-repeat 0px 0px;
-}
-
-#menu-1 li a.menu-boost { background-position: 0px 0px; width:153px; }
-#menu-1 li a.menu-boost:hover,
-#menu-1 li.active a.menu-boost { background-position: 0px -58px; }
-
-#menu-1 li a.menu-facebook { background-position: -153px 0px; width:89px; }
-#menu-1 li a.menu-facebook:hover,
-#menu-1 li.active a.menu-facebook { background-position: -153px -58px; }
-
-#menu-1 li a.menu-1 { background-position: -242px 0px; width:361px; }
-#menu-1 li a.menu-1:hover,
-#menu-1 li.active a.menu-1 { background-position: -242px -58px; }
-
-#menu-1 li a.menu-2 { background-position: -603px 0px; width:359px; }
-#menu-1 li a.menu-2:hover,
-#menu-1 li.active a.menu-2 { background-position: -603px -58px; }
-/* end menu 1 */
-
 /* home */
 .page-home { height:750px; }
 
@@ -67,8 +42,15 @@ form input {
 .page-home #content .b-early:hover { background-position: 0px -52px; }
 .page-home #content .b-presale { background-position: 0px -104px; }
 .page-home #content .b-presale:hover { background-position: 0px -156px; }
-
 /* end home */
+
+/* index */
+.page-index { height:750px; }
+.page-index #content {
+	position:absolute; top:140px;
+	width:1000px; height:610px; background:transparent url('../images/index/bg-early.jpg') no-repeat;
+}
+/* end index */
 
 /* login */
 .page-login { height:750px; }

@@ -1,7 +1,7 @@
 <?php
 	$errors_message = $this->session->flashdata('errors_message');
 ?>
-<div id="container" class="page-register">
+<div id="content-body" class="page-register">
 	<ul id="menu">
 		<li><a href="#" class="menu-boost">Boost plus</a></li>
 		<li class="menu-register">สมัครสมาชิก</li>

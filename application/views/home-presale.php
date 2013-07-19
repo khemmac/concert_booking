@@ -3,6 +3,6 @@
 
 	<div id="content">
 		<div id="box"></div>
-		<a href="early" class="b-early"></a>
+		<a href="presale" class="b-presale"></a>
 	</div>
 </div>
