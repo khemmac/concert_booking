@@ -52,6 +52,17 @@ form input {
 }
 /* end index */
 
+/* index-comingsoon */
+.page-index-coming-soon { height:750px; }
+.page-index-coming-soon #content {
+	width:1000px; height:750px; background:transparent url('../images/index/bg-coming-soon.jpg') no-repeat;
+}
+.page-index-coming-soon #content ul#coming-soon-menu { margin:0px; padding:0px; list-style:none; width:148px; position:absolute; bottom:18px; left:32px; }
+.page-index-coming-soon #content a { display:block; height:36px; float:left; }
+.page-index-coming-soon #content a.b-boost { width:101px; }
+.page-index-coming-soon #content a.b-facebook { width:36px; margin-left:11px; }
+/* end index-comingsoon */
+
 /* login */
 .page-login { height:750px; }
 
