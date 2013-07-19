@@ -28,7 +28,7 @@ form input {
 #menu-1 li { display:block; float:left; }
 #menu-1 li a {
 	display:block; text-indent:-3000px; height:58px; float:left;
-	background:transparent url('../images/login/menu.gif') no-repeat 0px 0px;
+	background:transparent url('../images/common/menu-1.gif') no-repeat 0px 0px;
 }
 
 #menu-1 li a.menu-boost { background-position: 0px 0px; width:153px; }
