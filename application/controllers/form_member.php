@@ -36,6 +36,11 @@ class Form_member extends CI_Controller {
 						'rules'		=> 'trim|required'
 					),
 					array(
+						'field'		=> 'code',
+						'label'		=> 'รหัสบัตรประชาชน',
+						'rules'		=> 'trim|required|min_length[13]|max_length[13]'
+					),
+					array(
 						'field'		=> 'thName',
 						'label'		=> 'ชื่อ - นามสกุล',
 						'rules'		=> 'trim|required'

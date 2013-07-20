@@ -54,7 +54,23 @@
 #menu-2 li a.menu-4 { background-position: -754px 0px; width:208px; }
 #menu-2 li a.menu-4:hover,
 #menu-2 li.active a.menu-4 { background-position: -754px -58px; }
-/* end menu 1 */
+/* end menu 2 */
+
+/* menu 3 */
+#menu-3,
+#menu-3 li,
+#menu-3 li a { height:58px; }
+#menu-3 { width:962px; position:absolute; top:19px; left:23px; margin:0px; padding:0px; list-style:none; }
+#menu-3 li,
+#menu-3 li a { float:left; background:transparent url('../images/common/menu-3.gif') no-repeat 0px 0px; }
+#menu-3 li a { display:block; text-indent:-3000px; }
+
+#menu-3 li a.menu-boost { background-position: 0px 0px; width:152px; }
+#menu-3 li a.menu-boost:hover,
+#menu-3 li.active a.menu-boost { background-position: 0px -58px; }
+
+#menu-3 li.menu-register { background-position: -152px 0px; width:810px; }
+/* end menu 3 */
 
 /* member sub menu */
 #member-sub-menu {

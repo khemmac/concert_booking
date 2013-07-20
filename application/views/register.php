@@ -2,10 +2,7 @@
 	$errors_message = $this->session->flashdata('errors_message');
 ?>
 <div id="content-body" class="page-register">
-	<ul id="menu">
-		<li><a href="#" class="menu-boost">Boost plus</a></li>
-		<li class="menu-register">สมัครสมาชิก</li>
-	</ul>
+	<?=$this->load->view('includes/inc-menu-3','', TRUE)?>
 
 	<div id="form">
 		<?= form_open('controller/form_member/register'); ?>
@@ -36,6 +33,18 @@
 					'type'		=> 'password',
 					'class'		=> 'password-confirm',
 					'maxlength'	=> '100'
+				),
+				array(
+					'name'		=> 'question',
+					'class'		=> 'question',
+					'type'		=> 'dropdown',
+					'options'	=> array('สัตว์เลี้ยงตัวแรกของคุณชื่ออะไร?'=>'สัตว์เลี้ยงตัวแรกของคุณชื่ออะไร?')
+				),
+				array(
+					'name'		=> 'code',
+					'class'		=> 'code',
+					'maxlength'	=> '13',
+					'minlength' => '13'
 				),
 				array(
 					'name'		=> 'thName',
@@ -133,7 +142,7 @@
 					));
 				?>
 			</li>
-			<li><a href="index">กลับหน้าหลัก</a></li>
+			<li><a href="index"></a></li>
 		</ul>
 		<?= form_close() ?>
 	</div>
@@ -145,6 +154,15 @@
 			setTimeout(function(){
 				$(this).attr('disabled', 'disabled');
 			}, 1);
+		});
+
+		comboQuestion = $('select[name=question]');
+		comboQuestion.sexyCombo({
+			triggerSelected: true,
+			skin: 'custom',
+			initCallback: function() {
+				comboQuestion.parent('.combo').addClass('sexy-combo-question');
+			}
 		});
 
 		comboSex = $('select[name=sex]');

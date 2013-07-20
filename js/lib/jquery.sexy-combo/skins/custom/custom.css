@@ -19,11 +19,13 @@ div.custom input {
 	background: transparent;
 	left: 0px;
 	margin: 0px;
-	font: 11px/19px tahoma, arial, helvetica, sans-serif;
+	font: 12px/19px tahoma, arial, helvetica, sans-serif;
 	vertical-align: middle;
 	width: 80px;
-	top: 0px;
+	top: 1px;
+	/*
 	height: 18px;
+	*/
 }
 div.custom div.icon {
 	border-top-width: 0px;
@@ -31,7 +33,7 @@ div.custom div.icon {
 	background: url(arrow.gif) no-repeat 0px 0px;
 	left: 80px;
 	border-bottom-width: 0px;
-	width:21px; height:20px;
+	width:21px; height:23px;
 	cursor: pointer;
 	top: 0px;
 	border-right-width: 0px
