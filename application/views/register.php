@@ -1,5 +1,6 @@
 <?php
 	$errors_message = $this->session->flashdata('errors_message');
+	print_r($errors_message);
 ?>
 <div id="content-body" class="page-register">
 	<?=$this->load->view('includes/inc-menu-3','', TRUE)?>
@@ -43,8 +44,7 @@
 				array(
 					'name'		=> 'code',
 					'class'		=> 'code',
-					'maxlength'	=> '13',
-					'minlength' => '13'
+					'maxlength'	=> '13'
 				),
 				array(
 					'name'		=> 'thName',

@@ -104,10 +104,10 @@ form input {
 .page-register #form .enName { position:absolute; top:289px; left:140px; width:224px; }
 .page-register #form .nickName { position:absolute; top:332px; left:140px; width:124px; }
 
-.page-register #form .sexy-combo-question { position:absolute; top:148px; left:141px; }
-.page-register #form .sexy-combo-question input { width:47px; padding-left:3px; }
-.page-register #form .sexy-combo-question .icon { left:32px; }
-.page-register #form .sexy-combo-question div.list-wrapper { width:50px; }
+.page-register #form .sexy-combo-question { position:absolute; top:147px; left:141px; }
+.page-register #form .sexy-combo-question input { width:203px; padding-left:3px; }
+.page-register #form .sexy-combo-question .icon { left:204px; }
+.page-register #form .sexy-combo-question div.list-wrapper { width:222px; }
 
 .page-register #form .sexy-combo-sex { position:absolute; top:331px; left:310px; }
 .page-register #form .sexy-combo-sex input { width:47px; padding-left:3px; }
@@ -156,6 +156,50 @@ form input {
 	background:transparent url("../images/register/button-form.gif") no-repeat -155px 0px; cursor:pointer;
 }
 .page-register #form #form-button li a:hover { background-position:-155px -57px; }
-
-
 /* end register */
+
+/* zone */
+.page-zone { height:750px; }
+
+.page-zone #content {
+	position:absolute; top:117px; left:73px;
+	width:887px; height:578px; background:transparent url("../images/zone/bg.gif") no-repeat;
+}
+.page-zone #content form .submit {
+	position:absolute; top:512px; left:160px; border:0px; text-indent:-2000px; cursor:pointer;
+	width:172px; height:58px; background:transparent url("../images/zone/button.gif") no-repeat;
+}
+.page-zone #content form .submit:hover { background-position:0px -108px; }
+/* end zone */
+
+/* seat */
+.page-seat { height:750px; }
+
+.page-seat #content {
+	position:absolute; top:148px; left:206px;
+	width:684px; height:602px; background:transparent url("../images/seat/bg.gif") no-repeat;
+}
+.page-seat #content form .submit {
+	position:absolute; top:448px; left:468px; border:0px; text-indent:-2000px; cursor:pointer;
+	width:216px; height:50px; background:transparent url("../images/seat/button-continue.gif") no-repeat;
+}
+.page-seat #content form .submit:hover { background-position:0px -50px; }
+/* end seat */
+
+/* booking */
+.page-booking #content { position:relative; }
+
+
+.page-booking #content #header {
+	/*
+	position:relative; top:133px; left:155px;
+	*/
+	margin-top:100px;
+	width:696px; height:103px; background:transparent url("../images/booking/header.jpg") no-repeat;
+}
+.page-booking #content form .submit {
+	position:absolute; top:448px; left:468px; border:0px; text-indent:-2000px; cursor:pointer;
+	width:216px; height:50px; background:transparent url("../images/seat/button-continue.gif") no-repeat;
+}
+.page-booking #content form .submit:hover { background-position:0px -50px; }
+/* end booking */
