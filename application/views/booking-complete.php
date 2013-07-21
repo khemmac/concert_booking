@@ -1,4 +1,4 @@
-<div id="content-body" class="page-booking">
+<div id="content-body" class="page-booking-complete">
 	<?=$this->load->view('includes/inc-menu-2','', TRUE)?>
 
 	<div id="content">
@@ -10,12 +10,13 @@
 		<table class="list" cellpadding="0" cellspacing="0" border="0">
 			<thead>
 				<tr>
-					<td style="width:117px;" colspan="2">รายการ</td>
+					<td style="width:71px;" colspan="2">รายการ</td>
 					<td style="width:85px;">โซนที่นั่ง</td>
-					<td style="width:139px;">เลขที่นั่ง</td>
-					<td style="width:111px;">จำนวนที่นั่ง</td>
-					<td style="width:113px;">ราคาต่อหน่วย</td>
-					<td style="width:108px;" colspan="2">ราคา</td>
+					<td style="width:110px;">เลขที่นั่ง</td>
+					<td style="width:78px;">จำนวนที่นั่ง</td>
+					<td style="width:94px;">ราคาต่อหน่วย</td>
+					<td style="width:85px;">ราคา</td>
+					<td style="width:114px;" colspan="2">สถานะ</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -27,6 +28,15 @@
 					<td class="seat-count">4</td>
 					<td class="item-price">6,000</td>
 					<td class="price">24,000</td>
+					<td class="status" rowspan="6" valign="top" style="padding:5px; width:114px;">ชำระเงินแล้ว
+						วันที่ xx/xx/xx
+						เวลา 00:00
+						/
+						<br />
+						กรุณาชำระเงินภายใน
+						วันที่ xx/xx/xx
+						ก่อนเวลา 00:00
+					</td>
 					<td class="bg-right"></td>
 				</tr>
 				<tr>
@@ -82,14 +92,14 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="8">footer</td>
+					<td colspan="9">footer</td>
 				</tr>
 				<tr>
-					<td colspan="8" class="footer">footer</td>
+					<td colspan="9" class="footer">footer</td>
 				</tr>
 				<tr>
-					<td colspan="8" class="buttons">
-<?= form_open('controller/form_booking/booking'); ?>
+					<td colspan="9" class="buttons">
+<?= form_open('controller/form_booking/booking-complete'); ?>
 						<ul>
 							<li>
 								<?= form_submit(array(
