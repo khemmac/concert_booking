@@ -167,6 +167,10 @@ class Form_member extends CI_Controller {
 		}
 	}
 
+	public function logout(){
+		redirect('index');
+	}
+
 }
 
 ?>
