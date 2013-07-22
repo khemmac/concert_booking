@@ -12,9 +12,9 @@
 			for($i=1;$i<=31;$i++)
 				$days[$i] = $i;
 
-
+			$year_start = 2013;
 			$years = array();
-			for($i=2013;$i>=2013-89;$i--)
+			for($i=$year_start;$i>=$year_start-89;$i--)
 				$years[$i] = ($i+543);
 
 			$forms = array(
@@ -86,7 +86,8 @@
 					'name'		=> 'birth_year',
 					'class'		=> 'birth_year',
 					'type'		=> 'dropdown',
-					'options'	=> $years
+					'options'	=> $years,
+					'value'		=> $year_start-5
 				),
 				array(
 					'name'		=> 'address',
@@ -126,9 +127,12 @@
 				}
 				if(!empty($value['type']) && $value['type']=='password')
 					echo form_password($value);
-				else if(!empty($value['type']) && $value['type']=='dropdown')
-					echo form_dropdown($value['name'], $value['options']);
-				else
+				else if(!empty($value['type']) && $value['type']=='dropdown'){
+					if(!empty($value['value']))
+						echo form_dropdown($value['name'], $value['options'], $value['value']);
+					else
+						echo form_dropdown($value['name'], $value['options']);
+				}else
 					echo form_input($value);
 			}
 
@@ -156,6 +160,12 @@
 			}, 1);
 		});
 
+		var onSexyBlur = function(parent){
+			parent.find('input[type="text"]').on('blur', function(){
+				$(this).val(parent.find('select>option:selected').text());
+			});
+		};
+
 		comboQuestion = $('select[name=question]');
 		comboQuestion.sexyCombo({
 			triggerSelected: true,
@@ -170,7 +180,9 @@
 			triggerSelected: true,
 			skin: 'custom',
 			initCallback: function() {
-				comboSex.parent('.combo').addClass('sexy-combo-sex');
+				var parent = comboSex.parent('.combo');
+				parent.addClass('sexy-combo-sex');
+				onSexyBlur(parent);
 			}
 		});
 
@@ -179,7 +191,9 @@
 			triggerSelected: true,
 			skin: 'custom',
 			initCallback: function() {
-				comboDate.parent('.combo').addClass('sexy-combo-birth_date');
+				var parent = comboDate.parent('.combo');
+				parent.addClass('sexy-combo-birth_date');
+				onSexyBlur(parent);
 			}
 		});
 
@@ -188,7 +202,9 @@
 			triggerSelected: true,
 			skin: 'custom',
 			initCallback: function() {
-				comboMonth.parent('.combo').addClass('sexy-combo-birth_month');
+				var parent = comboMonth.parent('.combo');
+				parent.addClass('sexy-combo-birth_month');
+				onSexyBlur(parent);
 			}
 		});
 
@@ -197,7 +213,9 @@
 			triggerSelected: true,
 			skin: 'custom',
 			initCallback: function() {
-				comboYear.parent('.combo').addClass('sexy-combo-birth_year');
+				var parent = comboYear.parent('.combo');
+				parent.addClass('sexy-combo-birth_year');
+				onSexyBlur(parent);
 			}
 		});
 	});
