@@ -112,12 +112,7 @@
 	<div id="container">
 		<?=$this->load->view('includes/inc-member-menu','', TRUE)?>
 		<?=$view?>
-		<span style="position:absolute; bottom:20px; right:30px; display:block; width:207px; height:16px; background:transparent url('../images/common/foot-contact.png') no-repeat; text-indent:-9000px;">ติดต่อสอบถาม 02-938-5959</span>
-
-		<!--div id="common-popup-container">
-			<div id="common-popup-mask"></div>
-		</div-->
-
+		<span id="footer" style="position:absolute; bottom:20px; right:30px; display:block; width:207px; height:16px; background:transparent url('../images/common/foot-contact.png') no-repeat; text-indent:-9000px;">ติดต่อสอบถาม 02-938-5959</span>
 	</div>
 
 	<div id="boxes">
