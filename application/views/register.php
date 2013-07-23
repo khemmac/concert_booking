@@ -1,6 +1,5 @@
 <?php
 	$errors_message = $this->session->flashdata('errors_message');
-	print_r($errors_message);
 ?>
 <div id="content-body" class="page-register">
 	<?=$this->load->view('includes/inc-menu-3','', TRUE)?>
@@ -141,7 +140,7 @@
 			<li>
 				<?= form_submit(array(
 						'id'		=> 'submit',
-						'value'		=> 'Submit',
+						'value'		=> '',
 						'class'		=> 'submit'
 					));
 				?>
