@@ -19,6 +19,7 @@
 	margin:0px 0px 0px -40px;
 	width:80px;
 }
+div#box{ padding:11px;}
 </style>
 <?php
 	$finish_date = new DateTime('2013-10-20');
@@ -65,8 +66,22 @@ $(function(){
 <div id="content-body" class="page-home">
 
 	<div id="content">
-		<div id="box"></div>
+		<div id="box">
+			<object width="355" height="292">
+		            <param name="movie" value="http://www.youtube.com/v/_-xEV9f1xE0?version=3&amp;hl=en_US&amp;rel=0">
+		            </param>
+		            <param name="allowFullScreen" value="true">
+		            </param>
+		            <param name="allowscriptaccess" value="always">
+		            </param>
+		            <param name="wmode" value="transparent">
+		            </param>
+		            <embed width="355" height="292" src="http://www.youtube.com/v/_-xEV9f1xE0?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="transparent">
+		            </embed>
+	            </object>
+		</div>
 		<div id="countdown-box" style="position:absolute; width:300px; height:75px; left:232px; top:577px;">
 		</div>
 	</div>
+	<a href="https://www.facebook.com/boostplus?hc_location=stream" target="_blank" style="position:absolute; bottom:40px; right:10px; width:100px; height:30px;"></a>
 </div>
