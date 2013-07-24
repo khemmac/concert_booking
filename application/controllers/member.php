@@ -150,5 +150,19 @@ class Member extends CI_Controller {
 		}
 
 	}
+	// http://ellislab.com/codeigniter/user-guide/libraries/form_validation.html#callbacks
+	public function username_check($str)
+	{
+		if ($str == 'test')
+		{
+			$this->form_validation->set_message('username_check', 'The %s field can not be the word "test"');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	}
 
-}
+
+} // end class

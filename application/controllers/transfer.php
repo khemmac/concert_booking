@@ -1,5 +1,5 @@
 <?php
-class Booking extends CI_Controller {
+class Transfer extends CI_Controller {
 
 
 	function __construct()
@@ -16,22 +16,12 @@ class Booking extends CI_Controller {
 	}
 
 	function index(){
-		$this->phxview->RenderView('booking');
+		$this->phxview->RenderView('transfer');
 		$this->phxview->RenderLayout('default');
 	}
 
-	function booking_submit(){
+	function submit(){
 		redirect('booking/complete');
-	}
-
-	function complete(){
-		$this->phxview->RenderView('booking-complete.php');
-		$this->phxview->RenderLayout('default');
-	}
-
-	function check(){
-		$this->phxview->RenderView('booking-check');
-		$this->phxview->RenderLayout('default');
 	}
 
 }

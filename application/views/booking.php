@@ -5,7 +5,7 @@
 		<div class="header">
 			<span class="name">test test</span>
 			<span class="code">3029103938291</span>
-			<span class="booking-code">XB3920</span>
+			<span class="booking-code">1A109220000071</span>
 		</div>
 		<table class="list" cellpadding="0" cellspacing="0" border="0">
 			<tr class="thead">
@@ -86,7 +86,7 @@
 			</tr>
 			<tr class="tfoot-buttons" align="center">
 				<td colspan="8">
-<?= form_open('controller/form_booking/booking'); ?>
+<?= form_open('booking/booking_submit'); ?>
 					<ul>
 						<li>
 							<?= form_submit(array(
