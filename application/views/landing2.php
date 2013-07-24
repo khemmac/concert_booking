@@ -5,8 +5,6 @@
 
 	#content { background:none !important; top:0px !important; }
 
-	#box { top:72px !important; left: 572px !important; }
-
 	#footer { display:none !important; }
 </style>
 <script type="text/javascript" src="<?= base_url('/js/lib/jcountdown/jquery.jcountdown.min.js') ?>"></script>
@@ -65,7 +63,7 @@ $(function(){
 <div id="content-body" class="page-home">
 
 	<div id="content">
-		<div id="box"></div>
+		<!--div id="box"></div-->
 		<div id="countdown-box" style="position:absolute; width:300px; height:75px; left:232px; top:577px;">
 		</div>
 	</div>
