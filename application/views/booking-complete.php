@@ -108,7 +108,7 @@
 							?>
 						</li>
 						<li>
-							<a href="seat" class="cancel">Cancel</a>
+							<a href="<?= site_url('pdf/print1') ?>" target="_blank" class="cancel">Cancel</a>
 						</li>
 					</ul>
 <?= form_close() ?>

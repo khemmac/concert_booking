@@ -80,7 +80,7 @@ class Pdf extends CI_Controller {
 
 		// Standard 2 of 5
 		$pdf->Cell(0, 0, 'Standard 2 of 5', 0, 1);
-		$pdf->write1DBarcode('1234567', 'S25', '', '', '', 18, 0.4, $style, 'N');
+		$pdf->write1DBarcode('101109220000071', 'S25', '', '', '', 18, 0.4, $style, 'N');
 
 		function ColoredTable($_pdf, $header,$data) {
 			// Colors, line width and bold font
