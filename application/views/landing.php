@@ -68,7 +68,7 @@ $(function(){
 	<div id="content">
 		<div id="box">
 			<object width="355" height="292">
-		            <param name="movie" value="http://www.youtube.com/v/_-xEV9f1xE0?version=3&amp;hl=en_US&amp;rel=0">
+		            <param name="movie" value="http://www.youtube.com/v/YhLaDa3kb0c?version=3&amp;hl=en_US&amp;rel=0">
 		            </param>
 		            <param name="allowFullScreen" value="true">
 		            </param>
@@ -76,7 +76,7 @@ $(function(){
 		            </param>
 		            <param name="wmode" value="transparent">
 		            </param>
-		            <embed width="355" height="292" src="http://www.youtube.com/v/_-xEV9f1xE0?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="transparent">
+		            <embed width="355" height="292" src="http://www.youtube.com/v/YhLaDa3kb0c?version=3&amp;hl=en_US&amp;rel=0" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="transparent">
 		            </embed>
 	            </object>
 		</div>
