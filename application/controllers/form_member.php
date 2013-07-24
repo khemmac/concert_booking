@@ -12,7 +12,9 @@ class Form_member extends CI_Controller {
 	}
 
 	public function db(){
-		$query = $this->db->get('bluecard');
+		$this->db->like('thName', 'yyyy');
+
+		$query = $this->db->get('person');
 		$result = $query->result_array();
 		echo json_encode($result);
 	}
