@@ -18,101 +18,15 @@
 	<link href="<?= base_url('/css/style.css') ?>" type="text/css" rel="stylesheet" />
 	<link href="<?= base_url('/css/style-menu.css') ?>" type="text/css" rel="stylesheet" />
 
-	<script type="text/javascript">
-		$(function(){
-			// show qtip
-			$('input[qtip-data]').qtip({
-				content: { attr: 'qtip-data' },
-				show: {
-					when: false, // Don't specify a show event
-					ready: true // Show the tooltip when ready
-				},
-				hide: 'keyup', // hide when key on input
-				//hide: false, // Don't specify a hide event
-				position: {
-					my: 'center left',
-					at: 'center right',
-					adjust: { x: 5 }
-				},
-				style: {
-					classes: 'qtip-red'
-				}
-			});
+	<script type="text/javascript" src="<?= base_url('/js/common.js') ?>"></script>
 
-			//select all the a tag with name equal to modal
-			$('a.menu-4').click(function(e) {
-				//Cancel the link behavior
-				e.preventDefault();
-				//Get the A tag
-				var id = '#common-popup';//$(this).attr('href');
-
-				//Get the screen height and width
-				var maskHeight = $(document).height();
-				var maskWidth = $(window).width();
-
-				//Set height and width to mask to fill up the whole screen
-				$('#mask').css({'width':maskWidth,'height':maskHeight});
-
-				//transition effect
-				//$('#mask').fadeIn(1000);
-				//$('#mask').fadeTo("slow",0.8);
-				$('#mask').fadeTo(200, 0.6);
-
-				//Get the window height and width
-				var winH = $(window).height();
-				var winW = $(window).width();
-
-				//Set the popup window to center
-				$(id).css('top',  winH/2-$(id).height()/2);
-				$(id).css('left', winW/2-$(id).width()/2);
-
-				//transition effect
-				$(id).fadeIn(200);
-
-			});
-
-			//if close button is clicked
-			$('.window .close').click(function (e) {
-				//Cancel the link behavior
-				e.preventDefault();
-				$('#mask, .window').hide();
-			});
-
-			//if mask is clicked
-			$('#mask').click(function () {
-				$(this).hide();
-				$('.window').hide();
-			});
-
-			$(window).resize(function () {
-				var box = $('#boxes .window');
-
-				//Get the screen height and width
-				var maskHeight = $(document).height();
-				var maskWidth = $(window).width();
-
-				//Set height and width to mask to fill up the whole screen
-				$('#mask').css({'width':maskWidth,'height':maskHeight});
-
-				//Get the window height and width
-				var winH = $(window).height();
-				var winW = $(window).width();
-
-				//Set the popup window to center
-				box.css('top',  winH/2 - box.height()/2);
-				box.css('left', winW/2 - box.width()/2);
-			});
-
-
-		});
-	</script>
 </head>
 
 <body>
 	<div id="container">
 		<?=$this->load->view('includes/inc-member-menu','', TRUE)?>
 		<?=$view?>
-		<span id="footer" style="position:absolute; bottom:20px; right:30px; display:block; width:207px; height:16px; background:transparent url('../images/common/foot-contact.png') no-repeat; text-indent:-9000px;">ติดต่อสอบถาม 02-938-5959</span>
+		<span id="footer" style="position:absolute; bottom:20px; right:30px; display:block; width:207px; height:16px; background:transparent url('<?= base_url("/images/common/foot-contact.png") ?>') no-repeat; text-indent:-9000px;">ติดต่อสอบถาม 02-938-5959</span>
 	</div>
 
 	<div id="boxes">
@@ -127,7 +41,7 @@ Maecenas aliquet velit vel turpis. Mauris neque metus, malesuada nec, ultricies 
 			</div>
 			<input type="checkbox" name="chk-dont-show-popup" id="chk-dont-show-popup" />
 			<label for="chk-dont-show-popup" id="lbl-dont-show-popup">อย่าแสดงอีก</label>
-			<a href="#" class="close">Close</a>
+			<a href="#close" class="close">Close</a>
 		</div>
 		<div id="mask"></div>
 	</div>

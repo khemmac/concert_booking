@@ -1,11 +1,8 @@
-<?php
-	$errors_message = $this->session->flashdata('errors_message');
-?>
 <div id="content-body" class="page-register">
 	<?=$this->load->view('includes/inc-menu-3','', TRUE)?>
 
 	<div id="form">
-		<?= form_open('controller/form_member/register'); ?>
+		<?= form_open(); ?>
 		<?php
 			$days = array();
 			for($i=1;$i<=31;$i++)
@@ -121,18 +118,30 @@
 			);
 
 			foreach ($forms as $key => $value) {
-				if(!empty($errors_message[$value['name']])){
-					$value['qtip-data'] = $errors_message[$value['name']];
+				$form_error = form_error($value['name']);
+				if(!empty($form_error)){
+					$value['qtip-data'] = $form_error;
 				}
-				if(!empty($value['type']) && $value['type']=='password')
+
+				$__set_value = set_value($value['name']);
+
+				if(!empty($value['type']) && $value['type']=='password'){
+					//if(!empty($__set_value))
+					//	$value['value'] = $__set_value;
 					echo form_password($value);
-				else if(!empty($value['type']) && $value['type']=='dropdown'){
+				}else if(!empty($value['type']) && $value['type']=='dropdown'){
+					if(!empty($__set_value))
+						$value['value'] = $__set_value;
+
 					if(!empty($value['value']))
 						echo form_dropdown($value['name'], $value['options'], $value['value']);
 					else
 						echo form_dropdown($value['name'], $value['options']);
-				}else
+				}else{
+					if(!empty($__set_value))
+						$value['value'] = $__set_value;
 					echo form_input($value);
+				}
 			}
 
 		?>
@@ -159,63 +168,11 @@
 			}, 1);
 		});
 
-		var onSexyBlur = function(parent){
-			parent.find('input[type="text"]').on('blur', function(){
-				$(this).val(parent.find('select>option:selected').text());
-			});
-		};
+		common.combo.create($('select[name=question]'),		'sexy-combo-question');
+		common.combo.create($('select[name=sex]'),			'sexy-combo-sex');
+		common.combo.create($('select[name=birth_date]'),	'sexy-combo-birth_date');
+		common.combo.create($('select[name=birth_month]'),	'sexy-combo-birth_month');
+		common.combo.create($('select[name=birth_year]'),	'sexy-combo-birth_year');
 
-		comboQuestion = $('select[name=question]');
-		comboQuestion.sexyCombo({
-			triggerSelected: true,
-			skin: 'custom',
-			initCallback: function() {
-				comboQuestion.parent('.combo').addClass('sexy-combo-question');
-			}
-		});
-
-		comboSex = $('select[name=sex]');
-		comboSex.sexyCombo({
-			triggerSelected: true,
-			skin: 'custom',
-			initCallback: function() {
-				var parent = comboSex.parent('.combo');
-				parent.addClass('sexy-combo-sex');
-				onSexyBlur(parent);
-			}
-		});
-
-		comboDate = $('select[name=birth_date]');
-		comboDate.sexyCombo({
-			triggerSelected: true,
-			skin: 'custom',
-			initCallback: function() {
-				var parent = comboDate.parent('.combo');
-				parent.addClass('sexy-combo-birth_date');
-				onSexyBlur(parent);
-			}
-		});
-
-		comboMonth = $('select[name=birth_month]');
-		comboMonth.sexyCombo({
-			triggerSelected: true,
-			skin: 'custom',
-			initCallback: function() {
-				var parent = comboMonth.parent('.combo');
-				parent.addClass('sexy-combo-birth_month');
-				onSexyBlur(parent);
-			}
-		});
-
-		comboYear = $('select[name=birth_year]');
-		comboYear.sexyCombo({
-			triggerSelected: true,
-			skin: 'custom',
-			initCallback: function() {
-				var parent = comboYear.parent('.combo');
-				parent.addClass('sexy-combo-birth_year');
-				onSexyBlur(parent);
-			}
-		});
 	});
 </script>
