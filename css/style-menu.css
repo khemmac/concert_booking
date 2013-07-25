@@ -76,9 +76,11 @@
 #member-sub-menu {
 	margin:0px; padding:0px; list-style:none;
 	position:absolute; top:80px; right:44px;
-	width: 162px; height:23px; background: transparent url('../images/common/member-sub-menu.gif') no-repeat;
+	width: 162px; height:23px;
 }
-#member-sub-menu a { display:block; height:23px; float:left; }
+#member-sub-menu a { display:block; height:23px; float:left; background: transparent url('../images/common/member-sub-menu.gif') no-repeat; }
 #member-sub-menu a.menu-logout { width:65px; }
-#member-sub-menu a.menu-profile { width:97px; }
+#member-sub-menu a.menu-profile { width:97px; background-position:-65px 0px; }
+#member-sub-menu a.menu-login { width:60px; background-position:0px -23px; }
+#member-sub-menu a.menu-register { width:97px; background-position:-60px -23px; }
 /* end member sub menu */

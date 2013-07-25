@@ -102,6 +102,17 @@ Common.prototype = {
 				}
 			});
 		}
+	},
+	isValidDate : function(y,m,d) {
+		// Assume not leap year by default (note zero index for Jan)
+		var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+		// If evenly divisible by 4 and not evenly divisible by 100,
+		// or is evenly divisible by 400, then a leap year
+		if ( (!(y % 4) && y % 100) || !(y % 400)) {
+			daysInMonth[1] = 29;
+		}
+		return d <= daysInMonth[--m]
 	}
 };
 

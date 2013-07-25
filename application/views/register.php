@@ -38,6 +38,11 @@
 					'options'	=> array('สัตว์เลี้ยงตัวแรกของคุณชื่ออะไร?'=>'สัตว์เลี้ยงตัวแรกของคุณชื่ออะไร?')
 				),
 				array(
+					'name'		=> 'answer',
+					'class'		=> 'answer',
+					'maxlength'	=> '255'
+				),
+				array(
 					'name'		=> 'code',
 					'class'		=> 'code',
 					'maxlength'	=> '13'
@@ -163,6 +168,14 @@
 <script type="text/javascript">
 	$(function(){
 		$('#submit').click(function(){
+			var bd = $('select[name=birth_date]').val(),
+				bm = $('select[name=birth_month]').val(),
+				by = $('select[name=birth_year]').val();
+			if(!common.isValidDate(by,bm,bd)){
+				alert('วันที่ผิดพลาด กรุณาตรวจสอบอีกครั้ง');
+				return false;
+			}
+
 			setTimeout(function(){
 				$(this).attr('disabled', 'disabled');
 			}, 1);

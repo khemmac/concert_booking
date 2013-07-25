@@ -132,13 +132,14 @@ form input {
 	position:absolute; top:77px; left:265px;
 	width:477px; height:601px; background:transparent url("../images/register/form.gif") no-repeat;
 }
-.page-register #form .username { position:absolute; top:59px; left:140px; width:224px; }
-.page-register #form .password { position:absolute; top:92px; left:140px; width:224px; }
-.page-register #form .password-confirm { position:absolute; top:120px; left:140px; width:224px; }
-.page-register #form .code { position:absolute; top:214px; left:140px; width:224px; }
-.page-register #form .thName { position:absolute; top:247px; left:140px; width:224px; }
-.page-register #form .enName { position:absolute; top:289px; left:140px; width:224px; }
-.page-register #form .nickName { position:absolute; top:332px; left:140px; width:124px; }
+.page-register #form .username { position:absolute; top:59px; left:143px; width:220px; }
+.page-register #form .password { position:absolute; top:92px; left:143px; width:220px; }
+.page-register #form .password-confirm { position:absolute; top:120px; left:143px; width:220px; }
+.page-register #form .answer { position:absolute; top:176px; left:143px; width:220px; }
+.page-register #form .code { position:absolute; top:214px; left:143px; width:220px; }
+.page-register #form .thName { position:absolute; top:247px; left:143px; width:220px; }
+.page-register #form .enName { position:absolute; top:289px; left:143px; width:220px; }
+.page-register #form .nickName { position:absolute; top:332px; left:143px; width:124px; }
 
 .page-register #form .sexy-combo-question { position:absolute; top:147px; left:141px; }
 .page-register #form .sexy-combo-question input { width:203px; padding-left:3px; }
@@ -165,12 +166,12 @@ form input {
 .page-register #form .sexy-combo-birth_year .icon { left:57px; }
 .page-register #form .sexy-combo-birth_year div.list-wrapper { width:75px; }
 
-.page-register #form .address { position:absolute; top:410px; left:140px; width:224px; }
-.page-register #form .tel { position:absolute; top:442px; left:140px; width:224px; }
-.page-register #form .email { position:absolute; top:474px; left:140px; width:224px; }
-.page-register #form .job { position:absolute; top:505px; left:140px; width:224px; }
-.page-register #form .job_area { position:absolute; top:537px; left:140px; width:224px; }
-.page-register #form .favorite_artist { position:absolute; top:581px; left:140px; width:224px; }
+.page-register #form .address { position:absolute; top:410px; left:143px; width:220px; }
+.page-register #form .tel { position:absolute; top:442px; left:143px; width:220px; }
+.page-register #form .email { position:absolute; top:474px; left:143px; width:220px; }
+.page-register #form .job { position:absolute; top:505px; left:143px; width:220px; }
+.page-register #form .job_area { position:absolute; top:537px; left:143px; width:220px; }
+.page-register #form .favorite_artist { position:absolute; top:581px; left:143px; width:220px; }
 
 .page-register #form #form-button {
 	position:absolute; top:616px; left:82px; width:285px; height:57px;

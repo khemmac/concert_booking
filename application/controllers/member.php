@@ -60,12 +60,22 @@ class Member extends CI_Controller {
 					array(
 						'field'		=> 'password',
 						'label'		=> 'รหัสผ่าน',
-						'rules'		=> 'trim|required|matches[passwordConf]|md5'
+						'rules'		=> 'trim|required|min_length[6]|max_length[255]|matches[passwordConf]|md5'
 					),
 					array(
 						'field'		=> 'passwordConf',
 						'label'		=> 'ยืนยัน รหัสผ่าน',
 						'rules'		=> 'trim|required|md5'
+					),
+					array(
+						'field'		=> 'question',
+						'label'		=> 'คำถามกันลืมรัหสผ่าน',
+						'rules'		=> 'trim|required'
+					),
+					array(
+						'field'		=> 'answer',
+						'label'		=> 'คำตอบ',
+						'rules'		=> 'trim|required|max_length[255]'
 					),
 					array(
 						'field'		=> 'code',
@@ -75,22 +85,22 @@ class Member extends CI_Controller {
 					array(
 						'field'		=> 'thName',
 						'label'		=> 'ชื่อ - นามสกุล',
-						'rules'		=> 'trim|required'
+						'rules'		=> 'trim|required|max_length[255]'
 					),
 					array(
 						'field'		=> 'enName',
 						'label'		=> 'ชื่อ - นามสกุล (ภาษาอังกฤษ)',
-						'rules'		=> 'trim|required'
+						'rules'		=> 'trim|required|max_length[255]'
 					),
 					array(
 						'field'		=> 'nickName',
 						'label'		=> 'ชื่อเล่น',
-						'rules'		=> 'trim|required'
+						'rules'		=> 'trim|required|max_length[100]'
 					),
 					array(
 						'field'		=> 'sex',
-						'label'		=> 'ชื่อเล่น',
-						'rules'		=> 'trim|required'
+						'label'		=> 'เพศ',
+						'rules'		=> 'trim|required|max_length[1]'
 					),
 					array(
 						'field'		=> 'birth_date',
@@ -110,32 +120,32 @@ class Member extends CI_Controller {
 					array(
 						'field'		=> 'address',
 						'label'		=> 'ที่อยุ่ปัจจุบัน',
-						'rules'		=> 'trim|required'
+						'rules'		=> 'trim|required|max_length[1000]'
 					),
 					array(
 						'field'		=> 'tel',
 						'label'		=> 'เบอร์ติดต่อ',
-						'rules'		=> 'trim|required'
+						'rules'		=> 'trim|required|max_length[20]'
 					),
 					array(
 						'field'		=> 'email',
 						'label'		=> 'E-mail',
-						'rules'		=> 'trim|required|valid_email'
+						'rules'		=> 'trim|required|valid_email|max_length[255]'
 					),
 					array(
 						'field'		=> 'job',
 						'label'		=> 'อาชีพ',
-						'rules'		=> 'trim|required'
+						'rules'		=> 'trim|required|max_length[255]'
 					),
 					array(
 						'field'		=> 'job_area',
 						'label'		=> 'สถานที่ทำงาน/เรียน',
-						'rules'		=> 'trim|required'
+						'rules'		=> 'trim|required|max_length[255]'
 					),
 					array(
 						'field'		=> 'favorite_artist',
 						'label'		=> 'ศิลปินคนโปรด',
-						'rules'		=> 'trim|required'
+						'rules'		=> 'trim|required|max_length[255]'
 					)
 				);
 		foreach($rules as $item){
@@ -146,6 +156,26 @@ class Member extends CI_Controller {
 			$this->phxview->RenderView('register');
 			$this->phxview->RenderLayout('default');
 		}else{
+			$formData = array(
+				'username' => $this->input->post('username'),
+				'password' => $this->input->post('password'),
+				'code' => $this->input->post('code'),
+				'thName' => $this->input->post('thName'),
+				'enName' => $this->input->post('enName'),
+				'nickName' => $this->input->post('nickName'),
+				'sex' => $this->input->post('sex'),
+				'birthDate' => $this->input->post('birth_year').'-'.$this->input->post('birth_month').'-'.$this->input->post('birth_date'),
+				'address' => $this->input->post('address'),
+				'tel' => $this->input->post('tel'),
+				'email' => $this->input->post('email'),
+				'job' => $this->input->post('job'),
+				'job_area' => $this->input->post('job_area'),
+				'favorite_artist' => $this->input->post('favorite_artist')
+			);
+
+			$this->db->set('createDate', 'NOW()', false);
+			$this->db->insert('person', $formData);
+
 			redirect('register_success');
 		}
 
