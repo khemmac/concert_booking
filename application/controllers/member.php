@@ -159,6 +159,8 @@ class Member extends CI_Controller {
 			$formData = array(
 				'username' => $this->input->post('username'),
 				'password' => $this->input->post('password'),
+				'question' => $this->input->post('question'),
+				'answer' => $this->input->post('answer'),
 				'code' => $this->input->post('code'),
 				'thName' => $this->input->post('thName'),
 				'enName' => $this->input->post('enName'),
