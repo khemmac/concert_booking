@@ -4,11 +4,41 @@ function Common(){
 
 Common.prototype = {
 	initFormTip : function(){
+
+		$.each($('input[qtip-data]'), function(i,o){
+			var el = $(o);
+			var html = ['<div id="qtip-'+i+'" class="qtip qtip-default qtip-red qtip-pos-lc" tracking="false" role="alert" aria-live="polite" style="z-index: 1500; opacity: 1; display: block;">',
+						'<div class="qtip-tip" style="background-color: transparent ! important; border: 0px none ! important; width: 8px; height: 8px; line-height: 8px; top: 50%; margin-top: -4px; left: -8px;">',
+						'<canvas style="background: transparent url('+__base_url+'js/lib/jquery.qtip/arrow-tip.gif) no-repeat !important; border: 0px none !important;" width="8" height="8"></canvas>',
+						'</div><div class="qtip-content" aria-atomic="true">'+el.attr('qtip-data')+'</div></div>'
+						].join('');
+			var tip = $(html);
+			el.attr('qtip-id', 'qtip-'+i);
+
+			var el_pos = el.offset();
+			tip.css({ top: (el_pos.top-1)+'px', left: (el_pos.left + el.width() + 12)+'px'})
+
+			$('body').append(tip);
+
+			el.on('keyup', function(){
+				tip.fadeOut();
+			});
+		});
+
+/*
+		$('input[qtip-data]').tipsy({title: 'qtip-data',gravity: 'w' });
+		$.each($('input[qtip-data]'), function(o){
+			console.log($(o));
+			$(o).tipsy('show');
+		});
+		//$('input[qtip-data]').tipsy({title: 'qtip-data',gravity: 'w' }).tipsy('show');
+*/
+/*
 		$('input[qtip-data]').qtip({
 			content: { attr: 'qtip-data' },
 			show: {
 				when: false, // Don't specify a show event
-				ready: true // Show the tooltip when ready
+				ready: false // Show the tooltip when ready
 			},
 			hide: 'keyup', // hide when key on input
 			//hide: false, // Don't specify a hide event
@@ -19,8 +49,10 @@ Common.prototype = {
 			},
 			style: {
 				classes: 'qtip-red'
-			}
+			},
+			adjust: { scroll: false }
 		});
+*/
 	},
 	popup : {
 		init : function(){

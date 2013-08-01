@@ -139,7 +139,7 @@ form input {
 .page-register #form .code { position:absolute; top:214px; left:143px; width:220px; }
 .page-register #form .thName { position:absolute; top:247px; left:143px; width:220px; }
 .page-register #form .enName { position:absolute; top:289px; left:143px; width:220px; }
-.page-register #form .nickName { position:absolute; top:332px; left:143px; width:124px; }
+.page-register #form .nickName { position:absolute; top:332px; left:143px; width:118px; }
 
 .page-register #form .sexy-combo-question { position:absolute; top:147px; left:141px; }
 .page-register #form .sexy-combo-question input { width:203px; padding-left:3px; }

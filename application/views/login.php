@@ -1,34 +1,40 @@
-<?php
-	$errors_message = $this->session->flashdata('errors_message');
-?>
+
 <div id="content-body" class="page-login">
 	<?=$this->load->view('includes/inc-menu-1','', TRUE)?>
 
 	<div id="dialog">
-		<?= form_open('controller/form_member/login'); ?>
+		<?= form_open(); ?>
 		<?php
-			$username = array(
-				'name'		=> 'username',
-				'maxlength'	=> '20',
-				'class'		=> 'username',
-				'value'		=> ''
+			$forms = array(
+				array(
+					'name'		=> 'username',
+					'maxlength'	=> '20',
+					'class'		=> 'username',
+					'value'		=> ''
+				),
+				array(
+					'name'		=> 'password',
+					'type'		=> 'password',
+					'class'		=> 'password',
+					'maxlength'	=> '100',
+					'value'		=> ''
+				)
 			);
-			if(!empty($errors_message['username'])){
-				$username['qtip-data'] = $errors_message['username'];
-			}
-			echo form_input($username);
+			foreach ($forms as $key => $value) {
+				$form_error = form_error($value['name']);
+				if(!empty($form_error)){
+					$value['qtip-data'] = $form_error;
+				}
+				$__set_value = set_value($value['name']);
 
-			$password = array(
-				'name'		=> 'password',
-				'type'		=> 'password',
-				'class'		=> 'password',
-				'maxlength'	=> '100',
-				'value'		=> ''
-			);
-			if(!empty($errors_message['password'])){
-				$password['qtip-data'] = $errors_message['password'];
-			}
-			echo form_input($password);
+				if(!empty($value['type']) && $value['type']=='password'){
+					echo form_password($value);
+				}else{
+					if(!empty($__set_value))
+						$value['value'] = $__set_value;
+					echo form_input($value);
+				}
+			};
 		?>
 		<ul id="sub-menu">
 			<li><a href="register" class="sub-menu-1"></a></li>
