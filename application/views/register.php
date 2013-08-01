@@ -1,5 +1,5 @@
 <div id="content-body" class="page-register">
-	<?=$this->load->view('includes/inc-menu-3','', TRUE)?>
+	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 
 	<div id="form">
 		<?= form_open(); ?>
@@ -122,32 +122,7 @@
 				)
 			);
 
-			foreach ($forms as $key => $value) {
-				$form_error = form_error($value['name']);
-				if(!empty($form_error)){
-					$value['qtip-data'] = $form_error;
-				}
-
-				$__set_value = set_value($value['name']);
-
-				if(!empty($value['type']) && $value['type']=='password'){
-					//if(!empty($__set_value))
-					//	$value['value'] = $__set_value;
-					echo form_password($value);
-				}else if(!empty($value['type']) && $value['type']=='dropdown'){
-					if(!empty($__set_value))
-						$value['value'] = $__set_value;
-
-					if(!empty($value['value']))
-						echo form_dropdown($value['name'], $value['options'], $value['value']);
-					else
-						echo form_dropdown($value['name'], $value['options']);
-				}else{
-					if(!empty($__set_value))
-						$value['value'] = $__set_value;
-					echo form_input($value);
-				}
-			}
+			form_helper_generate_form($forms);
 
 		?>
 		<ul id="form-button">
@@ -159,7 +134,7 @@
 					));
 				?>
 			</li>
-			<li><a href="index"></a></li>
+			<li><a href="<?= site_url('index') ?>"></a></li>
 		</ul>
 		<?= form_close() ?>
 	</div>

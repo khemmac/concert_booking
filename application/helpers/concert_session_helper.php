@@ -14,6 +14,10 @@
 		else
 			return 0;
 	}
+	function is_user_session_exist($_this){
+		$sess_user_id = get_user_session_id($_this);
+		return (!empty($sess_user_id) && $sess_user_id>0);
+	}
 	function delete_user_session($_this){
 		$_this->session->unset_userdata('session_concert');
 

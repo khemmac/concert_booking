@@ -1,12 +1,12 @@
 <?php
-	$errors_message = $this->session->flashdata('errors_message');
-	print_r($errors_message);
+	if(!is_user_session_exist($this))
+		redirect('member/login');
 ?>
 <div id="content-body" class="page-transfer">
-	<?=$this->load->view('includes/inc-menu-2','', TRUE)?>
+	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 
 	<div id="form">
-		<?= form_open('transfer/submit'); ?>
+		<?= form_open(); ?>
 		<?php
 			$days = array();
 			for($i=1;$i<=31;$i++)
@@ -20,7 +20,7 @@
 			$forms = array(
 				array(
 					'name'		=> 'code',
-					'maxlength'	=> '20',
+					'maxlength'	=> '14',
 					'class'		=> 'code'
 				),
 				array(
@@ -79,24 +79,12 @@
 						//'ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย'=>'ธนาคารเพื่อการส่งออกและนำเข้าแห่งประเทศไทย',
 						'ธนาคารอาคารสงเคราะห์'=>'ธนาคารอาคารสงเคราะห์',
 						'ธนาคารอิสลามแห่งประเทศไทย'=>'ธนาคารอิสลามแห่งประเทศไทย'
-
 						 */
 					)
 				)
 			);
 
-			foreach ($forms as $key => $value) {
-				if(!empty($errors_message[$value['name']])){
-					$value['qtip-data'] = $errors_message[$value['name']];
-				}
-				if(!empty($value['type']) && $value['type']=='password')
-					echo form_password($value);
-				else if(!empty($value['type']) && $value['type']=='dropdown')
-					echo form_dropdown($value['name'], $value['options']);
-				else
-					echo form_input($value);
-			}
-
+			form_helper_generate_form($forms);
 		?>
 		<ul id="form-button">
 			<li>
@@ -115,45 +103,23 @@
 <script type="text/javascript">
 	$(function(){
 		$('#submit').click(function(){
+			var bd = $('select[name=transfer_date]').val(),
+				bm = $('select[name=transfer_month]').val(),
+				by = $('select[name=transfer_year]').val();
+			if(!common.isValidDate(by,bm,bd)){
+				alert('วันที่ผิดพลาด กรุณาตรวจสอบอีกครั้ง');
+				return false;
+			}
+
 			setTimeout(function(){
 				$(this).attr('disabled', 'disabled');
 			}, 1);
 		});
 
-		comboDate = $('select[name=transfer_date]');
-		comboDate.sexyCombo({
-			triggerSelected: true,
-			skin: 'custom',
-			initCallback: function() {
-				comboDate.parent('.combo').addClass('sexy-combo-transfer_date');
-			}
-		});
+		common.combo.create($('select[name=transfer_date]'),	'sexy-combo-transfer_date');
+		common.combo.create($('select[name=transfer_month]'),	'sexy-combo-transfer_month');
+		common.combo.create($('select[name=transfer_year]'),	'sexy-combo-transfer_year');
+		common.combo.create($('select[name=bank_name]'),		'sexy-combo-bank_name');
 
-		comboMonth = $('select[name=transfer_month]');
-		comboMonth.sexyCombo({
-			triggerSelected: true,
-			skin: 'custom',
-			initCallback: function() {
-				comboMonth.parent('.combo').addClass('sexy-combo-transfer_month');
-			}
-		});
-
-		comboYear = $('select[name=transfer_year]');
-		comboYear.sexyCombo({
-			triggerSelected: true,
-			skin: 'custom',
-			initCallback: function() {
-				comboYear.parent('.combo').addClass('sexy-combo-transfer_year');
-			}
-		});
-
-		comboBankName = $('select[name=bank_name]');
-		comboBankName.sexyCombo({
-			triggerSelected: true,
-			skin: 'custom',
-			initCallback: function() {
-				comboBankName.parent('.combo').addClass('sexy-combo-bank_name');
-			}
-		});
 	});
 </script>

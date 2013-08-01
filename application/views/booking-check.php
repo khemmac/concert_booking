@@ -1,22 +1,22 @@
 <?php
-	$errors_message = $this->session->flashdata('errors_message');
+	if(!is_user_session_exist($this))
+		redirect('member/login');
 ?>
 <div id="content-body" class="page-booking-check">
-	<?=$this->load->view('includes/inc-menu-2','', TRUE)?>
+	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 
 	<div id="dialog">
-		<?= form_open('controller/form_booking/check'); ?>
+		<?= form_open(); ?>
 		<?php
-			$code = array(
-				'name'		=> 'code',
-				'maxlength'	=> '20',
-				'class'		=> 'code',
-				'value'		=> ''
+			$forms = array(
+				array(
+					'name'		=> 'code',
+					'maxlength'	=> '14',
+					'class'		=> 'code',
+					'value'		=> ''
+				)
 			);
-			if(!empty($errors_message['code'])){
-				$username['qtip-data'] = $errors_message['code'];
-			}
-			echo form_input($code);
+			form_helper_generate_form($forms);
 		?>
 		<?= form_submit(array(
 				'id'		=> 'submit',

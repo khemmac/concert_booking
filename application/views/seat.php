@@ -1,5 +1,9 @@
+<?php
+	if(!is_user_session_exist($this))
+		redirect('member/login');
+?>
 <div id="content-body" class="page-seat">
-	<?=$this->load->view('includes/inc-menu-2','', TRUE)?>
+	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 
 	<div id="content">
 		<?= form_open('seat/submit'); ?>

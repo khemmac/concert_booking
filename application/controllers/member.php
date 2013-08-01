@@ -37,14 +37,7 @@ class Member extends CI_Controller {
 				);
 
 		$this->form_validation->set_rules($rules);
-/*
-		if ($this->form_validation->run() == FALSE)
-		{
-		}else{
-			md5($this->input->post('password', TRUE));
-			$this->db->get('person', array());
-		}
-*/
+
 		if($this->form_validation->run() == FALSE)
 		{
 			$this->phxview->RenderView('login');

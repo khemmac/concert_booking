@@ -16,12 +16,34 @@ class Transfer extends CI_Controller {
 	}
 
 	function index(){
-		$this->phxview->RenderView('transfer');
-		$this->phxview->RenderLayout('default');
-	}
+		$rules = array(
+					array(
+						'field'		=> 'code',
+						'label'		=> 'รหัสจอง',
+						'rules'		=> 'trim|required|min_length[14]|max_length[14]|xss_clean'
+					),
+					array(
+						'field'		=> 'time',
+						'label'		=> 'เวลาที่โอนเงิน',
+						'rules'		=> 'trim|required|min_length[5]|max_length[5]'
+					),
+					array(
+						'field'		=> 'pay_money',
+						'label'		=> 'จำนวนเงินที่โอน',
+						'rules'		=> 'trim|required|numeric'
+					)
+				);
 
-	function submit(){
-		redirect('booking/complete');
+		$this->form_validation->set_rules($rules);
+
+
+		if($this->form_validation->run() == FALSE)
+		{
+			$this->phxview->RenderView('transfer');
+			$this->phxview->RenderLayout('default');
+		} else {
+			redirect('booking/complete', 'refresh');
+		}
 	}
 
 }

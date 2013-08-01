@@ -1,6 +1,9 @@
-
+<?php
+	if(is_user_session_exist($this))
+		redirect('index');
+?>
 <div id="content-body" class="page-login">
-	<?=$this->load->view('includes/inc-menu-1','', TRUE)?>
+	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 
 	<div id="dialog">
 		<?= form_open(); ?>
@@ -20,21 +23,7 @@
 					'value'		=> ''
 				)
 			);
-			foreach ($forms as $key => $value) {
-				$form_error = form_error($value['name']);
-				if(!empty($form_error)){
-					$value['qtip-data'] = $form_error;
-				}
-				$__set_value = set_value($value['name']);
-
-				if(!empty($value['type']) && $value['type']=='password'){
-					echo form_password($value);
-				}else{
-					if(!empty($__set_value))
-						$value['value'] = $__set_value;
-					echo form_input($value);
-				}
-			};
+			form_helper_generate_form($forms);
 		?>
 		<ul id="sub-menu">
 			<li><a href="register" class="sub-menu-1"></a></li>
