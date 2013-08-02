@@ -115,6 +115,11 @@ class Member extends CI_Controller {
 		}
 	}
 
+	function profile_success(){
+		$this->phxview->RenderView('member-profile-success');
+		$this->phxview->RenderLayout('default');
+	}
+
 	// http://ellislab.com/codeigniter/user-guide/libraries/form_validation.html#callbacks
 	public function check_register_username($username)
 	{

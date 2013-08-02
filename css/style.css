@@ -203,10 +203,10 @@ form input {
 	position:absolute; top:228px; left:280px;
 }
 .page-register-success #dialog .submit {
-	position:absolute; top:145px; left:179px; width:86px; height:30px; text-indent:-2000px;
-	background:transparent url("../images/login/b-submit.gif") no-repeat 0px 0px; cursor:pointer;
+	position:absolute; top:145px; left:179px; width:85px; height:30px; text-indent:-2000px;
+	background:transparent url("../images/register/button-ok.png") no-repeat 0px 0px; cursor:pointer;
 }
-.page-register-success #dialog .submit:hover { background-position:0px -32px; }
+.page-register-success #dialog .submit:hover { background-position:0px -30px; }
 /* end register-success */
 
 /* profile */
@@ -223,6 +223,13 @@ form input {
 	background-image:url("../images/register/button-profile.png");
 }
 /* end profile */
+
+/* profile-success */
+.page-profile-success #dialog {
+	width:439px; height:280px; background:transparent url("../images/register/profile-success-bg.png") no-repeat 0px 0px;
+	position:absolute; top:228px; left:280px;
+}
+/* end register-success */
 
 /* zone */
 .page-zone { height:750px; }
