@@ -16,20 +16,25 @@ class Booking extends CI_Controller {
 	}
 
 	function index(){
+		if(!is_user_session_exist($this))
+			redirect('member/login');
+
 		$this->phxview->RenderView('booking');
 		$this->phxview->RenderLayout('default');
 	}
 
-	function booking_submit(){
-		redirect('booking/complete');
-	}
-
 	function complete(){
+		if(!is_user_session_exist($this))
+			redirect('member/login');
+
 		$this->phxview->RenderView('booking-complete.php');
 		$this->phxview->RenderLayout('default');
 	}
 
 	function check(){
+		if(!is_user_session_exist($this))
+			redirect('member/login');
+
 		$this->phxview->RenderView('booking-check');
 		$this->phxview->RenderLayout('default');
 	}

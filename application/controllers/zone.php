@@ -16,6 +16,9 @@ class Zone extends CI_Controller {
 	}
 
 	function index(){
+		if(!is_user_session_exist($this))
+			redirect('member/login');
+
 		$this->phxview->RenderView('zone');
 		$this->phxview->RenderLayout('default');
 	}

@@ -195,6 +195,15 @@ form input {
 .page-register #form #form-button li a:hover { background-position:-155px -57px; }
 /* end register */
 
+/* profile */
+.page-profile #form {
+	width:477px; height:603px; background:transparent url("../images/register/profile.png") no-repeat;
+}
+.page-profile #form input.disabled { color:#808080; }
+.page-profile #form .password_old { position:absolute; top:92px; left:143px; width:220px; }
+.page-profile #form .password_new { position:absolute; top:120px; left:143px; width:220px; }
+/* end profile */
+
 /* zone */
 .page-zone { height:750px; }
 

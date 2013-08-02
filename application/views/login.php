@@ -1,7 +1,3 @@
-<?php
-	if(is_user_session_exist($this))
-		redirect('index');
-?>
 <div id="content-body" class="page-login">
 	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 

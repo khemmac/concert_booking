@@ -16,6 +16,9 @@ class Transfer extends CI_Controller {
 	}
 
 	function index(){
+		if(!is_user_session_exist($this))
+			redirect('member/login');
+
 		$rules = array(
 					array(
 						'field'		=> 'code',
@@ -25,7 +28,7 @@ class Transfer extends CI_Controller {
 					array(
 						'field'		=> 'time',
 						'label'		=> 'เวลาที่โอนเงิน',
-						'rules'		=> 'trim|required|min_length[5]|max_length[5]'
+						'rules'		=> 'trim|required|exact_length[5]'
 					),
 					array(
 						'field'		=> 'pay_money',

@@ -1,7 +1,3 @@
-<?php
-	if(!is_user_session_exist($this))
-		redirect('member/login');
-?>
 <div id="content-body" class="page-transfer">
 	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 

@@ -23,13 +23,13 @@
 					'name'		=> 'password',
 					'type'		=> 'password',
 					'class'		=> 'password',
-					'maxlength'	=> '100'
+					'maxlength'	=> '50'
 				),
 				array(
 					'name'		=> 'passwordConf',
 					'type'		=> 'password',
 					'class'		=> 'password-confirm',
-					'maxlength'	=> '100'
+					'maxlength'	=> '50'
 				),
 				array(
 					'name'		=> 'question',

@@ -1,6 +1,5 @@
 <?php
 	$p=(isset($_GET['page']))?$_GET['page']:uri_string();
-	echo $p;
 ?>
 <?php if(is_user_session_exist($this)): ?>
 <ul id="menu-2">
