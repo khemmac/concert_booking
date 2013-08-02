@@ -10,7 +10,7 @@
 	<li><a href="<?= site_url('booking/check') ?>" class="menu-3"></a></li>
 	<li><a href="#condition" class="menu-4"></a></li>
 </ul>
-<?php elseif($p=='member/register'): ?>
+<?php elseif($p=='member/register' || $p=='member/register_success'): ?>
 <ul id="menu-3">
 	<li><a href="#" class="menu-boost"></a></li>
 	<li class="menu-register"></li>

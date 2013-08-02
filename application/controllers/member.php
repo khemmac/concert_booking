@@ -69,8 +69,16 @@ class Member extends CI_Controller {
 		}else{
 			$this->person_model->insert();
 
-			redirect('register_success');
+			// send email
+			$mail_body = $this->load->view('email/register_success', '', true);
+
+			redirect('member/register_success');
 		}
+	}
+
+	function register_success(){
+		$this->phxview->RenderView('member-register-success');
+		$this->phxview->RenderLayout('default');
 	}
 
 	function profile(){
@@ -103,7 +111,7 @@ class Member extends CI_Controller {
 		}else{
 			$this->person_model->update();
 
-			redirect('register_success');
+			redirect('member/profile_success');
 		}
 	}
 

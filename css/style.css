@@ -195,6 +195,20 @@ form input {
 .page-register #form #form-button li a:hover { background-position:-155px -57px; }
 /* end register */
 
+/* register-success */
+.page-register-success { height:750px; }
+
+.page-register-success #dialog {
+	width:439px; height:280px; background:transparent url("../images/register/register-success-bg.png") no-repeat 0px 0px;
+	position:absolute; top:228px; left:280px;
+}
+.page-register-success #dialog .submit {
+	position:absolute; top:145px; left:179px; width:86px; height:30px; text-indent:-2000px;
+	background:transparent url("../images/login/b-submit.gif") no-repeat 0px 0px; cursor:pointer;
+}
+.page-register-success #dialog .submit:hover { background-position:0px -32px; }
+/* end register-success */
+
 /* profile */
 .page-profile #form {
 	width:477px; height:603px; background:transparent url("../images/register/profile.png") no-repeat;
@@ -202,6 +216,12 @@ form input {
 .page-profile #form input.disabled { color:#808080; }
 .page-profile #form .password_old { position:absolute; top:92px; left:143px; width:220px; }
 .page-profile #form .password_new { position:absolute; top:120px; left:143px; width:220px; }
+
+.page-profile #form #form-button,
+.page-register #form #form-button li .submit,
+.page-register #form #form-button li a {
+	background-image:url("../images/register/button-profile.png");
+}
 /* end profile */
 
 /* zone */
