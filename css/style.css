@@ -235,8 +235,8 @@ form input {
 .page-zone { height:750px; }
 
 .page-zone #content {
-	position:absolute; top:117px; left:73px;
-	width:887px; height:578px; background:transparent url("../images/zone/bg.gif") no-repeat;
+	position:absolute; top:106px; left:48px;
+	width:899px; height:554px; background:transparent url("../images/zone/bg.png") no-repeat;
 }
 .page-zone #content form .submit {
 	position:absolute; top:512px; left:160px; border:0px; text-indent:-2000px; cursor:pointer;
@@ -246,11 +246,11 @@ form input {
 /* end zone */
 
 /* seat */
-.page-seat { height:750px; }
+.page-seat { height:780px; }
 
 .page-seat #content {
 	position:absolute; top:120px;
-	width:1000px; height:750px;
+	width:1000px; height:630px;
 }
 .page-seat #content #zone-info {
 	position:absolute; top:0px; right:68px; width:121px; height:230px;
@@ -263,9 +263,12 @@ form input {
 	background:transparent url("../images/seat/stage.png") no-repeat;
 }
 .page-seat #seat-container { position:absolute; background-repeat:no-repeat; background-color:transparent; }
-.page-seat #seat-container .row { position:absolute; height:18px; }
-.page-seat #seat-container a { position:absolute; display:block; width:18px; height:18px; text-indent:-3000px; }
-.page-seat #seat-container input { position:absolute; display:block; bottom:-25px; }
+.page-seat #seat-container .row { position:absolute; height:18px; background:green; opacity: .7; }
+.page-seat #seat-container a,
+.page-seat #seat-container div.row div { position:absolute; display:block; width:18px; height:18px; text-indent:-3000px; background:blue; opacity: .7; }
+.page-seat #seat-container a.active,
+.page-seat #seat-container div.row div.active { background:transparent url("../images/seat/ico-man.png") no-repeat center center; }
+.page-seat #seat-container input { position:absolute; }
 
 .page-seat #content form .submit {
 	position:absolute; top:471px; left:748px; border:0px; text-indent:-2000px; cursor:pointer;

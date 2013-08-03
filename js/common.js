@@ -160,4 +160,7 @@ $(function(){
 
 		common.popup.show();
 	});
+
+	// disable drag image at all
+	$('a,img,area').on('dragstart', function(event) { event.preventDefault(); });
 })

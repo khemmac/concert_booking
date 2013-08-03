@@ -21,11 +21,13 @@ class Seat extends CI_Controller {
 
 		$zone_name = $this->uri->segment(2);
 
+		$zone = zone_helper_get_zone($zone_name);
+/*
 		$zones = array(
 			array(
 				'name'=>'e1a',
 				'seat'=>array(
-					'q'=>'1,2,3,4,5,6,7,8',
+					'q'=>'1-13',
 					'r'=>'1-13',
 					's'=>'1-13',
 					't'=>'1-13',
@@ -33,7 +35,7 @@ class Seat extends CI_Controller {
 					'v'=>'1-13'
 				),
 				'position'=>array(
-					'q'=>'5,6,7,8,9,10,11,12',
+					'q'=>'1-13',
 					'r'=>'1-13',
 					's'=>'1-13',
 					't'=>'1-13',
@@ -42,16 +44,15 @@ class Seat extends CI_Controller {
 				)
 			)
 		);
-
+*/
 		// find zone
-		if(empty($zones) || count($zones)<=0)
+		if(empty($zone_name) || empty($zone))
 			redirect('zone');
 
 		// load booking datas
 		// ...
 
 		// populating data
-		$zone = $zones[0];
 		$zone_data = array(
 			'zone'=>$zone['name'][0],
 			'class'=>$zone['name'][1],
@@ -111,7 +112,8 @@ class Seat extends CI_Controller {
 	}
 
 	function submit(){
-		redirect('zone');
+		print_r($this->input->post('seat'));
+		//redirect('zone');
 	}
 
 }
