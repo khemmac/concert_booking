@@ -45,7 +45,7 @@ Maecenas aliquet velit vel turpis. Mauris neque metus, malesuada nec, ultricies 
 			</div>
 			<input type="checkbox" name="chk-dont-show-popup" id="chk-dont-show-popup" />
 			<label for="chk-dont-show-popup" id="lbl-dont-show-popup">อย่าแสดงอีก</label>
-			<a href="#close" class="close">Close</a>
+			<a href="#close" class="close"></a>
 		</div>
 		<div id="mask"></div>
 	</div>

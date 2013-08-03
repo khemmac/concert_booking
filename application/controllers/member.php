@@ -180,7 +180,7 @@ class Member extends CI_Controller {
 		if(empty($password) && empty($password_old))
 			return true;
 		else if(empty($password) && !empty($password_old)){
-			$this->form_validation->set_message('check_profile_pass_new', 'กรุณาป้อน &quot;%s&quot;');
+			$this->form_validation->set_message('check_profile_pass_new', 'หากต้องการแก้ไขรหัสผ่าน กรุณาป้อน &quot;%s&quot;');
 			return false;
 		}else if(!empty($password)){
 			if(empty($password_old)){
