@@ -2,7 +2,7 @@
 
 
 
-	function zone_helper_get_zone($zone_name) {
+	function zone_helper_get_zone($zone_name = null) {
 		$zone = array(
 			array(
 				'name'=>'e1a',
@@ -2540,8 +2540,7 @@
 					'h'=>'1,2,3,4,5,6,7,8,9,10,11,12,13',
 					'j'=>'1,2,3,4,5,6,7,8,9,10,11,12,13',
 					'k'=>'1,2,3,4,5,6,7,8,9,10,11,12,13'
-				)
-			),
+				),
 				'position'=>array(
 					'a'=>'',
 					'b'=>'1-11',
@@ -2555,6 +2554,14 @@
 					'k'=>'1-13'
 				),
 				'max_col' => 13
+			)
 		);
-		return $zone;
+		if(!empty($zone_name)){
+			foreach($zone as $zone_item){
+				if($zone_item['name']==$zone_name){
+					return $zone_item;
+				}
+			}
+		}else
+			return $zone;
 	}
