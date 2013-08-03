@@ -8,9 +8,8 @@ Common.prototype = {
 		$.each($('input[qtip-data]'), function(i,o){
 			var el = $(o);
 			var html = ['<div id="qtip-'+i+'" class="qtip qtip-default qtip-red qtip-pos-lc" tracking="false" role="alert" aria-live="polite" style="z-index: 1500; opacity: 1; display: block;">',
-						'<div class="qtip-tip" style="background-color: transparent ! important; border: 0px none ! important; width: 8px; height: 8px; line-height: 8px; top: 50%; margin-top: -4px; left: -8px;">',
-						'<canvas style="background: transparent url('+__base_url+'js/lib/jquery.qtip/arrow-tip.gif) no-repeat !important; border: 0px none !important;" width="8" height="8"></canvas>',
-						'</div><div class="qtip-content" aria-atomic="true">'+el.attr('qtip-data')+'</div></div>'
+						'<div class="qtip-tip" style="background: transparent url('+__base_url+'js/lib/jquery.qtip/arrow-tip.gif) no-repeat! important; border: 0px none ! important; width: 8px; height: 8px; line-height: 8px; top: 50%; margin-top: -4px; left: -8px; visibility:visible !important;">',
+						'&nbsp;</div><div class="qtip-content" aria-atomic="true">'+el.attr('qtip-data')+'</div></div>'
 						].join('');
 			var tip = $(html);
 			el.attr('qtip-id', 'qtip-'+i);

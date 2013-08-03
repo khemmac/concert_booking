@@ -78,6 +78,7 @@
 	position:absolute; top:80px; right:44px;
 	width: 162px; height:23px;
 }
+#member-sub-menu li { float:left; }
 #member-sub-menu a { display:block; height:23px; float:left; background: transparent url('../images/common/member-sub-menu.gif') no-repeat; }
 #member-sub-menu a.menu-logout { width:65px; }
 #member-sub-menu a.menu-profile { width:97px; background-position:-65px 0px; }

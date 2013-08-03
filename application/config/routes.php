@@ -44,6 +44,9 @@
 
 //$route['404_override'] = '';
 
+// add route for seat segment
+$route['seat/(:any)'] = 'seat/index/$1';
+
 $route['default_controller'] = "index";
 $route['404_override'] = '';
 

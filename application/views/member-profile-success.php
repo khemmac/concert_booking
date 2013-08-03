@@ -5,6 +5,3 @@
 		<a href="<?= site_url('zone') ?>" class="submit"></a>
 	</div>
 </div>
-<?php
-print_r(zone_helper_get_zone('xxxx'));
-?>

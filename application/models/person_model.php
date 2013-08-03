@@ -19,6 +19,12 @@ Class Person_model extends CI_Model
 	}
 
 	function insert(){
+		$this->db->select('username');
+		$query = $this->db->get('person', array('username'=>$this->input->post('username')));
+		$this->db->limit(1);
+		if($query->num_rows() > 0)
+			return false;
+
 		$formData = array(
 			'username' => $this->input->post('username'),
 			'password' => $this->input->post('password'),

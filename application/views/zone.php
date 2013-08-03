@@ -5,7 +5,7 @@
 		<?= form_open('zone/submit'); ?>
 		<?= form_submit(array(
 				'id'		=> 'submit',
-				'value'		=> 'Submit',
+				'value'		=> '',
 				'class'		=> 'submit'
 			));
 		?>

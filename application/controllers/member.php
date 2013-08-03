@@ -70,7 +70,7 @@ class Member extends CI_Controller {
 			$this->person_model->insert();
 
 			// send email
-			$mail_body = $this->load->view('email/register_success', '', true);
+			$mail_body = $this->load->view('email/register-success', '', true);
 
 			redirect('member/register_success');
 		}

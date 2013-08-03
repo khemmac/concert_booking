@@ -27,7 +27,7 @@
 		</ul>
 		<?= form_submit(array(
 				'id'		=> 'submit',
-				'value'		=> 'Submit',
+				'value'		=> '',
 				'class'		=> 'submit'
 			));
 		?>
