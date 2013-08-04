@@ -1,12 +1,18 @@
 <style type="text/css">
-	#seat-container { top:232px; left:163px; width:505px; height:243px; }
-	.row { width:395px; left:55px; }
+	#seat-container { top:4px; left:132px; width:559px; height:597px; }
+	.row { width:613px; left:55px; }
+	.row-j { top:282px; }
+	.row-k { top:258px; }
+	.row-l { top:234px; }
+	.row-m { top:210px; }
+	.row-n { top:185px; }
+	.row-p { top:161px; }
 	.row-q { top:137px; }
 	.row-r { top:112px; }
 	.row-t { top:64px; }
 	.row-s { top:89px; }
 	.row-u { top:40px; }
-	.row-v { top:16px; }
+	.row-v { top:17px; }
 
 	.pos-1 { left:1px; }
 	.pos-2 { left:33px; }
@@ -21,4 +27,11 @@
 	.pos-11 { left:313px; }
 	.pos-12 { left:345px; }
 	.pos-13 { left:375px; }
+	.pos-14 { left:407px; }
+	.pos-15 { left:438px; }
+	.pos-16 { left:469px; }
+	.pos-17 { left:500px; }
+	.pos-18 { left:531px; }
+	.pos-19 { left:562px; }
+	.pos-20 { left:593px; }
 </style>
