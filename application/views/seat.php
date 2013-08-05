@@ -1,7 +1,8 @@
 <?php
 	$zone_name = $zone['name'];
 ?>
-<script type="text/javascript">
+<script type="text/javascript" src="<?= base_url('js/seat.js') ?>"></script>
+<!--script type="text/javascript">
 	$(function(){
 		$('#seat-container a').bind('click', function(e){
 			e.preventDefault();
@@ -20,7 +21,7 @@
 			chk_box.attr("checked", !chk_box.attr("checked"));
 		});
 	});
-</script>
+</script-->
 <div id="content-body" class="page-seat">
 	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 

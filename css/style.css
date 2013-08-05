@@ -264,12 +264,21 @@ form input {
 	position:absolute; top:565px; left:55px; width:720px; height:51px;
 	background:transparent url("../images/seat/stage.png") no-repeat;
 }
-.page-seat #seat-container { position:absolute; background-repeat:no-repeat; background-color:transparent; }
-.page-seat #seat-container .row { position:absolute; height:18px; background:green; opacity: .7; }
+
+/* test css */
+/**/
+.page-seat #seat-container .row { background:green; opacity: .7; }
 .page-seat #seat-container a,
-.page-seat #seat-container div.row div { position:absolute; display:block; width:18px; height:18px; text-indent:-3000px; background:blue; opacity: .7; }
+.page-seat #seat-container div.row div { background:blue; opacity: .7; }
+
+/* end test css */
+
+.page-seat #seat-container { position:absolute; background-repeat:no-repeat; background-color:transparent; }
+.page-seat #seat-container .row { position:absolute; height:19px; }
+.page-seat #seat-container a,
+.page-seat #seat-container div.row div { position:absolute; display:block; width:20px; height:19px; text-indent:-3000px; }
 .page-seat #seat-container a.active,
-.page-seat #seat-container div.row div.active { background:transparent url("../images/seat/ico-man.png") no-repeat center center; }
+.page-seat #seat-container div.row div.active { background:transparent url("../images/seat/ico-seat.png") no-repeat 0px -19px; }
 .page-seat #seat-container input { position:absolute; }
 
 .page-seat #content form .submit {

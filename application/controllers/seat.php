@@ -95,6 +95,15 @@ class Seat extends CI_Controller {
 					$pos_seat = split_seat($position_seat);
 					foreach($row_seat AS $row_seat_key => $row_seat_value)
 					{
+						if(empty($pos_seat[$row_seat_key])){
+							echo 'Could not find position at : '.$row_name.' - '.$row_seat_key;
+							echo '<br />';
+							echo 'ROW ('.$row_name.') : ';
+							print_r($row_seat);
+							echo '<hr />';
+							echo 'POSITION ('.$row_name.') : ';
+							print_r($pos_seat);
+						}
 						array_push($zone_data['seats'][$row_name], array(
 							'no'=>$row_seat_value,
 							'position'=>$pos_seat[$row_seat_key]
