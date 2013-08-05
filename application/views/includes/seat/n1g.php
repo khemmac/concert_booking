@@ -1,5 +1,12 @@
 <style type="text/css">
 	#seat-container { top:-4px; left:79px; width:674px; height:607px; }
+
+	#chair-container { top:26px; left:78px; }
+
+	#seat-container .row { margin-bottom:8px; }
+
+	#seat-container .row .pos { margin-right:14px; width:21px; }
+/*
 	.row { width:613px; left:55px; }
 	.row-j { top:282px; }
 	.row-k { top:258px; }
@@ -34,4 +41,5 @@
 	.pos-18 { left:531px; }
 	.pos-19 { left:562px; }
 	.pos-20 { left:593px; }
+*/
 </style>

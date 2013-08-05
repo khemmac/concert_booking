@@ -36,29 +36,39 @@
 
 		<?= form_open('seat/submit'); ?>
 			<div id="seat-container" style="background-image: url('<?= base_url('images/seat/plan/'.$zone_name.'.png'); ?>')">
-			<?php
-				$row_index = 0;
-				foreach($zone['seats'] AS $row_name=>$chair_list):
-			?>
-				<div class="row row-<?= $row_name ?>">
-			<?php
-					$row_index++;
-					foreach($chair_list AS $chair_key => $chair):
-						$chair_id = $row_name . $chair['no'];
-						$chiar_position = $chair['position'];
-			?>
-				<a href="#<?= $chair_id ?>" title="<?= strtoupper($chair_id) ?>" id="b-<?= $chair_id ?>" class="pos-<?= $chiar_position ?>"></a>
-				<?= form_checkbox(array(
-					'name'=>'seat[]', 'id'=>$chair_id, 'value'=>$chair_id,
-					'style'=>'left:'.(($chair['no'] * 15)+700).'px;'
-				)) ?>
-			<?php
-					endforeach;
-			?>
+				<div id="chair-container">
+					<?php
+						$row_index = 1;
+						foreach(array_reverse($zone['seats']) AS $row_name=>$chair_list):
+					?>
+						<div class="row row-<?= $row_name ?> row-index-<?= $row_index ?>">
+					<?php
+							$row_index++;
+
+							foreach($chair_list AS $chair_key => $chair):
+								$chair_id = $row_name . $chair['no'];
+								$chiar_position = $chair['position'];
+
+								if($chair['no']>0):
+									?>
+										<a href="#<?= $chair_id ?>" title="<?= strtoupper($chair_id) ?>" id="b-<?= $chair_id ?>" class="pos pos-<?= $chiar_position ?>"></a>
+										<?= form_checkbox(array(
+											'name'=>'seat[]', 'id'=>$chair_id, 'value'=>$chair_id,
+											'style'=>'left:'.(($chair['no'] * 15)+700).'px;'
+										)) ?>
+									<?php
+								else:
+									?>
+										<div class="pos pos-<?= $chiar_position ?>"></div>
+									<?php
+								endif;
+							endforeach;
+					?>
+						</div>
+					<?php
+						endforeach;
+					?>
 				</div>
-			<?php
-				endforeach;
-			?>
 			</div>
 		<?= form_submit(array(
 				'id'		=> 'submit',

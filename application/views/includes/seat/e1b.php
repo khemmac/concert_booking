@@ -1,5 +1,17 @@
 <style type="text/css">
 	#seat-container { top:162px; left:58px; width:721px; height:404px; }
+
+	#chair-container { position:absolute; top:16px; left:55px; }
+/*
+	#seat-container .row { margin-bottom:5px; }
+
+	#seat-container .row a,
+	#seat-container .row div { margin-right:10px; width:21px; }
+
+	#seat-container a.pos-7 { margin-right:11px; }
+	#seat-container a.pos-11 { margin-right:11px; }
+*/
+/*
 	.row { width:613px; left:55px; }
 	.row-j { top:282px; }
 	.row-k { top:258px; }
@@ -34,4 +46,5 @@
 	.pos-18 { left:530px; }
 	.pos-19 { left:562px; }
 	.pos-20 { left:593px; }
+*/
 </style>

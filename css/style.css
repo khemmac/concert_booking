@@ -268,11 +268,34 @@ form input {
 /* test css */
 /**/
 .page-seat #seat-container .row { background:green; opacity: .7; }
-.page-seat #seat-container a,
-.page-seat #seat-container div.row div { background:blue; opacity: .7; }
+.page-seat #seat-container .row a { background:blue; opacity: .7; }
+.page-seat #seat-container .row div { background:gray; opacity: .7; }
 
 /* end test css */
 
+.page-seat #seat-container { position:absolute; background-repeat:no-repeat; background-color:transparent; }
+.page-seat #seat-container .row { position:relative; height:19px; }
+.page-seat #seat-container .row .pos { position:relative; display:block; height:19px; float:left; text-indent:-3000px; }
+.page-seat #seat-container a.active,
+.page-seat #seat-container div.row div.active { background:transparent url("../images/seat/ico-seat.png") no-repeat 0px -19px; }
+.page-seat #seat-container input { position:absolute; }
+
+	#chair-container { position:absolute; top:16px; left:55px; }
+
+	#seat-container .row { margin-bottom:5px; }
+
+	#seat-container .row .pos { margin-right:10px; width:21px; }
+
+	#seat-container .row .pos-7 { margin-right:11px; }
+	#seat-container .row .pos-11 { margin-right:11px; }
+	#seat-container .row .pos-18 { margin-right:11px; }
+
+	#seat-container .row-index-5 { margin-bottom:6px; }
+	#seat-container .row-index-9 { margin-bottom:6px; }
+	#seat-container .row-index-12 { margin-bottom:6px; }
+	#seat-container .row-index-18 { margin-bottom:6px; }
+
+/* old css
 .page-seat #seat-container { position:absolute; background-repeat:no-repeat; background-color:transparent; }
 .page-seat #seat-container .row { position:absolute; height:19px; }
 .page-seat #seat-container a,
@@ -280,6 +303,7 @@ form input {
 .page-seat #seat-container a.active,
 .page-seat #seat-container div.row div.active { background:transparent url("../images/seat/ico-seat.png") no-repeat 0px -19px; }
 .page-seat #seat-container input { position:absolute; }
+*/
 
 .page-seat #content form .submit {
 	position:absolute; top:471px; left:748px; border:0px; text-indent:-2000px; cursor:pointer;

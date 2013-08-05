@@ -9,6 +9,7 @@
 
 			// เช็คว่าถ้ามี set value จาก form_validator หรือไม่
 			$validator_set_value = set_value($value['name']);
+			$__set_value = null;
 			if(!empty($validator_set_value))
 				$__set_value = $validator_set_value;
 			// เช็คว่ามีค่าจาก database ส่งมาหรือไม่

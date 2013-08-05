@@ -22,29 +22,7 @@ class Seat extends CI_Controller {
 		$zone_name = $this->uri->segment(2);
 
 		$zone = zone_helper_get_zone($zone_name);
-/*
-		$zones = array(
-			array(
-				'name'=>'e1a',
-				'seat'=>array(
-					'q'=>'1-13',
-					'r'=>'1-13',
-					's'=>'1-13',
-					't'=>'1-13',
-					'u'=>'1-13',
-					'v'=>'1-13'
-				),
-				'position'=>array(
-					'q'=>'1-13',
-					'r'=>'1-13',
-					's'=>'1-13',
-					't'=>'1-13',
-					'u'=>'1-13',
-					'v'=>'1-13'
-				)
-			)
-		);
-*/
+
 		// find zone
 		if(empty($zone_name) || empty($zone))
 			redirect('zone');
@@ -59,6 +37,7 @@ class Seat extends CI_Controller {
 			'blog'=>$zone['name'][2]
 		);
 		$zone_data['name'] = $zone['name'];
+		$zone_data['max_col'] = $zone['max_col'];
 
 		function split_seat($s){
 			$result = array();
@@ -88,13 +67,44 @@ class Seat extends CI_Controller {
 
 		foreach($zone['seat'] AS $row_name => $row_seat){
 			$zone_data['seats'][$row_name] = array();
-			foreach ($zone['position'] as $p_row_name => $position_seat) {
+			foreach ($zone['position'] AS $p_row_name => $position_seat) {
 				// check row is match
 				if($row_name==$p_row_name){
 					$row_seat = split_seat($row_seat);
 					$pos_seat = split_seat($position_seat);
-					foreach($row_seat AS $row_seat_key => $row_seat_value)
-					{
+
+					for($i=1;$i<=$zone_data['max_col'];$i++){
+						$position_match = false;
+						$result_no = -1;
+						$result_position = $i;
+
+						foreach($row_seat AS $row_seat_key => $row_seat_value)
+						{
+							// $row_seat_key คือ index ของตำแหน่งที่นั่ง
+							// $row_seat_value คือ ตำแหน่งที่นั่ง
+
+							if(empty($pos_seat[$row_seat_key])){
+								echo 'Could not find position at : '.$row_name.' - '.$row_seat_key;
+								echo '<br />';
+								echo 'ROW ('.$row_name.') : ';
+								print_r($row_seat);
+								echo '<hr />';
+								echo 'POSITION ('.$row_name.') : ';
+								print_r($pos_seat);
+							}
+
+							if($i==$pos_seat[$row_seat_key]){
+								$position_match = true;
+								$result_no = $row_seat_value;
+								$result_position = $pos_seat[$row_seat_key];
+								break;
+							}
+						}
+						array_push($zone_data['seats'][$row_name], array(
+							'no'=>$result_no,
+							'position'=>$result_position
+						));
+/*
 						if(empty($pos_seat[$row_seat_key])){
 							echo 'Could not find position at : '.$row_name.' - '.$row_seat_key;
 							echo '<br />';
@@ -108,11 +118,15 @@ class Seat extends CI_Controller {
 							'no'=>$row_seat_value,
 							'position'=>$pos_seat[$row_seat_key]
 						));
+*/
 					}
 					break;
 				}
 			}
 		}
+
+		//print_r($zone_data);
+		//return;
 
 		$this->phxview->RenderView('seat', array(
 			'zone'=>$zone_data
