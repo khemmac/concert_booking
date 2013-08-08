@@ -20,7 +20,8 @@
 	<link href="<?= base_url('/js/lib/jquery.sexy-combo/skins/custom/custom.css') ?>" type="text/css" rel="stylesheet" />
 
 	<link href="<?= base_url('/css/style.css') ?>" type="text/css" rel="stylesheet" />
-	<link href="<?= base_url('/css/style-menu.css') ?>" type="text/css" rel="stylesheet" />
+	<link href="<?= base_url('/css/menu.css') ?>" type="text/css" rel="stylesheet" />
+	<link href="<?= base_url('/css/popup.css') ?>" type="text/css" rel="stylesheet" />
 
 	<script type="text/javascript" src="<?= base_url('/js/common.js') ?>"></script>
 
@@ -45,6 +46,10 @@ Maecenas aliquet velit vel turpis. Mauris neque metus, malesuada nec, ultricies 
 			</div>
 			<input type="checkbox" name="chk-dont-show-popup" id="chk-dont-show-popup" />
 			<label for="chk-dont-show-popup" id="lbl-dont-show-popup">อย่าแสดงอีก</label>
+			<a href="#close" class="close"></a>
+		</div>
+
+		<div id="seat-limit-popup" class="window">
 			<a href="#close" class="close"></a>
 		</div>
 		<div id="mask"></div>

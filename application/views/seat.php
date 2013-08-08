@@ -1,27 +1,6 @@
 <?php
 	$zone_name = $zone['name'];
 ?>
-<script type="text/javascript" src="<?= base_url('js/seat.js') ?>"></script>
-<!--script type="text/javascript">
-	$(function(){
-		$('#seat-container a').bind('click', function(e){
-			e.preventDefault();
-			var el = $(this),
-				chk_box = $(el.attr('href')),
-				is_disabled = chk_box.is(':disabled');
-			if(is_disabled) return false;
-
-			var is_checked = chk_box.is(':checked');
-			if(is_checked){
-				el.removeClass('active');
-			}else{
-				el.addClass('active');
-			}
-
-			chk_box.attr("checked", !chk_box.attr("checked"));
-		});
-	});
-</script-->
 <div id="content-body" class="page-seat">
 	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 
@@ -70,15 +49,18 @@
 					?>
 				</div>
 			</div>
-		<?= form_submit(array(
-				'id'		=> 'submit',
-				'value'		=> '',
-				'class'		=> 'submit'
-			));
-		?>
+			<ul class="submit-container">
+				<li><?= form_submit(array(
+						'id'		=> 'submit',
+						'value'		=> '',
+						'class'		=> 'submit'
+					)); ?></li>
+			</ul>
 		<?= form_close() ?>
 
 		<div id="stage"></div>
 	</div>
 </div>
 <?=$this->load->view('includes/seat/'.$zone_name,'', TRUE)?>
+
+<script type="text/javascript" src="<?= base_url('js/seat.js') ?>"></script>

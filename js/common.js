@@ -87,9 +87,10 @@ Common.prototype = {
 				box.css('left', winW/2 - box.width()/2);
 			});
 		},
-		show : function(){
+		show : function(el){
 			//Get the A tag
-			var id = '#common-popup';//$(this).attr('href');
+			//var id = '#common-popup';//$(this).attr('href');
+			var id = $(el).attr('href');
 
 			//Get the screen height and width
 			var maskHeight = $(document).height();
@@ -115,7 +116,8 @@ Common.prototype = {
 			$(id).fadeIn(200);
 		},
 		hide : function(){
-			$('#mask, .window').hide();
+			//$('#mask, .window').hide();
+			$('#mask, .window').fadeOut(100);
 		}
 	},
 	combo : {
@@ -158,7 +160,7 @@ $(function(){
 		//Cancel the link behavior
 		e.preventDefault();
 
-		common.popup.show();
+		common.popup.show(this);
 	});
 
 	// disable drag image at all

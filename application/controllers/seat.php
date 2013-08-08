@@ -66,11 +66,16 @@ class Seat extends CI_Controller {
 		$zone_data['seats'] = array();
 
 		foreach($zone['seat'] AS $row_name => $row_seat){
+			if(empty($row_seat) || strlen(trim($row_seat))<=0)
+				continue;
+
 			$zone_data['seats'][$row_name] = array();
 			foreach ($zone['position'] AS $p_row_name => $position_seat) {
 				// check row is match
 				if($row_name==$p_row_name){
+					// ข้อมูลที่นั่งในแถว
 					$row_seat = split_seat($row_seat);
+					// ข้อมูลที่ตำแหน่งที่นั่ง
 					$pos_seat = split_seat($position_seat);
 
 					for($i=1;$i<=$zone_data['max_col'];$i++){

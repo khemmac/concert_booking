@@ -8,7 +8,7 @@ function Seat(){
 
 Seat.prototype = {
 	cfg: {
-		limit:4
+		limit:6
 	},
 	el: {
 		seatContainer: null,
