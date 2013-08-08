@@ -8,7 +8,7 @@
 	<li><a href="<?= site_url('zone') ?>" class="menu-1"></a></li>
 	<li><a href="<?= site_url('transfer') ?>" class="menu-2"></a></li>
 	<li><a href="<?= site_url('booking/check') ?>" class="menu-3"></a></li>
-	<li><a href="#condition" class="menu-4 show-boxes"></a></li>
+	<li><a href="#common-popup" class="menu-4 show-boxes"></a></li>
 </ul>
 <?php elseif($p=='member/register' || $p=='member/register_success'): ?>
 <ul id="menu-3">

@@ -39,12 +39,30 @@
 			<area shape="polygon" coords="38,259,73,264,72,274,33,273" href="<?= site_url('seat/s1g') ?>" title="S1G">
 		</map>
 		<?= form_open('zone/submit'); ?>
-		<?= form_submit(array(
+		<ul class="submit-container">
+			<li><?= form_submit(array(
 				'id'		=> 'submit',
 				'value'		=> '',
 				'class'		=> 'submit'
-			));
-		?>
+			)); ?></li>
+		</ul>
 		<?= form_close() ?>
+
+		<div id="booking-info" style="border:0px solid #f00; position:absolute; top:330px; right:16px; width:271px; height:117px;">
+			<table cellpadding="2" cellspacing="0" border="0" style="color:white;">
+				<tr>
+					<td align="right">โซน :</td>
+					<td><?= (count($zones)>0)?implode(', ', $zones):'-' ?></td>
+				</tr>
+				<tr>
+					<td align="right">ที่นั่ง :</td>
+					<td><?= (count($seats)>0)?implode(', ', $seats):'-' ?></td>
+				</tr>
+				<tr>
+					<td align="right">ราคารวม :</td>
+					<td><?= $price ?> B.-</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </div>

@@ -203,11 +203,15 @@ form input {
 	position:absolute; top:106px; left:48px;
 	width:899px; height:554px; background:transparent url("../images/zone/bg.png") no-repeat;
 }
-.page-zone #content form .submit {
-	position:absolute; top:512px; left:160px; border:0px; text-indent:-2000px; cursor:pointer;
-	width:172px; height:58px; background:transparent url("../images/zone/button.gif") no-repeat;
+.page-zone #content form .submit-container {
+	list-style:none; margin:0px; padding:0px; position:absolute; top:488px; left:665px;
+	width:172px; height:120px; background:transparent url("../images/zone/button.png") no-repeat;
 }
-.page-zone #content form .submit:hover { background-position:0px -108px; }
+.page-zone #content form .submit {
+	border:0px; text-indent:-2000px; cursor:pointer;
+	width:172px; height:58px; background:transparent url("../images/zone/button.png") no-repeat;
+}
+.page-zone #content form .submit:hover { background-position:0px -120px; }
 /* end zone */
 
 /* seat */
