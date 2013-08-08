@@ -156,7 +156,7 @@ $(function(){
 
 	common.popup.init();
 
-	$('#menu-1 a.menu-1, #menu-2 a.menu-4').click(function(e) {
+	$('.show-boxes').click(function(e) {
 		//Cancel the link behavior
 		e.preventDefault();
 

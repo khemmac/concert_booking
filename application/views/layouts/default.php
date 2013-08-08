@@ -52,6 +52,11 @@ Maecenas aliquet velit vel turpis. Mauris neque metus, malesuada nec, ultricies 
 		<div id="seat-limit-popup" class="window">
 			<a href="#close" class="close"></a>
 		</div>
+
+		<div id="contact-us-popup" class="window">
+			<a href="#close" class="close"></a>
+		</div>
+
 		<div id="mask"></div>
 	</div>
 </body>

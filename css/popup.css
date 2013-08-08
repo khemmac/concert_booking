@@ -4,7 +4,6 @@
 	position:fixed;
 	display:none;
 	z-index:9999;
-	padding:20px;
 }
 
 /* Z-index of #mask must lower than #boxes .window */
@@ -37,12 +36,19 @@
 	padding:20px;
 }
 #seat-limit-popup a.close {
-	position:absolute; top:398px; left:548px; text-indent:-9000px;
-	display:block; width:85px; height:30px; background:transparent url("../images/common/popup-close.gif") no-repeat;
-}
-#seat-limit-popup a.close:hover { background-position:0px -30px; }
-#seat-limit-popup a.close {
 	position:absolute; top:145px; left:179px; width:85px; height:30px; text-indent:-2000px;
 	background:transparent url("../images/register/button-ok.png") no-repeat 0px 0px; cursor:pointer;
 }
 #seat-limit-popup a.close:hover { background-position:0px -30px; }
+
+/* contact us popup */
+#contact-us-popup {
+	width:893px; height:656px; position:relative;
+	background:transparent url('../images/popup/contact-us.png') no-repeat;
+	padding:70px 0px 0px 0px;
+}
+#contact-us-popup a.close {
+	position:absolute; top:540px; left:404px; text-indent:-9000px;
+	display:block; width:85px; height:30px; background:transparent url("../images/common/popup-close.gif") no-repeat;
+}
+#contact-us-popup a.close:hover { background-position:0px -30px; }
