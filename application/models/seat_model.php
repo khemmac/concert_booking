@@ -11,51 +11,38 @@ Class Seat_model extends CI_Model
 			return $result_data;
 
 		$user_id = get_user_session_id($this);
-		$sql = 'SELECT
-s.zone_id, z.name AS zone_name,
-s.id AS seat_id, s.name AS seat_name,
-z.price
+		$sql = "SELECT
+s.zone_id, z.name AS zone_name
+, s.id AS seat_id, s.name AS seat_name
+, b.person_id,b.status
+, z.price
 FROM seat s
-LEFT JOIN zone z ON s.zone_id=z.id
-WHERE s.booking_id IN (
-    SELECT b.id FROM booking b WHERE person_id='.$this->db->escape($user_id).' AND status=1
-)
-ORDER BY zone_id ASC, seat_id ASC';
-		$query = $this->db->query($sql);
+JOIN zone z ON s.zone_id=z.id
+JOIN booking b ON s.booking_id=b.id AND b.person_id=?
+ORDER BY seat_id ASC";
+		$query = $this->db->query($sql, array($user_id));
 
-		foreach($query->result_array() AS $value){
-			// add zone data
-			$zone_exist = false;
-			foreach($result_data['zones'] AS $z_value){
-				if($value['zone_name']==$z_value){
-					$zone_exist = true; break;
-				}
-			}
-			if(!$zone_exist) array_push($result_data['zones'], $value['zone_name']);
-
-			// add seat data
-			array_push($result_data['seats'], $value['seat_name']);
-
-			$result_data['price'] += $result_data['price'];
-		}
-		return $result_data;
+		return $query->result_array();
 	}
 
-	function load_zone_seat($zone_name){
-		$result_data = array();
+	function load_seat_by_zone($zone_name){
 		if(!is_user_session_exist($this))
 			return $result_data;
 
 		$user_id = get_user_session_id($this);
-
 		$sql = "SELECT
-s.id AS seat_id, s.name AS seat_name
+s.zone_id, z.name AS zone_name
+, s.id AS seat_id, s.name AS seat_name
 , s.is_booked, s.booking_id, s.is_soldout
-, IF((SELECT COUNT(b.id) FROM booking b WHERE b.person_id=".$this->db->escape($user_id)." AND b.status=1 AND s.booking_id=b.id)>0, 1, 0) AS is_own
+, b.person_id, b.status
 FROM seat s
+LEFT JOIN booking b ON s.booking_id=b.id
 JOIN zone z ON s.zone_id=z.id
-WHERE z.name=".$this->db->escape($zone_name);
-		return $result_data;
+WHERE s.zone_id=(SELECT z.id FROM zone z WHERE z.name=? LIMIT 1)
+ORDER BY s.id ASC";
+
+		$query = $this->db->query($sql, array($zone_name));
+		return $query->result_array();
 	}
 
 }

@@ -14,6 +14,7 @@
 		</div>
 
 		<?= form_open('seat/submit'); ?>
+		<?= form_hidden('zone_id', $zone['id']) ?><?= form_hidden('zone_name', $zone['name']) ?>
 			<div id="seat-container" style="background-image: url('<?= base_url('images/seat/plan/'.$zone_name.'.png'); ?>')">
 				<div id="chair-container">
 					<?php
@@ -25,17 +26,22 @@
 							$row_index++;
 
 							foreach($chair_list AS $chair_key => $chair):
-								$chair_id = $row_name . $chair['no'];
-								$chiar_position = $chair['position'];
-
 								if($chair['no']>0):
+									$chair_id = $chair['id'];
+									$chair_no = $row_name . $chair['no'];
+									$chiar_position = $chair['position'];
+									if(($chair['is_booked']==1 && $chair['is_own']==0) || $chair['is_soldout']==1):
+										echo '<div class="booked"></div>';
+									else:
 									?>
-										<a href="#<?= $chair_id ?>" title="<?= strtoupper($chair_id) ?>" id="b-<?= $chair_id ?>" class="pos pos-<?= $chiar_position ?>"></a>
+										<a href="#<?= $chair_no ?>" title="<?= strtoupper($chair_no) ?>" id="b-<?= $chair_no ?>" class="pos pos-<?= $chiar_position ?> <?= ($chair['is_own']==1)?'active':'' ?>"></a>
 										<?= form_checkbox(array(
-											'name'=>'seat[]', 'id'=>$chair_id, 'value'=>$chair_id,
-											'style'=>'left:'.(($chair['no'] * 15)+700).'px;'
+											'name'=>'seat[]', 'id'=>$chair_no, 'value'=>$chair_id,
+											'checked'=>($chair['is_own']==1),
+											'style'=>'left:'.(($chair['no'] * 15)+650).'px;'
 										)) ?>
 									<?php
+									endif;
 								else:
 									?>
 										<div class="pos pos-<?= $chiar_position ?>"></div>
@@ -64,3 +70,14 @@
 <?=$this->load->view('includes/seat/'.$zone_name,'', TRUE)?>
 
 <script type="text/javascript" src="<?= base_url('js/seat.js') ?>"></script>
+<script type="text/javascript">
+	$(function(){
+		var seat = new Seat({ current:<?= $zone['current_booking_count'] ?> });
+	});
+</script>
+<?php
+	$popup = $this->input->get('popup');
+	if(!empty($popup)):
+?>
+<script type="text/javascript"> $(function(){ common.popup.show(null, '#<?= $popup ?>'); }); </script>
+<?php endif; ?>

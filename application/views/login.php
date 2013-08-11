@@ -41,5 +41,9 @@
 				$(this).attr('disabled', 'disabled');
 			}, 1);
 		});
+
+		setTimeout(function(){
+			$('.page-login .username').focus();
+		}, 100);
 	});
 </script>

@@ -87,10 +87,10 @@ Common.prototype = {
 				box.css('left', winW/2 - box.width()/2);
 			});
 		},
-		show : function(el){
+		show : function(el, popup_id){
 			//Get the A tag
-			//var id = '#common-popup';//$(this).attr('href');
-			var id = $(el).attr('href');
+			// id is optional
+			var id = popup_id || $(el).attr('href');
 
 			//Get the screen height and width
 			var maskHeight = $(document).height();

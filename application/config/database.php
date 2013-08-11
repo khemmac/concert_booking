@@ -58,7 +58,7 @@ $db['default']['username'] = 'root';
 $db['default']['password'] = '1234';
 $db['default']['database'] = 'concert_presale';
 
-$db['default']['dbdriver'] = 'mysql';
+$db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;//TRUE;
 $db['default']['db_debug'] = TRUE;

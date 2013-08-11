@@ -52,15 +52,15 @@
 			<table cellpadding="2" cellspacing="0" border="0" style="color:white;">
 				<tr>
 					<td align="right">โซน :</td>
-					<td><?= (count($zones)>0)?implode(', ', $zones):'-' ?></td>
+					<td><?= (count($zones)>0)?strtoupper(implode(', ', $zones)):'-' ?></td>
 				</tr>
 				<tr>
 					<td align="right">ที่นั่ง :</td>
-					<td><?= (count($seats)>0)?implode(', ', $seats):'-' ?></td>
+					<td><?= (count($seats)>0)?strtoupper(implode(', ', $seats)):'-' ?></td>
 				</tr>
 				<tr>
 					<td align="right">ราคารวม :</td>
-					<td><?= $price ?> B.-</td>
+					<td><?= number_format($price) ?> B.-</td>
 				</tr>
 			</table>
 		</div>

@@ -242,8 +242,11 @@ form input {
 .page-seat #seat-container { position:absolute; background-repeat:no-repeat; background-color:transparent; }
 .page-seat #seat-container .row { position:relative; height:19px; }
 .page-seat #seat-container .row .pos { position:relative; display:block; height:19px; float:left; text-indent:-3000px; }
-.page-seat #seat-container a.active,
-.page-seat #seat-container div.row div.active { background:transparent url("../images/seat/ico-seat.png") no-repeat 0px 0px; }
+.page-seat #seat-container .row a.active,
+.page-seat #seat-container .row div.active { background:transparent url("../images/seat/ico-seat.png") no-repeat 0px 0px; }
+
+.page-seat #seat-container .row .booked { background:transparent url("../images/seat/ico-seat.png") no-repeat 0px -19px; }
+
 .page-seat #seat-container input { position:absolute; }
 
 	#chair-container { position:absolute; top:16px; left:55px; }
