@@ -52,7 +52,17 @@
 			<table cellpadding="2" cellspacing="0" border="0" style="color:white;">
 				<tr>
 					<td align="right">โซน :</td>
-					<td><?= (count($zones)>0)?strtoupper(implode(', ', $zones)):'-' ?></td>
+					<td>
+<?php
+	if(count($zones)>0):
+		$zones_arr = array();
+		foreach($zones AS $z):
+			array_push($zones_arr, anchor('seat/'.$z, strtoupper($z), 'title="'.$z.'"'));
+		endforeach;
+		echo implode(', ', $zones_arr);
+	endif;
+?>
+					</td>
 				</tr>
 				<tr>
 					<td align="right">ที่นั่ง :</td>

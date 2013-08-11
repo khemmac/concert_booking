@@ -2,7 +2,7 @@ body{
 	margin:0px; padding:0px;
 	background:#cccccc url("../images/common/body-bg.jpg") repeat-y center;
 }
-a { outline: 0; }
+a { outline: 0; color:white; text-decoration:none; }
 img { border:none; }
 
 * { font-family: tahoma, arial, helvetica, sans-serif; }
@@ -199,6 +199,8 @@ form input {
 /* zone */
 .page-zone { height:750px; }
 
+.page-zone a:hover { text-decoration:underline; }
+
 .page-zone #content {
 	position:absolute; top:106px; left:48px;
 	width:899px; height:554px; background:transparent url("../images/zone/bg.png") no-repeat;
@@ -309,6 +311,7 @@ form input {
 .page-booking .list .tbody td.item-price { text-align:center; border-right:1px solid #000000; }
 .page-booking .list .tbody td.seat-no { padding-left:5px; padding-right:5px; text-align:left; }
 .page-booking .list .tbody td.item-price,
+.page-booking .list .tbody td.sum-price { text-align:right; padding-right:5px; border-right:1px solid #000000; }
 .page-booking .list .tbody td.price { text-align:right; padding-right:5px; }
 .page-booking .list .tbody td.bg-right { border:0px; width:21px; background:#000000 url("../images/booking/table_border_right.gif") repeat-y; }
 .page-booking .list .last td { border-bottom:0px; }
@@ -364,6 +367,7 @@ form input {
 .page-booking-complete .list .tbody td.seat-count,
 .page-booking-complete .list .tbody td.item-price,
 .page-booking-complete .list .tbody td.price { text-align:center; border-right:1px solid #000000; }
+.page-booking-complete .list .tbody td.sum-price { text-align:right; padding-right:5px; border-right:1px solid #000000; }
 .page-booking-complete .list .tbody td.seat-no { padding-left:5px; padding-right:5px; text-align:left; }
 .page-booking-complete .list .tbody td.item-price,
 .page-booking-complete .list .tbody td.price { text-align:right; padding-right:5px; }

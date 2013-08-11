@@ -23,8 +23,28 @@ class Zone extends CI_Controller {
 			redirect('member/login');
 
 		$booking_data = $this->seat_model->load_booking_seat();
+		// populate data
+		$result = array(
+			'zones'=>array(),
+			'seats'=>array(),
+			'price'=>0
+		);
+		foreach($booking_data AS $b_data){
+			$exist = false;
+			foreach($result['zones'] AS $r_zone){
+				if($b_data['zone_name']==$r_zone){
+					$exist = true; break;
+				}
+			}
+			if(!$exist)
+				array_push($result['zones'], $b_data['zone_name']);
 
-		$this->phxview->RenderView('zone', $booking_data);
+			array_push($result['seats'], $b_data['seat_name']);
+
+			$result['price']+=$b_data['price'];
+		}
+
+		$this->phxview->RenderView('zone', $result);
 		$this->phxview->RenderLayout('default');
 	}
 

@@ -3,12 +3,11 @@ Class Person_model extends CI_Model
 {
 	function login($username, $password){
 		$this->db->select('id, username');
-		$this->db->from('person');
 		$this->db->where('username', $username);
 		$this->db->where('password', $password);
 		$this->db->limit(1);
 
-		$query = $this->db->get();
+		$query = $this->db->get('person');
 
 		if($query->num_rows() == 1) {
 			set_user_session($this, $query->first_row('array'));
@@ -20,10 +19,12 @@ Class Person_model extends CI_Model
 
 	function insert(){
 		$this->db->select('username');
-		$query = $this->db->get('person', array('username'=>$this->input->post('username')));
+		$this->db->where('username', $this->input->post('username'));
+		$query = $this->db->get('person');
 		$this->db->limit(1);
+
 		if($query->num_rows() > 0)
-			return false;
+			throw new Exception('username "'.$this->input->post('username').'" is exists.');
 
 		$formData = array(
 			'username' => $this->input->post('username'),

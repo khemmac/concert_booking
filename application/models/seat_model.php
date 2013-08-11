@@ -14,7 +14,7 @@ Class Seat_model extends CI_Model
 		$sql = "SELECT
 s.zone_id, z.name AS zone_name
 , s.id AS seat_id, s.name AS seat_name
-, b.person_id,b.status
+, s.booking_id, b.person_id, b.status
 , z.price
 FROM seat s
 JOIN zone z ON s.zone_id=z.id

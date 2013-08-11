@@ -31,7 +31,7 @@
 									$chair_no = $row_name . $chair['no'];
 									$chiar_position = $chair['position'];
 									if(($chair['is_booked']==1 && $chair['is_own']==0) || $chair['is_soldout']==1):
-										echo '<div class="booked"></div>';
+										echo '<div class="booked pos pos-'.$chiar_position.'"></div>';
 									else:
 									?>
 										<a href="#<?= $chair_no ?>" title="<?= strtoupper($chair_no) ?>" id="b-<?= $chair_no ?>" class="pos pos-<?= $chiar_position ?> <?= ($chair['is_own']==1)?'active':'' ?>"></a>
