@@ -11,6 +11,7 @@ class Member extends CI_Controller {
 
 		// load model
 		$this->load->model('person_model','',TRUE);
+		$this->load->model('email_model','',TRUE);
 
 		$this->output->set_header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0', FALSE);
@@ -70,7 +71,7 @@ class Member extends CI_Controller {
 			$this->person_model->insert();
 
 			// send email
-			$mail_body = $this->load->view('email/register-success', '', true);
+			$this->email_model->send_register_success($_POST);
 
 			redirect('member/register_success');
 		}

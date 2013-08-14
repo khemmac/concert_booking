@@ -56,9 +56,9 @@
 
 /* contact us popup */
 #contact-us-popup {
-	width:893px; height:656px; position:relative;
+	width:893px; height:585px; position:relative;
 	background:transparent url('../images/popup/contact-us.png') no-repeat;
-	padding:70px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
 }
 #contact-us-popup a.close {
 	position:absolute; top:540px; left:404px; text-indent:-9000px;
