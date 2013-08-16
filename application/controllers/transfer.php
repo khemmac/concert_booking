@@ -9,6 +9,9 @@ class Transfer extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
 
+		//load model
+		$this->load->model('tranfer_model','',TRUE);
+
 		$this->output->set_header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0', FALSE);
 		$this->output->set_header('Cache-Control: max-age=-1281, public, must-revalidate, proxy-revalidate', FALSE);
@@ -39,12 +42,12 @@ class Transfer extends CI_Controller {
 
 		$this->form_validation->set_rules($rules);
 
-
 		if($this->form_validation->run() == FALSE)
 		{
 			$this->phxview->RenderView('transfer');
 			$this->phxview->RenderLayout('default');
 		} else {
+			$this->tranfer_model->money_tranfer();
 			redirect('booking/complete', 'refresh');
 		}
 	}
