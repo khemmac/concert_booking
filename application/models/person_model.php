@@ -2,7 +2,7 @@
 Class Person_model extends CI_Model
 {
 	function login($username, $password){
-		$this->db->select('id, username');
+		$this->db->select('id, username, thName, enName');
 		$this->db->where('username', $username);
 		$this->db->where('password', $password);
 		$this->db->limit(1);

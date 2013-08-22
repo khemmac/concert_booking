@@ -10,6 +10,8 @@ class Seat extends CI_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 
 		// load model
+		$this->load->model('cache_model','',TRUE);
+		$this->load->model('booking_model','',TRUE);
 		$this->load->model('seat_model','',TRUE);
 
 		$this->output->set_header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
@@ -34,12 +36,14 @@ class Seat extends CI_Controller {
 		if(empty($zone_name) || empty($zone))
 			redirect('zone');
 
+		$zone_data = array();
+
 		// populating result data
-		$zone_data = array(
-			'zone'=>$zone['name'][0],
-			'class'=>$zone['name'][1],
-			'blog'=>$zone['name'][2]
-		);
+		$zone_data['limit']=$this->booking_model->get_booking_limit();
+		$zone_data['current_booking_count'] = $this->booking_model->count_book($user_id);
+		$zone_data['zone'] = $zone['name'][0];
+		$zone_data['class'] = $zone['name'][1];
+		$zone_data['blog'] = $zone['name'][2];
 		$zone_data['name'] = $zone['name'];
 		$zone_data['max_col'] = $zone['max_col'];
 
@@ -65,7 +69,7 @@ class Seat extends CI_Controller {
 
 		$this->benchmark->mark('get_db_end');
 
-		echo 'get_db : '.$this->benchmark->elapsed_time('get_db_start', 'get_db_end').'<hr />';
+		/////////////////// echo 'get_db : '.$this->benchmark->elapsed_time('get_db_start', 'get_db_end').'<hr />';
 
 		$this->benchmark->mark('populate_seat_start');
 
@@ -146,7 +150,7 @@ class Seat extends CI_Controller {
 			}
 		}
 		$this->benchmark->mark('populate_seat_end');
-		echo 'populate_seat : '.$this->benchmark->elapsed_time('populate_seat_start', 'populate_seat_end').'<hr />';
+		/////////////////// echo 'populate_seat : '.$this->benchmark->elapsed_time('populate_seat_start', 'populate_seat_end').'<hr />';
 
 		foreach($db_seats AS $db_seat){
 			$db_seat_name = $db_seat['seat_name'];
@@ -169,13 +173,6 @@ class Seat extends CI_Controller {
 				}
 			}
 		}
-		$zone_data['current_booking_count'] = 0;
-		for($i=0;$i<count($booking_seats);$i++){
-			$zone_data['current_booking_count']++;
-		}
-
-		//print_r($zone_data);
-		//return;
 
 		$this->phxview->RenderView('seat', array(
 			'zone'=>$zone_data
@@ -184,34 +181,88 @@ class Seat extends CI_Controller {
 
 		$this->benchmark->mark('overall_end');
 
-		echo 'overall : '.$this->benchmark->elapsed_time('overall_start', 'overall_end').'<hr />';
+		/////////////////// echo 'overall : '.$this->benchmark->elapsed_time('overall_start', 'overall_end').'<hr />';
+	}
+
+	function add(){
+		if(!is_user_session_exist($this)){
+			echo json_encode(array( 'success'=>false, 'error_code'=>1 )); // ไม่มี session
+			return;
+		}
+
+		$user_id = get_user_session_id($this);
+		$zone_id= $this->input->post('zone_id');
+		$seat_id = $this->input->post('seat_id');
+
+		if(empty($zone_id) || empty($seat_id)){
+			echo json_encode(array( 'success'=>false, 'error_code'=>99 )); // parameter ไม่ครบ
+			return;
+		}
+
+		// is seat available
+		if($this->cache_model->is_available($zone_id, $seat_id)){
+			// count seat ที่กำลังจองอยู่ว่ามีเกินจำนวนที่จองได้หรือไม่
+			$canbook = $this->booking_model->can_book($user_id, $seat_id);
+			if($canbook){
+				$this->booking_model->do_book($user_id, $zone_id, $seat_id);
+
+				// UPDATE CACHE
+				$this->cache_model->update_seat($zone_id);
+
+				echo json_encode(array( 'success'=>true ));
+			}else{
+				echo json_encode(array( 'success'=>false, 'error_code'=>3 )); // จองได้เพียง x ที่
+			}
+		}else{
+			echo json_encode(array( 'success'=>false, 'error_code'=>2 )); // ที่นั่งไม่ว่าง
+			return;
+		}
+	}
+
+	function remove(){
+		if(!is_user_session_exist($this)){
+			echo json_encode(array( 'success'=>false, 'error_code'=>1 )); // ไม่มี session
+			return;
+		}
+
+		$user_id = get_user_session_id($this);
+		$zone_id= $this->input->post('zone_id');
+		$seat_id = $this->input->post('seat_id');
+
+		if(empty($zone_id) || empty($seat_id)){
+			echo json_encode(array( 'success'=>false, 'error_code'=>99 )); // parameter ไม่ครบ
+			return;
+		}
+
+		$this->booking_model->undo_book($user_id, $zone_id, $seat_id);
+		// UPDATE CACHE
+		$this->cache_model->update_seat($zone_id);
+
+		echo json_encode(array( 'success'=>true ));
 	}
 
 	function submit(){
+		redirect('zone');
+/*
 		if(!is_user_session_exist($this))
 			redirect('member/login');
 		$user_id = get_user_session_id($this);
 
 		$zone_id= $this->input->post('zone_id');
 		$zone_name = $this->input->post('zone_name');
-		// find zone
+		// check zone
 		if(empty($zone_id) || empty($zone_name))
 			redirect('zone');
 
 		$seat_array = $this->input->post('seat');
-		// find zone
+		// check seat
 		if(empty($seat_array) || count($seat_array)==0)
 			redirect('seat/'.$zone_name);
 
-		// ดึงแค่ข้อมูลที่นั่งที่ถูกจองภายใต้ zone นั้นๆ
-		$this->db->select('count(id) AS cnt');
-		$this->db->where('zone_id <>', $zone_id);
-		$this->db->where_not_in('id', $seat_array);
-		$this->db->where('booking_id=(SELECT b.id FROM booking b WHERE b.person_id='.$this->db->escape($user_id).' LIMIT 1)');
-		$query = $this->db->get('seat');
-		$count_not_in_zone = $query->first_row()->cnt;
+		// check can book (check limit)
+		$canbook = $this->booking_model->can_book($user_id, $zone_id, $seat_array);
 
-		if($count_not_in_zone + count($seat_array)>6){
+		if($canbook){
 			redirect('seat/'.$zone_name.'?popup=seat-limit-popup');
 			return;
 		}else{
@@ -222,7 +273,7 @@ class Seat extends CI_Controller {
 
 			redirect('zone');
 		}
-
+*/
 	}
 
 }

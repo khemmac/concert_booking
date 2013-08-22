@@ -76,10 +76,13 @@
 #member-sub-menu {
 	margin:0px; padding:0px; list-style:none;
 	position:absolute; top:80px; right:44px;
-	width: 162px; height:23px;
+	width: 500px; height:23px; z-index:9999;
 }
-#member-sub-menu li { float:left; }
+#member-sub-menu li { float:right; }
 #member-sub-menu a { display:block; height:23px; float:left; background: transparent url('../images/common/member-sub-menu.gif') no-repeat; }
+#member-sub-menu .menu-name { width:308px; color:white; font-size:12px; text-align:right; display: inline-block; vertical-align: middle; }
+#member-sub-menu .menu-sep { width:30px; text-indent:-3000px; background: transparent url('../images/common/member-sub-menu.gif') no-repeat -53px 0px; }
+
 #member-sub-menu a.menu-logout { width:65px; }
 #member-sub-menu a.menu-profile { width:97px; background-position:-65px 0px; }
 #member-sub-menu a.menu-login { width:60px; background-position:0px -23px; }

@@ -72,7 +72,10 @@
 <script type="text/javascript" src="<?= base_url('js/seat.js') ?>"></script>
 <script type="text/javascript">
 	$(function(){
-		var seat = new Seat({ current:<?= $zone['current_booking_count'] ?> });
+		var seat = new Seat({
+			limit:<?= $zone['limit'] ?>,
+			current:<?= $zone['current_booking_count'] ?>
+		});
 	});
 </script>
 <?php

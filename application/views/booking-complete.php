@@ -3,9 +3,9 @@
 
 	<div id="content">
 		<div class="header">
-			<span class="name">test test</span>
-			<span class="code">3029103938291</span>
-			<span class="booking-code">1A109220000071</span>
+			<span class="name"><?= $person['thName'] ?></span>
+			<span class="code"><?= $person['code'] ?></span>
+			<span class="booking-code"><?= $booking_data['code'] ?></span>
 		</div>
 		<table class="list" cellpadding="0" cellspacing="0" border="0">
 			<tr class="thead">
@@ -19,7 +19,78 @@
 				<td style="width:124px;" class="status">สถานะ</td>
 				<td style="width:16px;" class="bg-right"></td>
 			</tr>
-			<tr class="tbody first">
+<?php
+	function get_seat_by_zone($seat_list, $z_name){
+		$r = array();
+		foreach($seat_list AS $o_seat){
+			if($o_seat['zone_name']==$z_name)
+				array_push($r, $o_seat['seat_name']);
+		}
+		return $r;
+	}
+	function get_zone_price($seat_list, $z_name){
+		foreach($seat_list AS $o_seat){
+			if($o_seat['zone_name']==$z_name)
+				return $o_seat['price'];
+		}
+		return 0;
+	}
+	function get_sum_price($seat_list){
+		$r = 0;
+		foreach($seat_list AS $o_seat){
+			$r += $o_seat['price'];
+		}
+		return $r;
+	}
+	foreach($zone_list AS $key_z => $z):
+		$seat_list = get_seat_by_zone($booking_list, $z);
+		$zone_price = get_zone_price($booking_list, $z);
+?>
+			<tr class="tbody <?= ($key_z==0)?'first':'' ?>">
+				<td class="bg-left"></td>
+				<td class="no"><?= $key_z+1 ?></td>
+				<td class="zone"><?= strtoupper($z) ?></td>
+				<td class="seat-no"><?= strtoupper(implode(', ', $seat_list)) ?></td>
+				<td class="seat-count"><?= count($seat_list) ?></td>
+				<td class="item-price"><?= number_format($zone_price) ?></td>
+				<td class="price"><?= number_format($zone_price * count($seat_list)) ?></td>
+				<td class="status" rowspan="<?= count($zone_list) + 3 ?>" valign="top" style="padding:5px;">
+				<?php if($booking_data['status']==4): ?>
+					ชำระเงินแล้ว
+					วันที่ xx/xx/xx
+					เวลา 00:00
+				<?php elseif($booking_data['status']==3): ?>
+					รอเจ้าหน้าที่ตรวจสอบการโอนเงิน
+					วันที่ xx/xx/xx
+					เวลา 00:00
+				<?php elseif($booking_data['status']==2): ?>
+					กรุณาชำระเงินภายใน
+					วันที่ xx/xx/xx
+					ก่อนเวลา 00:00
+				<?php endif; ?>
+				</td>
+				<td class="bg-right"></td>
+			</tr>
+<?php endforeach; ?>
+			<tr class="tbody">
+				<td class="bg-left"></td>
+				<td colspan="5" class="sum-price" align="right">ราคารวม</td>
+				<td class="price"><?= number_format(get_sum_price($booking_list)) ?></td>
+				<td class="bg-right"></td>
+			</tr>
+			<tr class="tbody">
+				<td class="bg-left"></td>
+				<td colspan="5" class="sum-price" align="right">เงินตรวจสอบโอน</td>
+				<td class="price">0.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></td>
+				<td class="bg-right"></td>
+			</tr>
+			<tr class="tbody last">
+				<td class="bg-left"></td>
+				<td colspan="5" class="sum-price" align="right">ราคารวมทั้งหมด</td>
+				<td class="price"><strong><?= number_format(get_sum_price($booking_list)) ?>.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
+				<td class="bg-right"></td>
+			</tr>
+			<!--tr class="tbody first">
 				<td class="bg-left"></td>
 				<td class="no">1</td>
 				<td class="zone">A1</td>
@@ -87,7 +158,7 @@
 				<td class="item-price">6,000</td>
 				<td class="price">24,000</td>
 				<td class="bg-right"></td>
-			</tr>
+			</tr-->
 
 			<tr class="tfoot">
 				<td colspan="9"></td>

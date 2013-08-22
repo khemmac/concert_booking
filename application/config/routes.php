@@ -46,6 +46,8 @@
 
 // add route for seat segment
 $route['seat/submit'] = 'seat/submit';
+$route['seat/add'] = 'seat/add';
+$route['seat/remove'] = 'seat/remove';
 $route['seat/(:any)'] = 'seat/index/$1';
 
 $route['default_controller'] = "index";

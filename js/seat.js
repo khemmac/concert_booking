@@ -22,40 +22,102 @@ Seat.prototype = {
 		seat: null,
 		checkbox: null
 	},
+	pending: false,
 	__initEl: function(){
 		this.el.seatContainer = $('#seat-container');
 		this.el.seat = this.el.seatContainer.find('a');
 		this.el.checkbox = this.el.seatContainer.find('input[name="seat\[\]"]');
+	},
+	__showLoader: function(el){
+		this.pending = true;
+		el.addClass('loader');
+	},
+	__hideLoader: function(el){
+		this.pending = false;
+		el.removeClass('loader');
 	},
 	__initSeatEvent: function(){
 		var _this=this;
 
 		this.el.seat.bind('click', function(e){
 			e.preventDefault();
+
+			if(_this.pending) return false;
+
+
 			var el = $(this),
 				chk_box = $(el.attr('href')),
 				is_disabled = chk_box.is(':disabled');
+
 			if(is_disabled) return false;
 
+			_this.__showLoader(el);
+
+			//console.log('before : '+_this.cfg.current);
 			var is_checked = chk_box.is(':checked');
 			if(is_checked){
-				_this.cfg.current--;
-				console.log(_this.cfg.current);
-				el.removeClass('active');
+				_this.cfg.current = (_this.cfg.current>0)?_this.cfg.current-1:0;
+				//console.log('after (checked) : '+_this.cfg.current);
+
+				$.ajax({
+					type: 'POST',
+					data: {
+						zone_id: $('input[name=zone_id]').val(),
+						seat_id: chk_box.attr('value')
+					},
+					url: __site_url+'seat/remove',
+					dataType: 'json',
+					success: function(result){
+						if(result.success){
+							el.removeClass('active');
+							_this.__hideLoader(el);
+							chk_box.attr("checked", false);
+						}
+						_this.__hideLoader(el);
+					}
+				});
 			}else{
-				// ถ้าเป็นการจองที่นั่งเพิ่มให้บอกค่าเข้าไป
+				// ถ้าเป็นการจองที่นั่งเพิ่มให้บวกค่าเข้าไป
 				_this.cfg.current++;
-				console.log(_this.cfg.current);
+				//console.log('after (not checked) : '+_this.cfg.current);
 				if(_this.cfg.current > _this.cfg.limit){
 					_this.cfg.current = _this.cfg.limit;
 					common.popup.show(null, '#seat-limit-popup');
-					return false;
+
+					_this.__hideLoader(el);
 				}else{
-					el.addClass('active');
+					$.ajax({
+						type: 'POST',
+						data: {
+							zone_id: $('input[name=zone_id]').val(),
+							seat_id: chk_box.attr('value')
+						},
+						url: __site_url+'seat/add',
+						dataType: 'json',
+						success: function(result){
+							if(result.success){
+								chk_box.attr("checked", true);
+								el.addClass('active');
+							}else{
+								if(result.error_code==1){
+									alert('กรุณาเข้าสู่ระบบใหม่อีกครั้ง');
+								}else if(result.error_code==2){
+									alert('ที่นั่งนี้มีผู้จองแล้ว กรุณาลองเลือกที่อื่นค่ะ');
+									// remove seat and fill booked seat
+									var cls = el.attr('class');
+									$('<div class="booked '+cls+'"></div>').insertBefore(el);
+									el.remove();
+									chk_box.attr("checked", true);
+								}else if(result.error_code==3){
+									common.popup.show(null, '#seat-limit-popup');
+								}
+							}
+							_this.__hideLoader(el);
+						}
+					});
 				}
 			}
 
-			chk_box.attr("checked", !chk_box.attr("checked"));
 		});
 
 		$('#submit').bind('click', function(e){

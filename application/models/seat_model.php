@@ -18,7 +18,7 @@ s.zone_id, z.name AS zone_name
 , z.price
 FROM seat s
 JOIN zone z ON s.zone_id=z.id
-JOIN booking b ON s.booking_id=b.id AND b.person_id=?
+JOIN booking b ON s.booking_id=b.id AND b.person_id=? AND b.status=1
 ORDER BY seat_id ASC";
 		$query = $this->db->query($sql, array($user_id));
 
@@ -44,5 +44,13 @@ ORDER BY s.id ASC";
 		$query = $this->db->query($sql, array($zone_name));
 		return $query->result_array();
 	}
+
+	function seat_available($seat_id){
+		if(!is_user_session_exist($this))
+			return $result_data;
+
+		$user_id = get_user_session_id($this);
+	}
+
 
 }

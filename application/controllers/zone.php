@@ -10,6 +10,7 @@ class Zone extends CI_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 
 		// load model
+		$this->load->model('booking_model','',TRUE);
 		$this->load->model('seat_model','',TRUE);
 
 		$this->output->set_header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
@@ -21,6 +22,13 @@ class Zone extends CI_Controller {
 	function index(){
 		if(!is_user_session_exist($this))
 			redirect('member/login');
+		$user_id = get_user_session_id($this);
+
+		$reach_limit = $this->booking_model->reach_limit($user_id);
+		if($reach_limit){
+			redirect('booking/check');
+			return;
+		}
 
 		$booking_data = $this->seat_model->load_booking_seat();
 		// populate data
@@ -127,6 +135,48 @@ class Zone extends CI_Controller {
 		}
 
 		$this->db->trans_complete();
+	}
+
+	function create_cache(){
+		$this->benchmark->mark('cache_start');
+
+		$this->load->helper('path');
+		$cache_path = set_realpath(APPPATH.'cache/zone');
+		echo '<hr />';
+
+		echo  APPPATH.'<br />';
+
+		$this->db->select('id, name');
+		$query_zone = $this->db->get('zone');
+		foreach($query_zone->result() AS $zone){
+			$fh = fopen($cache_path.$zone->name.'-'.$zone->id.'.txt', 'w');
+
+			$sql = "SELECT
+s.zone_id, z.name AS zone_name
+, s.id AS seat_id, s.name AS seat_name
+, s.is_booked, s.booking_id, s.is_soldout
+, b.person_id, b.status
+FROM seat s
+LEFT JOIN booking b ON s.booking_id=b.id
+JOIN zone z ON s.zone_id=z.id
+WHERE s.zone_id=(SELECT z.id FROM zone z WHERE z.name=? LIMIT 1)
+ORDER BY s.id ASC";
+			$query_seat = $this->db->query($sql, array($zone->name));
+			$result_seat = $query_seat->result_array();
+
+			$str = '';
+			foreach($result_seat AS $seat){
+				$str.=$seat['seat_id'].'|'.$seat['is_booked'].'|'
+						.$seat['booking_id'].'|'.$seat['is_soldout'].'|'
+						.$seat['person_id'].'|'.$seat['status'].PHP_EOL;
+			}
+			fwrite($fh, $str);
+			fclose($fh);
+		}
+
+		$this->benchmark->mark('cache_end');
+		echo 'cache : '.$this->benchmark->elapsed_time('cache_start', 'cache_end').'<hr />';
+
 	}
 
 }

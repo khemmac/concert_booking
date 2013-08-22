@@ -5,7 +5,7 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	<title>Concert Booking</title>
 	<script type="text/javascript"> var __base_url = '<?= base_url() ?>'; </script>
-	<script type="text/javascript"> var __site_url = '<?= site_url() ?>'; </script>
+	<script type="text/javascript"> var __site_url = '<?= site_url('/') ?>'; </script>
 
 	<script type="text/javascript" src="<?= base_url('/js/lib/jquery.js') ?>"></script>
 	<script type="text/javascript" src="<?= base_url('/js/lib/jquery.bgiframe.min.js') ?>"></script>
