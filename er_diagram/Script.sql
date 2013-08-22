@@ -72,7 +72,7 @@ Create table booking (
 	total_money Decimal(10,2) COMMENT 'ยอดเงินที่ต้องชำระ ต้องมีเศษสตางค์ด้วย (ใช้ id สองหลักท้าย)    คำนวณโดยโปรแกรม',
 	bank_ref_id Varchar(20) COMMENT 'หมายเลขยืนยันจากธนาคาร',
 	payment_type Tinyint UNSIGNED COMMENT '0=Credit  1=Tranfer',
-	status Tinyint UNSIGNED DEFAULT 0 COMMENT '1=จองอยู่  2=ยืนยันการจอง  2=แจ้งโอนเงิน (รออนุมัติ)  3=จ่ายเงินแล้ว  99=เลยเวลา     เมื่อ flag เป็น 99 ต้องไป update table seat โดย set bookingId เป็น null',
+	status Tinyint UNSIGNED NOT NULL DEFAULT 0 COMMENT '1=จองอยู่  2=ยืนยันการจอง  3=แจ้งโอนเงิน (รออนุมัติ)  4=จ่ายเงินแล้ว  99=เลยเวลา     เมื่อ flag เป็น 99 ต้องไป update table seat โดย set bookingId เป็น null',
 	createDate Datetime,
 	updateDate Datetime,
  Primary Key (id)) ENGINE = InnoDB
@@ -126,17 +126,22 @@ BEGIN
     SET @bound = ',';
 --    SET @result="";
     IF(@booking_id>0) THEN
+    	SET @booking_id=@booking_id;
+-- ไม่ทำอะไรเนื่องจากจะจองได้ครั้งละ 1 ที่นั่ง
+/*
         SET @str_sql = CONCAT("UPDATE seat SET `booking_id`=NULL, is_booked=0, updateDate=NOW()
                                 WHERE id NOT IN (",seat_ids,") AND zone_id=",zone_id,"
                                 AND booking_id=",@booking_id,";");
         PREPARE stmt FROM @str_sql;
         EXECUTE stmt;
+*/
 --        SELECT @result;
     ELSE
         INSERT INTO booking (`person_id`,`total_money`,`status`,`createDate`)
             VALUES (person_id, 0, 1, NOW());
         SET @booking_id =  (SELECT LAST_INSERT_ID());
     END IF;
+
     SET @occurance = (SELECT LENGTH(seat_ids) - LENGTH(REPLACE(seat_ids, @bound, ''))+1);
     SET @i=1;
     WHILE @i <= @occurance DO
@@ -150,8 +155,9 @@ BEGIN
         SET @i = @i + 1;
     END WHILE;
     UPDATE booking SET total_money=(SELECT SUM(z.price) FROM seat s 
-                                    LEFT JOIN zone z ON s.zone_id=z.id WHERE s.booking_id=@booking_id);
+                                    JOIN zone z ON s.zone_id=z.id WHERE s.booking_id=@booking_id);
     SELECT s.id FROM seat s WHERE s.booking_id=@booking_id;
+
     COMMIT;
 END//
 
@@ -173,7 +179,7 @@ BEGIN
 						, LPAD(person_id, 6, '0')));
 		UPDATE booking SET code=@code ,status=2 ,updateDate=NOW()
 			WHERE id=@booking_id;
-		SELECT @booking_id;
+		SELECT @booking_id AS booking_id;
 	END IF;
 
 	COMMIT;
