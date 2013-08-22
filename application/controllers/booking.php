@@ -72,7 +72,7 @@ class Booking extends CI_Controller {
 
 		if($query->num_rows()>0){
 			$r_data = $query->first_row('array');
-			redirect('booking/complete/'.$r_data['booking_id']);
+			redirect('booking/complete/'.$r_data['@booking_id']);
 		}else
 			redirect('zone');
 	}
@@ -83,6 +83,7 @@ class Booking extends CI_Controller {
 		$user_id = get_user_session_id($this);
 
 		$booking_id = $this->uri->segment(3);
+
 		if(empty($booking_id) || !is_numeric($booking_id))
 			redirect('booking/check');
 
