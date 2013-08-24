@@ -139,10 +139,61 @@ ORDER BY seat_id ASC";
 			redirect('member/login');
 		$user_id = get_user_session_id($this);
 
-		$this->db->where(array('person_id'=>$user_id, ''));
+		$this->form_validation->set_rules(array(
+			array(
+				'field'		=> 'code',
+				'label'		=> 'รหัสจอง',
+				'rules'		=> 'trim|required|exact_length[14]|xss_clean|callback_check_booking_code'
+			)
+		));
 
-		$this->phxview->RenderView('booking-check');
-		$this->phxview->RenderLayout('default');
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->phxview->RenderView('booking-check');
+			$this->phxview->RenderLayout('default');
+		}else{
+			$this->db->select('id');
+			$this->db->limit(1);
+			$this->db->where(array(
+				'person_id'=>$user_id,
+				'code'=>$this->input->post('code')
+			));
+			$query = $this->db->get('booking');
+			$result = $query->first_row('array');
+
+			redirect('booking/complete/'.$result['id']);
+		}
+	}
+
+	// call back for validator
+	public function check_booking_code($code)
+	{
+		$user_id = get_user_session_id($this);
+
+		$this->db->select('id,status');
+		$this->db->limit(1);
+		$this->db->where(array(
+			'person_id'=>$user_id,
+			'code'=>$this->input->post('code')
+		));
+		$query = $this->db->get('booking');
+
+		if($query->num_rows()>0){
+			$o = $query->first_row('array');
+			$status = $o['status'];
+			if($status==1){
+				$this->form_validation->set_message('check_booking_code', 'ท่านต้องยืนยันการจอง');
+				return false;
+			}else if($status==99){
+				$this->form_validation->set_message('check_booking_code', 'การจองนี้เลยเวลาชำระเงินไปแล้วค่ะ');
+				return false;
+			}else{
+				return true;
+			}
+		}else{
+			$this->form_validation->set_message('check_booking_code', 'ไม่พบรหัสการจอง');
+			return false;
+		}
 	}
 
 }

@@ -18,10 +18,10 @@ Class Email_model extends CI_Model
 
 		$this->email->from('khemmac@gmail.com', 'Bootplus');
 		$this->email->to('khemmac@gmail.com');
-		$this->email->bcc('khemmac@hotmail.com,aon_iti10@hotmail.com');
+		$this->email->bcc('khemmac@hotmail.com,aon_iti10@hotmail.com,aon.iti10@gmail.com');
 
 		$this->email->subject('ยินดีต้อนรับผู้จองบัตร Early Bird & Presale');
-		$mail_body = $this->load->view('email/register-success', '', true);
+		$mail_body = $this->load->view('email/register-success', $user_data, true);
 		$this->email->message($mail_body);
 
 		$this->email->send();

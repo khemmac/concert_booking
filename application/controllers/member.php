@@ -60,6 +60,8 @@ class Member extends CI_Controller {
 		if(is_user_session_exist($this))
 			redirect('member/profile');
 
+		$original_data = $_POST;
+
 		$rules = $this->person_model->get_register_rules();
 		$this->form_validation->set_rules($rules);
 
@@ -71,7 +73,7 @@ class Member extends CI_Controller {
 			$this->person_model->insert();
 
 			// send email
-			$this->email_model->send_register_success($_POST);
+			$this->email_model->send_register_success($original_data);
 
 			redirect('member/register_success');
 		}

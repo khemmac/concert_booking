@@ -108,7 +108,7 @@ Class Person_model extends CI_Model
 			array(
 				'field'		=> 'code',
 				'label'		=> 'รหัสบัตรประชาชน',
-				'rules'		=> 'trim|required|min_length[13]|max_length[13]'
+				'rules'		=> 'trim|required|exact_length[13]'
 			),
 			array(
 				'field'		=> 'thName',

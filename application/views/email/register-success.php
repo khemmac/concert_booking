@@ -34,9 +34,9 @@
 					<tr>
 						<td width="59" height="108"></td>
 						<td align="center" style="background-color:black;" background:#000000 url('<?= base_url('images/email/bg-register.jpg') ?>') no-repeat -59px -232px;">
-							<strong style="color:white;">Username : xxxxxxxxxxxxxx</strong>
+							<strong style="color:white;">Username : <?= $username ?></strong>
 							<br /><br />
-							<strong style="color:white;">Password : xxxxxxxxxxxxxxx</strong>
+							<strong style="color:white;">Password : <?= $password ?></strong>
 						</td>
 						<td width="66"></td>
 					</tr>
