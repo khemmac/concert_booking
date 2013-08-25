@@ -66,8 +66,8 @@
 						เวลา 00:00
 					<?php elseif($booking_data['status']==2): ?>
 						กรุณาชำระเงินภายใน
-						วันที่ xx/xx/xx
-						ก่อนเวลา 00:00
+						วันที่ <?= util_helper_format_date(util_helper_add_one_day($booking_data['updateDate'])) ?>
+						ก่อนเวลา <?= util_helper_format_time(util_helper_add_one_day($booking_data['updateDate'])) ?>
 					<?php else: ?>
 						-
 					<?php endif; ?>
@@ -94,81 +94,20 @@
 				<td class="price"><strong><?= number_format(get_sum_price($booking_list)) ?>.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
 				<td class="bg-right"></td>
 			</tr>
-			<!--tr class="tbody first">
-				<td class="bg-left"></td>
-				<td class="no">1</td>
-				<td class="zone">A1</td>
-				<td class="seat-no">001, 022, 023, 100</td>
-				<td class="seat-count">4</td>
-				<td class="item-price">6,000</td>
-				<td class="price">24,000</td>
-				<td class="status" rowspan="6" valign="top" style="padding:5px;">ชำระเงินแล้ว
-					วันที่ xx/xx/xx
-					เวลา 00:00
-					/
-					<br />
-					กรุณาชำระเงินภายใน
-					วันที่ xx/xx/xx
-					ก่อนเวลา 00:00
-				</td>
-				<td class="bg-right"></td>
-			</tr>
-			<tr class="tbody">
-				<td class="bg-left"></td>
-				<td class="no">2</td>
-				<td class="zone">A1</td>
-				<td class="seat-no">001, 022, 023, 100</td>
-				<td class="seat-count">4</td>
-				<td class="item-price">6,000</td>
-				<td class="price">24,000</td>
-				<td class="bg-right"></td>
-			</tr>
-			<tr class="tbody">
-				<td class="bg-left"></td>
-				<td class="no">3</td>
-				<td class="zone">A1</td>
-				<td class="seat-no">001, 022, 023, 100</td>
-				<td class="seat-count">4</td>
-				<td class="item-price">6,000</td>
-				<td class="price">24,000</td>
-				<td class="bg-right"></td>
-			</tr>
-			<tr class="tbody">
-				<td class="bg-left"></td>
-				<td class="no">4</td>
-				<td class="zone">A1</td>
-				<td class="seat-no">001, 022, 023, 100</td>
-				<td class="seat-count">4</td>
-				<td class="item-price">6,000</td>
-				<td class="price">24,000</td>
-				<td class="bg-right"></td>
-			</tr>
-			<tr class="tbody">
-				<td class="bg-left"></td>
-				<td class="no">5</td>
-				<td class="zone">A1</td>
-				<td class="seat-no">001, 022, 023, 100</td>
-				<td class="seat-count">4</td>
-				<td class="item-price">6,000</td>
-				<td class="price">24,000</td>
-				<td class="bg-right"></td>
-			</tr>
-			<tr class="tbody last">
-				<td class="bg-left"></td>
-				<td class="no">6</td>
-				<td class="zone">A1</td>
-				<td class="seat-no">001, 022, 023, 100</td>
-				<td class="seat-count">4</td>
-				<td class="item-price">6,000</td>
-				<td class="price">24,000</td>
-				<td class="bg-right"></td>
-			</tr-->
+
 
 			<tr class="tfoot">
 				<td colspan="9"></td>
 			</tr>
 			<tr class="tfoot-text">
-				<td colspan="9"></td>
+				<td colspan="9" valign="top" align="center">
+					<div style="margin-top:124px; height:100px; color:red; text-indent: -3000px;">
+						กรุณาพิมพ์หลักฐานฉบับนี้ไว้ พร้อมบัตรประชาชนตัวจริง เพื่อนำมารับบัตรจริงรุ่น Limited Edition
+						เฉพาะ 2,000 ใบแรกเท่านั้นในวันที่ xx/xx/xxxx เวลา 00:00 น. ณ xxxxxxxxxxxxxx
+						และส่วนที่เหลือกรุณาเก็บหลักฐานนี้ไว้เพื่อนำมารับบัตรจริง
+						โดยวันและสถานที่จะแจ้งให้ทราบอีกครั้ง
+					</div>
+				</td>
 			</tr>
 			<tr class="tfoot-buttons">
 				<td colspan="9" align="center">

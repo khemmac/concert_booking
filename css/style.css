@@ -376,7 +376,7 @@ form input {
 .page-booking-complete .list .tbody td.bg-right { border:0px; width:16px; background:#000000 url("../images/booking/table_border_right.gif") repeat-y -5px 0px; }
 
 .page-booking-complete .list .tfoot td { height:17px; background:transparent url("../images/booking-complete/table_footer.png") no-repeat; text-indent:-3000px; }
-.page-booking-complete .list .tfoot-text td { height:293px; background:transparent url("../images/booking-complete/footer_text.png") no-repeat; text-indent:-3000px; }
+.page-booking-complete .list .tfoot-text td { height:293px; background:transparent url("../images/booking-complete/footer_text.png") no-repeat; }
 
 .page-booking-complete #content form ul {
 	width:331px; height:107px; margin:0px; padding:0px; list-style:none;

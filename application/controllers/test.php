@@ -23,7 +23,44 @@ class Test extends CI_Controller {
 	}
 
 	function send_mail(){
-		$this->email_model->send_register_success(array());
+
+		$this->load->library('email');
+
+		$this->email->initialize(array(
+			'mailtype'  => 'html',
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'khemmac@gmail.com',
+			'smtp_pass' => 'g-,=k9b',
+			'charset'   => 'utf8'
+		));
+
+		$this->email->from('khemmac@gmail.com', 'Bootplus');
+		$this->email->to('khemmac@gmail.com');
+		$this->email->bcc('khemmac@hotmail.com,aon_iti10@hotmail.com,aon.iti10@gmail.com');
+
+		$this->email->subject('ยินดีต้อนรับผู้จองบัตร Early Bird & Presale');
+		$mail_body = $this->load->view('email/register-success', array('username'=>1111111, 'password'=>2222222222), true);
+		$this->email->message($mail_body);
+
+		$this->email->send();
+
+		echo $this->email->print_debugger();
+	}
+
+	function check_port(){
+		$fp = fsockopen('127.0.0.1', 465, $errno, $errstr, 5);
+		if (!$fp) {
+		    // port is closed or blocked
+		    echo 'ERROR NO : '.$errno;
+			echo '<hr />';
+			echo 'ERROR MSG : '.$errstr;
+		} else {
+		    // port is open and available
+		    echo 'PORT IS OPEN';
+		    fclose($fp);
+		}
 	}
 
 	function render_mail(){

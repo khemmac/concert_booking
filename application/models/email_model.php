@@ -2,7 +2,6 @@
 Class Email_model extends CI_Model
 {
 	function send_register_success($user_data){
-		$mail_body = $this->load->view('email/register-success', '', true);
 
 		$this->load->library('email');
 
