@@ -146,11 +146,14 @@
 </div>
 <script type="text/javascript">
 	$(function(){
+		// number only
+		$('input[name=code]').numeric({ decimal: false, negative: false });
+
 		$('#submit').click(function(){
 			var bd = $('select[name=birth_date]').val(),
 				bm = $('select[name=birth_month]').val(),
 				by = $('select[name=birth_year]').val();
-			if(!common.isValidDate(by,bm,bd)){
+			if(!common.form.isValidDate(by,bm,bd)){
 				alert('วันที่ผิดพลาด กรุณาตรวจสอบอีกครั้ง');
 				return false;
 			}

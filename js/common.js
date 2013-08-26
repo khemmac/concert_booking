@@ -15,7 +15,7 @@ Common.prototype = {
 			el.attr('qtip-id', 'qtip-'+i);
 
 			var el_pos = el.offset();
-			tip.css({ top: (el_pos.top-1)+'px', left: (el_pos.left + el.width() + 12)+'px'})
+			tip.css({ top: (el_pos.top-1)+'px', left: (el_pos.left + el.width() + 12)+'px'});
 
 			$('body').append(tip);
 
@@ -136,16 +136,18 @@ Common.prototype = {
 			});
 		}
 	},
-	isValidDate : function(y,m,d) {
-		// Assume not leap year by default (note zero index for Jan)
-		var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
+	form: {
+		isValidDate : function(y,m,d) {
+			// Assume not leap year by default (note zero index for Jan)
+			var daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
 
-		// If evenly divisible by 4 and not evenly divisible by 100,
-		// or is evenly divisible by 400, then a leap year
-		if ( (!(y % 4) && y % 100) || !(y % 400)) {
-			daysInMonth[1] = 29;
+			// If evenly divisible by 4 and not evenly divisible by 100,
+			// or is evenly divisible by 400, then a leap year
+			if ( (!(y % 4) && y % 100) || !(y % 400)) {
+				daysInMonth[1] = 29;
+			}
+			return d <= daysInMonth[--m];
 		}
-		return d <= daysInMonth[--m]
 	}
 };
 
@@ -165,4 +167,4 @@ $(function(){
 
 	// disable drag image at all
 	$('a,img,area').on('dragstart', function(event) { event.preventDefault(); });
-})
+});

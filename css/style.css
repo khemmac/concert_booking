@@ -229,6 +229,11 @@ form input {
 }
 .page-seat #content #zone-info ul { list-style:none; padding:0px; margin:15px 0px 0px 20px; }
 .page-seat #content #zone-info li { font-size:20px; color:white; font-weight:bolder; font-family: Arial; height:40px; }
+
+.page-seat #content #zone-info li.zone1 { color:#ec1c24; }
+.page-seat #content #zone-info li.zone2 { color:#3a499e; }
+.page-seat #content #zone-info li.zone3 { color:#ea9b27; }
+
 .page-seat #content #stage {
 	position:absolute; top:565px; left:55px; width:720px; height:51px;
 	background:transparent url("../images/seat/stage.png") no-repeat;
@@ -280,6 +285,17 @@ form input {
 	width:180px; height:42px; background:transparent url("../images/seat/button-continue.png") no-repeat;
 }
 .page-seat #content form .submit:hover { background-position:0px -97px; }
+
+.page-seat #content .b-back-ctnr {
+	list-style:none; margin:0px; padding:0px; position:absolute; top:354px; right:29px;
+	background:transparent url("../images/seat/button-back-zone.png") no-repeat;
+	width:180px; height:80px;
+}
+.page-seat #content .b-back-zone {
+	position:absolute; border:0px; text-indent:-2000px; cursor:pointer;
+	width:180px; height:42px; background:transparent url("../images/seat/button-back-zone.png") no-repeat;
+}
+.page-seat #content .b-back-zone:hover { background-position:0px -80px; }
 /* end seat */
 
 /* booking */

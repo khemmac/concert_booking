@@ -197,14 +197,14 @@ class Pdf extends CI_Controller {
 
 		// set document information
 		$pdf->SetCreator(PDF_CREATOR);
-		$pdf->SetAuthor('test author');
+		$pdf->SetAuthor('Boostplus');
 		$pdf->SetTitle('test pdf');
 
 		// set header and footer fonts
-		$pdf->setHeaderFont(Array('angsanaupc', '', 15));
+		$pdf->setHeaderFont(Array('angsanaupc', 'B', 20));
 
 		// set default header data
-		$pdf->SetHeaderData(PDF_HEADER_LOGO, 20, PDF_HEADER_TITLE.' PRINT', PDF_HEADER_STRING);
+		$pdf->SetHeaderData('print-logo.png', 40, 'หลักฐานการชำระเงิน', 'www.boostplus.co.th');
 		// remove default header/footer
 		//$pdf->setPrintHeader(false);
 		//$pdf->setPrintFooter(false);
@@ -234,36 +234,34 @@ class Pdf extends CI_Controller {
 		// add a page
 		$pdf->AddPage();
 
-		$html = 'ภาษาไทย';
-		// define barcode style
-		$style = array(
-			'position' => '',
-			'align' => 'C',
-			'stretch' => false,
-			'fitwidth' => true,
-			'cellfitalign' => '',
-			'border' => true,
-			'hpadding' => 'auto',
-			'vpadding' => 'auto',
-			'fgcolor' => array(0,0,0),
-			'bgcolor' => false, //array(255,255,255),
-			'text' => true,
-			'font' => 'helvetica',
-			'fontsize' => 8,
-			'stretchtext' => 4
-		);
+		// ***** USER INFO *****
+		$pdf->SetFont('angsanaupc', 'B', 19);
+$tbl = '<table cellspacing="0" cellpadding="3" border="0">
+    <tr>
+        <td rowspan="2" width="20" width="20"></td>
+        <td width="305">คุณ '.$person['thName'].'</td>
+        <td rowspan="2" width="10"></td>
+        <td rowspan="2" align="center">
+        	<table cellspaceing="0" cellpadding="3" border="1">
+        		<tr><td style="background-color:#eeeeee;">รหัสการจอง<br />'.$booking_data['code'].'</td></tr>
+        	</table>
+        </td>
+    </tr>
+    <tr>
+        <td>รหัสบัตรประชาชน '.$person['code'].'</td>
+    </tr>
+</table>';
+		$pdf->writeHTML($tbl, true, false, false, false, '');
+		// ***** END USER INFO *****
 
-		// Standard 2 of 5
-		//$pdf->Cell(0, 0, 'Standard 2 of 5', 0, 1);
-		$pdf->write1DBarcode($booking_data['code'], 'S25', '', '', '', 18, 0.4, $style, 'N');
 		$pdf->Ln();
 
 		// ***** DEFINED TABLE DATA *****
-		$pdf->SetFillColor(255, 0, 0);
-		$pdf->SetTextColor(255);
+		$pdf->SetFillColor(204, 204, 204);
+		$pdf->SetTextColor(0);
 		$pdf->SetDrawColor(0, 0, 0);
-		$pdf->SetLineWidth(0.3);
-		$pdf->SetFont('', 'B');
+		$pdf->SetLineWidth(0.2);
+		$pdf->SetFont('', 'B', '16');
 		// Header
 		$w = array(20, 35, 40, 25, 41, 41);
 
@@ -308,6 +306,7 @@ class Pdf extends CI_Controller {
 		$pdf->Ln();
 
 		// total
+		$pdf->SetFont('', 'B');
 		$pdf->Cell(array_sum(array($w[0],$w[1],$w[2],$w[3],$w[4]))
 			, 6, 'ราคาสุทธิ', 'LRTB', 0, 'R', 1);
 		$pdf->Cell($w[5], 6, number_format(get_sum_price($booking_list)).'.'.str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT), 'LRTB', 0, 'R', 1);
@@ -318,6 +317,7 @@ class Pdf extends CI_Controller {
 
 
 		$pdf->Ln();
+		$pdf->SetFont('', '');
 		$pdf->SetFillColor(237, 255, 0);
 		$pdf->SetTextColor(255, 0, 0);
 		$pdf->MultiCell(0, 0,
@@ -325,6 +325,33 @@ class Pdf extends CI_Controller {
 เฉพาะ 2,000 ใบแรกเท่านั้นในวันที่ xx/xx/xxxx เวลา 00:00 น. ณ xxxxxxxxxxxxxx
 และส่วนที่เหลือกรุณาเก็บหลักฐานนี้ไว้เพื่อนำมารับบัตรจริง
 โดยวันและสถานที่จะแจ้งให้ทราบอีกครั้ง', 1, 'C', 1, 1);
+
+
+		$pdf->SetY(-40);
+
+		// ***** BARCODE *****
+		// define barcode style
+		$style = array(
+			'position' => '',
+			'align' => 'C',
+			'stretch' => false,
+			'fitwidth' => true,
+			'cellfitalign' => '',
+			'border' => true,
+			'hpadding' => 'auto',
+			'vpadding' => 'auto',
+			'fgcolor' => array(0,0,0),
+			'bgcolor' => false, //array(255,255,255),
+			'text' => true,
+			'font' => 'helvetica',
+			'fontsize' => 8,
+			'stretchtext' => 4
+		);
+
+		// Standard 2 of 5
+		//$pdf->Cell(0, 0, 'Standard 2 of 5', 0, 1);
+		$pdf->write1DBarcode($booking_data['code'], 'S25', '', '', '', 18, 0.4, $style, 'N');
+		// ***** END BARCODE *****
 
 //		$pdf->Ln();
 //		$pdf->MultiRow('Row xx', 'กรุณาพิมพ์หลักฐานฉบับนี้ไว้ พร้อมบัตรประชาชนตัวจริง เพื่อนำมารับบัตรจริงรุ่น Limited Edition'."\n".'เฉพาะ 2,000 ใบแรกเท่านั้นในวันที่ xx/xx/xxxx เวลา 00:00 น. ณ xxxxxxxxxxxxxx');

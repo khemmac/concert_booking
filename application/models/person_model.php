@@ -108,7 +108,7 @@ Class Person_model extends CI_Model
 			array(
 				'field'		=> 'code',
 				'label'		=> 'รหัสบัตรประชาชน',
-				'rules'		=> 'trim|required|exact_length[13]'
+				'rules'		=> 'trim|required|integer|exact_length[13]'
 			),
 			array(
 				'field'		=> 'thName',
@@ -153,7 +153,7 @@ Class Person_model extends CI_Model
 			array(
 				'field'		=> 'tel',
 				'label'		=> 'เบอร์ติดต่อ',
-				'rules'		=> 'trim|required|max_length[20]'
+				'rules'		=> 'trim|required|integer|max_length[20]'
 			),
 			array(
 				'field'		=> 'email',
@@ -203,7 +203,7 @@ Class Person_model extends CI_Model
 			array(
 				'field'		=> 'code',
 				'label'		=> 'รหัสบัตรประชาชน',
-				'rules'		=> 'trim|required|exact_length[13]'
+				'rules'		=> 'trim|required|integer|exact_length[13]'
 			),
 			array(
 				'field'		=> 'thName',
@@ -248,7 +248,7 @@ Class Person_model extends CI_Model
 			array(
 				'field'		=> 'tel',
 				'label'		=> 'เบอร์ติดต่อ',
-				'rules'		=> 'trim|required|max_length[20]'
+				'rules'		=> 'trim|required|integer|max_length[20]'
 			),
 			array(
 				'field'		=> 'email',

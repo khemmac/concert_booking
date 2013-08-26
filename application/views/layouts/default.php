@@ -9,6 +9,7 @@
 
 	<script type="text/javascript" src="<?= base_url('/js/lib/jquery.js') ?>"></script>
 	<script type="text/javascript" src="<?= base_url('/js/lib/jquery.bgiframe.min.js') ?>"></script>
+	<script type="text/javascript" src="<?= base_url('/js/lib/jquery.numeric.js') ?>"></script>
 
 	<script type="text/javascript" src="<?= base_url('/js/lib/jquery.qtip/jquery.qtip.min.js') ?>"></script>
 	<link href="<?= base_url('/js/lib/jquery.qtip/jquery.qtip.min.css') ?>" type="text/css" rel="stylesheet" />

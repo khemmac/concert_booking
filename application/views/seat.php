@@ -7,7 +7,7 @@
 	<div id="content">
 		<div id="zone-info">
 			<ul>
-				<li>Zone&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper($zone['zone']) ?></li>
+				<li class="zone<?= $zone['class'] ?>">Zone&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper($zone['zone']) ?></li>
 				<li>Class&nbsp;&nbsp;&nbsp;<?= strtoupper($zone['class']) ?></li>
 				<li>Blog&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper($zone['blog']) ?></li>
 			</ul>
@@ -63,6 +63,10 @@
 					)); ?></li>
 			</ul>
 		<?= form_close() ?>
+
+		<ul class="b-back-ctnr">
+			<li><a href="<?= site_url('zone') ?>" title="เลือกโซนที่นั่งอื่นๆ" class="b-back-zone"></a></li>
+		</ul>
 
 		<div id="stage"></div>
 	</div>
