@@ -89,6 +89,10 @@ class Booking extends CI_Controller {
 
 		$result_data = $this->booking_model->prepare_print_data($user_id, $booking_id);
 
+		//echo '<hr />';
+		//print_r($result_data);
+		//return;
+
 		$this->phxview->RenderView('booking-complete', $result_data);
 		$this->phxview->RenderLayout('default');
 	}

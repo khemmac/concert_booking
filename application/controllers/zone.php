@@ -57,7 +57,16 @@ class Zone extends CI_Controller {
 	}
 
 	function submit(){
-		redirect('booking');
+		if(!is_user_session_exist($this))
+			redirect('member/login');
+		$user_id = get_user_session_id($this);
+
+		$booking_data = $this->seat_model->load_booking_seat();
+
+		if(count($booking_data)>0)
+			redirect('booking');
+		else
+			redirect('zone?popup=zone-blank-seat-popup');
 	}
 
 	function generate(){

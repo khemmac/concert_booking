@@ -82,9 +82,3 @@
 		});
 	});
 </script>
-<?php
-	$popup = $this->input->get('popup');
-	if(!empty($popup)):
-?>
-<script type="text/javascript"> $(function(){ common.popup.show(null, '#<?= $popup ?>'); }); </script>
-<?php endif; ?>

@@ -89,6 +89,8 @@ WHERE id=? AND booking_id=(SELECT id FROM booking WHERE person_id=? AND status=1
 		$query = $this->db->get('booking');
 		$booking_data = $query->first_row('array');
 
+		//print_r($booking_data);
+
 		// seat data
 		$sql = "SELECT
 s.zone_id, z.name AS zone_name

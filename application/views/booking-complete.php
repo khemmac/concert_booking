@@ -9,7 +9,7 @@
 		</div>
 		<table class="list" cellpadding="0" cellspacing="0" border="0">
 			<tr class="thead">
-				<td style="width:18px;" class="bg-left"></td>
+				<!--td style="width:18px;" class="bg-left"></td>
 				<td style="width:71px;" class="no">รายการ</td>
 				<td style="width:85px;" class="zone">โซนที่นั่ง</td>
 				<td style="width:110px;" class="seat-no">เลขที่นั่ง</td>
@@ -17,7 +17,17 @@
 				<td style="width:94px;" class="item-price">ราคาต่อหน่วย</td>
 				<td style="width:85px;" class="price">ราคา</td>
 				<td style="width:124px;" class="status">สถานะ</td>
-				<td style="width:16px;" class="bg-right"></td>
+				<td style="width:16px;" class="bg-right"></td-->
+
+				<td style="width:19px;" class="bg-left"></td>
+				<td style="width:81px;" class="no">รายการ</td>
+				<td style="width:84px;" class="zone">โซนที่นั่ง</td>
+				<td style="width:119px;" class="seat-no">เลขที่นั่ง</td>
+				<td style="width:95px;" class="seat-count">จำนวนที่นั่ง</td>
+				<td style="width:96px;" class="item-price">ราคาต่อหน่วย</td>
+				<td style="width:80px;" class="price">ราคา</td>
+				<td style="width:132px;" class="status">สถานะ</td>
+				<td style="width:17px;" class="bg-right"></td>
 			</tr>
 <?php
 	function get_seat_by_zone($seat_list, $z_name){
