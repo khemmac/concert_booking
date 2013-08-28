@@ -3,27 +3,27 @@ Class Email_model extends CI_Model
 {
 	function send_register_success($user_data){
 
-		$this->load->library('email');
+		require("./application/libraries/phpmailer/class.phpmailer.php");
+		$mail = new PHPMailer();
+		$mail->IsSMTP();
+		$mail->CharSet		= "utf-8";
+		$mail->Host			= "ssl://smtp.gmail.com";
+		$mail->Port			= "465";
+		$mail->SMTPAuth		= true;
+		$mail->Username		= "khemmac@gmail.com";
+		$mail->Password		= "g-,=k9b";
 
-		$this->email->initialize(array(
-			'mailtype'  => 'html'/*,
-			'protocol' => 'smtp',
-			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_port' => 465,
-			'smtp_user' => 'khemmac@gmail.com',
-			'smtp_pass' => 'g-,=k9b',
-			'charset'   => 'utf8'*/
-		));
-
-		$this->email->from('khemmac@gmail.com', 'Bootplus');
-		$this->email->to('khemmac@gmail.com');
-		$this->email->bcc('khemmac@hotmail.com,aon_iti10@hotmail.com,aon.iti10@gmail.com');
-
-		$this->email->subject('ยินดีต้อนรับผู้จองบัตร Early Bird & Presale');
-		$mail_body = $this->load->view('email/register-success', $user_data, true);
-		$this->email->message($mail_body);
-
-		$this->email->send();
+		$mail->From			= "khemmac@gmail.com";
+		$mail->FromName		= "Boostplus";
+		$mail->AddAddress($user_data['email']);
+		$mail->AddBCC('khemmac@hotmail.com');
+		$mail->AddBCC('khemmac@gmail.com');
+		$mail->AddBCC('aon.iti10@gmail.com');
+		$mail->AddBCC('aon_iti10@hotmail.com');
+		$mail->IsHTML(true);
+		$mail->Subject		=  'ยินดีต้อนรับผู้จองบัตร Early Bird & Presale';
+		$mail->Body			= $this->load->view('email/register-success', $user_data, true);
+		$result = $mail->send();
 
 		//echo $this->email->print_debugger();
 	}
