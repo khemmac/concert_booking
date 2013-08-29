@@ -15,11 +15,10 @@ class Index extends CI_Controller {
 	}
 
 	function index(){
-		$this->phxview->RenderView('index');
-		$this->phxview->RenderLayout('default');
-	}
-
-	function getName(){
+		//$this->phxview->RenderView('index');
+		//$this->phxview->RenderLayout('default');
+		$this->phxview->RenderView('landing');
+		$this->phxview->RenderLayout('empty');
 	}
 
 }
