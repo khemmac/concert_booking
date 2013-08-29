@@ -124,15 +124,10 @@
 <?= form_open('controller/form_booking/booking-complete'); ?>
 					<ul>
 						<li>
-							<?= form_submit(array(
-									'id'		=> 'submit',
-									'value'		=> '',
-									'class'		=> 'submit'
-								));
-							?>
+							<a href="<?= site_url('pdf/print_booking/'.$booking_data['id']).'?print=1' ?>" class="submit" id="submit" target="_blank"></a>
 						</li>
 						<li>
-							<a href="<?= site_url('pdf/print1') ?>" target="_blank" class="cancel">Cancel</a>
+							<a href="<?= site_url('pdf/print_booking/'.$booking_data['id']) ?>" class="cancel"></a>
 						</li>
 					</ul>
 <?= form_close() ?>

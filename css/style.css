@@ -399,13 +399,13 @@ form input {
 	background:transparent url("../images/booking-complete/buttons.png") no-repeat;
 }
 .page-booking-complete #content form ul li { float:left; }
-.page-booking-complete #content form ul li input.submit {
-	width:152px; height:55px; border:0px; cursor:pointer;
+.page-booking-complete #content form ul li .submit {
+	display:block; width:152px; height:55px; border:0px; cursor:pointer;
 	background:transparent url("../images/booking-complete/buttons.png") no-repeat 0px 0px; margin:0px;
 }
-.page-booking-complete #content form ul li input.submit:hover { background-position:0px -107px; }
+.page-booking-complete #content form ul li .submit:hover { background-position:0px -107px; }
 .page-booking-complete #content form ul li .cancel {
-	display:block; width:152px; height:55px; border:0px;
+	display:block; width:152px; height:55px; border:0px; cursor:pointer;
 	background:transparent url("../images/booking-complete/buttons.png") no-repeat -179px 0px; margin-left:27px; text-indent:-3000px;
 }
 .page-booking-complete #content form ul li .cancel:hover { background-position:-179px -107px; }

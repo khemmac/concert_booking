@@ -88,7 +88,7 @@ class Test extends CI_Controller {
 	}
 
 	function render_mail(){
-		$this->load->view('email/register-success');
+		$this->load->view('email/register-success', array('username'=>111111111, 'password'=>222222222));
 	}
 
 }

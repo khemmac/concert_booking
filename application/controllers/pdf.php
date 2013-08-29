@@ -187,7 +187,7 @@ class Pdf extends CI_Controller {
 		$booking_data = $data['booking_data'];
 		$booking_list = $data['booking_list'];
 
-		$pdf_name = 'xxxxx';
+		$pdf_name = 'boostplus_'.$booking_data['code'];
 
 		//require_once('../libraries/tcpdf/config/lang/eng.php');
 		require_once('./application/libraries/tcpdf/tcpdf.php');
@@ -198,7 +198,7 @@ class Pdf extends CI_Controller {
 		// set document information
 		$pdf->SetCreator(PDF_CREATOR);
 		$pdf->SetAuthor('Boostplus');
-		$pdf->SetTitle('test pdf');
+		$pdf->SetTitle($pdf_name);
 
 		// set header and footer fonts
 		$pdf->setHeaderFont(Array('angsanaupc', 'B', 20));
@@ -318,8 +318,8 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 
 		$pdf->Ln();
 		$pdf->SetFont('', '');
-		$pdf->SetFillColor(237, 255, 0);
-		$pdf->SetTextColor(255, 0, 0);
+		$pdf->SetFillColor(223, 128, 0);
+		$pdf->SetTextColor(0, 0, 0);
 		$pdf->MultiCell(0, 0,
 'กรุณาพิมพ์หลักฐานฉบับนี้ไว้ พร้อมบัตรประชาชนตัวจริง เพื่อนำมารับบัตรจริงรุ่น Limited Edition
 เฉพาะ 2,000 ใบแรกเท่านั้นในวันที่ xx/xx/xxxx เวลา 00:00 น. ณ xxxxxxxxxxxxxx
@@ -373,11 +373,13 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 		//$pdf->writeHTML($html, true, false, true, false, '');
 
 		// set javascript
-		//$pdf->IncludeJS('print(true);');
-		// ---------------------------------------------------------
-
-		//Close and output PDF document
-		$pdf->Output($pdf_name.'.pdf', 'I');
+		$is_print = $this->input->get('print');
+		if($is_print=='1'){
+			$pdf->IncludeJS('print(true);');
+			$pdf->Output($pdf_name.'.pdf', 'I');
+		}else{
+			$pdf->Output($pdf_name.'.pdf', 'D');
+		}
 	}
 
 
