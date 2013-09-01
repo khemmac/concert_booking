@@ -24,6 +24,11 @@ class Member extends CI_Controller {
 	}
 
 	function login(){
+		$r_url = $this->input->post('rurl');
+
+		if(empty($r_url))
+			$r_url = 'index';
+
 		if(is_user_session_exist($this))
 			redirect('index');
 
@@ -47,7 +52,7 @@ class Member extends CI_Controller {
 			$this->phxview->RenderView('login');
 			$this->phxview->RenderLayout('default');
 		} else {
-			redirect('index', 'refresh');
+			redirect($r_url);
 		}
 	}
 
@@ -90,7 +95,7 @@ class Member extends CI_Controller {
 		if(is_user_session_exist($this))
 			$user_id = get_user_session_id($this);
 		else
-			redirect('member/login');
+			redirect('member/login?rurl='.uri_string());
 
 		$rules = $this->person_model->get_profile_rules();
 		$this->form_validation->set_rules($rules);

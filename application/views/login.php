@@ -3,6 +3,7 @@
 
 	<div id="dialog">
 		<?= form_open(); ?>
+		<?= form_hidden('rurl', $this->input->get('rurl')) ?>
 		<?php
 			$forms = array(
 				array(

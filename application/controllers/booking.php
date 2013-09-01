@@ -21,7 +21,7 @@ class Booking extends CI_Controller {
 
 	function index(){
 		if(!is_user_session_exist($this))
-			redirect('member/login');
+			redirect('member/login?rurl='.uri_string());
 
 		// load booking data
 		$user_id = get_user_session_id($this);
@@ -79,7 +79,7 @@ class Booking extends CI_Controller {
 
 	function complete(){
 		if(!is_user_session_exist($this))
-			redirect('member/login');
+			redirect('member/login?rurl='.uri_string());
 		$user_id = get_user_session_id($this);
 
 		$booking_id = $this->uri->segment(3);
@@ -99,7 +99,7 @@ class Booking extends CI_Controller {
 
 	function check(){
 		if(!is_user_session_exist($this))
-			redirect('member/login');
+			redirect('member/login?rurl='.uri_string());
 		$user_id = get_user_session_id($this);
 
 		$this->form_validation->set_rules(array(

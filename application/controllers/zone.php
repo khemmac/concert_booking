@@ -21,7 +21,7 @@ class Zone extends CI_Controller {
 
 	function index(){
 		if(!is_user_session_exist($this))
-			redirect('member/login');
+			redirect('member/login?rurl='.uri_string());
 		$user_id = get_user_session_id($this);
 
 		$reach_limit = $this->booking_model->reach_limit($user_id);

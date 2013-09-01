@@ -24,7 +24,7 @@ class Seat extends CI_Controller {
 		$this->benchmark->mark('overall_start');
 
 		if(!is_user_session_exist($this))
-			redirect('member/login');
+			redirect('member/login?rurl='.uri_string());
 
 		$user_id = get_user_session_id($this);
 

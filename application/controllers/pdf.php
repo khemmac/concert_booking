@@ -173,7 +173,7 @@ class Pdf extends CI_Controller {
 
 	public function print_booking(){
 		if(!is_user_session_exist($this))
-			redirect('member/login');
+			redirect('member/login?rurl='.uri_string());
 		$user_id = get_user_session_id($this);
 
 		$booking_id = $this->uri->segment(3);
