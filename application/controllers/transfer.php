@@ -42,13 +42,21 @@ class Transfer extends CI_Controller {
 
 		$this->form_validation->set_rules($rules);
 
-		if($this->form_validation->run() == FALSE)
-		{
+		if($this->form_validation->run() == FALSE) {
 			$this->phxview->RenderView('transfer');
 			$this->phxview->RenderLayout('default');
 		} else {
-			$this->tranfer_model->money_tranfer();
-			redirect('booking/complete', 'refresh');
+			$res = $this->tranfer_model->money_tranfer();
+			
+			echo $res["success"];
+			
+			/*
+			if($res->success == 'true'){
+				redirect('booking/complete', 'refresh');
+			}else{
+				
+			}*/
+			
 		}
 	}
 

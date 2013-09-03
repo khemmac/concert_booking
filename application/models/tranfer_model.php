@@ -45,22 +45,25 @@ Class Tranfer_model extends CI_Model
 
 		if($result->num_rows() == 0) {
 			$err = array('success'=>false,'msg'=>'code "'.$this->input->post('code').'" is tranfed or not exists.');	
-			echo json_encode($err);
-			throw new Exception('code "'.$this->input->post('code').'" is not exists.');
+			//echo json_encode($err);
+			//throw new Exception('code "'.$this->input->post('code').'" is not exists.');
+			return $err;
 		}
-
+		
 		$formData = array(
 			'code' => $this->input->post('code'),
-			'pay_date' => $this->input->post('transfer_year').'-'.$this->input->post('transfer_month').'-'.$this->input->post('transfer_date'),
+			'pay_date' => $this->input->post('transfer_year').'-'.$this->input->post('transfer_month').'-'.$this->input->post('transfer_date').' '.$this->input->post('time').':00',
 			'pay_money' => $this->input->post('pay_money'),
 			'bank_name' => $this->input->post('bank_name'),
 			'bank_ref_id' => null,
 			'payment_type' => '1', //0=Credit ,1=Tranfer
 			'status' => '3' //1=ระหว่าจอง ,2=ยืนยันการจอง ,3=แจ้งโอนเงินแล้ว ,4=ยืนยันการโอนเงิน ,99=เลยเวลา 
 		);
-
+		
+		$res = array('success'=>true,'msg'=>'');
 		$this->db->set('updateDate', 'NOW()', false);
 		$this->db->update('booking', $formData);
+		return $res;
 	}
 
 }
