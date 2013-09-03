@@ -2,7 +2,7 @@
 	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 
 	<div id="form">
-		<?= form_open(); ?>
+		<?= form_open_multipart(); ?>
 		<?php
 			$days = array();
 			for($i=1;$i<=31;$i++)
@@ -13,10 +13,21 @@
 			for($i=2013;$i>=2013;$i--)
 				$years[$i] = ($i+543);
 
+			$hours = array();
+			for($i=0;$i<24;$i++){
+				$v = str_pad($i, 2, '0');
+				$hours[$v] = $v;
+			}
+			$minutes = array();
+			for($i=0;$i<60;$i++){
+				$v = str_pad($i, 2, '0');
+				$minutes[$v] = $v;
+			}
+
 			$forms = array(
 				array(
 					'name'		=> 'code',
-					'maxlength'	=> '14',
+					'maxlength'	=> '7',
 					'class'		=> 'code'
 				),
 				array(
@@ -41,9 +52,16 @@
 					'options'	=> $years
 				),
 				array(
-					'name'		=> 'time',
-					'maxlength'	=> '5',
-					'class'		=> 'time'
+					'name'		=> 'transfer_hh',
+					'class'		=> 'transfer_hh',
+					'type'		=> 'dropdown',
+					'options'	=> $hours
+				),
+				array(
+					'name'		=> 'transfer_mm',
+					'class'		=> 'transfer_mm',
+					'type'		=> 'dropdown',
+					'options'	=> $minutes
 				),
 				array(
 					'name'		=> 'pay_money',
@@ -77,6 +95,11 @@
 						'ธนาคารอิสลามแห่งประเทศไทย'=>'ธนาคารอิสลามแห่งประเทศไทย'
 						 */
 					)
+				),
+				array(
+					'name'		=> 'slip',
+					'type'		=> 'upload',
+					'class'		=> 'slip'
 				)
 			);
 
@@ -115,6 +138,8 @@
 		common.combo.create($('select[name=transfer_date]'),	'sexy-combo-transfer_date');
 		common.combo.create($('select[name=transfer_month]'),	'sexy-combo-transfer_month');
 		common.combo.create($('select[name=transfer_year]'),	'sexy-combo-transfer_year');
+		common.combo.create($('select[name=transfer_hh]'),	'sexy-combo-transfer_hh');
+		common.combo.create($('select[name=transfer_mm]'),	'sexy-combo-transfer_mm');
 		common.combo.create($('select[name=bank_name]'),		'sexy-combo-bank_name');
 
 	});

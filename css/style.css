@@ -95,18 +95,23 @@ form input {
 .page-zone a:hover { text-decoration:underline; }
 
 .page-zone #content {
-	position:absolute; top:106px; left:48px;
-	width:899px; height:554px; background:transparent url("../images/zone/bg.png") no-repeat;
+	position:absolute; top:106px; left:0px;
+	width:1000px; height:554px; background:transparent url("../images/zone/bg.png") no-repeat 655px 13px;
 }
+.page-zone #content #remark-info {
+	width:185px; height:183px; position:absolute;top: 66px; left:723px;
+	background: transparent url("../images/zone/price.gif") no-repeat;
+}
+
 .page-zone #content form .submit-container {
 	list-style:none; margin:0px; padding:0px; position:absolute; top:488px; left:665px;
-	width:172px; height:120px; background:transparent url("../images/zone/button.png") no-repeat;
+	width:172px; height:98px; background:transparent url("../images/zone/buttons.png") no-repeat;
 }
 .page-zone #content form .submit {
 	border:0px; text-indent:-2000px; cursor:pointer;
-	width:172px; height:58px; background:transparent url("../images/zone/button.png") no-repeat;
+	width:172px; height:58px; background:transparent url("../images/zone/buttons.png") no-repeat;
 }
-.page-zone #content form .submit:hover { background-position:0px -120px; }
+.page-zone #content form .submit:hover { background-position:0px -98px; }
 /* end zone */
 
 /* seat */
@@ -170,23 +175,23 @@ form input {
 
 .page-seat #content form .submit-container {
 	list-style:none; margin:0px; padding:0px; position:absolute; top:245px; right:29px;
-	background:transparent url("../images/seat/button-continue.png") no-repeat;
-	width:180px; height:97px;
+	background:transparent url("../images/seat/button-continue.png?v=1") no-repeat;
+	width:180px; height:80px;
 }
 .page-seat #content form .submit {
 	position:absolute; border:0px; text-indent:-2000px; cursor:pointer;
-	width:180px; height:42px; background:transparent url("../images/seat/button-continue.png") no-repeat;
+	width:180px; height:42px; background:transparent url("../images/seat/button-continue.png?v=1") no-repeat;
 }
-.page-seat #content form .submit:hover { background-position:0px -97px; }
+.page-seat #content form .submit:hover { background-position:0px -80px; }
 
 .page-seat #content .b-back-ctnr {
 	list-style:none; margin:0px; padding:0px; position:absolute; top:354px; right:29px;
-	background:transparent url("../images/seat/button-back-zone.png") no-repeat;
+	background:transparent url("../images/seat/button-back-zone.png?v=1") no-repeat;
 	width:180px; height:80px;
 }
 .page-seat #content .b-back-zone {
 	position:absolute; border:0px; text-indent:-2000px; cursor:pointer;
-	width:180px; height:42px; background:transparent url("../images/seat/button-back-zone.png") no-repeat;
+	width:180px; height:42px; background:transparent url("../images/seat/button-back-zone.png?v=1") no-repeat;
 }
 .page-seat #content .b-back-zone:hover { background-position:0px -80px; }
 /* end seat */
@@ -309,34 +314,44 @@ form input {
 .page-transfer #form {
 	position:absolute; top:146px; left:189px;
 	width: 639px; height: 435px;
-	background:transparent url("../images/transfer/bg.gif") no-repeat;
+	background:transparent url("../images/transfer/bg2.gif") no-repeat;
 }
 .page-transfer input,
 .page-transfer select { border:0px; -webkit-box-shadow: none !important; box-shadow: none !important; background:transparent; }
-.page-transfer #form .code { position:absolute; top:74px; left:217px; width:221px; }
+.page-transfer #form .code { position:absolute; top:74px; left:217px; width:95px; }
 
-.page-transfer #form .sexy-combo-transfer_date { position:absolute; top:112px; left:214px; width:51px; }
+.page-transfer #form .sexy-combo-transfer_date { position:absolute; top:107px; left:214px; width:51px; }
 .page-transfer #form .sexy-combo-transfer_date input { width:45px; padding-left:5px; }
 .page-transfer #form .sexy-combo-transfer_date .icon { left:31px; }
 .page-transfer #form .sexy-combo-transfer_date div.list-wrapper { width:50px; }
 
-.page-transfer #form .sexy-combo-transfer_month { position:absolute; top:112px; left:279px; width:99px; }
+.page-transfer #form .sexy-combo-transfer_month { position:absolute; top:107px; left:279px; width:99px; }
 .page-transfer #form .sexy-combo-transfer_month input { width:76px; padding-left:5px; }
 .page-transfer #form .sexy-combo-transfer_month .icon { left:82px; }
 .page-transfer #form .sexy-combo-transfer_month div.list-wrapper { width:99px; }
 
-.page-transfer #form .sexy-combo-transfer_year { position:absolute; top:112px; left:395px; width:76px; }
+.page-transfer #form .sexy-combo-transfer_year { position:absolute; top:107px; left:395px; width:76px; }
 .page-transfer #form .sexy-combo-transfer_year input { width:51px; padding-left:5px; }
 .page-transfer #form .sexy-combo-transfer_year .icon { left:57px; }
 .page-transfer #form .sexy-combo-transfer_year div.list-wrapper { width:75px; }
 
-.page-transfer #form .sexy-combo-bank_name { position:absolute; top:231px; left:215px; width:163px; }
+.page-transfer #form .sexy-combo-transfer_hh { position:absolute; top:139px; left:221px; width:51px; }
+.page-transfer #form .sexy-combo-transfer_hh input { width:45px; padding-left:5px; }
+.page-transfer #form .sexy-combo-transfer_hh .icon { left:31px; }
+.page-transfer #form .sexy-combo-transfer_hh div.list-wrapper { width:50px; }
+
+.page-transfer #form .sexy-combo-transfer_mm { position:absolute; top:139px; left:299px; width:51px; }
+.page-transfer #form .sexy-combo-transfer_mm input { width:45px; padding-left:5px; }
+.page-transfer #form .sexy-combo-transfer_mm .icon { left:31px; }
+.page-transfer #form .sexy-combo-transfer_mm div.list-wrapper { width:50px; }
+
+.page-transfer #form .sexy-combo-bank_name { position:absolute; top:205px; left:215px; width:163px; }
 .page-transfer #form .sexy-combo-bank_name input { width:138px; padding-left:5px; }
 .page-transfer #form .sexy-combo-bank_name .icon { left:143px; }
 .page-transfer #form .sexy-combo-bank_name div.list-wrapper { width:240px; }
 
-.page-transfer #form .time { position:absolute; top:152px; left:217px; width:221px; }
-.page-transfer #form .pay_money { position:absolute; top:190px; left:217px; width:221px; }
+.page-transfer #form .pay_money { position:absolute; top:172px; left:217px; width:221px; }
+.page-transfer #form .slip { position:absolute; top:238px; left:212px; width:221px; }
 
 .page-transfer #form-button { position:absolute; top:372px; left:238px; margin:0px; padding:0px; list-style:none; }
 .page-transfer #form-button #submit { background:transparent url("../images/transfer/buttons.gif") no-repeat; width:155px; height:40px; cursor:pointer; }

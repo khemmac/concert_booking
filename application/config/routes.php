@@ -44,6 +44,13 @@
 
 //$route['404_override'] = '';
 
+// add route for seat_early segment
+$route['seat_early/submit'] = 'seat_early/submit';
+$route['seat_early/(:num)'] = 'seat_early/index/$1';
+
+// add route for zone_early segment
+$route['zone_early/(:num)'] = 'zone_early/index/$1';
+
 // add route for seat segment
 $route['seat/submit'] = 'seat/submit';
 $route['seat/add'] = 'seat/add';

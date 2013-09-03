@@ -124,7 +124,7 @@ class Zone extends CI_Controller {
 			$zone_name = $zone['name'];
 
 			$price = 0;
-			if($zone_name[1]=='1')
+			if($zone_name=='a3')
 				$price = 6000;
 			else if($zone_name[1]=='2')
 				$price = 5000;
@@ -149,7 +149,10 @@ class Zone extends CI_Controller {
 						$pos_seat = split_seat($position_seat);
 						foreach($row_seat AS $row_seat_key => $row_seat_value)
 						{
-							$seat_name = $row_name.$row_seat_value;
+							if($zone['type']=='u')
+								$seat_name = $row_seat_value;
+							else
+								$seat_name = $row_name.$row_seat_value;
 							echo $seat_name.'<hr />';
 							$this->db->set('zone_id', $zone_id);
 							$this->db->set('name', $seat_name);

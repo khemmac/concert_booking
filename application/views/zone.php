@@ -2,7 +2,7 @@
 	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 
 	<div id="content">
-		<img usemap="#zone-map" src="<?= base_url("/images/zone/map.png") ?>" style="width:525px; height:554px; position:absolute;" />
+		<img usemap="#zone-map" src="<?= base_url("/images/zone/map.png") ?>" style="width:525px; height:554px; position:absolute; left:48px;" />
 		<map name="zone-map">
 			<area shape="polygon" coords="454,263,489,258,491,274,455,274" href="<?= site_url('seat/n1f') ?>" title="N1F">
 			<area shape="polygon" coords="455,280,491,279,490,296,454,290" href="<?= site_url('seat/n1g') ?>" title="N1G">
@@ -48,6 +48,8 @@
 			)); ?></li>
 		</ul>
 		<?= form_close() ?>
+
+		<div id="remark-info"></div>
 
 		<div id="booking-info" style="border:0px solid #f00; position:absolute; top:330px; right:16px; width:271px; height:117px;">
 			<table cellpadding="2" cellspacing="0" border="0" style="color:white;">

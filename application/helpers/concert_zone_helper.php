@@ -5,6 +5,17 @@
 	function zone_helper_get_zone($zone_name = null) {
 		$zone = array(
 			array(
+				'name'=>'a3',
+				'type'=>'u',
+				'seat'=>array(
+					'1'=>'1-600'
+				),
+				'position'=>array(
+					'1'=>'1-600'
+				),
+				'max_col' => 600
+			),
+			array(
 				'name'=>'e1a',
 				'type'=>'d',
 				'seat'=>array(
