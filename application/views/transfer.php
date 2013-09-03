@@ -15,12 +15,12 @@
 
 			$hours = array();
 			for($i=0;$i<24;$i++){
-				$v = str_pad($i, 2, '0');
+				$v = str_pad($i, 2, '0', STR_PAD_LEFT);
 				$hours[$v] = $v;
 			}
 			$minutes = array();
 			for($i=0;$i<60;$i++){
-				$v = str_pad($i, 2, '0');
+				$v = str_pad($i, 2, '0', STR_PAD_LEFT);
 				$minutes[$v] = $v;
 			}
 
