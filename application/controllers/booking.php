@@ -23,9 +23,21 @@ class Booking extends CI_Controller {
 		if(!is_user_session_exist($this))
 			redirect('member/login?rurl='.uri_string());
 
-		// load booking data
+		// check booking id
+		$booking_id = end($this->uri->segments);
+		if(!is_numeric($booking_id))
+			redirect('zone');
+
+		$this->db->select('id,code');
+		$this->db->limit(1);
+		$query = $this->db->get_where('booking', array('id'=>$booking_id));
+		$b_result = array();
+		if($query->num_rows()>0)
+			$b_result = $query->first_row('array');
+
+		// load booking with seat data
 		$user_id = get_user_session_id($this);
-		$booking_data = $this->seat_model->load_booking_seat();
+		$booking_data = $this->seat_model->load_booking_seat($booking_id);
 
 		// load profile data
 		$this->db->select('thName,code');
@@ -51,7 +63,8 @@ class Booking extends CI_Controller {
 		$this->phxview->RenderView('booking', array(
 			'person'=>$person_data,
 			'zone_list'=>$zone_distinct_list,
-			'booking_id'=>((!empty($booking_data) && count($booking_data)>0)?$booking_data[0]['booking_id']:0),
+			'booking_id'=>$booking_id,
+			'booking_code'=>$b_result['code'],
 			'booking_list'=>$booking_data
 		));
 		$this->phxview->RenderLayout('default');
@@ -62,6 +75,24 @@ class Booking extends CI_Controller {
 			redirect('member/login');
 		$user_id = get_user_session_id($this);
 
+		// check limit
+		$booking_id=$this->input->post('booking_id');
+		$this->db->where('id', $booking_id);
+		$this->db->where('person_id', $user_id);
+		$this->db->set('booking_date','NOW()',false);
+		$this->db->set('updateDate','NOW()',false);
+		$this->db->update('booking', array(
+			'status'=>2
+		));
+
+		if($this->db->affected_rows()==1){
+			// send mail
+
+			redirect('booking/check?popup=booking-submit-complete-popup');
+		}else{
+			redirect('booking/'.$r_data['booking_id']);
+		}
+/*
 		// get booking round
 		$booking_round = $this->booking_model->get_booking_round();
 
@@ -75,6 +106,7 @@ class Booking extends CI_Controller {
 			redirect('booking/complete/'.$r_data['booking_id']);
 		}else
 			redirect('zone');
+*/
 	}
 
 	function complete(){

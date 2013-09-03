@@ -50,6 +50,12 @@ $route['seat/add'] = 'seat/add';
 $route['seat/remove'] = 'seat/remove';
 $route['seat/(:any)'] = 'seat/index/$1';
 
+// add route for zone segment
+$route['zone/(:num)'] = 'zone/index/$1';
+
+// add route for booking segment
+$route['booking/(:num)'] = 'booking/index/$1';
+
 $route['default_controller'] = "index";
 $route['404_override'] = '';
 

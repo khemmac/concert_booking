@@ -14,7 +14,9 @@
 		</div>
 
 		<?= form_open('seat/submit'); ?>
-		<?= form_hidden('zone_id', $zone['id']) ?><?= form_hidden('zone_name', $zone['name']) ?>
+		<?= form_hidden('booking_id', $booking_id) ?>
+		<?= form_hidden('zone_id', $zone['id']) ?>
+		<?= form_hidden('zone_name', $zone['name']) ?>
 			<div id="seat-container" style="background-image: url('<?= base_url('images/seat/plan/'.$zone_name.'.png'); ?>')">
 				<div id="chair-container">
 					<?php

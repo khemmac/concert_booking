@@ -11,6 +11,7 @@ class Test extends CI_Controller {
 
 		// load model
 		$this->load->model('email_model','',TRUE);
+		$this->load->model('booking_model','',TRUE);
 
 		$this->output->set_header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0', FALSE);
@@ -88,7 +89,17 @@ class Test extends CI_Controller {
 	}
 
 	function render_mail(){
-		$this->load->view('email/register-success', array('username'=>111111111, 'password'=>222222222));
+		$data = $this->booking_model->prepare_print_data(1, 17);
+
+		$this->load->view('email/booking-submit-success', $data);
+	}
+
+	function booking_prepare(){
+		$user_id = get_user_session_id($this);
+
+		$booking_id = $this->booking_model->prepare($user_id);
+
+		echo $booking_id;
 	}
 
 }

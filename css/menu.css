@@ -76,7 +76,7 @@
 #member-sub-menu {
 	margin:0px; padding:0px; list-style:none;
 	position:absolute; top:80px; right:44px;
-	width: 500px; height:23px; z-index:9999;
+	width: 500px; height:23px; z-index:999;
 }
 #member-sub-menu li { float:right; }
 #member-sub-menu a { display:block; height:23px; float:left; background: transparent url('../images/common/member-sub-menu.gif') no-repeat; }

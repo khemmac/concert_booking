@@ -62,6 +62,7 @@ Seat.prototype = {
 				$.ajax({
 					type: 'POST',
 					data: {
+						booking_id: $('input[name=booking_id]').val(),
 						zone_id: $('input[name=zone_id]').val(),
 						seat_id: chk_box.attr('value')
 					},
@@ -73,6 +74,10 @@ Seat.prototype = {
 							_this.__hideLoader(el);
 							chk_box.attr("checked", false);
 						}
+						_this.__hideLoader(el);
+					},
+					error: function(){
+						alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
 						_this.__hideLoader(el);
 					}
 				});
@@ -89,6 +94,7 @@ Seat.prototype = {
 					$.ajax({
 						type: 'POST',
 						data: {
+							booking_id: $('input[name=booking_id]').val(),
 							zone_id: $('input[name=zone_id]').val(),
 							seat_id: chk_box.attr('value')
 						},
@@ -112,6 +118,10 @@ Seat.prototype = {
 									common.popup.show(null, '#seat-limit-popup');
 								}
 							}
+							_this.__hideLoader(el);
+						},
+						error: function(){
+							alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
 							_this.__hideLoader(el);
 						}
 					});

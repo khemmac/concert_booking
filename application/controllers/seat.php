@@ -36,6 +36,28 @@ class Seat extends CI_Controller {
 		if(empty($zone_name) || empty($zone))
 			redirect('zone');
 
+		// check booking id
+		$booking_id = $this->uri->segment(3);
+		if(is_numeric($booking_id)){
+			// load booking
+			$this->db->limit(1);
+			$query = $this->db->get_where('booking', array(
+				'id'=>$booking_id,
+				'status'=>1
+			));
+			if($query->num_rows()<=0){
+				// prepare booking data
+				$booking_id = $this->booking_model->prepare($user_id);
+				redirect('seat/'.$zone_name.'/'.$booking_id);
+				return;
+			}
+		}else{
+			// prepare booking data
+			$booking_id = $this->booking_model->prepare($user_id);
+			redirect('seat/'.$zone_name.'/'.$booking_id);
+			return;
+		}
+
 		$zone_data = array();
 
 		// populating result data
@@ -51,7 +73,7 @@ class Seat extends CI_Controller {
 		// get seat from db
 		$db_seats = $this->seat_model->load_seat_by_zone($zone_name);
 		$zone_data['id'] = $db_seats[0]['zone_id'];
-		$booking_seats = $this->seat_model->load_booking_seat();
+		$booking_seats = $this->seat_model->load_booking_seat($booking_id);
 
 		$last_index = 0;
 		foreach($db_seats AS $k_seat => $seat){
@@ -175,6 +197,7 @@ class Seat extends CI_Controller {
 		}
 
 		$this->phxview->RenderView('seat', array(
+			'booking_id'=>$booking_id,
 			'zone'=>$zone_data
 		));
 		$this->phxview->RenderLayout('default');
@@ -191,6 +214,7 @@ class Seat extends CI_Controller {
 		}
 
 		$user_id = get_user_session_id($this);
+		$booking_id = $this->input->post('booking_id');
 		$zone_id= $this->input->post('zone_id');
 		$seat_id = $this->input->post('seat_id');
 
@@ -204,7 +228,7 @@ class Seat extends CI_Controller {
 			// count seat ที่กำลังจองอยู่ว่ามีเกินจำนวนที่จองได้หรือไม่
 			$canbook = $this->booking_model->can_book($user_id, $seat_id);
 			if($canbook){
-				$this->booking_model->do_book($user_id, $zone_id, $seat_id);
+				$this->booking_model->do_book($user_id, $booking_id, $zone_id, $seat_id);
 
 				// UPDATE CACHE
 				$this->cache_model->update_seat($zone_id);
@@ -226,6 +250,7 @@ class Seat extends CI_Controller {
 		}
 
 		$user_id = get_user_session_id($this);
+		$booking_id = $this->input->post('booking_id');
 		$zone_id= $this->input->post('zone_id');
 		$seat_id = $this->input->post('seat_id');
 
@@ -234,7 +259,7 @@ class Seat extends CI_Controller {
 			return;
 		}
 
-		$this->booking_model->undo_book($user_id, $zone_id, $seat_id);
+		$this->booking_model->undo_book($user_id, $booking_id, $zone_id, $seat_id);
 		// UPDATE CACHE
 		$this->cache_model->update_seat($zone_id);
 

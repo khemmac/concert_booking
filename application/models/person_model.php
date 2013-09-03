@@ -163,12 +163,12 @@ Class Person_model extends CI_Model
 			array(
 				'field'		=> 'job',
 				'label'		=> 'อาชีพ',
-				'rules'		=> 'trim|required|max_length[255]'
+				'rules'		=> 'trim|max_length[255]'
 			),
 			array(
 				'field'		=> 'job_area',
 				'label'		=> 'สถานที่ทำงาน/เรียน',
-				'rules'		=> 'trim|required|max_length[255]'
+				'rules'		=> 'trim|max_length[255]'
 			),
 			array(
 				'field'		=> 'favorite_artist',
@@ -258,12 +258,12 @@ Class Person_model extends CI_Model
 			array(
 				'field'		=> 'job',
 				'label'		=> 'อาชีพ',
-				'rules'		=> 'trim|required|max_length[255]'
+				'rules'		=> 'trim|max_length[255]'
 			),
 			array(
 				'field'		=> 'job_area',
 				'label'		=> 'สถานที่ทำงาน/เรียน',
-				'rules'		=> 'trim|required|max_length[255]'
+				'rules'		=> 'trim|max_length[255]'
 			),
 			array(
 				'field'		=> 'favorite_artist',

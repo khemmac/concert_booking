@@ -26,13 +26,37 @@ class Zone extends CI_Controller {
 
 		$reach_limit = $this->booking_model->reach_limit($user_id);
 		if($reach_limit){
-			redirect('booking/check');
+			redirect('booking/check?popup=seat-limit-popup');
 			return;
 		}
 
-		$booking_data = $this->seat_model->load_booking_seat();
+		// check condition
+		$booking_id = $id = end($this->uri->segments);
+		if(is_numeric($booking_id)){
+			// load booking
+			$this->db->limit(1);
+			$query = $this->db->get_where('booking', array(
+				'id'=>$booking_id,
+				'status'=>1
+			));
+			if($query->num_rows()<=0){
+				// prepare booking data
+				$booking_id = $this->booking_model->prepare($user_id);
+				redirect('zone/'.$booking_id);
+				return;
+			}
+		}else{
+			// prepare booking data
+			$booking_id = $this->booking_model->prepare($user_id);
+			redirect('zone/'.$booking_id);
+			return;
+		}
+
+
+		$booking_data = $this->seat_model->load_booking_seat($booking_id);
 		// populate data
 		$result = array(
+			'booking_id'=>$booking_id,
 			'zones'=>array(),
 			'seats'=>array(),
 			'price'=>0
@@ -61,12 +85,13 @@ class Zone extends CI_Controller {
 			redirect('member/login');
 		$user_id = get_user_session_id($this);
 
-		$booking_data = $this->seat_model->load_booking_seat();
+		$booking_id = $this->input->post('booking_id');
+		$booking_data = $this->seat_model->load_booking_seat($booking_id);
 
 		if(count($booking_data)>0)
-			redirect('booking');
+			redirect('booking/'.$booking_id);
 		else
-			redirect('zone?popup=zone-blank-seat-popup');
+			redirect('zone/'.$booking_id.'?popup=zone-blank-seat-popup');
 	}
 
 	function generate(){
@@ -107,6 +132,7 @@ class Zone extends CI_Controller {
 				$price = 3000;
 			$this->db->set('name', $zone_name);
 			$this->db->set('price', $price);
+			$this->db->set('type', $zone['type']);
 			$this->db->set('createDate', 'NOW()', false);
 			$this->db->insert('zone');
 

@@ -5,7 +5,7 @@
 		<div class="header">
 			<span class="name"><?= $person['thName'] ?></span>
 			<span class="code"><?= $person['code'] ?></span>
-			<span class="booking-code">-</span>
+			<span class="booking-code"><?= $booking_code ?></span>
 		</div>
 		<table class="list" cellpadding="0" cellspacing="0" border="0">
 			<tr class="thead">
@@ -83,6 +83,7 @@
 			<tr class="tfoot-buttons" align="center">
 				<td colspan="8">
 <?= form_open('booking/booking_submit'); ?>
+	<?= form_hidden('booking_id', $booking_id) ?>
 					<ul>
 						<li>
 							<?= form_submit(array(
@@ -93,7 +94,7 @@
 							?>
 						</li>
 						<li>
-							<a href="seat" class="cancel">Cancel</a>
+							<a href="<?= site_url('zone/'.$booking_id) ?>" class="cancel">Cancel</a>
 						</li>
 					</ul>
 <?= form_close() ?>

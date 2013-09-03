@@ -22,6 +22,7 @@
 	<link href="<?= base_url('/js/lib/jquery.sexy-combo/skins/custom/custom.css') ?>" type="text/css" rel="stylesheet" />
 
 	<link href="<?= base_url('/css/style.css') ?>" type="text/css" rel="stylesheet" />
+	<link href="<?= base_url('/css/member.css') ?>" type="text/css" rel="stylesheet" />
 	<link href="<?= base_url('/css/menu.css') ?>" type="text/css" rel="stylesheet" />
 	<link href="<?= base_url('/css/popup.css') ?>" type="text/css" rel="stylesheet" />
 
@@ -65,6 +66,10 @@ Maecenas aliquet velit vel turpis. Mauris neque metus, malesuada nec, ultricies 
 		</div>
 
 		<div id="contact-us-popup" class="window">
+			<a href="#close" class="close"></a>
+		</div>
+
+		<div id="booking-submit-complete-popup" class="window">
 			<a href="#close" class="close"></a>
 		</div>
 

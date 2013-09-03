@@ -1,7 +1,7 @@
 <?php
 Class Seat_model extends CI_Model
 {
-	function load_booking_seat(){
+	function load_booking_seat($booking_id){
 		$result_data = array(
 			'zones'=>array(),
 			'seats'=>array(),
@@ -19,8 +19,9 @@ s.zone_id, z.name AS zone_name
 FROM seat s
 JOIN zone z ON s.zone_id=z.id
 JOIN booking b ON s.booking_id=b.id AND b.person_id=? AND b.status=1
+WHERE s.booking_id=?
 ORDER BY seat_id ASC";
-		$query = $this->db->query($sql, array($user_id));
+		$query = $this->db->query($sql, array($user_id, $booking_id));
 
 		return $query->result_array();
 	}

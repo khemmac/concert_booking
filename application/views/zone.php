@@ -39,6 +39,7 @@
 			<area shape="polygon" coords="38,259,73,264,72,274,33,273" href="<?= site_url('seat/s1g') ?>" title="S1G">
 		</map>
 		<?= form_open('zone/submit'); ?>
+		<?= form_hidden('booking_id', $booking_id) ?>
 		<ul class="submit-container">
 			<li><?= form_submit(array(
 				'id'		=> 'submit',

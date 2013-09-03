@@ -37,7 +37,7 @@ Class Booking_model extends CI_Model
 		$this->db->select('count(id) AS cnt');
 		$this->db->where('booking_id IN (
 				SELECT b.id FROM booking b WHERE b.person_id='.$this->db->escape($user_id)
-				.' AND b.round='.$this->db->escape($round).' AND b.status=2)');
+				.' AND b.round='.$this->db->escape($round).' AND b.status>1)');
 		$query = $this->db->get('seat');
 
 		$cnt = $query->first_row()->cnt;
@@ -52,26 +52,71 @@ Class Booking_model extends CI_Model
 		$this->db->select('count(id) AS cnt');
 		$this->db->where('booking_id IN (
 				SELECT b.id FROM booking b WHERE b.person_id='.$this->db->escape($user_id)
-				.' AND b.round='.$this->db->escape($round).' AND b.status<>99)');
+				.' AND b.round='.$this->db->escape($round).')');
 		$query = $this->db->get('seat');
 		//echo $this->db->last_query();
 		return $query->first_row()->cnt;
 	}
 
-	function do_book($user_id, $zone_id, $seat_id){
+	function do_book($user_id, $booking_id, $zone_id, $seat_id){
 		// call sp
-		$sql = "CALL sp_booking (?,?,?)";
-		$parameters = array($user_id, $zone_id, $seat_id);
+		$sql = "CALL sp_booking (?,?,?,?)";
+		$parameters = array($user_id, $booking_id, $zone_id, $seat_id);
 		$query = $this->db->query($sql, $parameters);
 
 		return $query->result_array();
+//		echo $this->db->last_query();
+
+//		print_r($query->result_array());
 	}
 
-	function undo_book($user_id, $zone_id, $seat_id){
+	function undo_book($user_id, $booking_id, $zone_id, $seat_id){
 		$sql = "UPDATE seat SET booking_id=NULL, is_booked=0
-WHERE id=? AND booking_id=(SELECT id FROM booking WHERE person_id=? AND status=1 LIMIT 1)";
-		$query = $this->db->query($sql, array($seat_id, $user_id));
-		return 1;
+WHERE id=? AND booking_id=(SELECT b.id FROM booking b WHERE b.person_id=? AND b.status=1 AND b.id=? LIMIT 1)";
+		$query = $this->db->query($sql, array($seat_id, $user_id, $booking_id));
+		return $this->db->affected_rows();
+	}
+
+	function prepare($user_id){
+		$this->db->select('id');
+		$this->db->limit(1);
+		$this->db->order_by('id', 'desc');
+		$query = $this->db->get_where('booking', array(
+			'person_id'=>$user_id,
+			'status'=>1
+		));
+		if($query->num_rows()>0){
+			$res = $query->first_row('array');
+			return $res['id'];
+		}
+
+		function generate_code($round){
+			$round_code = ($round==1)?'E':'P';
+			$trail_code = '';
+			for($i=0;$i<4;$i++)
+				$trail_code.=substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), 0, 1);
+
+			return date('d') . $round_code . $trail_code;
+		}
+
+		$code_result = '';
+		while(empty($code_result)){
+			$code_result = generate_code($this->get_booking_round());
+			$sql = "SELECT id FROM booking WHERE code=?";
+			$query = $this->db->query($sql, array($code_result));
+
+			if($query->num_rows()>0)
+				$code_result = '';
+		}
+
+		$this->db->set('createDate', 'NOW()', false);
+		$this->db->insert('booking', array(
+			'person_id'=>$user_id,
+			'code'=> $code_result,
+			'total_money'=>0,
+			'status'=>1
+		));
+		return $this->db->insert_id();
 	}
 
 	// data

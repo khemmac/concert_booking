@@ -130,6 +130,9 @@
 
 			form_helper_generate_form($forms, $form_db_value);
 
+			foreach($forms as $f):
+				echo '<span class="req req-'.$f['name'].'">*</span>';
+			endforeach;
 		?>
 		<ul id="form-button">
 			<li>
