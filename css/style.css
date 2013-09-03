@@ -95,18 +95,23 @@ form input {
 .page-zone a:hover { text-decoration:underline; }
 
 .page-zone #content {
-	position:absolute; top:106px; left:48px;
-	width:899px; height:554px; background:transparent url("../images/zone/bg.png") no-repeat;
+	position:absolute; top:106px; left:0px;
+	width:1000px; height:554px; background:transparent url("../images/zone/bg.png") no-repeat 655px 13px;
 }
+.page-zone #content #remark-info {
+	width:185px; height:183px; position:absolute;top: 66px; left:723px;
+	background: transparent url("../images/zone/price.gif") no-repeat;
+}
+
 .page-zone #content form .submit-container {
 	list-style:none; margin:0px; padding:0px; position:absolute; top:488px; left:665px;
-	width:172px; height:120px; background:transparent url("../images/zone/button.png") no-repeat;
+	width:172px; height:98px; background:transparent url("../images/zone/buttons.png") no-repeat;
 }
 .page-zone #content form .submit {
 	border:0px; text-indent:-2000px; cursor:pointer;
-	width:172px; height:58px; background:transparent url("../images/zone/button.png") no-repeat;
+	width:172px; height:58px; background:transparent url("../images/zone/buttons.png") no-repeat;
 }
-.page-zone #content form .submit:hover { background-position:0px -120px; }
+.page-zone #content form .submit:hover { background-position:0px -98px; }
 /* end zone */
 
 /* seat */
@@ -170,23 +175,23 @@ form input {
 
 .page-seat #content form .submit-container {
 	list-style:none; margin:0px; padding:0px; position:absolute; top:245px; right:29px;
-	background:transparent url("../images/seat/button-continue.png") no-repeat;
-	width:180px; height:97px;
+	background:transparent url("../images/seat/button-continue.png?v=1") no-repeat;
+	width:180px; height:80px;
 }
 .page-seat #content form .submit {
 	position:absolute; border:0px; text-indent:-2000px; cursor:pointer;
-	width:180px; height:42px; background:transparent url("../images/seat/button-continue.png") no-repeat;
+	width:180px; height:42px; background:transparent url("../images/seat/button-continue.png?v=1") no-repeat;
 }
-.page-seat #content form .submit:hover { background-position:0px -97px; }
+.page-seat #content form .submit:hover { background-position:0px -80px; }
 
 .page-seat #content .b-back-ctnr {
 	list-style:none; margin:0px; padding:0px; position:absolute; top:354px; right:29px;
-	background:transparent url("../images/seat/button-back-zone.png") no-repeat;
+	background:transparent url("../images/seat/button-back-zone.png?v=1") no-repeat;
 	width:180px; height:80px;
 }
 .page-seat #content .b-back-zone {
 	position:absolute; border:0px; text-indent:-2000px; cursor:pointer;
-	width:180px; height:42px; background:transparent url("../images/seat/button-back-zone.png") no-repeat;
+	width:180px; height:42px; background:transparent url("../images/seat/button-back-zone.png?v=1") no-repeat;
 }
 .page-seat #content .b-back-zone:hover { background-position:0px -80px; }
 /* end seat */

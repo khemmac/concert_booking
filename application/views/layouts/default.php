@@ -1,3 +1,6 @@
+<?php
+	$sv = '?v=1.0';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -21,12 +24,13 @@
 	<link href="<?= base_url('/js/lib/jquery.sexy-combo/sexy-combo.css') ?>" type="text/css" rel="stylesheet" />
 	<link href="<?= base_url('/js/lib/jquery.sexy-combo/skins/custom/custom.css') ?>" type="text/css" rel="stylesheet" />
 
-	<link href="<?= base_url('/css/style.css') ?>" type="text/css" rel="stylesheet" />
-	<link href="<?= base_url('/css/member.css') ?>" type="text/css" rel="stylesheet" />
-	<link href="<?= base_url('/css/menu.css') ?>" type="text/css" rel="stylesheet" />
-	<link href="<?= base_url('/css/popup.css') ?>" type="text/css" rel="stylesheet" />
+	<link href="<?= base_url('/css/style.css'.$sv) ?>" type="text/css" rel="stylesheet" />
+	<link href="<?= base_url('/css/member.css'.$sv) ?>" type="text/css" rel="stylesheet" />
+	<link href="<?= base_url('/css/menu.css'.$sv) ?>" type="text/css" rel="stylesheet" />
+	<link href="<?= base_url('/css/popup.css'.$sv) ?>" type="text/css" rel="stylesheet" />
+	<link href="<?= base_url('/css/early.css'.$sv) ?>" type="text/css" rel="stylesheet" />
 
-	<script type="text/javascript" src="<?= base_url('/js/common.js') ?>"></script>
+	<script type="text/javascript" src="<?= base_url('/js/common.js'.$sv) ?>"></script>
 
 </head>
 
