@@ -18,6 +18,8 @@
 
 			if(!empty($value['type']) && $value['type']=='password'){
 				echo form_password($value);
+			}else if(!empty($value['type']) && $value['type']=='upload'){
+				echo form_upload($value);
 			}else if(!empty($value['type']) && $value['type']=='dropdown'){
 				if(!empty($__set_value))
 					$value['value'] = $__set_value;
