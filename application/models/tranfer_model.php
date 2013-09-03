@@ -40,7 +40,7 @@ Class Tranfer_model extends CI_Model
 		$this->db->select('code');
 		$this->db->where('person_id', $user_id);
 		$this->db->where('code', $this->input->post('code'));
-		$this->db->where('status', '1'); //1=จองอยู่
+		$this->db->where('status', '2'); //2=ยืนยันการจอง
 		$result = $this->db->get('booking');
 
 		if($result->num_rows() == 0) {
@@ -55,8 +55,8 @@ Class Tranfer_model extends CI_Model
 			'pay_money' => $this->input->post('pay_money'),
 			'bank_name' => $this->input->post('bank_name'),
 			'bank_ref_id' => null,
-			'payment_type' => '1',//0=Credit ,1=Tranfer
-			'status' => '2' //1=จองอยู่ ,2=แจ้งโอนเงิน ,3=จ่ายเงินแล้ว ,99=เลยเวลา 
+			'payment_type' => '1', //0=Credit ,1=Tranfer
+			'status' => '3' //1=ระหว่าจอง ,2=ยืนยันการจอง ,3=แจ้งโอนเงินแล้ว ,4=ยืนยันการโอนเงิน ,99=เลยเวลา 
 		);
 
 		$this->db->set('updateDate', 'NOW()', false);
