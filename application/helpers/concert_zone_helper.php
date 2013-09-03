@@ -5,15 +5,109 @@
 	function zone_helper_get_zone($zone_name = null) {
 		$zone = array(
 			array(
+				'name'=>'a1',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-1600'),
+				'position'=>array('1'=>'1-1600'),
+				'max_col' => 1600
+			),
+			array(
+				'name'=>'a2',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-1500'),
+				'position'=>array('1'=>'1-1500'),
+				'max_col' => 1500
+			),
+			array(
 				'name'=>'a3',
 				'type'=>'u',
-				'seat'=>array(
-					'1'=>'1-600'
-				),
-				'position'=>array(
-					'1'=>'1-600'
-				),
+				'seat'=>array('1'=>'1-600'),
+				'position'=>array('1'=>'1-600'),
 				'max_col' => 600
+			),
+			array(
+				'name'=>'a4',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-1500'),
+				'position'=>array('1'=>'1-1500'),
+				'max_col' => 1500
+			),
+			array(
+				'name'=>'a5',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-1900'),
+				'position'=>array('1'=>'1-1900'),
+				'max_col' => 1900
+			),
+			array(
+				'name'=>'b1',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-2000'),
+				'position'=>array('1'=>'1-2000'),
+				'max_col' => 2000
+			),
+			array(
+				'name'=>'b2',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-1000'),
+				'position'=>array('1'=>'1-1000'),
+				'max_col' => 1000
+			),
+			array(
+				'name'=>'b3',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-1400'),
+				'position'=>array('1'=>'1-1400'),
+				'max_col' => 1400
+			),
+			array(
+				'name'=>'b4',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-1000'),
+				'position'=>array('1'=>'1-1000'),
+				'max_col' => 1000
+			),
+			array(
+				'name'=>'b5',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-2000'),
+				'position'=>array('1'=>'1-2000'),
+				'max_col' => 2000
+			),
+			array(
+				'name'=>'c1',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-2000'),
+				'position'=>array('1'=>'1-2000'),
+				'max_col' => 2000
+			),
+			array(
+				'name'=>'c2',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-3600'),
+				'position'=>array('1'=>'1-3600'),
+				'max_col' => 3600
+			),
+			array(
+				'name'=>'c3',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-2000'),
+				'position'=>array('1'=>'1-2000'),
+				'max_col' => 2000
+			),
+			array(
+				'name'=>'d1',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-1600'),
+				'position'=>array('1'=>'1-1600'),
+				'max_col' => 1600
+			),
+			array(
+				'name'=>'d2',
+				'type'=>'u',
+				'seat'=>array('1'=>'1-1600'),
+				'position'=>array('1'=>'1-1600'),
+				'max_col' => 1600
 			),
 			array(
 				'name'=>'e1a',

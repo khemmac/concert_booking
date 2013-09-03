@@ -2,23 +2,31 @@
 	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 
 	<div id="content">
-		<img usemap="#zone-map" src="<?= base_url("/images/zone/map.png") ?>" style="width:525px; height:554px; position:absolute; left:48px;" />
+		<img usemap="#zone-map" src="<?= base_url("/images/zone/plan-presale.gif") ?>" style="width:590px; height:624px; position:absolute; left:32px;" />
 		<map name="zone-map">
-			<area shape="polygon" coords="454,263,489,258,491,274,455,274" href="<?= site_url('seat/n1f') ?>" title="N1F">
-			<area shape="polygon" coords="455,280,491,279,490,296,454,290" href="<?= site_url('seat/n1g') ?>" title="N1G">
-			<area shape="polygon" coords="453,296,488,301,483,316,450,306" href="<?= site_url('seat/n1h') ?>" title="N1H">
-			<area shape="polygon" coords="448,313,483,322,475,338,444,322" href="<?= site_url('seat/n1i') ?>" title="N1I">
-			<area shape="polygon" coords="441,328,472,343,464,356,435,335" href="<?= site_url('seat/n1j') ?>" title="N1J">
-			<area shape="polygon" coords="432,341,461,361,451,373,426,348" href="<?= site_url('seat/n1k') ?>" title="N1K">
-			<area shape="polygon" coords="422,353,448,378,443,383,419,356" href="<?= site_url('seat/n1l') ?>" title="N1L">
-			<area shape="polygon" coords="436,378,441,385,433,392,428,384" href="<?= site_url('seat/e1a') ?>" title="E1A">
-			<area shape="polygon" coords="396,385,426,386,432,393,410,408" href="<?= site_url('seat/e1b') ?>" title="E1B">
-			<area shape="polygon" coords="381,385,393,386,407,410,378,423,366,394" href="<?= site_url('seat/e1c') ?>" title="E1C">
+			<area shape="polygon" coords="165,234,217,234,217,286,166,285" href="<?= site_url('seat_u/a1') ?>" title="A1">
+
+			<area shape="polygon" coords="507,295,548,290,550,309,508,308" href="<?= site_url('seat/n1f') ?>" title="N1F">
+			<area shape="polygon" coords="508,314,550,314,549,334,508,327" href="<?= site_url('seat/n1g') ?>" title="N1G">
+			<area shape="polygon" coords="505,332,546,339,544,358,503,345" href="<?= site_url('seat/n1h') ?>" title="N1H">
+			<area shape="polygon" coords="501,350,541,362,532,381,496,363" href="<?= site_url('seat/n1i') ?>" title="N1I">
+			<area shape="polygon" coords="491,368,531,386,521,403,487,379" href="<?= site_url('seat/n1j') ?>" title="N1J">
+			<area shape="polygon" coords="484,382,518,407,506,421,476,391" href="<?= site_url('seat/n1k') ?>" title="N1K">
+			<area shape="polygon" coords="472,396,503,425,496,431,468,400" href="<?= site_url('seat/n1l') ?>" title="N1L">
+
+			<area shape="polygon" coords="477,430,488,423,495,432,485,440" href="<?= site_url('seat/e1a') ?>" title="E1A">
+			<area shape="polygon" coords="442,432,478,433,485,442,460,459" href="<?= site_url('seat/e1b') ?>" title="E1B">
+			<area shape="polygon" coords="407,443,436,429,456,460,423,477" href="<?= site_url('seat/e1c') ?>" title="E1C">
+<!--
 			<area shape="polygon" coords="352,400,363,395,375,424,362,429" href="<?= site_url('seat/e1d') ?>" title="E1D">
 			<area shape="polygon" coords="337,405,348,401,359,431,345,435" href="<?= site_url('seat/e1e') ?>" title="E1E">
-			<area shape="polygon" coords="321,410,334,406,343,436,328,439" href="<?= site_url('seat/e1f') ?>" title="E1F">
-			<area shape="polygon" coords="306,413,319,410,325,440,311,443" href="<?= site_url('seat/e1g') ?>" title="E1G">
-			<area shape="polygon" coords="290,415,303,413,309,444,293,445" href="<?= site_url('seat/e1h') ?>" title="E1H">
+-->
+			<area shape="polygon" coords="357,459,374,455,383,491,366,494" href="<?= site_url('seat/e1f') ?>" title="E1F">
+			<area shape="polygon" coords="341,463,357,460,365,494,348,496" href="<?= site_url('seat/e1g') ?>" title="E1G">
+			<area shape="polygon" coords="323,465,340,463,344,498,328,499" href="<?= site_url('seat/e1h') ?>" title="E1H">
+
+
+
 			<area shape="polygon" coords="274,416,289,415,290,445,276,446" href="<?= site_url('seat/e1i') ?>" title="E1I">
 			<area shape="polygon" coords="258,415,273,416,273,446,258,446" href="<?= site_url('seat/e1i') ?>" title="E1J">
 			<area shape="polygon" coords="243,415,257,416,256,447,240,446" href="<?= site_url('seat/e1k') ?>" title="E1K">
@@ -49,6 +57,18 @@
 		</ul>
 		<?= form_close() ?>
 
+		<?= form_open('zone/clear'); ?>
+		<?= form_hidden('booking_id', $booking_id) ?>
+		<?= form_hidden('rurl', 'zone') ?>
+		<ul class="submit-clear-container">
+			<li><?= form_submit(array(
+				'id'		=> 'submit-clear',
+				'value'		=> '',
+				'class'		=> 'submit-clear'
+			)); ?></li>
+		</ul>
+		<?= form_close() ?>
+
 		<div id="remark-info"></div>
 
 		<div id="booking-info" style="border:0px solid #f00; position:absolute; top:330px; right:16px; width:271px; height:117px;">
@@ -60,7 +80,13 @@
 	if(count($zones)>0):
 		$zones_arr = array();
 		foreach($zones AS $z):
-			array_push($zones_arr, anchor('seat/'.$z, strtoupper($z), 'title="'.$z.'"'));
+			$zone_data = zone_helper_get_zone($z);
+			if($z=='a3')
+				array_push($zones_arr, anchor('seat_early/'.$booking_id, strtoupper($z), 'title="'.$z.'"'));
+			else if($zone_data['type']=='u')
+				array_push($zones_arr, anchor('seat_u/'.$z.'/'.$booking_id, strtoupper($z), 'title="'.$z.'"'));
+			else
+				array_push($zones_arr, anchor('seat/'.$z.'/'.$booking_id, strtoupper($z), 'title="'.$z.'"'));
 		endforeach;
 		echo implode(', ', $zones_arr);
 	endif;
@@ -79,3 +105,10 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(function(){
+		$('#submit-clear').click(function(){
+			return confirm('ท่านต้องการล้างการจองทั้งหมดหรือไม่');
+		});
+	});
+</script>

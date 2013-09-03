@@ -17,6 +17,18 @@
 		</ul>
 		<?= form_close() ?>
 
+		<?= form_open('zone/clear'); ?>
+		<?= form_hidden('booking_id', $booking_id) ?>
+		<?= form_hidden('rurl', 'zone_early') ?>
+		<ul class="submit-clear-container">
+			<li><?= form_submit(array(
+				'id'		=> 'submit-clear',
+				'value'		=> '',
+				'class'		=> 'submit-clear'
+			)); ?></li>
+		</ul>
+		<?= form_close() ?>
+
 		<div id="remark-info"></div>
 
 		<div id="booking-info" style="border:0px solid #f00; position:absolute; top:330px; right:16px; width:271px; height:117px;">
@@ -28,7 +40,7 @@
 	if(count($zones)>0):
 		$zones_arr = array();
 		foreach($zones AS $z):
-			array_push($zones_arr, anchor('seat/'.$z, strtoupper($z), 'title="'.$z.'"'));
+			array_push($zones_arr, anchor('seat_early/'.$booking_id, strtoupper($z), 'title="'.$z.'"'));
 		endforeach;
 		echo implode(', ', $zones_arr);
 	endif;
@@ -47,3 +59,10 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(function(){
+		$('#submit-clear').click(function(){
+			return confirm('ท่านต้องการล้างการจองทั้งหมดหรือไม่');
+		});
+	});
+</script>

@@ -94,6 +94,27 @@ class Zone extends CI_Controller {
 			redirect('zone/'.$booking_id.'?popup=zone-blank-seat-popup');
 	}
 
+	function clear(){
+		if(!is_user_session_exist($this))
+			redirect('member/login');
+		$user_id = get_user_session_id($this);
+
+		$r_url = $this->input->post('rurl');
+		if(empty($r_url)) $r_url='zone';
+
+		$booking_id = $this->input->post('booking_id');
+		if(!is_numeric($booking_id))
+			redirect($r_url);
+
+		$this->db->where('booking_id', $booking_id);
+		$this->db->update('seat', array(
+			'booking_id'=>NULL,
+			'is_booked'=>0
+		));
+
+		redirect($r_url.'/'.$booking_id);
+	}
+
 	function generate(){
 		function split_seat($s){
 			$result = array();
@@ -119,17 +140,41 @@ class Zone extends CI_Controller {
 		$this->db->query('TRUNCATE TABLE seat');
 		$this->db->query('Alter table seat add Constraint r_zone_seart_1_M Foreign Key (zone_id) references zone (id) on delete  restrict on update  restrict;');
 
+		// price array
+		$price_1 = array('a3');
+		$price_2 = array('a2','a4');
+		$price_3 = array('b2','b3','b4');
+		$price_4 = array('b1','b5','c1','c2','c3',
+					'e1f','e1g','e1h','e1i','e1j','e1k','e1l','e1m','e1n');
+		$price_5 = array('a1','a5','d1','d2',
+					'e1a','e1b','e1c','e1q','e1r','e1s',
+					'e2h','e2i','e2j','e2k','e2l','e2m','e2n','e2o');
+		$price_6 = array('n1f','n1g','n1h','n1i','n1j','n1k','n1l',
+					's1a','s1b','s1c','s1d','s1e','s1f','s1g',
+					'e2a','e2b','e2c','e2d','e2s','e2t','e2u','e2v');
+		$price_7 = array('n2h','n2i','n2j','n2k','n2l',
+					's2a','s2b','s2c','s2d','s2e',
+					'e3a','e3b','e3c','e3d','e3e','e3f','e3g','e3h','e3i','e3j','e3k','e3l','e3m','e3n','e3o','e3p','e3q','e3r');
+
 		$zones = zone_helper_get_zone();
 		foreach($zones AS $zone){
 			$zone_name = $zone['name'];
 
 			$price = 0;
-			if($zone_name=='a3')
+			if(in_array($zone_name, $price_1))
 				$price = 6000;
-			else if($zone_name[1]=='2')
+			else if(in_array($zone_name, $price_2))
 				$price = 5000;
-			else if($zone_name[1]=='3')
-				$price = 3000;
+			else if(in_array($zone_name, $price_3))
+				$price = 4500;
+			else if(in_array($zone_name, $price_4))
+				$price = 3500;
+			else if(in_array($zone_name, $price_5))
+				$price = 2500;
+			else if(in_array($zone_name, $price_6))
+				$price = 1500;
+			else if(in_array($zone_name, $price_7))
+				$price = 900;
 			$this->db->set('name', $zone_name);
 			$this->db->set('price', $price);
 			$this->db->set('type', $zone['type']);

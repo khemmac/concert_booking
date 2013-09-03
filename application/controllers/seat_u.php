@@ -1,5 +1,5 @@
 <?php
-class Seat_early extends CI_Controller {
+class Seat_u extends CI_Controller {
 
 
 	function __construct()
@@ -28,16 +28,16 @@ class Seat_early extends CI_Controller {
 
 		$user_id = get_user_session_id($this);
 
-		$zone_name = 'a3';
+		$zone_name = $this->uri->segment(2);
 
 		$zone = zone_helper_get_zone($zone_name);
 
 		// find zone
 		if(empty($zone_name) || empty($zone))
-			redirect('zone_early');
+			redirect('zone');
 
 		// check booking id
-		$booking_id = $this->uri->segment(2);
+		$booking_id = $this->uri->segment(3);
 		if(is_numeric($booking_id)){
 			// load booking
 			$this->db->limit(1);
@@ -48,13 +48,13 @@ class Seat_early extends CI_Controller {
 			if($query->num_rows()<=0){
 				// prepare booking data
 				$booking_id = $this->booking_model->prepare($user_id);
-				redirect('seat_early/'.$booking_id);
+				redirect('seat_u/'.$zone_name.'/'.$booking_id);
 				return;
 			}
 		}else{
 			// prepare booking data
 			$booking_id = $this->booking_model->prepare($user_id);
-			redirect('seat_early/'.$booking_id);
+			redirect('seat_u/'.$zone_name.'/'.$booking_id);
 			return;
 		}
 
@@ -64,7 +64,7 @@ class Seat_early extends CI_Controller {
 		));
 		$zone_data = $query->first_row('array');
 
-		$this->phxview->RenderView('seat-early', array(
+		$this->phxview->RenderView('seat-u', array(
 			'booking_id'=>$booking_id,
 			'zone'=>$zone_data
 		));
@@ -81,16 +81,9 @@ class Seat_early extends CI_Controller {
 		$booking_limit = $this->booking_model->get_booking_limit();
 
 		// check booking id
-		$booking_id = $zone_id= $this->input->post('booking_id');
+		$booking_id = $this->input->post('booking_id');
 		if(!is_numeric($booking_id)){
-			redirect('seat_early');
-			return;
-		}
-
-		// check seat_count
-		$seat_count = $this->input->post('seat_count');
-		if($seat_count<=0){
-			redirect('seat_early/'.$booking_id);
+			redirect('zone');
 			return;
 		}
 
@@ -98,7 +91,14 @@ class Seat_early extends CI_Controller {
 		$zone_name = $this->input->post('zone_name');
 		// check zone
 		if(empty($zone_id) || empty($zone_name))
-			redirect('zone_early/'.$booking_id);
+			redirect('zone/'.$booking_id);
+
+		// check seat_count
+		$seat_count = $this->input->post('seat_count');
+		if($seat_count<=0){
+			redirect('seat_u/'.$zone_name.'/'.$booking_id);
+			return;
+		}
 
 		// check limit
 		$this->db->select('count(id) AS cnt');
@@ -107,7 +107,7 @@ class Seat_early extends CI_Controller {
 		$cnt_result = $query->first_row('array');
 		$cnt = $cnt_result['cnt'];
 		if($cnt + $seat_count > $booking_limit){
-			redirect('seat_early/'.$booking_id.'?popup=seat-limit-popup');
+			redirect('seat_u/'.$zone_name.'/'.$booking_id.'?popup=seat-limit-popup');
 			return;
 		}
 
@@ -123,7 +123,7 @@ class Seat_early extends CI_Controller {
 		$query->free_result();
 		// ถ้า seat มีมากกว่าที่เลือก
 		if(count($result)<=0){
-			redirect('zone_early/soldout');
+			redirect('zone/'.$booking_id.'?popup=zone-soldout-popup');
 		}else if(count($result)>$seat_count){
 			$loop_limit = (count($result)<=$seat_count)?count($result):$seat_count;
 
@@ -136,7 +136,7 @@ class Seat_early extends CI_Controller {
 				'booking_id'=>$booking_id,
 				'is_booked'=>1
 			));
-			redirect('zone_early/'.$booking_id);
+			redirect('zone/'.$booking_id);
 		}
 
 	}

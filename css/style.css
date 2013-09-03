@@ -104,7 +104,7 @@ form input {
 }
 
 .page-zone #content form .submit-container {
-	list-style:none; margin:0px; padding:0px; position:absolute; top:488px; left:665px;
+	list-style:none; margin:0px; padding:0px; position:absolute; top:488px; left:618px;
 	width:172px; height:98px; background:transparent url("../images/zone/buttons.png") no-repeat;
 }
 .page-zone #content form .submit {
@@ -112,6 +112,16 @@ form input {
 	width:172px; height:58px; background:transparent url("../images/zone/buttons.png") no-repeat;
 }
 .page-zone #content form .submit:hover { background-position:0px -98px; }
+
+.page-zone #content form .submit-clear-container {
+	list-style:none; margin:0px; padding:0px; position:absolute; top:488px; left:806px;
+	width:172px; height:98px; background:transparent url("../images/zone/buttons.png") no-repeat -204px 0px;
+}
+.page-zone #content form .submit-clear {
+	border:0px; text-indent:-2000px; cursor:pointer;
+	width:172px; height:58px; background:transparent url("../images/zone/buttons.png") no-repeat -204px 0px;
+}
+.page-zone #content form .submit-clear:hover { background-position:-204px -98px; }
 /* end zone */
 
 /* seat */
