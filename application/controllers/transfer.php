@@ -20,7 +20,7 @@ class Transfer extends CI_Controller {
 
 	function index(){
 		if(!is_user_session_exist($this))
-			redirect('member/login');
+			redirect('member/login?rurl='.uri_string());
 
 		$rules = array(
 					array(
