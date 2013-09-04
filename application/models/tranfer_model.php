@@ -53,7 +53,7 @@ Class Tranfer_model extends CI_Model
 		}*/
 		
 		$formData = array(
-			'code' => $this->input->post('code'),
+			//'code' => $this->input->post('code'),
 			'pay_date' => $this->input->post('transfer_year').'-'.$this->input->post('transfer_month').'-'.$this->input->post('transfer_date').' '.$this->input->post('transfer_hh').':'.$this->input->post('transfer_mm').':00',
 			'pay_money' => $this->input->post('pay_money'),
 			'bank_name' => $this->input->post('bank_name'),
@@ -62,8 +62,9 @@ Class Tranfer_model extends CI_Model
 			'status' => '3' //1=ระหว่าจอง ,2=ยืนยันการจอง ,3=แจ้งโอนเงินแล้ว ,4=ยืนยันการโอนเงิน ,99=เลยเวลา 
 		);
 		
-		$res = array('success'=>truue,'msg'=>'');
+		$res = array('success'=>true,'msg'=>'');
 		$this->db->set('updateDate', 'NOW()', false);
+		$this->db->where('code', $this->input->post('code'));
 		$this->db->update('booking', $formData);
 		//return $res;
 	}
