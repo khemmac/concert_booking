@@ -57,8 +57,8 @@
 				<?php if($key_z==0): ?>
 					<td class="status" rowspan="<?= count($zone_list) + 4 ?>" valign="top" style="padding:5px;">
 						กรุณาชำระเงินภายใน
-						วันที่ <?= util_helper_format_date(util_helper_add_one_day($booking_data['updateDate'])) ?>
-						ก่อนเวลา <?= util_helper_format_time(util_helper_add_one_day($booking_data['updateDate'])) ?>
+						วันที่ <?= util_helper_format_date(util_helper_add_six_hour($booking_data['updateDate'])) ?>
+						ก่อนเวลา <?= util_helper_format_time(util_helper_add_six_hour($booking_data['updateDate'])) ?>
 					</td>
 				<?php endif; ?>
 				<td class="bg-right"></td>
@@ -111,7 +111,7 @@
 							<a href="<?= site_url('pdf/print_booking/'.$booking_data['id']) ?>" class="pdf"></a>
 						</li>
 						<li class="cancel-ctnr">
-							<a href="<?= site_url('zone/'.$booking_data['id']) ?>" class="cancel"></a>
+							<a href="<?= site_url('zone_early/'.$booking_data['id']) ?>" class="cancel"></a>
 						</li>
 					</ul>
 <?= form_close() ?>
