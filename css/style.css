@@ -216,50 +216,72 @@ form input {
 .page-booking #content .header span.name { position:absolute; top:144px; left:212px; }
 .page-booking #content .header span.code { position:absolute; top:183px; left:332px; }
 .page-booking #content .header span.booking-code { position:absolute; top:183px; left:648px; width:178px; text-align:center; color:black; }
-.page-booking .list { width: 696px; margin-left:155px; }
+.page-booking .list { width: 723px; margin-left:155px; }
 .page-booking .list td { padding:0px; }
-.page-booking .list .thead td { height:42px; padding:0px; border:0px; background:transparent url("../images/booking/table_header.gif") no-repeat; text-indent:-3000px; }
-.page-booking .list .thead td.no { background-position:-24px 0px; }
-.page-booking .list .thead td.zone { background-position:-117px 0px; }
-.page-booking .list .thead td.seat-no { background-position:-216px 0px; }
-.page-booking .list .thead td.seat-count { background-position:-354px 0px; }
-.page-booking .list .thead td.item-price { background-position:-465px 0px; }
-.page-booking .list .thead td.price { background-position:-578px 0px; }
-.page-booking .list .thead td.bg-right { background-position:-675px 0px; }
+.page-booking .list .thead td { height:35px; padding:0px; border:0px; background:transparent url("../images/booking/table_header.png") no-repeat; text-indent:-3000px; }
+.page-booking .list .thead td.no { background-position:-19px 0px; }
+.page-booking .list .thead td.zone { background-position:-100px 0px; }
+.page-booking .list .thead td.seat-no { background-position:-233px 0px; }
+.page-booking .list .thead td.seat-count { background-position:-227px 0px; }
+.page-booking .list .thead td.item-price { background-position:-360px 0px; }
+.page-booking .list .thead td.price { background-position:-493px 0px; }
+.page-booking .list .thead td.status { background-position:-573px 0px; }
+.page-booking .list .thead td.bg-right { background-position:-706px 0px; }
 
 .page-booking .list .tbody td { background-color:#FFFFFF; padding:3px 0px 3px 0px; }
 .page-booking .list .tbody td { border-bottom:1px solid #000000; }
-.page-booking .list .tbody td.bg-left { border:0px; width:24px; background:#000000 url("../images/booking/table_border_left.gif") repeat-y; }
+.page-booking .list .tbody td.bg-left { border:0px; background:#000000 url("../images/booking/table_border_left.gif") repeat-y; }
 .page-booking .list .tbody td.no,
 .page-booking .list .tbody td.zone,
 .page-booking .list .tbody td.seat-no,
 .page-booking .list .tbody td.seat-count,
-.page-booking .list .tbody td.item-price { text-align:center; border-right:1px solid #000000; }
+.page-booking .list .tbody td.item-price,
+.page-booking .list .tbody td.price { text-align:center; border-right:1px solid #000000; }
 .page-booking .list .tbody td.seat-no { padding-left:5px; padding-right:5px; text-align:left; }
 .page-booking .list .tbody td.item-price,
 .page-booking .list .tbody td.sum-price { text-align:right; padding-right:5px; border-right:1px solid #000000; }
 .page-booking .list .tbody td.price { text-align:right; padding-right:5px; }
-.page-booking .list .tbody td.bg-right { border:0px; width:21px; background:#000000 url("../images/booking/table_border_right.gif") repeat-y; }
-.page-booking .list .last td { border-bottom:0px; }
-.page-booking .list .tfoot td { height:23px; background:transparent url("../images/booking/table_footer.png") no-repeat; text-indent:-3000px; }
+.page-booking .list .tbody td.bg-right { border:0px; background:#000000 url("../images/booking/table_border_right.gif") repeat-y; }
+.page-booking .list .last td,
+.page-booking .list td.status { border-bottom:0px; }
+.page-booking .list .tfoot td { height:19px; background:transparent url("../images/booking/table_footer.png") no-repeat; text-indent:-3000px; }
 
-.page-booking .list .tfoot-text td { height:222px; background:transparent url("../images/booking/booking-footer-text.png") no-repeat; text-indent:-3000px; }
+.page-booking .list .tfoot-text td { height:281px; background:transparent url("../images/booking/booking-footer-text.png") no-repeat; text-indent:-3000px; }
 
 .page-booking #content form ul {
-	width:331px; height:108px; margin:0px; padding:0px; list-style:none;
-	background:transparent url("../images/booking/button.png") no-repeat;
+	width:513px; height:91px; margin:0px; padding:0px; list-style:none;
 }
-.page-booking #content form ul li { float:left; }
-.page-booking #content form ul li input.submit {
+.page-booking #content form ul li { float:left; height:91px; }
+
+.page-booking #content form ul li.submit-ctnr {
+	width:152px; background:transparent url("../images/booking/buttons.png") no-repeat 0px 0px;
+}
+.page-booking #content form ul li.cancel-ctnr {
+	width:152px; margin-left:25px;
+	background:transparent url("../images/booking/buttons.png") no-repeat -304px 0px;
+}
+.page-booking #content form ul li.pdf-ctnr {
+	width:152px; margin-left:25px;
+	background:transparent url("../images/booking/buttons.png") no-repeat -152px 0px;
+}
+
+.page-booking #content input.submit {
 	width:152px; height:54px; border:0px; cursor:pointer;
-	background:transparent url("../images/booking/button.png") no-repeat 0px 0px;
+	background:transparent url("../images/booking/buttons.png") no-repeat 0px 0px;
 }
-.page-booking #content form ul li input.submit:hover { background-position:0px -108px; }
-.page-booking #content form ul li .cancel {
+.page-booking #content input.submit:hover { background-position:0px -91px; }
+
+.page-booking #content .cancel {
 	display:block; width:152px; height:54px; border:0px;
-	background:transparent url("../images/booking/button.png") no-repeat -179px 0px; margin-left:27px; text-indent:-3000px;
+	background:transparent url("../images/booking/buttons.png") no-repeat -304px 0px; text-indent:-3000px;
 }
-.page-booking #content form ul li .cancel:hover { background-position:-179px -108px; }
+.page-booking #content .cancel:hover { background-position:-304px -91px; }
+
+.page-booking #content .pdf {
+	display:block; width:152px; height:54px; border:0px;
+	background:transparent url("../images/booking/buttons.png") no-repeat -152px 0px; text-indent:-3000px;
+}
+.page-booking #content .pdf:hover { background-position:-152px -91px; }
 /* end booking */
 
 /* booking-complete */

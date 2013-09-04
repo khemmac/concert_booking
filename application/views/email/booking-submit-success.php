@@ -1,8 +1,8 @@
-<div style="background:#000000 url(<?= base_url('images/email/bg-register.jpg') ?>); width:800px; height:650px;">
-	<table cellpadding="0" cellspacing="0" width="100%" border="1">
+<div style="background-color:#000000; width:800px;">
+	<table cellpadding="0" cellspacing="0" width="100%" border="0">
 		<tr>
 			<td align="center">
-				<table cellpadding="5" cellspacing="0" width="80%" border="1">
+				<table cellpadding="5" cellspacing="0" width="80%" border="0">
 					<tr>
 						<td style="color:white;">คุณ <?= $person['thName'] ?></td>
 						<td align="center" style="color:white;" rowspan="2"><strong style="font-weight:bold;">รหัสการจอง</strong><br /><?= $booking_data['code'] ?></td>
@@ -10,10 +10,16 @@
 					<tr>
 						<td style="color:white;">รหัสบัตรประชาชน <?= $person['code'] ?></td>
 					</tr>
+					<tr>
+						<td style="color:white;" colspan="2">อีเมล์ <?= $person['email'] ?></td>
+					</tr>
+					<tr>
+						<td style="color:white;" colspan="2">เบอร์โทรศัพท์ <?= $person['tel'] ?></td>
+					</tr>
 				</table>
 			</td>
 		</tr>
-		<tr><td height="20"></td></tr>
+		<tr><td height="30"></td></tr>
 		<tr>
 			<td align="center">
 				<table cellpadding="4" cellspacing="0" width="90%" border="1" style="background-color:black;">
@@ -25,18 +31,94 @@
 						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">ราคาต่อหน่วย</td>
 						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">ราคา</td>
 					</tr>
+<?php
+	function get_seat_by_zone($seat_list, $z_name){
+		$r = array();
+		foreach($seat_list AS $o_seat){
+			if($o_seat['zone_name']==$z_name)
+				array_push($r, $o_seat['seat_name']);
+		}
+		return $r;
+	}
+	function get_zone_price($seat_list, $z_name){
+		foreach($seat_list AS $o_seat){
+			if($o_seat['zone_name']==$z_name)
+				return $o_seat['price'];
+		}
+		return 0;
+	}
+	function get_sum_price($seat_list){
+		$r = 0;
+		foreach($seat_list AS $o_seat){
+			$r += $o_seat['price'];
+		}
+		return $r;
+	}
+	foreach($zone_list AS $key_z => $z):
+		$seat_list = get_seat_by_zone($booking_list, $z);
+		$zone_price = get_zone_price($booking_list, $z);
+?>
 					<tr>
-						<td>รายการ</td>
-						<td>โซนที่นั่ง</td>
-						<td>เลขที่นั่ง</td>
-						<td>จำนวนที่นั่ง</td>
-						<td>ราคาต่อหน่วย</td>
-						<td>ราคา</td>
+						<td style="background-color:white;" align="center"><?= $key_z+1 ?></td>
+						<td style="background-color:white;" align="center"><?= strtoupper($z) ?></td>
+						<td style="background-color:white;" align="center"><?= strtoupper(implode(', ', $seat_list)) ?></td>
+						<td style="background-color:white;" align="center"><?= count($seat_list) ?></td>
+						<td style="background-color:white;" align="center"><?= number_format($zone_price) ?></td>
+						<td style="background-color:white;" align="center"><?= number_format($zone_price * count($seat_list)) ?></td>
+					</tr>
+<?php endforeach; ?>
+					<tr>
+						<td style="background-color:white;" align="right" colspan="5" align="center">ราคารวม</td>
+						<td style="background-color:white;" align="center"><?= number_format(get_sum_price($booking_list)) ?></td>
+					</tr>
+					<tr>
+						<td style="background-color:white;" align="right" colspan="5" align="center">เงินตรวจสอบโอน</td>
+						<td style="background-color:white;" align="center">0.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></td>
+					</tr>
+					<tr>
+						<td style="background-color:white;" align="right" colspan="5" align="center">จำนวนเงินสำหรับทำบัตรแข็ง</td>
+						<td style="background-color:white;" align="center">20</td>
+					</tr>
+					<tr>
+						<td style="background-color:white;" align="right" colspan="5" align="center">ราคารวมทั้งหมด</td>
+						<td style="background-color:white;" align="center"><strong><?= number_format(get_sum_price($booking_list) + 20) ?>.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
 					</tr>
 				</table>
 			</td>
 		</tr>
+		<tr>
+			<td height="20"></td>
+		</tr>
+		<tr>
+			<td align="center">
+				<table cellpadding="5" cellspacing="0" border="0" width="80%">
+					<tr>
+						<td style="color:white;">
+							<h3>เงื่อนไขการชำระเงิน</h3>
+							<ol>
+								<li>กรุณาชำระผ่านธนาคารดังต่อไปนี้
+									<ul>
+										<li>ชำระเงินโดยการโอนผ่านธนาคารกสิกรไทย</li>
+										<li>ชำระเงินโดยการโอนผ่านธนาคารกรุงเทพ</li>
+										<li>ชำระเงินโดยการโอนผ่านธนาคารไทยพาณิชย์</li>
+									</ul>
+								</li>
+								<li>ชำระเงินภายใน 24 ชั่วโมง</li>
+								<li>กรุณานำหลักฐานการชำระเงินมายืนยันการแจ้งโอนเงิน
+									<br />ผ่านทาง <a href="http://www.boostplus.co.th" target="_blank">www.boostplus.co.th</a> ในหัวข้อแจ้งโอนเงิน
+								</li>
+							</ol>
+							<span style="color:red;">* หมายเหตุ สามารถตรวจสอบสถานะการโอนเงินได้ผ่านทางหัวข้อ &quot;ตรวจสอบสถานะบัตร&quot;</span>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="30" align="right"><span style="color:#444444">ติดต่อสอบถาม 02-938-5959</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+		</tr>
 	</table>
+<!--
 	<table cellpadding="0" cellspacing="0" width="100%" border="0">
 		<tr>
 			<td height="100">&nbsp;</td>
@@ -97,4 +179,5 @@
 			<td height="30" align="right"><span style="color:#444444">ติดต่อสอบถาม 02-938-5959</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 		</tr>
 	</table>
+-->
 </div>

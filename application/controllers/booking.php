@@ -22,12 +22,13 @@ class Booking extends CI_Controller {
 	function index(){
 		if(!is_user_session_exist($this))
 			redirect('member/login?rurl='.uri_string());
+		$user_id = get_user_session_id($this);
 
 		// check booking id
 		$booking_id = end($this->uri->segments);
 		if(!is_numeric($booking_id))
 			redirect('zone');
-
+/*
 		$this->db->select('id,code');
 		$this->db->limit(1);
 		$query = $this->db->get_where('booking', array('id'=>$booking_id));
@@ -58,15 +59,10 @@ class Booking extends CI_Controller {
 			if(!$exist)
 				array_push($zone_distinct_list, $b_obj['zone_name']);
 		}
+*/
+		$result_data = $this->booking_model->prepare_print_data($user_id, $booking_id);
 
-
-		$this->phxview->RenderView('booking', array(
-			'person'=>$person_data,
-			'zone_list'=>$zone_distinct_list,
-			'booking_id'=>$booking_id,
-			'booking_code'=>$b_result['code'],
-			'booking_list'=>$booking_data
-		));
+		$this->phxview->RenderView('booking', $result_data);
 		$this->phxview->RenderLayout('default');
 	}
 
@@ -138,7 +134,7 @@ class Booking extends CI_Controller {
 			array(
 				'field'		=> 'code',
 				'label'		=> 'รหัสจอง',
-				'rules'		=> 'trim|required|exact_length[14]|xss_clean|callback_check_booking_code'
+				'rules'		=> 'trim|required|exact_length[7]|xss_clean|callback_check_booking_code'
 			)
 		));
 
@@ -177,7 +173,7 @@ class Booking extends CI_Controller {
 			$o = $query->first_row('array');
 			$status = $o['status'];
 			if($status==1){
-				$this->form_validation->set_message('check_booking_code', 'ท่านต้องยืนยันการจอง');
+				$this->form_validation->set_message('check_booking_code', 'ท่านต้องยืนยันการจองก่อนทำการตรวจสอบสถานะ');
 				return false;
 			}else if($status==99){
 				$this->form_validation->set_message('check_booking_code', 'การจองนี้เลยเวลาชำระเงินไปแล้วค่ะ');
