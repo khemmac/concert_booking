@@ -339,6 +339,51 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 โดยวันและสถานที่จะแจ้งให้ทราบอีกครั้ง', 1, 'C', 1, 1);
 */
 
+		// ***** FOOTER INFO *****
+		$pdf->Ln();
+		$pdf->SetFont('angsanaupc', '', 16);
+$tbl = '<table cellspacing="0" cellpadding="3" border="0">
+    <tr>
+        <td>
+        	<strong>เงื่อนไขการชำระเงิน</strong>
+			<ol>
+				<li>กรุณาชำระผ่านธนาคารดังต่อไปนี้
+					<ul>
+						<li>ธนาคารกรุงเทพ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						สาขาลาดพร้าว
+						&nbsp;&nbsp;&nbsp;
+						&nbsp;&nbsp;&nbsp;
+						บัญชีกระแสรายวัน เลขที่บัญชี
+						1293162580
+						</li>
+						<li>ธนาคารกสิกรไทย&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						สาขาลาดพร้าวซอย10
+						&nbsp;&nbsp;&nbsp;
+						บัญชีกระแสรายวัน เลขที่บัญชี
+						7521020754
+						</li>
+						<li>ธนาคารไทยพาณิชย์&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						สาขาลาดพร้าวซอย10
+						&nbsp;&nbsp;&nbsp;
+						บัญชีกระแสรายวัน เลขที่บัญชี
+						0473035812
+						</li>
+					</ul>
+				</li>
+				<li>ชำระเงินภายใน 6 ชั่วโมง</li>
+				<li>กรุณานำหลักฐานการชำระเงินมายืนยันการแจ้งโอนเงิน ผ่านทาง <a href="http://www.boostplus.co.th" target="_blank">www.boostplus.co.th</a> ในหัวข้อแจ้งโอนเงิน
+				</li>
+				<li>หากแจ้งโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการจอง หลังจากแจ้งโอนเงินในเวลาประมาณ 24 ชม.</li>
+			</ol>
+        </td>
+    </tr>
+    <tr>
+    	<td style="background-color:#ffa01f;" align="center">* หมายเหตุ  สามารถตรวจสอบสถานะการโอนเงินได้ผ่านทางหัวข้อ &quot;ตรวจสอบสถานะบัตร&quot;</td>
+    </tr>
+</table>';
+		$pdf->writeHTML($tbl, true, false, false, false, '');
+		// ***** END FOOTER INFO *****
+
 		$pdf->SetY(-40);
 
 		// ***** BARCODE *****
