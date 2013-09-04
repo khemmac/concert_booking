@@ -68,10 +68,16 @@
 				<td class="price">0.<?= str_pad(substr($booking_id, -2), 2, '0', STR_PAD_LEFT) ?></td>
 				<td class="bg-right"></td>
 			</tr>
+			<tr class="tbody">
+				<td class="bg-left"></td>
+				<td colspan="5" class="sum-price" align="right">จำนวนเงินสำหรับทำบัตรแข็ง</td>
+				<td class="price">20</td>
+				<td class="bg-right"></td>
+			</tr>
 			<tr class="tbody last">
 				<td class="bg-left"></td>
 				<td colspan="5" class="sum-price" align="right">ราคารวมทั้งหมด</td>
-				<td class="price"><strong><?= number_format(get_sum_price($booking_list)) ?>.<?= str_pad(substr($booking_id, -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
+				<td class="price"><strong><?= number_format(get_sum_price($booking_list) + 20) ?>.<?= str_pad(substr($booking_id, -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
 				<td class="bg-right"></td>
 			</tr>
 			<tr class="tfoot">

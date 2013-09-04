@@ -17,6 +17,11 @@ class Index extends CI_Controller {
 	function index(){
 		//$this->phxview->RenderView('index');
 		//$this->phxview->RenderLayout('default');
+		$this->phxview->RenderView('landing-all');
+		$this->phxview->RenderLayout('empty');
+	}
+
+	function sbsmtv2013(){
 		$this->phxview->RenderView('landing');
 		$this->phxview->RenderLayout('empty');
 	}
