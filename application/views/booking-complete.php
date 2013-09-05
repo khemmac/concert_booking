@@ -65,7 +65,7 @@
 				<td class="item-price"><?= number_format($zone_price) ?></td>
 				<td class="price"><?= number_format($zone_price * count($seat_list)) ?></td>
 				<?php if($key_z==0): ?>
-					<td class="status" rowspan="<?= count($zone_list) + 3 ?>" valign="top" align="center" style="padding:5px;">
+					<td class="status" rowspan="<?= count($zone_list) + 4 ?>" valign="top" align="center" style="padding:5px;">
 					<?php if($booking_data['status']==4): ?>
 						ชำระเงินแล้ว
 						วันที่ xx/xx/xx
@@ -98,17 +98,22 @@
 				<td class="price">0.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></td>
 				<td class="bg-right"></td>
 			</tr>
+			<tr class="tbody">
+				<td class="bg-left"></td>
+				<td colspan="5" class="sum-price" align="right">จำนวนเงินสำหรับทำบัตรแข็ง</td>
+				<td class="price">20</td>
+				<td class="bg-right"></td>
+			</tr>
 			<tr class="tbody last">
 				<td class="bg-left"></td>
 				<td colspan="5" class="sum-price" align="right">ราคารวมทั้งหมด</td>
-				<td class="price"><strong><?= number_format(get_sum_price($booking_list)) ?>.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
+				<td class="price"><strong><?= number_format($booking_data['total_money'], 2) ?></strong></td>
 				<td class="bg-right"></td>
 			</tr>
-
-
 			<tr class="tfoot">
 				<td colspan="9"></td>
 			</tr>
+<?php if($booking_data['status']==4): ?>
 			<tr class="tfoot-text">
 				<td colspan="9" valign="top" align="center">
 					<div style="margin-top:124px; height:100px; color:red; text-indent: -3000px;">
@@ -136,6 +141,11 @@
 			<tr>
 				<td colspan="9" style="height:10px;"></td>
 			</tr>
+<?php else: ?>
+			<tr>
+				<td colspan="9" style="height:300px;"></td>
+			</tr>
+<?php endif; ?>
 		</table>
 
 	</div>

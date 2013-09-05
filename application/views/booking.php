@@ -116,7 +116,7 @@
 					</ul>
 <?= form_close() ?>
 				</td>
-			</tr-->
+			</tr>
 		</table>
 
 	</div>
