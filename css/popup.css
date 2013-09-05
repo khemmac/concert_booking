@@ -98,3 +98,18 @@
 	background:transparent url("../images/register/button-ok.png") no-repeat 0px 0px; cursor:pointer;
 }
 #booking-submit-complete-popup a.close:hover { background-position:0px -30px; }
+
+/* transfer-confirm popup */
+#transfer-confirm-popup {
+	width:639px; height:524px; position:relative;
+	background:transparent url('../images/transfer/confirm_popup.png') no-repeat;
+}
+#transfer-confirm-popup span { color:black; position:absolute; left:305px; }
+#transfer-confirm-popup a {
+	position:absolute; top:389px; left:191px; width:112px; height:44px; text-indent:-2000px;
+	background:transparent url("../images/transfer/confirm_buttons.gif") no-repeat 0px 0px; cursor:pointer;
+}
+#transfer-confirm-popup a.ok { background-position:0px 0px; }
+#transfer-confirm-popup a.ok:hover { background-position:0px -44px; }
+#transfer-confirm-popup a.close { background-position:-112px 0px; left:323px; }
+#transfer-confirm-popup a.close:hover { background-position:-112px -44px; }

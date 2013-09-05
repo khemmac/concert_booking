@@ -151,5 +151,7 @@
 		$('input[name=pay_money]').numeric({ decimal: false, negative: false });
 		$('input[name=pay_money_satang]').numeric({ decimal: false, negative: false });
 
+		//common.popup.show(null, '#transfer-confirm-popup');
+
 	});
 </script>

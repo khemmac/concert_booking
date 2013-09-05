@@ -61,6 +61,11 @@ class Member extends CI_Controller {
 		redirect('index', 'refresh');
 	}
 
+	function forgot(){
+		$this->phxview->RenderView('member-forgot');
+		$this->phxview->RenderLayout('default');
+	}
+
 	function register(){
 		if(is_user_session_exist($this))
 			redirect('member/profile');
@@ -79,6 +84,9 @@ class Member extends CI_Controller {
 
 			// send email
 			$this->email_model->send_register_success($original_data);
+
+			// auto login
+			$this->person_model->login($this->input->post('username'), $this->input->post('password'));
 
 			redirect('member/register_success');
 		}

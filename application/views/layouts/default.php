@@ -92,6 +92,16 @@
 			<a href="#close" class="close"></a>
 		</div>
 
+		<div id="transfer-confirm-popup" class="window">
+			<span style="top:70px;" class="p-code">xxxxxxxxxxxxxx</span>
+			<span style="top:96px;" class="p-date">xxxxxxxxxxxxxx</span>
+			<span style="top:121px;" class="p-time">xxxxxxxxxxxxxx</span>
+			<span style="top:149px;" class="p-pay">xxxxxxxxxxxxxx</span>
+			<span style="top:176px;" class="p-bank">xxxxxxxxxxxxxx</span>
+			<a href="#ok" class="ok"></a>
+			<a href="#close" class="close"></a>
+		</div>
+
 		<div id="mask"></div>
 	</div>
 <?php

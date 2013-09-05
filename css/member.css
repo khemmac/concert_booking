@@ -129,3 +129,21 @@
 	position:absolute; top:228px; left:280px;
 }
 /* end profile-success */
+
+
+
+/* forgot password */
+.page-forgot { height:750px; }
+
+.page-forgot #dialog {
+	width:439px; height:267px; background:transparent url("../images/login/dialog.gif") no-repeat 0px 0px;
+	position:absolute; top:228px; left:302px;
+}
+.page-forgot #dialog .username { position:absolute; top:35px; left:149px; width:225px; background:transparent; }
+.page-forgot #dialog .password { position:absolute; top:76px; left:149px; width:225px; background:transparent; }
+.page-forgot #dialog .submit {
+	position:absolute; top:145px; left:178px; width:86px; height:32px; text-indent:-2000px;
+	background:transparent url("../images/login/b-submit.gif") no-repeat 0px 0px; cursor:pointer;
+}
+.page-forgot #dialog .submit:hover { background-position:0px -32px; }
+/* end login */
