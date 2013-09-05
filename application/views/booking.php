@@ -55,10 +55,10 @@
 				<td class="item-price"><?= number_format($zone_price) ?></td>
 				<td class="price"><?= number_format($zone_price * count($seat_list)) ?></td>
 				<?php if($key_z==0): ?>
-					<td class="status" rowspan="<?= count($zone_list) + 4 ?>" valign="top" style="padding:5px;">
-						กรุณาชำระเงินภายใน
-						วันที่ <?= util_helper_format_date(util_helper_add_six_hour($booking_data['updateDate'])) ?>
-						ก่อนเวลา <?= util_helper_format_time(util_helper_add_six_hour($booking_data['updateDate'])) ?>
+					<td class="status" align="center" rowspan="<?= count($zone_list) + 4 ?>" valign="top" style="padding:5px;">
+						กรุณาชำระเงิน
+						<br />ภายในวันที่ <?= util_helper_format_date(util_helper_add_six_hour(new DateTime())) ?>
+						<br />ก่อนเวลา <?= util_helper_format_time(util_helper_add_six_hour(new DateTime())) ?>
 					</td>
 				<?php endif; ?>
 				<td class="bg-right"></td>

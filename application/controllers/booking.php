@@ -10,6 +10,7 @@ class Booking extends CI_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 
 		// load model
+		$this->load->model('email_model','',TRUE);
 		$this->load->model('booking_model','',TRUE);
 		$this->load->model('seat_model','',TRUE);
 
@@ -77,12 +78,17 @@ class Booking extends CI_Controller {
 		$this->db->where('person_id', $user_id);
 		$this->db->set('booking_date','NOW()',false);
 		$this->db->set('updateDate','NOW()',false);
+		$this->db->set('total_money','((SELECT sum(z.price) FROM seat s JOIN zone z ON s.zone_id=z.id AND s.booking_id='.$booking_id.')
+										+20+(RIGHT('.$booking_id.', 2)/100))',false);
 		$this->db->update('booking', array(
 			'status'=>2
 		));
 
 		if($this->db->affected_rows()==1){
 			// send mail
+			try {
+				$this->email_model->send_booking_submit($user_id, $booking_id);
+			} catch (Exception $e) {}
 
 			redirect('booking/check?popup=booking-submit-complete-popup');
 		}else{

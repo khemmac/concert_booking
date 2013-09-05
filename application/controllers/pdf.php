@@ -262,6 +262,63 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 
 		$pdf->Ln();
 
+		// ***** BODY LIST *****
+		$pdf->SetLineWidth(0.2);
+		$pdf->SetFont('', '', '16');
+		$tbl = '';
+		$tbl .= '<table cellpadding="4" cellspacing="0" width="100%" border="1">
+					<tr>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">รายการ</td>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">โซนที่นั่ง</td>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">เลขที่นั่ง</td>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">จำนวนที่นั่ง</td>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">ราคาต่อหน่วย</td>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">ราคา</td>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">สถานะ</td>
+					</tr>';
+	foreach($zone_list AS $key_z => $z):
+		$seat_list = get_seat_by_zone($booking_list, $z);
+		$zone_price = get_zone_price($booking_list, $z);
+
+		$tbl .= '<tr>
+						<td style="background-color:white;" align="center">'.($key_z+1) .'</td>
+						<td style="background-color:white;" align="center">'. strtoupper($z) .'</td>
+						<td style="background-color:white;" align="center">'. strtoupper(implode(', ', $seat_list)) .'</td>
+						<td style="background-color:white;" align="center">'. count($seat_list) .'</td>
+						<td style="background-color:white;" align="center">'. number_format($zone_price) .'</td>
+						<td style="background-color:white;" align="center">'. number_format($zone_price * count($seat_list)) .'</td>';
+					if($key_z==0):
+						$tbl .= '<td style="background-color:white;" align="center" rowspan="'. (count($zone_list)+4) .'" valign="top" style="padding:5px;">
+							กรุณาชำระเงิน
+							ภายในวันที่ '. util_helper_format_date(util_helper_add_six_hour(new DateTime())) .'
+							ก่อนเวลา '. util_helper_format_time(util_helper_add_six_hour(new DateTime())) .'
+						</td>';
+					endif;
+		$tbl .= '</tr>';
+	endforeach;
+
+		$tbl .= '<tr>
+						<td style="background-color:white;" align="right" colspan="5">ราคารวม</td>
+						<td style="background-color:white;" align="center">'. number_format(get_sum_price($booking_list)) .'</td>
+					</tr>
+					<tr>
+						<td style="background-color:white;" align="right" colspan="5">เงินตรวจสอบโอน</td>
+						<td style="background-color:white;" align="center">0.'. str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) .'</td>
+					</tr>
+					<tr>
+						<td style="background-color:white;" align="right" colspan="5">จำนวนเงินสำหรับทำบัตรแข็ง</td>
+						<td style="background-color:white;" align="center">20</td>
+					</tr>
+					<tr>
+						<td style="background-color:white;" align="right" colspan="5">ราคารวมทั้งหมด</td>
+						<td style="background-color:white;" align="center"><strong>'. number_format(get_sum_price($booking_list) + 20) .'.'. str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) .'</strong></td>
+					</tr>
+				</table>';
+		//echo $tbl;
+		$pdf->writeHTML($tbl, true, false, false, false, '');
+		// ***** END BODY LIST *****
+
+/*
 		// ***** DEFINED TABLE DATA *****
 		$pdf->SetFillColor(204, 204, 204);
 		$pdf->SetTextColor(0);
@@ -326,6 +383,8 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 
 		//$pdf->Cell(array_sum($w), 0, '', 'T');
 		// ***** END DEFINED TABLE DATA *****
+*/
+
 
 /*
 		$pdf->Ln();
@@ -340,12 +399,12 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 */
 
 		// ***** FOOTER INFO *****
-		$pdf->Ln();
-		$pdf->SetFont('angsanaupc', '', 16);
+		$pdf->SetFont('', 'B', 18);
+		$pdf->MultiCell(0, 0, 'เงื่อนไขการชำระเงิน',0, 'L', 0, 1);
+		$pdf->SetFont('', '', 16);
 $tbl = '<table cellspacing="0" cellpadding="3" border="0">
     <tr>
         <td>
-        	<strong>เงื่อนไขการชำระเงิน</strong>
 			<ol>
 				<li>กรุณาชำระผ่านธนาคารดังต่อไปนี้
 					<ul>

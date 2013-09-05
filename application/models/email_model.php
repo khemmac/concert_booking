@@ -31,4 +31,12 @@ Class Email_model extends CI_Model
 		$body = $this->load->view('email/register-success', $user_data, true);
 		$this->send_mailer($reciever, $subject, $body);
 	}
+
+	public function send_booking_submit($user_id, $booking_id){
+		$data = $this->booking_model->prepare_print_data($user_id, $booking_id);
+		$reciever = $data['person']['email'];
+		$subject = 'หลักฐานการจองบัตรคอนเสิร์ต SBS MTV 2013';
+		$body = $this->load->view('email/booking-submit-success', $data, true);
+		$this->send_mailer($reciever, $subject, $body);
+	}
 }
