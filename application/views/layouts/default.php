@@ -6,7 +6,7 @@
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Pragma" content="no-cache" />
-	<title>Concert Booking</title>
+	<title>SBS MTV 2013</title>
 	<script type="text/javascript"> var __base_url = '<?= base_url() ?>'; </script>
 	<script type="text/javascript"> var __site_url = '<?= site_url('/') ?>'; </script>
 
