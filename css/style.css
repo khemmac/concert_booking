@@ -382,7 +382,8 @@ form input {
 .page-transfer #form .sexy-combo-bank_name .icon { left:143px; }
 .page-transfer #form .sexy-combo-bank_name div.list-wrapper { width:240px; }
 
-.page-transfer #form .pay_money { position:absolute; top:172px; left:217px; width:221px; }
+.page-transfer #form .pay_money { position:absolute; top:172px; left:217px; width:90px; }
+.page-transfer #form .pay_money_satang { position:absolute; top:172px; left:322px; width:38px; }
 .page-transfer #form .slip { position:absolute; top:238px; left:212px; width:221px; }
 
 .page-transfer #form-button { position:absolute; top:372px; left:238px; margin:0px; padding:0px; list-style:none; }

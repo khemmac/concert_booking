@@ -69,6 +69,11 @@
 					'class'		=> 'pay_money'
 				),
 				array(
+					'name'		=> 'pay_money_satang',
+					'maxlength'	=> '2',
+					'class'		=> 'pay_money_satang'
+				),
+				array(
 					'name'		=> 'bank_name',
 					'class'		=> 'bank_name',
 					'type'		=> 'dropdown',
@@ -141,6 +146,10 @@
 		common.combo.create($('select[name=transfer_hh]'),	'sexy-combo-transfer_hh');
 		common.combo.create($('select[name=transfer_mm]'),	'sexy-combo-transfer_mm');
 		common.combo.create($('select[name=bank_name]'),		'sexy-combo-bank_name');
+
+		// number only
+		$('input[name=pay_money]').numeric({ decimal: false, negative: false });
+		$('input[name=pay_money_satang]').numeric({ decimal: false, negative: false });
 
 	});
 </script>
