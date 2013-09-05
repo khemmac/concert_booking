@@ -59,7 +59,8 @@ Class Tranfer_model extends CI_Model
 			'bank_name' => $this->input->post('bank_name'),
 			'bank_ref_id' => null,
 			'payment_type' => '1', //0=Credit ,1=Tranfer
-			'status' => '3' //1=ระหว่าจอง ,2=ยืนยันการจอง ,3=แจ้งโอนเงินแล้ว ,4=ยืนยันการโอนเงิน ,99=เลยเวลา 
+			'status' => '3', //1=ระหว่าจอง ,2=ยืนยันการจอง ,3=แจ้งโอนเงินแล้ว ,4=ยืนยันการโอนเงิน ,99=เลยเวลา
+			'slip' =>  $img_name
 		);
 		
 		$res = array('success'=>true,'msg'=>'');
