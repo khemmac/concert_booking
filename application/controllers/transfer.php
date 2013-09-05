@@ -46,7 +46,6 @@ class Transfer extends CI_Controller {
 				$img_name = $time.'.'.$ext;
 				move_uploaded_file($_FILES['slip']['tmp_name'],$file_path.$img_name);
 			}
-			
 			$this->tranfer_model->money_tranfer($img_name);
 			redirect('booking/complete', 'refresh');
 		}
