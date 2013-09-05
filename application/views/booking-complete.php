@@ -65,7 +65,7 @@
 				<td class="item-price"><?= number_format($zone_price) ?></td>
 				<td class="price"><?= number_format($zone_price * count($seat_list)) ?></td>
 				<?php if($key_z==0): ?>
-					<td class="status" rowspan="<?= count($zone_list) + 3 ?>" valign="top" style="padding:5px;">
+					<td class="status" rowspan="<?= count($zone_list) + 3 ?>" valign="top" align="center" style="padding:5px;">
 					<?php if($booking_data['status']==4): ?>
 						ชำระเงินแล้ว
 						วันที่ xx/xx/xx
@@ -75,9 +75,9 @@
 						วันที่ xx/xx/xx
 						เวลา 00:00
 					<?php elseif($booking_data['status']==2): ?>
-						กรุณาชำระเงินภายใน
-						วันที่ <?= util_helper_format_date(util_helper_add_one_day($booking_data['updateDate'])) ?>
-						ก่อนเวลา <?= util_helper_format_time(util_helper_add_one_day($booking_data['updateDate'])) ?>
+						กรุณาชำระเงิน
+						<br />ภายในวันที่ <?= util_helper_format_date(util_helper_add_six_hour($booking_data['booking_date'])) ?>
+						ก่อนเวลา <?= util_helper_format_time(util_helper_add_six_hour($booking_data['booking_date'])) ?>
 					<?php else: ?>
 						-
 					<?php endif; ?>

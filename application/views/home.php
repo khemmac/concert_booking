@@ -6,3 +6,5 @@
 		<a href="early" class="b-early"></a>
 	</div>
 </div>
+
+<?=$this->load->view('includes/inc-term-condition','', TRUE)?>

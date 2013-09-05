@@ -26,4 +26,19 @@ class Index extends CI_Controller {
 		$this->phxview->RenderLayout('empty');
 	}
 
+	function index2(){
+		$this->phxview->RenderView('index');
+		$this->phxview->RenderLayout('default');
+	}
+
+	function index3(){
+		$this->phxview->RenderView('home');
+		$this->phxview->RenderLayout('default');
+	}
+
+	function index4(){
+		$this->phxview->RenderView('home-presale');
+		$this->phxview->RenderLayout('default');
+	}
+
 }

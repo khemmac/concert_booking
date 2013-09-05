@@ -6,3 +6,5 @@
 		<a href="presale" class="b-presale"></a>
 	</div>
 </div>
+
+<?=$this->load->view('includes/inc-term-condition','', TRUE)?>

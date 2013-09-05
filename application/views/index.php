@@ -4,3 +4,5 @@
 	<div id="content">
 	</div>
 </div>
+
+<?=$this->load->view('includes/inc-term-condition','', TRUE)?>
