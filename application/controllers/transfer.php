@@ -38,15 +38,14 @@ class Transfer extends CI_Controller {
 			$this->phxview->RenderLayout('default');
 		} else {
 			$img_name ="";
-			/*if(isset($_FILES['slip']['name'])){
+			if(isset($_FILES['slip']['name'])){
 				$date = new DateTime();
 				$time = $date->getTimestamp();
 				$path = $_FILES['slip']['name'];
 				$ext = pathinfo($path, PATHINFO_EXTENSION);
 				$img_name = $time.'.'.$ext;
 				move_uploaded_file($_FILES['slip']['tmp_name'],$file_path.$img_name);
-			}*/
-			
+			}
 			$this->tranfer_model->money_tranfer($img_name);
 			redirect('booking/complete', 'refresh');
 		}
