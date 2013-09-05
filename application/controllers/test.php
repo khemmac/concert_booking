@@ -42,7 +42,7 @@ class Test extends CI_Controller {
 	}
 
 	function render_mail(){
-		$data = $this->booking_model->prepare_print_data(1, 17);
+		$data = $this->booking_model->prepare_print_data(2, 19);
 
 		$this->load->view('email/booking-submit-success', $data);
 	}

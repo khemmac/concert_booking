@@ -122,7 +122,7 @@ WHERE id=? AND booking_id=(SELECT b.id FROM booking b WHERE b.person_id=? AND b.
 	// data
 	function prepare_print_data($user_id, $booking_id){
 		// load profile data
-		$this->db->select('thName,code');
+		$this->db->select('thName,code,email,tel');
 		$this->db->where('id', $user_id);
 		$this->db->limit(1);
 		$query = $this->db->get('person');
@@ -144,7 +144,7 @@ s.zone_id, z.name AS zone_name
 , z.price
 FROM seat s
 JOIN zone z ON s.zone_id=z.id
-JOIN booking b ON s.booking_id=b.id AND b.person_id=? AND b.status=2
+JOIN booking b ON s.booking_id=b.id AND b.person_id=?
 WHERE  s.booking_id=?
 ORDER BY seat_id ASC";
 		$query = $this->db->query($sql, array($user_id, $booking_id));
