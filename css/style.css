@@ -23,7 +23,8 @@ form input {
 .page-login input, .page-login select,
 .page-register input, .page-register select,
 .page-transfer input, .page-transfer select,
-.page-booking-check input, .page-booking-check select
+.page-booking-check input, .page-booking-check select,
+.page-forgot input, .page-forgot select
 { border:0px; -webkit-box-shadow: none !important; box-shadow: none !important; background:transparent; }
 /* end common/global */
 

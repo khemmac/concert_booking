@@ -61,11 +61,6 @@ class Member extends CI_Controller {
 		redirect('index', 'refresh');
 	}
 
-	function forgot(){
-		$this->phxview->RenderView('member-forgot');
-		$this->phxview->RenderLayout('default');
-	}
-
 	function register(){
 		if(is_user_session_exist($this))
 			redirect('member/profile');
@@ -208,11 +203,9 @@ class Member extends CI_Controller {
 		}
 	}
 
-	function render_email(){
-		$this->phxview->RenderView('email/register-success');
-		$this->phxview->RenderLayout('empty');
+	function forgot(){
+		redirect('forgot');
 	}
-
 
 
 } // end class

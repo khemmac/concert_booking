@@ -23,8 +23,8 @@
 			form_helper_generate_form($forms);
 		?>
 		<ul id="sub-menu">
-			<li><a href="register" class="sub-menu-1"></a></li>
-			<li><a href="forgot" class="sub-menu-2"></a></li>
+			<li><a href="<?= site_url('member/register') ?>" class="sub-menu-1"></a></li>
+			<li><a href="<?= site_url('forgot') ?>" class="sub-menu-2"></a></li>
 		</ul>
 		<?= form_submit(array(
 				'id'		=> 'submit',

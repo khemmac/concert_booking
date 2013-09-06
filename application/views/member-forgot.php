@@ -1,7 +1,8 @@
 <div id="content-body" class="page-forgot">
 	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 
-	<div id="dialog">
+	<div id="dialog" class="step1">
+		<div id="step-mask"></div>
 		<?= form_open(); ?>
 		<?php
 			$forms = array(
@@ -14,12 +15,7 @@
 				array(
 					'name'		=> 'question',
 					'class'		=> 'question',
-					'type'		=> 'dropdown',
-					'options'	=> array('สัตว์เลี้ยงตัวแรกของคุณชื่ออะไร?'=>'สัตว์เลี้ยงตัวแรกของคุณชื่ออะไร?',
-										'เพื่อนสนิทสมัยวัยรุ่นของคุณชื่ออะไร?'=>'เพื่อนสนิทสมัยวัยรุ่นของคุณชื่ออะไร?',
-										'อาหารจานแรกที่คุณหัดทำคืออะไร?'=>'อาหารจานแรกที่คุณหัดทำคืออะไร?',
-										'คุณขึ้นเครื่องบินไปที่ไหนครั้งแรก?'=>'คุณขึ้นเครื่องบินไปที่ไหนครั้งแรก?'
-									)
+					'readonly'	=> 'readonly'
 				),
 				array(
 					'name'		=> 'answer',
@@ -35,17 +31,34 @@
 			);
 			form_helper_generate_form($forms);
 		?>
+
+		<a href="#next" class="b-next"></a>
+<!--
 		<?= form_submit(array(
 				'id'		=> 'submit',
 				'value'		=> '',
 				'class'		=> 'submit'
 			));
 		?>
+-->
 		<?= form_close() ?>
 	</div>
 </div>
+
+<div style="z-index: 1500; opacity: 1; display: block; top: 287px; left: 682px;" aria-live="polite" role="alert" tracking="false" class="qtip qtip-default qtip-red qtip-pos-lc" id="qtip-0">
+	<div style="background: transparent url('<?= base_url('/js/lib/jquery.qtip/arrow-tip.gif') ?>') no-repeat! important; border: 0px none ! important; width: 8px; height: 8px; line-height: 8px; top: 50%; margin-top: -4px; left: -8px; visibility:visible !important;" class="qtip-tip">&nbsp;</div>
+	<div aria-atomic="true" class="qtip-content">กรุณาป้อน "Username"</div>
+</div>
+
 <script type="text/javascript">
 	$(function(){
+		var bNext = $('.b-next'),
+			stepMask = $('#step-mask');
+
+		bNext.click(function(){
+			// post ajax
+		});
+
 		$('#submit').click(function(){
 			setTimeout(function(){
 				$(this).attr('disabled', 'disabled');
