@@ -144,17 +144,21 @@
 .page-forgot #dialog .answer { position:absolute; top:108px; left:144px; width:225px; background:transparent; }
 .page-forgot #dialog .password { position:absolute; top:137px; left:144px; width:225px; background:transparent; }
 .page-forgot #dialog .submit {
+	display:none;
 	position:absolute; top:173px; left:184px; width:84px; height:31px; text-indent:-2000px;
 	background:transparent url("../images/forgot/b-submit.png") no-repeat 0px 0px; cursor:pointer;
 }
 .page-forgot #dialog .submit:hover { background-position:0px -31px; }
 
 .page-forgot .b-next {
-	position:absolute; top:173px; left:184px; width:84px; height:31px; text-indent:-2000px;
+	position:absolute; top:173px; left:184px; width:84px; height:31px; text-indent:-2000px; z-index:1501;
 	background:transparent url("../images/forgot/b-next.png") no-repeat 0px 0px; cursor:pointer;
 }
 .page-forgot .b-next:hover { background-position:0px -31px; }
 
 .page-forgot .step1 .b-next { top:123px; }
-.page-forgot .step1 #step-mask { width:363px; height:90px; position:absolute; top: 77px; left:40px; border:0px solid #ff0000; background-color:#16161a; }
+.page-forgot .step1 #step-mask {
+	width:363px; height:90px; position:absolute; bottom: 153px; left:40px; z-index:1500;
+	display:block; border:0px solid #ff0000; background-color:#16161a;
+}
 /* end login */
