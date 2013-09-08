@@ -13,7 +13,7 @@
 	<style type="text/css">
 		#member-sub-menu { display:none; }
 
-		#container { background: transparent url("<?= base_url('images/landing/bg.png?v=1') ?>") no-repeat; }
+		#container { background: transparent url("<?= base_url('images/landing/bg.png?v=2') ?>") no-repeat; }
 
 		#content { background:none !important; top:0px !important; }
 
@@ -47,6 +47,7 @@
 		    right: 0;
 		    top: 0;
 		    z-index: 1;
+		    display: none;
 		}
 	</style>
 	<script type="text/javascript">
@@ -145,7 +146,7 @@
 	<!--<span id="footer" style="position:absolute; bottom:20px; right:30px; display:block; width:207px; height:16px; background:transparent url('../images/common/foot-contact.png') no-repeat; text-indent:-9000px;">ติดต่อสอบถาม 02-938-5959</span>-->
 
 	</div>
-	<div style="position: absolute; top: 10%; left: 23%;">
+	<div style="position: absolute; top: 10%; left: 23%; display: none;">
 		<div id="box_popup">
 			<a href="javascript:void(0);" class="brn_close"> <img src="<?= base_url('images/pop_up/close_buttom.png') ?>" /> </a>
 			<img src="<?= base_url('images/pop_up/pop-up.png') ?>" />

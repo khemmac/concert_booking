@@ -22,6 +22,10 @@ class Index extends CI_Controller {
 	}
 
 	function sbsmtv2013(){
+		redirect('sbs2013');
+	}
+
+	function sbs2013(){
 		$this->phxview->RenderView('landing');
 		$this->phxview->RenderLayout('empty');
 	}

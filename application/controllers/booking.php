@@ -78,8 +78,8 @@ class Booking extends CI_Controller {
 		$this->db->where('person_id', $user_id);
 		$this->db->set('booking_date','NOW()',false);
 		$this->db->set('updateDate','NOW()',false);
-		$this->db->set('total_money','((SELECT sum(z.price) FROM seat s JOIN zone z ON s.zone_id=z.id AND s.booking_id='.$booking_id.')
-										+20+(RIGHT('.$booking_id.', 2)/100))',false);
+		$this->db->set('total_money','((SELECT sum(z.price+20) FROM seat s JOIN zone z ON s.zone_id=z.id AND s.booking_id='.$booking_id.')
+										+(RIGHT('.$booking_id.', 2)/100))',false);
 		$this->db->update('booking', array(
 			'status'=>2
 		));

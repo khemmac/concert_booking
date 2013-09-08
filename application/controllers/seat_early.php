@@ -124,7 +124,7 @@ class Seat_early extends CI_Controller {
 		// ถ้า seat มีมากกว่าที่เลือก
 		if(count($result)<=0){
 			redirect('zone_early/soldout');
-		}else if(count($result)>$seat_count){
+		}else{
 			$loop_limit = (count($result)<=$seat_count)?count($result):$seat_count;
 
 			$ids = array();
@@ -136,6 +136,7 @@ class Seat_early extends CI_Controller {
 				'booking_id'=>$booking_id,
 				'is_booked'=>1
 			));
+
 			redirect('zone_early/'.$booking_id);
 		}
 

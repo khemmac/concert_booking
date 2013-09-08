@@ -69,6 +69,7 @@ $route['booking/(:num)'] = 'booking/index/$1';
 
 // landing / home page
 $route['sbsmtv2013'] = 'index/sbsmtv2013';
+$route['sbs2013'] = 'index/sbs2013';
 
 $route['default_controller'] = "index";
 $route['404_override'] = '';
