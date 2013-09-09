@@ -76,6 +76,10 @@
 			<a href="#close" class="close"></a>
 		</div>
 
+		<div id="zone-confirm-clear-popup" class="window">
+			<a href="#ok" class="ok"></a>
+			<a href="#close" class="close"></a>
+		</div>
 		<div id="zone-blank-seat-popup" class="window">
 			<a href="#close" class="close"></a>
 		</div>

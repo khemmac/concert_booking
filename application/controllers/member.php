@@ -62,6 +62,11 @@ class Member extends CI_Controller {
 	}
 
 	function register(){
+		$pass = $this->input->get('pass');
+		if($pass!='1123')
+			redirect('index');
+
+
 		if(is_user_session_exist($this))
 			redirect('member/profile');
 

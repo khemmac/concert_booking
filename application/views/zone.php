@@ -57,7 +57,7 @@
 		</ul>
 		<?= form_close() ?>
 
-		<?= form_open('zone/clear'); ?>
+		<?= form_open('zone/clear', array('id'=>'form-clear')); ?>
 		<?= form_hidden('booking_id', $booking_id) ?>
 		<?= form_hidden('rurl', 'zone') ?>
 		<ul class="submit-clear-container">
@@ -107,8 +107,17 @@
 </div>
 <script type="text/javascript">
 	$(function(){
-		$('#submit-clear').click(function(){
-			return confirm('ท่านต้องการล้างการจองทั้งหมดหรือไม่');
+		$('#submit-clear').click(function(e){
+			e.preventDefault();
+			var popId = '#zone-confirm-clear-popup';
+			common.popup.show(null, popId);
+			$(popId).find('a.ok').unbind('click').bind('click', function(e){
+				e.preventDefault();
+				$('form#form-clear').submit();
+				return false;
+			});
+			return false;
+			//return confirm('ท่านต้องการล้างการจองทั้งหมดหรือไม่');
 		});
 	});
 </script>

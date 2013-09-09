@@ -76,6 +76,20 @@
 }
 #zone-soldout-popup a.close:hover { background-position:0px -30px; }
 
+/* zone confirm clear popup */
+#zone-confirm-clear-popup {
+	width:439px; height:258px; position:relative;
+	background:transparent url('../images/popup/zone-confirm-clear.png') no-repeat;
+}
+#zone-confirm-clear-popup a {
+	position:absolute; top:145px; left:119px; width:85px; height:30px; text-indent:-2000px;
+	background:transparent url("../images/popup/b_ok_cancel.png") no-repeat 0px 0px; cursor:pointer;
+}
+#zone-confirm-clear-popup a.ok { background-position:0px 0px; }
+#zone-confirm-clear-popup a.ok:hover { background-position:0px -30px; }
+#zone-confirm-clear-popup a.close { background-position:-85px 0px; left:237px; }
+#zone-confirm-clear-popup a.close:hover { background-position:-85px -30px; }
+
 /* contact us popup */
 #contact-us-popup {
 	width:893px; height:585px; position:relative;
