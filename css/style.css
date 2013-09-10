@@ -250,7 +250,7 @@ form input {
 .page-booking .list .tfoot-text td { height:281px; background:transparent url("../images/booking/booking-footer-text.png") no-repeat; text-indent:-3000px; }
 
 .page-booking #content form ul {
-	width:513px; height:91px; margin:0px; padding:0px; list-style:none;
+	width:329px; height:91px; margin:0px; padding:0px; list-style:none;
 }
 .page-booking #content form ul li { float:left; height:91px; }
 
@@ -405,3 +405,27 @@ form input {
 }
 .page-booking-check form .submit:hover { background-position:0px -43px; }
 /* end booking-check */
+
+/* plan */
+.page-plan { height:750px; }
+
+.page-plan #b-container { position:absolute; top:140px; left:760px; width:172px; margin:0px; padding:0px; list-style:none; }
+.page-plan #b-container li { width:172px; height:98px; background:transparent url("../images/plan/buttons.png") no-repeat; }
+.page-plan #b-container li a { display:block; text-indent:-3000px; height:58px; width:172px;background:transparent url("../images/plan/buttons.png") no-repeat; }
+
+.page-plan #b-container li a.b-all  { background-position:0px 0px; }
+.page-plan #b-container li a.b-all-active,
+.page-plan #b-container li a.b-all:hover { background-position:0px -98px; }
+
+.page-plan #b-container li a.b-early  { background-position:-172px 0px; }
+.page-plan #b-container li a.b-early-active,
+.page-plan #b-container li a.b-early:hover { background-position:-172px -98px; }
+
+.page-plan #b-container li a.b-presale  { background-position:-344px 0px; }
+.page-plan #b-container li a.b-presale-active,
+.page-plan #b-container li a.b-presale:hover { background-position:-344px -98px; }
+
+.page-plan #b-container li a.b-fanzone  { background-position:-516px 0px; }
+.page-plan #b-container li a.b-fanzone-active,
+.page-plan #b-container li a.b-fanzone:hover { background-position:-516px -98px; }
+/* end plan */

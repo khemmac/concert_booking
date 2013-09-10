@@ -14,13 +14,17 @@
 #menu-1 li a.menu-facebook:hover,
 #menu-1 li.active a.menu-facebook { background-position: -153px -58px; }
 
-#menu-1 li a.menu-1 { background-position: -242px 0px; width:361px; }
+#menu-1 li a.menu-1 { background-position: -242px 0px; width:290px; }
 #menu-1 li a.menu-1:hover,
 #menu-1 li.active a.menu-1 { background-position: -242px -58px; }
 
-#menu-1 li a.menu-2 { background-position: -603px 0px; width:359px; }
+#menu-1 li a.menu-2 { background-position: -532px 0px; width:216px; }
 #menu-1 li a.menu-2:hover,
-#menu-1 li.active a.menu-2 { background-position: -603px -58px; }
+#menu-1 li.active a.menu-2 { background-position: -532px -58px; }
+
+#menu-1 li a.menu-3 { background-position: -748px 0px; width:214px; }
+#menu-1 li a.menu-3:hover,
+#menu-1 li.active a.menu-3 { background-position: -748px -58px; }
 /* end menu 1 */
 
 /* menu 2 */

@@ -27,6 +27,17 @@ Class Booking_model extends CI_Model
 			return true;
 	}
 
+	function has_booked($user_id){
+		$this->db->select('count(id) AS cnt');
+		$this->db->where('person_id', $user_id);
+		$this->db->where('status>', 1);
+		$query = $this->db->get('booking');
+
+		$cnt = $query->first_row()->cnt;
+
+		return ($cnt>=1);
+	}
+
 	function reach_limit($user_id){
 		// config ที่บอกว่ารอบจองนี้เป็นรอบที่เท่าไหร่
 		$round = $this->get_booking_round();

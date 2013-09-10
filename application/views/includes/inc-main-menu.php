@@ -3,7 +3,7 @@
 ?>
 <?php if(is_user_session_exist($this)): ?>
 <ul id="menu-2">
-	<li><a href="<?= site_url() ?>" class="menu-boost"></a></li>
+	<li><a href="<?= site_url('index/index2') ?>" class="menu-boost"></a></li>
 	<li><a href="https://www.facebook.com/boostplus" target="_blank" class="menu-facebook"></a></li>
 	<li><a href="<?= site_url('zone_early') ?>" class="menu-1"></a></li>
 	<li><a href="<?= site_url('transfer') ?>" class="menu-2"></a></li>
@@ -20,6 +20,7 @@
 	<li><a href="#" class="menu-boost"></a></li>
 	<li><a href="#" class="menu-facebook"></a></li>
 	<li><a href="#common-popup" class="menu-1 show-boxes"></a></li>
-	<li><a href="#contact-us-popup" class="menu-2 show-boxes"></a></li>
+	<li><a href="<?= site_url('plan') ?>" class="menu-2"></a></li>
+	<li><a href="#contact-us-popup" class="menu-3 show-boxes"></a></li>
 </ul>
 <?php endif; ?>

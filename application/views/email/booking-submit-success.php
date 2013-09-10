@@ -87,7 +87,7 @@
 						<td style="background-color:white;" align="center">0.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></td>
 					</tr>
 					<tr>
-						<td style="background-color:white;" align="right" colspan="5">จำนวนเงินสำหรับทำบัตรแข็ง</td>
+						<td style="background-color:white;" align="right" colspan="5">ค่าธรรมเนียมการออกบัตร (20 บาทต่อใบ)</td>
 						<td style="background-color:white;" align="center">20</td>
 					</tr>
 					<tr>

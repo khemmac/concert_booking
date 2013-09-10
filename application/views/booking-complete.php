@@ -65,15 +65,13 @@
 				<td class="item-price"><?= number_format($zone_price) ?></td>
 				<td class="price"><?= number_format($zone_price * count($seat_list)) ?></td>
 				<?php if($key_z==0): ?>
-					<td class="status" rowspan="<?= count($zone_list) + 4 ?>" valign="top" align="center" style="padding:5px;">
+					<td class="status" rowspan="<?= count($zone_list) + 4 ?>" valign="middle" align="center" style="padding:5px;">
 					<?php if($booking_data['status']==4): ?>
 						ชำระเงินแล้ว
-						วันที่ xx/xx/xx
-						เวลา 00:00
+						วันที่ <?= util_helper_format_date(util_helper_parse_date($booking_data['pay_date'])) ?>
+						เวลา <?= util_helper_format_time(util_helper_parse_date($booking_data['pay_date'])) ?>
 					<?php elseif($booking_data['status']==3): ?>
-						รอเจ้าหน้าที่ตรวจสอบการโอนเงิน
-						วันที่ xx/xx/xx
-						เวลา 00:00
+						เจ้าหน้าที่กำลังตรวจสอบการโอนเงินของท่าน
 					<?php elseif($booking_data['status']==2): ?>
 						กรุณาชำระเงิน
 						<br />ภายในวันที่ <?= util_helper_format_date(util_helper_add_six_hour($booking_data['booking_date'])) ?>
@@ -100,7 +98,7 @@
 			</tr>
 			<tr class="tbody">
 				<td class="bg-left"></td>
-				<td colspan="5" class="sum-price" align="right">จำนวนเงินสำหรับทำบัตรแข็ง</td>
+				<td colspan="5" class="sum-price" align="right">ค่าธรรมเนียมการออกบัตร (20 บาทต่อใบ)</td>
 				<td class="price">20</td>
 				<td class="bg-right"></td>
 			</tr>

@@ -24,10 +24,22 @@ class Member extends CI_Controller {
 	}
 
 	function login(){
-		$r_url = $this->input->post('rurl');
+		// fix user for test
+		$user_test = $this->input->post('username');
+		if(!empty($user_test)){
+			if($user_test=='khemmac' || $user_test=='testsbs1' || $user_test=='testsbs2'
+			 || $user_test=='testsbs3' || $user_test=='testsbs4' || $user_test=='testsbs5'){
+			 	// user is for test correct
+			 }else{
+			 	echo 'USER IS NOT FOR TEST';
+				return;
+			 }
+		}
 
-		if(empty($r_url))
-			$r_url = 'index';
+		//$r_url = $this->input->post('rurl');
+
+		//if(empty($r_url))
+			$r_url = 'index/index2';
 
 		if(is_user_session_exist($this))
 			redirect('index');
@@ -62,11 +74,6 @@ class Member extends CI_Controller {
 	}
 
 	function register(){
-		$pass = $this->input->get('pass');
-		if($pass!='1123')
-			redirect('index');
-
-
 		if(is_user_session_exist($this))
 			redirect('member/profile');
 

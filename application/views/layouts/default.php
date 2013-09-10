@@ -59,7 +59,11 @@
 </ol>
 
 <h4 style="text-align:center;">ติดต่อสอบถามโทร 02-938-5959 ต่อ 130 , 084-342-2230 และ 089-811-1801</h4>
-<div style="text-align:center;"><a style="color:black; text-decoration:underline;" href="<?= base_url('images/pdf/term_condition.pdf') ?>" target="_blank">ดาวน์โหลดข้อกำหนดและเงื่อนไข</a></div>
+<div style="text-align:center;">
+	<img src="<?= base_url('images/common/condition-logo.gif') ?>" style="border:0px;" />
+	<br />
+	<a style="color:black; text-decoration:underline;" href="<?= base_url('images/pdf/term_condition.pdf') ?>" target="_blank">ดาวน์โหลดข้อกำหนดและเงื่อนไข</a>
+</div>
 
 			</div>
 			<input type="checkbox" name="chk-dont-show-popup" id="chk-dont-show-popup" />

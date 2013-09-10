@@ -55,7 +55,7 @@
 				<td class="item-price"><?= number_format($zone_price) ?></td>
 				<td class="price"><?= number_format($zone_price * count($seat_list)) ?></td>
 				<?php if($key_z==0): ?>
-					<td class="status" align="center" rowspan="<?= count($zone_list) + 4 ?>" valign="top" style="padding:5px;">
+					<td class="status" align="center" rowspan="<?= count($zone_list) + 4 ?>" valign="middle" style="padding:5px;">
 						กรุณาชำระเงิน
 						<br />ภายในวันที่ <?= util_helper_format_date(util_helper_add_six_hour(new DateTime())) ?>
 						<br />ก่อนเวลา <?= util_helper_format_time(util_helper_add_six_hour(new DateTime())) ?>
@@ -78,7 +78,7 @@
 			</tr>
 			<tr class="tbody">
 				<td class="bg-left"></td>
-				<td colspan="4" class="sum-price" align="right">ค่าธรรมเนียมการออกบัตร</td>
+				<td colspan="4" class="sum-price" align="right">ค่าธรรมเนียมการออกบัตร (20 บาทต่อใบ)</td>
 				<td class="price"><?= count($seat_list) * 20 ?></td>
 				<td class="bg-right"></td>
 			</tr>
@@ -107,9 +107,9 @@
 								));
 							?>
 						</li>
-						<li class="pdf-ctnr">
+						<!--li class="pdf-ctnr">
 							<a href="<?= site_url('pdf/print_booking/'.$booking_data['id']) ?>" class="pdf"></a>
-						</li>
+						</li-->
 						<li class="cancel-ctnr">
 							<a href="<?= site_url('zone_early/'.$booking_data['id']) ?>" class="cancel"></a>
 						</li>
