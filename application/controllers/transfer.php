@@ -24,12 +24,22 @@ class Transfer extends CI_Controller {
 					array(
 						'field'		=> 'code',
 						'label'		=> 'รหัสจอง',
-						'rules'		=> 'trim|required|min_length[7]|max_length[7]|xss_clean||callback_check_code_valid'
+						'rules'		=> 'trim|required|exact_length[7]|xss_clean||callback_check_code_valid'
 					),
 					array(
 						'field'		=> 'pay_money',
 						'label'		=> 'จำนวนเงินที่โอน',
 						'rules'		=> 'trim|required|numeric'
+					),
+					array(
+						'field'		=> 'pay_money_satang',
+						'label'		=> 'จำนวนเงินที่โอน (สตางค์)',
+						'rules'		=> 'trim|required|numeric|exact_length[2]'
+					),
+					array(
+						'field'		=> 'slip',
+						'label'		=> 'สลิปการโอนเงิน',
+						'rules'		=> 'trim|file_required'
 					)
 				);
 		$this->form_validation->set_rules($rules);

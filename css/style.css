@@ -388,8 +388,8 @@ form input {
 .page-transfer #form .slip { position:absolute; top:238px; left:212px; width:221px; }
 
 .page-transfer #form-button { position:absolute; top:372px; left:238px; margin:0px; padding:0px; list-style:none; }
-.page-transfer #form-button #submit { background:transparent url("../images/transfer/buttons.gif") no-repeat; width:155px; height:40px; cursor:pointer; }
-.page-transfer #form-button #submit:hover { background-position:0px -63px; }
+.page-transfer #form-button #b-submit { background:transparent url("../images/transfer/buttons.gif") no-repeat; width:155px; height:40px; cursor:pointer; }
+.page-transfer #form-button #b-submit:hover { background-position:0px -63px; }
 /* end transfer */
 
 /* booking-check */

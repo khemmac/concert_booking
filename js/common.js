@@ -21,6 +21,12 @@ Common.prototype = {
 
 			el.on('keyup', function(){
 				tip.fadeOut();
+			}).on('change', function(){
+				tip.fadeOut();
+			});
+
+			tip.click(function(){
+				$(this).fadeOut();
 			});
 		});
 

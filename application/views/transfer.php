@@ -113,7 +113,7 @@
 		<ul id="form-button">
 			<li>
 				<?= form_submit(array(
-						'id'		=> 'submit',
+						'id'		=> 'b-submit',
 						'value'		=> '',
 						'class'		=> 'submit'
 					));
@@ -126,18 +126,41 @@
 </div>
 <script type="text/javascript">
 	$(function(){
-		$('#submit').click(function(){
+		$('#b-submit').click(function(e){
+			e.preventDefault();
+
 			var bd = $('select[name=transfer_date]').val(),
 				bm = $('select[name=transfer_month]').val(),
 				by = $('select[name=transfer_year]').val();
-			if(!common.isValidDate(by,bm,bd)){
+			if(!common.form.isValidDate(by,bm,bd)){
 				alert('วันที่ผิดพลาด กรุณาตรวจสอบอีกครั้ง');
 				return false;
 			}
 
-			setTimeout(function(){
-				$(this).attr('disabled', 'disabled');
-			}, 1);
+			var code = $.trim($('input[name=code]').val()),
+				pay_money = $.trim($('input[name=pay_money]').val()),
+				pay_money_satang = $.trim($('input[name=pay_money_satang]').val()),
+				slip = $.trim($('input[name=slip]').val());
+
+			if(code!='' && pay_money!='' && pay_money_satang!='' && slip!=''){
+				$('#transfer-confirm-popup .p-code').text(code);
+				$('#transfer-confirm-popup .p-date').text($('select[name=transfer_date]').val()+' '+$('select[name=transfer_month] option:selected').text()+' '+$('select[name=transfer_year]').val());
+				$('#transfer-confirm-popup .p-time').text($('select[name=transfer_hh]').val()+':'+$('select[name=transfer_mm]').val());
+				$('#transfer-confirm-popup .p-pay').text(pay_money+'.'+pay_money_satang);
+				$('#transfer-confirm-popup .p-bank').text($('select[name=bank_name]').val());
+
+				// show popup before submit
+				common.popup.show(null, '#transfer-confirm-popup');
+				return false;
+			}else{
+				$('#form form').submit();
+			}
+
+		});
+
+		$('#transfer-confirm-popup a.ok').unbind('click').bind('click', function(e){
+			e.preventDefault();
+			$('#form form').submit();
 		});
 
 		common.combo.create($('select[name=transfer_date]'),	'sexy-combo-transfer_date');
