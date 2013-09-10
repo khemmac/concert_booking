@@ -30,7 +30,7 @@ Class Booking_model extends CI_Model
 	function has_booked($user_id){
 		$this->db->select('count(id) AS cnt');
 		$this->db->where('person_id', $user_id);
-		$this->db->where('status>', 1);
+		$this->db->where('status >', 1);
 		$query = $this->db->get('booking');
 
 		$cnt = $query->first_row()->cnt;

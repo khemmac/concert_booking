@@ -24,6 +24,13 @@ class Zone_early extends CI_Controller {
 			redirect('member/login?rurl='.uri_string());
 		$user_id = get_user_session_id($this);
 
+		// ถ้า user มีการจองไปแล้วให้ redirect ไปที่หน้าตรวจสอบสถานะ
+		$has_booked = $this->booking_model->has_booked($user_id);
+		if($has_booked){
+			redirect('booking/check?popup=zone-booked-limit-popup');
+			return;
+		}
+
 		$reach_limit = $this->booking_model->reach_limit($user_id);
 		if($reach_limit){
 			redirect('booking/check?popup=seat-limit-popup');

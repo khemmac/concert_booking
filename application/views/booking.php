@@ -91,7 +91,7 @@
 			<tr class="tfoot">
 				<td colspan="8">footer</td>
 			</tr>
-			<tr class="tfoot-text">
+			<tr class="tfoot-text tfoot-text-early">
 				<td colspan="8">footer</td>
 			</tr>
 			<tr class="tfoot-buttons" align="center">

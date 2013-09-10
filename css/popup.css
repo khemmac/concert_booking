@@ -90,6 +90,17 @@
 #zone-confirm-clear-popup a.close { background-position:-85px 0px; left:237px; }
 #zone-confirm-clear-popup a.close:hover { background-position:-85px -30px; }
 
+/* zone booked limit popup */
+#zone-booked-limit-popup {
+	width:439px; height:258px; position:relative;
+	background:transparent url('../images/popup/zone-booked-limit.png') no-repeat;
+}
+#zone-booked-limit-popup a.close {
+	position:absolute; top:145px; left:179px; width:85px; height:30px; text-indent:-2000px;
+	background:transparent url("../images/register/button-ok.png") no-repeat 0px 0px; cursor:pointer;
+}
+#zone-booked-limit-popup a.close:hover { background-position:0px -30px; }
+
 /* contact us popup */
 #contact-us-popup {
 	width:893px; height:585px; position:relative;

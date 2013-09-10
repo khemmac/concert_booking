@@ -87,6 +87,9 @@
 		<div id="zone-blank-seat-popup" class="window">
 			<a href="#close" class="close"></a>
 		</div>
+		<div id="zone-booked-limit-popup" class="window">
+			<a href="#close" class="close"></a>
+		</div>
 
 		<div id="zone-soldout-popup" class="window">
 			<a href="#close" class="close"></a>
