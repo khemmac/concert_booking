@@ -4,6 +4,7 @@
 		return $_SERVER["SERVER_NAME"]=='localhost';
 	}
 
+
 	function period_helper_pre_register() {
 		$is_test = period_helper_is_test();
 		$cur_time = strtotime("now");
