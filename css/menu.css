@@ -92,3 +92,18 @@
 #member-sub-menu a.menu-login { width:60px; background-position:0px -23px; }
 #member-sub-menu a.menu-register { width:97px; background-position:-60px -23px; }
 /* end member sub menu */
+
+/* language menu */
+#menu-language {
+	margin:0px; padding:0px; list-style:none;
+	position:absolute; top:80px; left:44px;
+	width: 200px; height:23px; z-index:999;
+}
+#menu-language li { float:left; }
+#menu-language a { width:50px; color:white; font-size:12px; }
+#menu-language a:hover { text-decoration:underline; }
+#menu-language a.active { text-decoration:underline; font-weight:bold; }
+#menu-language a.menu-th {  }
+#menu-language .menu-sep { width:27px; text-indent:-3000px; background: transparent url('../images/common/member-sub-menu.gif') no-repeat -53px 0px; }
+#menu-language a.menu-en {  }
+/* end language menu */
