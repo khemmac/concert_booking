@@ -12,13 +12,13 @@
 </ul>
 <?php elseif($p=='member/register' || $p=='member/register_success'): ?>
 <ul id="menu-3">
-	<li><a href="#" class="menu-boost"></a></li>
+	<li><a href="<?= site_url('index/index2') ?>" class="menu-boost"></a></li>
 	<li class="menu-register"></li>
 </ul>
 <?php else: ?>
 <ul id="menu-1">
-	<li><a href="#" class="menu-boost"></a></li>
-	<li><a href="#" class="menu-facebook"></a></li>
+	<li><a href="<?= site_url('index/index2') ?>" class="menu-boost"></a></li>
+	<li><a href="https://www.facebook.com/boostplus" target="_blank" class="menu-facebook"></a></li>
 	<li><a href="#common-popup" class="menu-1 show-boxes"></a></li>
 	<li><a href="<?= site_url('plan') ?>" class="menu-2"></a></li>
 	<li><a href="#contact-us-popup" class="menu-3 show-boxes"></a></li>

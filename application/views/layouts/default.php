@@ -39,7 +39,7 @@
 		<?=$this->load->view('includes/inc-language-menu','', TRUE)?>
 		<?=$this->load->view('includes/inc-member-menu','', TRUE)?>
 		<?=$view?>
-		<span id="footer" style="position:absolute; bottom:20px; right:30px; display:block; width:207px; height:16px; background:transparent url('<?= base_url("/images/common/foot-contact.png") ?>') no-repeat; text-indent:-9000px;">ติดต่อสอบถาม 02-938-5959</span>
+		<span id="footer" style="position:absolute; bottom:20px; right:30px; display:block; width:207px; height:16px; background:transparent url('<?= base_url("/images".(language_helper_is_en($this)?'/en':'')."/common/foot-contact.png") ?>') no-repeat; text-indent:-9000px;">ติดต่อสอบถาม 02-938-5959</span>
 	</div>
 
 	<div id="boxes">

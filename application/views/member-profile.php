@@ -11,7 +11,7 @@
 			$year_start = 2013;
 			$years = array();
 			for($i=$year_start;$i>=$year_start-89;$i--)
-				$years[$i] = ($i+543);
+				$years[$i] = language_helper_is_th($this)?($i+543):$i;
 
 			$forms = array(
 				array(
@@ -37,10 +37,10 @@
 					'name'		=> 'question',
 					'class'		=> 'question',
 					'type'		=> 'dropdown',
-					'options'	=> array('สัตว์เลี้ยงตัวแรกของคุณชื่ออะไร?'=>'สัตว์เลี้ยงตัวแรกของคุณชื่ออะไร?',
-										'เพื่อนสนิทสมัยวัยรุ่นของคุณชื่ออะไร?'=>'เพื่อนสนิทสมัยวัยรุ่นของคุณชื่ออะไร?',
-										'อาหารจานแรกที่คุณหัดทำคืออะไร?'=>'อาหารจานแรกที่คุณหัดทำคืออะไร?',
-										'คุณขึ้นเครื่องบินไปที่ไหนครั้งแรก?'=>'คุณขึ้นเครื่องบินไปที่ไหนครั้งแรก?'
+					'options'	=> array('สัตว์เลี้ยงตัวแรกของคุณชื่ออะไร?'=>language_helper_is_th($this)?'สัตว์เลี้ยงตัวแรกของคุณชื่ออะไร?':'Your first pet\'s name?',
+										'เพื่อนสนิทสมัยวัยรุ่นของคุณชื่ออะไร?'=>language_helper_is_th($this)?'เพื่อนสนิทสมัยวัยรุ่นของคุณชื่ออะไร?':'What is your teenage best friend\'s name?',
+										'อาหารจานแรกที่คุณหัดทำคืออะไร?'=>language_helper_is_th($this)?'อาหารจานแรกที่คุณหัดทำคืออะไร?':'What is the first dish you cooked?',
+										'คุณขึ้นเครื่องบินไปที่ไหนครั้งแรก?'=>language_helper_is_th($this)?'คุณขึ้นเครื่องบินไปที่ไหนครั้งแรก?':'What is the destination you fly to?'
 									)
 				),
 				array(
@@ -72,7 +72,7 @@
 					'name'		=> 'sex',
 					'class'		=> 'sex',
 					'type'		=> 'dropdown',
-					'options'	=> array('M'=>'ชาย', 'F'=>'หญิง')
+					'options'	=> array('M'=>language_helper_is_th($this)?'ชาย':'Male', 'F'=>language_helper_is_th($this)?'หญิง':'Female')
 				),
 				array(
 					'name'		=> 'birth_date',
@@ -84,10 +84,19 @@
 					'name'		=> 'birth_month',
 					'class'		=> 'birth_month',
 					'type'		=> 'dropdown',
-					'options'	=> array('1'=>'มกราคม', '2'=>'กุมภาพันธ์', '3'=>'มีนาคม',
-										'4'=>'เมษายน', '5'=>'พฤษภาคม', '6'=>'มิถุนายน',
-										'7'=>'กรกฎาคม', '8'=>'สิงหาคม', '9'=>'กันยายน',
-										'10'=>'ตุลาคม', '11'=>'พฤศจิกายน', '12'=>'ธันวาคม')
+					'options'	=> array('1'=>language_helper_is_th($this)?'มกราคม':'January',
+										'2'=>language_helper_is_th($this)?'กุมภาพันธ์':'Febuary',
+										'3'=>language_helper_is_th($this)?'มีนาคม':'March',
+										'4'=>language_helper_is_th($this)?'เมษายน':'April',
+										'5'=>language_helper_is_th($this)?'พฤษภาคม':'May',
+										'6'=>language_helper_is_th($this)?'มิถุนายน':'June',
+										'7'=>language_helper_is_th($this)?'กรกฎาคม':'July',
+										'8'=>language_helper_is_th($this)?'สิงหาคม':'August',
+										'9'=>language_helper_is_th($this)?'กันยายน':'September',
+										'10'=>language_helper_is_th($this)?'ตุลาคม':'October',
+										'11'=>language_helper_is_th($this)?'พฤศจิกายน':'November',
+										'12'=>language_helper_is_th($this)?'ธันวาคม':'December'
+									)
 				),
 				array(
 					'name'		=> 'birth_year',
@@ -156,7 +165,7 @@
 				bm = $('select[name=birth_month]').val(),
 				by = $('select[name=birth_year]').val();
 			if(!common.form.isValidDate(by,bm,bd)){
-				alert('วันที่ผิดพลาด กรุณาตรวจสอบอีกครั้ง');
+				alert(language_helper_is_th($this)?'วันที่ผิดพลาด กรุณาตรวจสอบอีกครั้ง':'Date is invalid please try again.');
 				return false;
 			}
 
