@@ -45,25 +45,57 @@
 	<div id="boxes">
 		<div id="common-popup" class="window">
 			<div id="content">
-<h3 style="text-align:center;">ขั้นตอนการซื้อบัตร Early Bird / Presale</h3>
-<h4 style="text-align:center;">SBS MTV K-POP FESTIVAL 2013 LIVE IN BANGKOK (20 OCTOBER 2013)<h4>
+<?php if(language_helper_is_en($this)): ?>
+<h3 style="text-align:center;">Early Bird booking process</h3>
+<h4 style="text-align:center;">(Only Zone A3: Festival ticket 6,000 Baht)<h4>
+<h4 style="text-align:center;">Saturday 14<sup>th</sup> September at 8:30 am. – 11.30 pm.<h4>
+<h4 style="text-align:center;">Early Bird booking privilege Early Bird<h4>
+<h4 style="text-align:center;">บัตรLimited Edition / Fast Track (รายละเอียดเพิ่มเติมจะแจ้งให้ทราบอีกครั้ง)<h4>
 <ol style="font-weight:normal; font-size:smaller;">
-	<li>เข้าสู่ <a style="color:black; text-decoration:underline;" href="<?= site_url('') ?>">www.boostplus.co.th</a> เลือก SBS MTV K-POP FESTIVAL 2013 LIVE IN BANGKOK</li>
-	<li>ทำการ Register เพื่อเข้าสู่ระบบโดยต้องกรอกข้อมูลให้ครบถ้วนทุกช่อง เมื่อ Register เรียบร้อยแล้ว ผู้จองจะต้องทำการ Log in ก่อนทุกครั้งโดยใช้ Username และ Password ของตนเองเท่านั้น</li>
-	<li>เมื่อเข้าระบบเรียบร้อยแล้ว เลือกหัวข้อ &quot;ซื้อบัตร&quot; โดยผู้จองสามารถเลือกโซนตามที่ต้องการได้ โดยในการจองหนึ่ง Account สามารถเลือกจำนวนการจองได้ไม่เกินจำนวน 6 ที่</li>
-	<li>เมื่อกรอกรายละเอียดการจอง พร้อมเลือกจำนวนการจองเรียบร้อยแล้ว ระบบจะแจ้งรหัสการจอง , จำนวนเงินที่ต้องชำระ (ค่าธรรมเนียนการออกบัตร 20 บาทต่อใบ) , เลขที่บัญชีและธนาคารที่ต้องโอนเงิน และกำหนดเวลาที่ต้องโอนเงิน (กรุณาโอนเงิน ภายในระยะเวลา 6 ชั่วโมงภายหลังจากลงทะเบียน หากมีการแก้ไขข้อมูลสามารถแก้ไขได้ในระยะเวลาดังกล่าว) **กรุณา Save รายละเอียดการจองไว้ เพื่อความสะดวกในการทำรายการ*</li>
-	<li>ยอดเงินที่ต้องชำระจะต้องมีเศษสตางค์ เพื่อสะดวกในการตรวจสอบ กรุณาโอนเงินตามยอดที่แจ้ง</li>
-	<li>หลังจากโอนเงินเรียบร้อยแล้ว กรุณาแจ้งข้อมูลการโอนเงินกลับมาภายใน 6 ชั่วโมง หลังจากที่ทำการจอง พร้อมอัพโหลดสลิปการโอนเงิน มาที่ <a style="color:black; text-decoration:underline;" href="<?= site_url('sbsmtv2013') ?>">www.boostplus.co.th/sbsmtv2013</a> เลือกหัวข้อ &quot;แจ้งโอนเงิน&quot;  (โดยต้อง Log in เข้าสู่ระบบก่อนทุกครั้ง) หากเกินระยะเวลาดังกล่าวทางผู้จัดจะไม่รับผิดชอบในกรณีใดๆทั้งสิ้น</li>
-	<li>48 ชั่วโมงหลังการแจ้งการโอนเงิน ขอให้ผู้จองเข้ามาตรวจสอบสถานะการจองอีกครั้งใน <a style="color:black; text-decoration:underline;" href="<?= site_url('sbsmtv2013') ?>">www.boostplus.co.th/sbsmtv2013</a> เลือกหัวข้อ &quot;ตรวจสอบสถานะบัตร&quot; (โดยต้อง Log in เข้าสู่ระบบก่อนทุกครั้ง) หากพบว่าข้อมูลไม่ถูกต้องกรุณาแจ้งกลับมายังเจ้าหน้าที่ตามเบอร์ติดต่อที่ระบุไว้ด้านล่าง</li>
-	<li>กรุณา Print ใบจองเก็บไว้เป็นหลักฐาน เพื่อใช้แลกรับบัตรแข็งเข้างาน</li>
-	<li>ผู้จองสามารถมารับบัตรแข็งได้ในวันอาทิตย์ที่ 20 ตุลาคม 2556 ตั้งแต่ เวลา 13.00 น. บริเวณหน้างาน โดยนำหลักฐานการจองบัตร (ใบยืนยันการจอง) ในรอบ Early Bird และ PreSale ผ่านทางช่องทางออนไลน์ พร้อมบัตรประชาชนตามชื่อที่ระบุในใบจอง มาเป็นหลักฐานในการรับบัตร</li>
+	<li>Enter <a style="color:black; text-decoration:underline;" href="<?= site_url('') ?>">www.boostplus.co.th</a> Choose SBS K-POP FESTIVAL 2013 LIVE IN BANGKOK</li>
+	<li>Register for Early Bird booking by completing the required information</li>
+	<li>Please log in with existing username and password every time. After logging in, choose “Booking”, and choose Zone A3. A maximum of 6 seats can be purchased per customer.
+**After submitting, no changes or modification can be made under any circumstances.</li>
+	<li>When the booking form is completed, the system will inform you the booking reference no., booking and payment details (which includes a charge of 20 Baht/ticket).</li>
+	<li>Please note that your transfer must be made *at actual informed total balance (including Satang) within 4 hours after submitting.</li>
+	<li>After your transfer is made, please submit your proof of transfer (payment slip) by uploading on to “Payment Confirmation” at www.boostplus.co.th within 4 hours.</li>
+	<li>After 48 hours of confirming your payment, your booking status can be tracking at “Booking Status” button on www.boostplus.co.th *If you find any error/incorrect information please contact us through provided contact below.</li>
+	<li>Please print out the confirmation document and payment slip to get the original ticket(s) at the venue</li>
+	<li>You can receive your ticket(s) on Sunday 20th October 2013 at the venue (the detail will be inform) by presenting your Early Bird/ Pre- Sale online booking confirmation document along with your ID card in order to secure your ticket.</li>
 </ol>
+<h5>
+Caution:
+Only Festival ticket, we reserve the right to refuse to issue a replacement ticket for lost or stolen.
+</h5>
 
+<?php else: ?>
+<h3 style="text-align:center;">ขั้นตอนการซื้อบัตร Early Bird</h3>
+<h4 style="text-align:center;">(เฉพาะโซนA3 บัตรยืนราคา6,000 บาท)<h4>
+<h4 style="text-align:center;">วันเสาร์ที่14 กันยายน 2556 ตั้งแต่เวลา 8.30 – 23.30 น.<h4>
+<h4 style="text-align:center;">สิทธิพิเศษสำหรับผู้ซื้อบัตร Early Bird<h4>
+<h4 style="text-align:center;">บัตรLimited Edition / Fast Track (รายละเอียดเพิ่มเติมจะแจ้งให้ทราบอีกครั้ง)<h4>
+<ol style="font-weight:normal; font-size:smaller;">
+	<li>เข้าสู่ <a style="color:black; text-decoration:underline;" href="<?= site_url('') ?>">www.boostplus.co.th</a> เลือก SBS K-POP FESTIVAL 2013 LIVE IN BANGKOK</li>
+	<li>ทำการ Register เพื่อเข้าสู่ระบบโดยต้องกรอกข้อมูลให้ครบถ้วนทุกช่องเมื่อ Register เรียบร้อยแล้วผู้จองจะต้องทำการ Log in ก่อนทุกครั้งโดยใช้ Username และPassword ของตนเองเท่านั้น</li>
+	<li>เมื่อเข้าระบบเรียบร้อยแล้วเลือกหัวข้อ“ซื้อบัตร”กดเลือกโซน A3 โดยการจองหนึ่งครั้งสามารถเลือกจำนวนการจองได้ไม่เกินจำนวน 6 ที่ **หากกดยืนยันการจองแล้วผู้จองไม่สามารถแก้ไขได้ในทุกกรณี</li>
+	<li>เมื่อกรอกรายละเอียดการจองเรียบร้อยแล้วระบบจะแจ้งรหัสการจอง, จำนวนเงิน , เลขที่บัญชีและธนาคารที่ต้องโอนเงิน (ค่าธรรมเนียมออกบัตร 20 บาทต่อใบ)</li>
+	<li>กรุณาโอนเงินภายในระยะเวลา 4 ชั่วโมงภายหลังจากกดยืนยันการจองยอดเงินที่ต้องชำระจะต้องมีเศษสตางค์เพื่อสะดวกในการตรวจสอบกรุณาโอนเงินตามยอดที่แจ้ง**หากไม่โอนเงินภายในระยะเวลาดังกล่าวจะถือว่าท่านสละสิทธิ์การจองทางผู้จัดจะไม่รับผิดชอบในกรณีใดๆทั้งสิ้น</li>
+	<li>หลังจากโอนเงินเรียบร้อยแล้วกรุณาแจ้งข้อมูลการโอนเงินกลับมาภายใน4ชั่วโมงพร้อมอัพโหลดสลิปการโอนเงินมาที่ <a style="color:black; text-decoration:underline;" href="<?= site_url('') ?>">www.boostplus.co.th</a> เลือกหัวข้อ“แจ้งโอนเงิน”</li>
+	<li>หลังการแจ้งการโอนเงิน48 ชั่วโมงขอให้ผู้จองเข้ามาตรวจสอบสถานะการจองอีกครั้งใน <a style="color:black; text-decoration:underline;" href="<?= site_url('') ?>">www.boostplus.co.th</a> เลือกหัวข้อ“ตรวจสอบสถานะบัตร”หากพบว่าข้อมูลไม่ถูกต้องกรุณาแจ้งกลับมายังเจ้าหน้าที่ตามเบอร์ติดต่อที่ระบุไว้ให้</li>
+	<li>กรุณา print ใบจองเก็บไว้เป็นหลักฐานเพื่อใช้แลกรับบัตรจริงในวันงาน</li>
+	<li>ผู้จองสามารถมารับบัตรจริงได้ในวันอาทิตย์ที่ 20 ตุลาคม 2556 บริเวณหน้างาน(เวลาและสถานที่จะแจ้งให้ทราบอีกครั้ง)โดยนำหลักฐานการจองบัตร(ใบยืนยันการจอง) ในรอบEarly Bird และPre Saleผ่านทางช่องทางออนไลน์พร้อมบัตรประชาชนตามชื่อที่ระบุในใบจองมาเป็นหลักฐานในการรับบัตร</li>
+</ol>
+<?php endif; ?>
+
+<?php if(language_helper_is_en($this)): ?>
+<h4 style="text-align:center;">Contact 02-938-5959 - 130 , 084-342-2230 and 089-811-1801</h4>
+<?php else: ?>
 <h4 style="text-align:center;">ติดต่อสอบถามโทร 02-938-5959 ต่อ 130 , 084-342-2230 และ 089-811-1801</h4>
+<?php endif; ?>
 <div style="text-align:center;">
 	<img src="<?= base_url('images/common/condition-logo.gif') ?>" style="border:0px;" />
 	<br />
-	<a style="color:black; text-decoration:underline;" href="<?= base_url('images/pdf/term_condition.pdf') ?>" target="_blank">ดาวน์โหลดข้อกำหนดและเงื่อนไข</a>
+	<a style="color:black; text-decoration:underline;" href="<?= base_url('images/pdf/term_condition'.(language_helper_is_en($this)?'_en':'').'.pdf') ?>" target="_blank"><?= language_helper_is_en($this)?'Download conditions.':'ดาวน์โหลดข้อกำหนดและเงื่อนไข' ?></a>
 </div>
 
 			</div>

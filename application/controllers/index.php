@@ -26,8 +26,13 @@ class Index extends CI_Controller {
 	}
 
 	function sbs2013(){
-		$this->phxview->RenderView('landing');
-		$this->phxview->RenderLayout('empty');
+		if(period_helper_pre_register() || period_helper_pass_pre_register()){
+			$this->phxview->RenderView('index');
+			$this->phxview->RenderLayout('default');
+		}else{
+			$this->phxview->RenderView('landing');
+			$this->phxview->RenderLayout('empty');
+		}
 	}
 
 	function index2(){

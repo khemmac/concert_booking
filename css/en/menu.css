@@ -43,21 +43,21 @@
 #menu-2 li a.menu-facebook:hover,
 #menu-2 li.active a.menu-facebook { background-position: -152px -58px; }
 
-#menu-2 li a.menu-1 { background-position: -240px 0px; width:162px; }
+#menu-2 li a.menu-1 { background-position: -240px 0px; width:127px; }
 #menu-2 li a.menu-1:hover,
 #menu-2 li.active a.menu-1 { background-position: -240px -58px; }
 
-#menu-2 li a.menu-2 { background-position: -402px 0px; width:242px; }
+#menu-2 li a.menu-2 { background-position: -367px 0px; width:230px; }
 #menu-2 li a.menu-2:hover,
-#menu-2 li.active a.menu-2 { background-position: -402px -58px; }
+#menu-2 li.active a.menu-2 { background-position: -367px -58px; }
 
-#menu-2 li a.menu-3 { background-position: -644px 0px; width:161px; }
+#menu-2 li a.menu-3 { background-position: -597px 0px; width:186px; }
 #menu-2 li a.menu-3:hover,
-#menu-2 li.active a.menu-3 { background-position: -644px -58px; }
+#menu-2 li.active a.menu-3 { background-position: -597px -58px; }
 
-#menu-2 li a.menu-4 { background-position: -805px 0px; width:157px; }
+#menu-2 li a.menu-4 { background-position: -783px 0px; width:179px; }
 #menu-2 li a.menu-4:hover,
-#menu-2 li.active a.menu-4 { background-position: -805px -58px; }
+#menu-2 li.active a.menu-4 { background-position: -783px -58px; }
 /* end menu 2 */
 
 /* menu 3 */

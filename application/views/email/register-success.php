@@ -9,7 +9,7 @@
 					<tr>
 						<td width="190"></td>
 						<td align="center" style="background-color:#18171c;">
-							<strong style="color:white;">ผลการลงทะเบียนของคุณ</strong>
+							<strong style="color:white;"><?= language_helper_is_th($this)?'ผลการลงทะเบียนของคุณ':'Your registration result' ?></strong>
 						</td>
 						<td width="190"></td>
 					</tr>
@@ -25,9 +25,15 @@
 					<tr>
 						<td width="190"></td>
 						<td align="center" style="background-color:#ffffff;">
-							ยินดีต้อนรับผู้จองบัตร Early Bird &amp; Presale นะคะ
+							<?php if(language_helper_is_th($this)): ?>
+							ยินดีต้อนรับผู้จองบัตร Early Bird &amp; Presale
 							<br />
 							Username และ Password ของท่านคือ
+							<?php else: ?>
+							Welcome to Early Bird &amp; Presale
+							<br />
+							Your Username and Password are
+							<?php endif; ?>
 						</td>
 						<td width="190"></td>
 					</tr>
@@ -56,7 +62,7 @@
 			<td height="290">&nbsp;</td>
 		</tr>
 		<tr>
-			<td height="30" align="right"><span style="color:#444444">ติดต่อสอบถาม 02-938-5959</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td height="30" align="right"><span style="color:#444444"><?= language_helper_is_th($this)?'ติดต่อสอบถาม':'Contact' ?> 02-938-5959</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 		</tr>
 	</table>
 </div>

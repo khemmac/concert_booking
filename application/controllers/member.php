@@ -95,12 +95,20 @@ class Member extends CI_Controller {
 			// auto login
 			$this->person_model->login($this->input->post('username'), $this->input->post('password'));
 
-			redirect('member/register_success');
+			if(period_helper_pre_register())
+				redirect('member/register_pre_success');
+			else
+				redirect('member/register_success');
 		}
 	}
 
 	function register_success(){
 		$this->phxview->RenderView('member-register-success');
+		$this->phxview->RenderLayout('default');
+	}
+
+	function register_pre_success(){
+		$this->phxview->RenderView('member-register-pre-success');
 		$this->phxview->RenderLayout('default');
 	}
 
