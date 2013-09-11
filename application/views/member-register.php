@@ -111,7 +111,7 @@
 				array(
 					'name'		=> 'tel',
 					'class'		=> 'tel',
-					'maxlength'	=> '20'
+					'maxlength'	=> '10'
 				),
 				array(
 					'name'		=> 'email',
@@ -181,5 +181,7 @@
 		common.combo.create($('select[name=birth_month]'),	'sexy-combo-birth_month');
 		common.combo.create($('select[name=birth_year]'),	'sexy-combo-birth_year');
 
+		// number only
+		$('input[name=tel]').numeric({ decimal: false, negative: false });
 	});
 </script>

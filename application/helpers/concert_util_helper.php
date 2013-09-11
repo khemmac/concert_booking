@@ -1,20 +1,31 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-	//secure your snippet from external access
-	function language_helper_current($_this){
-		$_this->load->helper('cookie');
-		$lang = get_cookie('concert_language');
-		if(!empty($lang))
-			return get_cookie('concert_language');
+
+	function util_helper_parse_date($dt_str){
+		if(is_string($dt_str))
+			return date_create($dt_str);
+		else if(is_object($dt_str))
+			return $dt_str;
 		else
-			return 'th';
+			return new DateTime();
 	}
 
-	function language_helper_is_th($_this) {
-		$lang = language_helper_current($_this);
-		return $lang=='th';
+	function util_helper_add_one_day($dt_str) {
+
+		$date = util_helper_parse_date($dt_str);
+		date_add($date, date_interval_create_from_date_string('+ 1 days'));
+		return $date;
 	}
 
-	function language_helper_is_en($_this) {
-		$lang = language_helper_current($_this);
-		return $lang=='en';
+	function util_helper_add_six_hour($dt_str) {
+		$date = util_helper_parse_date($dt_str);
+		date_add($date, date_interval_create_from_date_string('+ 6 hours'));
+		return $date;
+	}
+
+	function util_helper_format_date($dt){
+		return date_format($dt, 'd/m/Y');
+	}
+
+	function util_helper_format_time($dt){
+		return date_format($dt, 'H:i');
 	}

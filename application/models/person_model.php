@@ -3,7 +3,8 @@ Class Person_model extends CI_Model
 {
 	public function __construct() {
 		parent::__construct();
-		//$this->lang->load("message","english");
+
+		$this->lang->load("form_validation",language_helper_is_th($this)?'thai':'english');
 	}
 
 
@@ -93,47 +94,47 @@ Class Person_model extends CI_Model
 			),
 			array(
 				'field'		=> 'password',
-				'label'		=> 'รหัสผ่าน',
+				'label'		=> language_helper_is_th($this)?'รหัสผ่าน':'Password',
 				'rules'		=> 'trim|required|min_length[6]|max_length[50]|xss_clean|matches[passwordConf]|md5'
 			),
 			array(
 				'field'		=> 'passwordConf',
-				'label'		=> 'ยืนยัน รหัสผ่าน',
+				'label'		=> language_helper_is_th($this)?'ยืนยัน รหัสผ่าน':'Confirm Password',
 				'rules'		=> 'trim|required|md5'
 			),
 			array(
 				'field'		=> 'question',
-				'label'		=> 'คำถามกันลืมรัหสผ่าน',
+				'label'		=> language_helper_is_th($this)?'คำถามกันลืมรัหสผ่าน':'Security Question',
 				'rules'		=> 'trim|required'
 			),
 			array(
 				'field'		=> 'answer',
-				'label'		=> 'คำตอบ',
+				'label'		=> language_helper_is_th($this)?'คำตอบ':'Answer',
 				'rules'		=> 'trim|required|max_length[255]'
 			),
 			array(
 				'field'		=> 'code',
-				'label'		=> 'รหัสบัตรประชาชน',
+				'label'		=> language_helper_is_th($this)?'รหัสบัตรประชาชน':'ID-Card',
 				'rules'		=> 'trim|required|integer|exact_length[13]'
 			),
 			array(
 				'field'		=> 'thName',
-				'label'		=> 'ชื่อ - นามสกุล',
+				'label'		=> language_helper_is_th($this)?'ชื่อ - นามสกุล':'Name - Surname',
 				'rules'		=> 'trim|required|max_length[255]'
 			),
 			array(
 				'field'		=> 'enName',
-				'label'		=> 'ชื่อ - นามสกุล (ภาษาอังกฤษ)',
+				'label'		=> language_helper_is_th($this)?'ชื่อ - นามสกุล (ภาษาอังกฤษ)':'Name - Surname (English Language)',
 				'rules'		=> 'trim|required|max_length[255]'
 			),
 			array(
 				'field'		=> 'nickName',
-				'label'		=> 'ชื่อเล่น',
+				'label'		=> language_helper_is_th($this)?'ชื่อเล่น':'Nickname',
 				'rules'		=> 'trim|required|max_length[100]'
 			),
 			array(
 				'field'		=> 'sex',
-				'label'		=> 'เพศ',
+				'label'		=> language_helper_is_th($this)?'เพศ':'Sex',
 				'rules'		=> 'trim|required|max_length[1]'
 			),
 			array(
@@ -153,13 +154,13 @@ Class Person_model extends CI_Model
 			),
 			array(
 				'field'		=> 'address',
-				'label'		=> 'ที่อยุ่ปัจจุบัน',
+				'label'		=> language_helper_is_th($this)?'ที่อยุ่ปัจจุบัน':'Address',
 				'rules'		=> 'trim|required|max_length[1000]'
 			),
 			array(
 				'field'		=> 'tel',
-				'label'		=> 'เบอร์ติดต่อ',
-				'rules'		=> 'trim|required|integer|max_length[20]'
+				'label'		=> language_helper_is_th($this)?'เบอร์ติดต่อ':'Phone Number',
+				'rules'		=> 'trim|required|integer|exact_length[10]'
 			),
 			array(
 				'field'		=> 'email',
@@ -168,17 +169,17 @@ Class Person_model extends CI_Model
 			),
 			array(
 				'field'		=> 'job',
-				'label'		=> 'อาชีพ',
+				'label'		=> language_helper_is_th($this)?'อาชีพ':'Career',
 				'rules'		=> 'trim|max_length[255]'
 			),
 			array(
 				'field'		=> 'job_area',
-				'label'		=> 'สถานที่ทำงาน/เรียน',
+				'label'		=> language_helper_is_th($this)?'สถานที่ทำงาน/เรียน':'Work place/Institution',
 				'rules'		=> 'trim|max_length[255]'
 			),
 			array(
 				'field'		=> 'favorite_artist',
-				'label'		=> 'ศิลปินคนโปรด',
+				'label'		=> language_helper_is_th($this)?'ศิลปินคนโปรด':'Favorite artist/band',
 				'rules'		=> 'trim|required|max_length[255]'
 			)
 		);
@@ -188,12 +189,12 @@ Class Person_model extends CI_Model
 		return array(
 			array(
 				'field'		=> 'password_old',
-				'label'		=> 'รหัสผ่านเดิม',
+				'label'		=> language_helper_is_th($this)?'รหัสผ่านเดิม':'Old Password',
 				'rules'		=> 'trim|xss_clean|md5|callback_check_profile_pass_old'
 			),
 			array(
 				'field'		=> 'password_new',
-				'label'		=> 'รหัสผ่านใหม่',
+				'label'		=> language_helper_is_th($this)?'รหัสผ่านใหม่':'New Password',
 				'rules'		=> 'trim|min_length[6]|max_length[50]|xss_clean|md5|callback_check_profile_pass_new'
 			),
 			array(
@@ -203,27 +204,27 @@ Class Person_model extends CI_Model
 			),
 			array(
 				'field'		=> 'answer',
-				'label'		=> 'คำตอบ',
+				'label'		=> language_helper_is_th($this)?'คำตอบ':'Answer',
 				'rules'		=> 'trim|required|max_length[255]'
 			),
 			array(
 				'field'		=> 'code',
-				'label'		=> 'รหัสบัตรประชาชน',
+				'label'		=> language_helper_is_th($this)?'รหัสบัตรประชาชน':'ID-Card',
 				'rules'		=> 'trim|required|integer|exact_length[13]'
 			),
 			array(
 				'field'		=> 'thName',
-				'label'		=> 'ชื่อ - นามสกุล',
+				'label'		=> language_helper_is_th($this)?'ชื่อ - นามสกุล':'Name - Surname',
 				'rules'		=> 'trim|required|max_length[255]'
 			),
 			array(
 				'field'		=> 'enName',
-				'label'		=> 'ชื่อ - นามสกุล (ภาษาอังกฤษ)',
+				'label'		=> language_helper_is_th($this)?'ชื่อ - นามสกุล (ภาษาอังกฤษ)':'Name - Surname (English Language)',
 				'rules'		=> 'trim|required|max_length[255]'
 			),
 			array(
 				'field'		=> 'nickName',
-				'label'		=> 'ชื่อเล่น',
+				'label'		=> language_helper_is_th($this)?'ชื่อเล่น':'Nickname',
 				'rules'		=> 'trim|required|max_length[100]'
 			),
 			array(
@@ -248,13 +249,13 @@ Class Person_model extends CI_Model
 			),
 			array(
 				'field'		=> 'address',
-				'label'		=> 'ที่อยุ่ปัจจุบัน',
+				'label'		=> language_helper_is_th($this)?'ที่อยุ่ปัจจุบัน':'Address',
 				'rules'		=> 'trim|required|max_length[1000]'
 			),
 			array(
 				'field'		=> 'tel',
-				'label'		=> 'เบอร์ติดต่อ',
-				'rules'		=> 'trim|required|integer|max_length[20]'
+				'label'		=> language_helper_is_th($this)?'เบอร์ติดต่อ':'Phone Number',
+				'rules'		=> 'trim|required|integer|exact_length[10]'
 			),
 			array(
 				'field'		=> 'email',
@@ -263,17 +264,17 @@ Class Person_model extends CI_Model
 			),
 			array(
 				'field'		=> 'job',
-				'label'		=> 'อาชีพ',
+				'label'		=> language_helper_is_th($this)?'อาชีพ':'Career',
 				'rules'		=> 'trim|max_length[255]'
 			),
 			array(
 				'field'		=> 'job_area',
-				'label'		=> 'สถานที่ทำงาน/เรียน',
+				'label'		=> language_helper_is_th($this)?'สถานที่ทำงาน/เรียน':'Work place/Institution',
 				'rules'		=> 'trim|max_length[255]'
 			),
 			array(
 				'field'		=> 'favorite_artist',
-				'label'		=> 'ศิลปินคนโปรด',
+				'label'		=> language_helper_is_th($this)?'ศิลปินคนโปรด':'Favorite artist/band',
 				'rules'		=> 'trim|required|max_length[255]'
 			)
 		);
