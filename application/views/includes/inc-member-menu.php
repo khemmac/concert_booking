@@ -1,7 +1,3 @@
-<?php
-	$cur_time = strtotime("now");
-	if(!period_helper_pre_register() && period_helper_pass_pre_register()):
-?>
 <ul id="member-sub-menu">
 	<?php
 		if(is_user_session_exist($this)):
@@ -19,6 +15,3 @@
 	<li><a class="menu-login" href="<?= site_url('member/login') ?>"></a></li>
 	<?php endif; ?>
 </ul>
-<?php
-	endif;
-?>
