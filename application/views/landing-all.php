@@ -37,7 +37,7 @@ function MM_swapImage() { //v3.0
     <td rowspan="2"><img src="<?= base_url('images/landing-all/images/bg_02.jpg') ?>" width="2" height="566" /></td>
     <td><img src="<?= base_url('images/landing-all/images/bg_03.jpg') ?>" width="85" height="473" /></td>
      <td><img src="<?= base_url('images/landing-all/001.png') ?>" width="271" height="476" id="Image9" /></a></td>
-    <td><a href="<?= site_url('sbsmtv2013') ?>" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image10','','<?= base_url('images/landing-all/002_2.png?k22') ?>',1)"><img src="<?= base_url('images/landing-all/002.png?k2') ?>" width="271" height="476" id="Image10" /></a></td>
+    <td><a href="<?= site_url('sbsmtv2013') ?>" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image10','','<?= base_url('images/landing-all/002_2.png?k12') ?>',1)"><img src="<?= base_url('images/landing-all/002.png?k1') ?>" width="271" height="476" id="Image10" /></a></td>
     <td><a href="https://www.facebook.com/pages/Season-of-Love-Song/102605726466834?fref=ts" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image11','','<?= base_url('images/landing-all/003_2.png') ?>',1)"><img src="<?= base_url('images/landing-all/003.png') ?>" name="Image11" width="271" height="476" border="0" id="Image11" /></a></td>
     <td><img src="<?= base_url('images/landing-all/images/bg_07.jpg') ?>" width="76" height="473" /></td>
   </tr>

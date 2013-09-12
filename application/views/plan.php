@@ -8,32 +8,40 @@
 		<img id="fanzone" src="<?= base_url("/images/zone/plan-fanzone.gif") ?>" style="width:590px; height:624px; position:absolute; top:100px; left:86px; display:none;" />
 
 		<ul id="b-container">
-			<li class="b-all-container"><a href="#all" class="b-all-active">ทั้งหมด</a></li>
-			<li class="b-early-container"><a href="#early" class="b-early">ทั้งหมด</a></li>
-			<li class="b-presale-container"><a href="#presale" class="b-presale">ทั้งหมด</a></li>
-			<li class="b-fanzone-container"><a href="#fanzone" class="b-fanzone">ทั้งหมด</a></li>
+			<li class="b-all-container"><a href="#all" class="b-all-active b-plan">ทั้งหมด</a></li>
+			<li class="b-early-container"><a href="#early" class="b-early b-plan">ทั้งหมด</a></li>
+			<li class="b-presale-container"><a href="#presale" class="b-presale b-plan">ทั้งหมด</a></li>
+			<li class="b-fanzone-container"><a href="#fanzone" class="b-fanzone b-plan">ทั้งหมด</a></li>
+	<?php
+		if(!is_user_session_exist($this)):
+	?>
+			<li class="b-register-container"><a href="member/register" class="b-register">ลงทะเบียน</a></li>
+	<?php endif; ?>
 		</ul>
 	</div>
 </div>
 <script type="text/javascript">
 	$(function(){
 		var imgs = $('#content img'),
-			buttons = $('#b-container a');
+			buttons = $('a.b-plan');
 		buttons.click(function(e){
 			e.preventDefault();
 
 			var el = $(this),
-				href=$(this).attr('href');
+				href=$(this).attr('href'),
+				target = $(href);
 
-			buttons.each(function(i,o){
-				var cls = $(o).attr('class');
-				$(o).removeClass(cls).addClass(cls.replace('-active',''));
-			});
-			imgs.hide();
+			if(target.length>0){
+				buttons.each(function(i,o){
+					var cls = $(o).attr('class');
+					$(o).removeClass(cls).addClass(cls.replace('-active',''));
+				});
+				imgs.hide();
 
-			$(href).show();
+				target.show();
 
-			el.attr('class', el.attr('class')+'-active');
+				el.attr('class', el.attr('class')+'-active');
+			}
 
 		});
 	});

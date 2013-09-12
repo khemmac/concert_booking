@@ -21,6 +21,11 @@ class Seat_early extends CI_Controller {
 	}
 
 	function index(){
+		// fix disable session user
+		delete_user_session($this);
+		redirect('sbs2013');
+		return;
+
 		$this->benchmark->mark('overall_start');
 
 		if(!is_user_session_exist($this))

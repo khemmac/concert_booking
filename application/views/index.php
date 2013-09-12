@@ -7,7 +7,7 @@
 	?>
 		<a href="<?= site_url('member/register') ?>"
 			style="position:absolute; bottom:20px; left:264px; display:block; text-indent:-3000px; background:transparent url('<?= base_url('images'.(language_helper_is_en($this)?'/en':'').'/index/b-register.png') ?>') no-repeat; width:482px; height:77px;"
-			>สมัครสมาชิก</a>
+			>ลงทะเบียน</a>
 	<?php endif; ?>
 	</div>
 </div>

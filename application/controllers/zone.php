@@ -20,6 +20,11 @@ class Zone extends CI_Controller {
 	}
 
 	function index(){
+		// fix disable session user
+		delete_user_session($this);
+		redirect('sbs2013');
+		return;
+
 		if(!is_user_session_exist($this))
 			redirect('member/login?rurl='.uri_string());
 		$user_id = get_user_session_id($this);

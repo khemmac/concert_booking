@@ -431,4 +431,9 @@ form input {
 .page-plan #b-container li a.b-fanzone  { background-position:-516px 0px; }
 .page-plan #b-container li a.b-fanzone-active,
 .page-plan #b-container li a.b-fanzone:hover { background-position:-516px -98px; }
+
+.page-plan #b-container li.b-register-container  { margin-top:50px; }
+.page-plan #b-container li a.b-register  { background-position:-688px 0px; }
+.page-plan #b-container li a.b-register-active,
+.page-plan #b-container li a.b-register:hover { background-position:-688px -98px; }
 /* end plan */
