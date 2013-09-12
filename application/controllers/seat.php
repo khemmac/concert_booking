@@ -27,6 +27,14 @@ class Seat extends CI_Controller {
 			redirect('member/login?rurl='.uri_string());
 
 		$user_id = get_user_session_id($this);
+		$user_obj = get_user_session($this);
+
+		// check booking type
+		$booking_type = 1;
+		if($user_obj['type']==2)
+			$booking_type = 3;
+		else if(period_helper_presale())
+			$booking_type = 2;
 
 		$zone_name = $this->uri->segment(2);
 
@@ -47,13 +55,13 @@ class Seat extends CI_Controller {
 			));
 			if($query->num_rows()<=0){
 				// prepare booking data
-				$booking_id = $this->booking_model->prepare($user_id);
+				$booking_id = $this->booking_model->prepare($user_id, $booking_type);
 				redirect('seat/'.$zone_name.'/'.$booking_id);
 				return;
 			}
 		}else{
 			// prepare booking data
-			$booking_id = $this->booking_model->prepare($user_id);
+			$booking_id = $this->booking_model->prepare($user_id, $booking_type);
 			redirect('seat/'.$zone_name.'/'.$booking_id);
 			return;
 		}

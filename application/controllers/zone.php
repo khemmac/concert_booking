@@ -20,20 +20,24 @@ class Zone extends CI_Controller {
 	}
 
 	function index(){
-		// fix disable session user
-		delete_user_session($this);
-		redirect('sbs2013');
-		return;
 
 		if(!is_user_session_exist($this))
 			redirect('member/login?rurl='.uri_string());
 		$user_id = get_user_session_id($this);
+		$user_obj = get_user_session($this);
 
 		$reach_limit = $this->booking_model->reach_limit($user_id);
 		if($reach_limit){
 			redirect('booking/check?popup=seat-limit-popup');
 			return;
 		}
+
+		// check booking type
+		$booking_type = 1;
+		if($user_obj['type']==2)
+			$booking_type = 3;
+		else if(period_helper_presale())
+			$booking_type = 2;
 
 		// check condition
 		$booking_id = $id = end($this->uri->segments);
@@ -46,13 +50,13 @@ class Zone extends CI_Controller {
 			));
 			if($query->num_rows()<=0){
 				// prepare booking data
-				$booking_id = $this->booking_model->prepare($user_id);
+				$booking_id = $this->booking_model->prepare($user_id, $booking_type);
 				redirect('zone/'.$booking_id);
 				return;
 			}
 		}else{
 			// prepare booking data
-			$booking_id = $this->booking_model->prepare($user_id);
+			$booking_id = $this->booking_model->prepare($user_id, $booking_type);
 			redirect('zone/'.$booking_id);
 			return;
 		}
@@ -81,7 +85,11 @@ class Zone extends CI_Controller {
 			$result['price']+=$b_data['price'];
 		}
 
-		$this->phxview->RenderView('zone', $result);
+		if($user_obj['type']==2){
+			$this->phxview->RenderView('zone-fanzone', $result);
+		}else{
+			$this->phxview->RenderView('zone', $result);
+		}
 		$this->phxview->RenderLayout('default');
 	}
 
@@ -152,9 +160,11 @@ class Zone extends CI_Controller {
 		$price_4 = array('b1','b5','c1','c2','c3',
 					'e1f','e1g','e1h','e1i','e1j','e1k','e1l','e1m','e1n');
 		$price_5 = array('a1','a5','d1','d2',
+					'e1d','e1e','e1o','e1p',
 					'e1a','e1b','e1c','e1q','e1r','e1s',
 					'e2h','e2i','e2j','e2k','e2l','e2m','e2n','e2o');
 		$price_6 = array('n1f','n1g','n1h','n1i','n1j','n1k','n1l',
+					'e2e','e2f','e2g','e2p','e2q','e2r',
 					's1a','s1b','s1c','s1d','s1e','s1f','s1g',
 					'e2a','e2b','e2c','e2d','e2s','e2t','e2u','e2v');
 		$price_7 = array('n2h','n2i','n2j','n2k','n2l',

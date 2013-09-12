@@ -5,7 +5,7 @@
 <ul id="menu-2">
 	<li><a href="<?= site_url('index/index2') ?>" class="menu-boost"></a></li>
 	<li><a href="https://www.facebook.com/boostplus" target="_blank" class="menu-facebook"></a></li>
-	<li><a href="<?= site_url('zone_early') ?>" class="menu-1"></a></li>
+	<li><a href="<?= site_url('zone_entrance') ?>" class="menu-1"></a></li>
 	<li><a href="<?= site_url('transfer') ?>" class="menu-2"></a></li>
 	<li><a href="<?= site_url('booking/check') ?>" class="menu-3"></a></li>
 	<li><a href="#common-popup" class="menu-4 show-boxes"></a></li>

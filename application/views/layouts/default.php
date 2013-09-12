@@ -85,6 +85,16 @@ Only Festival ticket, we reserve the right to refuse to issue a replacement tick
 	<li>กรุณา print ใบจองเก็บไว้เป็นหลักฐานเพื่อใช้แลกรับบัตรจริงในวันงาน</li>
 	<li>ผู้จองสามารถมารับบัตรจริงได้ในวันอาทิตย์ที่ 20 ตุลาคม 2556 บริเวณหน้างาน(เวลาและสถานที่จะแจ้งให้ทราบอีกครั้ง)โดยนำหลักฐานการจองบัตร(ใบยืนยันการจอง) ในรอบEarly Bird และPre Saleผ่านทางช่องทางออนไลน์พร้อมบัตรประชาชนตามชื่อที่ระบุในใบจองมาเป็นหลักฐานในการรับบัตร</li>
 </ol>
+<ul style="list-style:none;">
+	<li>
+<strong style="text-decoration:underline; font-size:smaller;">ข้อควรระวัง</strong>
+<br />
+<span style="font-weight:normal; font-size:smaller;">
+	กรณีรับบัตรเข้างานแล้ว ถ้าลูกค้าทำบัตรโซนยืนสูญหาย ทางผู้จัดงานไม่รับผิดชอบ ต่อความเสียหาย และไม่สามารถออกบัตรใหม่ให้กับลูกค้าได้ ลูกค้าต้องซื้อบัตร เข้างานใหม่เท่านั้น
+</span></li>
+</ul>
+
+
 <?php endif; ?>
 
 <?php if(language_helper_is_en($this)): ?>
@@ -95,7 +105,7 @@ Only Festival ticket, we reserve the right to refuse to issue a replacement tick
 <div style="text-align:center;">
 	<img src="<?= base_url('images/common/condition-logo.gif') ?>" style="border:0px;" />
 	<br />
-	<a style="color:black; text-decoration:underline;" href="<?= base_url('images/pdf/term_condition'.(language_helper_is_en($this)?'_en':'').'.pdf') ?>" target="_blank"><?= language_helper_is_en($this)?'Download conditions.':'ดาวน์โหลดข้อกำหนดและเงื่อนไข' ?></a>
+	<a style="color:black; text-decoration:underline;" href="<?= base_url('images/pdf/term_condition'.(language_helper_is_en($this)?'_en':'').'.pdf?v=1') ?>" target="_blank"><?= language_helper_is_en($this)?'Download conditions.':'ดาวน์โหลดข้อกำหนดและเงื่อนไข' ?></a>
 </div>
 
 			</div>

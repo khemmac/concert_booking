@@ -9,16 +9,17 @@ Class Email_model extends CI_Model
 		$mail->Host			= "ssl://smtp.gmail.com";
 		$mail->Port			= "465";
 		$mail->SMTPAuth		= true;
-		$mail->Username		= "SBS.MTV.2013@gmail.com";
+		$mail->Username		= "SBS.kpop.2013@gmail.com";
 		$mail->Password		= "boost1234";
 
-		$mail->From			= "SBS.MTV.2013@gmail.com";
+		$mail->From			= "SBS.kpop.2013@gmail.com";
 		$mail->FromName		= "Boostplus";
 		$mail->AddAddress($reciever);
 		$mail->AddBCC('khemmac@hotmail.com');
 		$mail->AddBCC('khemmac@gmail.com');
 		$mail->AddBCC('aon.iti10@gmail.com');
 		$mail->AddBCC('aon_iti10@hotmail.com');
+		$mail->AddBCC('SBS.mtv.2013@gmail.com');
 		$mail->IsHTML(true);
 		$mail->Subject		=  $subject;
 		$mail->Body			= $body;

@@ -24,7 +24,15 @@ class Member extends CI_Controller {
 	}
 
 	function login(){
+		$user_test = $this->input->post('username');
+		// fix for test
+		if(!empty($user_test)&&$user_test!='fanzone001'){
+			echo 'not for test';
+			return;
+		}
+
 		// fix user for test
+		/*
 		$user_test = $this->input->post('username');
 		if(!empty($user_test)){
 			if($user_test=='khemmac' || $user_test=='testsbs1' || $user_test=='testsbs2'
@@ -35,11 +43,12 @@ class Member extends CI_Controller {
 				return;
 			 }
 		}
+		*/
 
 		//$r_url = $this->input->post('rurl');
 
 		//if(empty($r_url))
-			$r_url = 'index/index2';
+			$r_url = 'sbs2013';
 
 		if(is_user_session_exist($this))
 			redirect('index');
@@ -225,6 +234,29 @@ class Member extends CI_Controller {
 
 	function forgot(){
 		redirect('forgot');
+	}
+
+	function generate_fanzone(){
+		function generate_code(){
+			$cde = '';
+			for($i=0;$i<6;$i++)
+				$cde.=substr(str_shuffle("abcdefghijklmnopqrstuvwxyz0123456789"), 0, 1);
+			return $cde;
+		}
+		for($i=1;$i<=999;$i++){
+			$username = 'fanzone'.str_pad($i,3,'0', STR_PAD_LEFT);
+			$cde = generate_code();
+			$password = md5($cde);
+			$this->db->insert('person', array(
+				'username' => 'fanzone'.str_pad($i,3,'0', STR_PAD_LEFT),
+				'password' => $password,
+				'thName'	=> $username,
+				'enName'	=> $username,
+				'type'=>2
+			));
+			echo 'username : '.$username.'<br />password : '.$cde;
+			echo '<hr />';
+		}
 	}
 
 

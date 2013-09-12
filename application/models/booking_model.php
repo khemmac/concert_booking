@@ -88,7 +88,7 @@ WHERE id=? AND booking_id=(SELECT b.id FROM booking b WHERE b.person_id=? AND b.
 		return $this->db->affected_rows();
 	}
 
-	function prepare($user_id){
+	function prepare($user_id, $type){
 		$this->db->select('id');
 		$this->db->limit(1);
 		$this->db->order_by('id', 'desc');
@@ -122,6 +122,7 @@ WHERE id=? AND booking_id=(SELECT b.id FROM booking b WHERE b.person_id=? AND b.
 
 		$this->db->set('createDate', 'NOW()', false);
 		$this->db->insert('booking', array(
+			'type'=>$type,
 			'person_id'=>$user_id,
 			'code'=> $code_result,
 			'total_money'=>0,

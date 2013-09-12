@@ -111,7 +111,7 @@
 							<a href="<?= site_url('pdf/print_booking/'.$booking_data['id']) ?>" class="pdf"></a>
 						</li-->
 						<li class="cancel-ctnr">
-							<a href="<?= site_url('zone_early/'.$booking_data['id']) ?>" class="cancel"></a>
+							<a href="<?= site_url('zone_entrance') ?>" class="cancel"></a>
 						</li>
 					</ul>
 <?= form_close() ?>

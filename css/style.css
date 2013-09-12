@@ -101,7 +101,7 @@ form input {
 }
 .page-zone #content #remark-info {
 	width:185px; height:183px; position:absolute;top: 66px; left:723px;
-	background: transparent url("../images/zone/price.gif") no-repeat;
+	/*background: transparent url("../images/zone/price.gif") no-repeat;*/
 }
 
 .page-zone #content form .submit-container {
@@ -144,15 +144,15 @@ form input {
 .page-seat #content #zone-info li.zone3 { color:#ea9b27; }
 
 .page-seat #content #stage {
-	position:absolute; top:565px; left:55px; width:720px; height:51px;
+	position:absolute; top:565px; left:55px; width:721px; height:56px;
 	background:transparent url("../images/seat/stage.png") no-repeat;
 }
 
 /* test css */
-/*
+/**/
 .page-seat #seat-container .row a { background:blue; opacity: .7; }
 .page-seat #seat-container .row div { background:gray; opacity: .7; }
-*/
+
 /* end test css */
 
 .page-seat #seat-container { position:absolute; background-repeat:no-repeat; background-color:transparent; }
