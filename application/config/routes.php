@@ -56,6 +56,7 @@ $route['seat_u/submit'] = 'seat_u/submit';
 $route['seat_u/(:any)'] = 'seat_u/index/$1';
 
 // add route for seat segment
+$route['seat/fetch'] = 'seat/fetch';
 $route['seat/submit'] = 'seat/submit';
 $route['seat/add'] = 'seat/add';
 $route['seat/remove'] = 'seat/remove';

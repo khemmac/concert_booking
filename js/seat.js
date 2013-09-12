@@ -9,6 +9,18 @@ function Seat(cfg){
 	this.__initEl();
 	this.__initSeatEvent();
 
+	// fectch datas
+	var fetch_seat = function(){
+		_this.__fetchData(function(){
+			_this.__initEl();
+			_this.__initSeatEvent();
+			setTimeout(function(){
+				fetch_seat();
+			}, 5000);
+		});
+	};
+	setTimeout(fetch_seat, 5000);
+
 	return this;
 };
 
@@ -35,6 +47,27 @@ Seat.prototype = {
 	__hideLoader: function(el){
 		this.pending = false;
 		el.removeClass('loader');
+	},
+	__fetchData: function(cb){
+		var _this=this;
+
+		$.ajax({
+			type: 'POST',
+			data: {
+				booking_id: $('input[name=booking_id]').val(),
+				zone_id: $('input[name=zone_id]').val(),
+				zone_name: $('input[name=zone_name]').val()
+			},
+			url: __site_url+'seat/fetch',
+			dataType: 'html',
+			success: function(result){
+				$('#chair-container').empty().html(result);
+				if(typeof(cb)=='function') cb();
+			},
+			error: function(){
+				if(typeof(cb)=='function') cb();
+			}
+		});
 	},
 	__initSeatEvent: function(){
 		var _this=this;
@@ -84,48 +117,41 @@ Seat.prototype = {
 			}else{
 				// ถ้าเป็นการจองที่นั่งเพิ่มให้บวกค่าเข้าไป
 				_this.cfg.current++;
-				//console.log('after (not checked) : '+_this.cfg.current);
-				if(_this.cfg.current > _this.cfg.limit){
-					_this.cfg.current = _this.cfg.limit;
-					common.popup.show(null, '#seat-limit-popup');
 
-					_this.__hideLoader(el);
-				}else{
-					$.ajax({
-						type: 'POST',
-						data: {
-							booking_id: $('input[name=booking_id]').val(),
-							zone_id: $('input[name=zone_id]').val(),
-							seat_id: chk_box.attr('value')
-						},
-						url: __site_url+'seat/add',
-						dataType: 'json',
-						success: function(result){
-							if(result.success){
+				$.ajax({
+					type: 'POST',
+					data: {
+						booking_id: $('input[name=booking_id]').val(),
+						zone_id: $('input[name=zone_id]').val(),
+						seat_id: chk_box.attr('value')
+					},
+					url: __site_url+'seat/add',
+					dataType: 'json',
+					success: function(result){
+						if(result.success){
+							chk_box.attr("checked", true);
+							el.addClass('active');
+						}else{
+							if(result.error_code==1){
+								alert('กรุณาเข้าสู่ระบบใหม่อีกครั้ง');
+							}else if(result.error_code==2){
+								alert('ที่นั่งนี้มีผู้จองแล้ว กรุณาลองเลือกที่อื่น');
+								// remove seat and fill booked seat
+								var cls = el.attr('class');
+								$('<div class="booked '+cls+'"></div>').insertBefore(el);
+								el.remove();
 								chk_box.attr("checked", true);
-								el.addClass('active');
-							}else{
-								if(result.error_code==1){
-									alert('กรุณาเข้าสู่ระบบใหม่อีกครั้ง');
-								}else if(result.error_code==2){
-									alert('ที่นั่งนี้มีผู้จองแล้ว กรุณาลองเลือกที่อื่นค่ะ');
-									// remove seat and fill booked seat
-									var cls = el.attr('class');
-									$('<div class="booked '+cls+'"></div>').insertBefore(el);
-									el.remove();
-									chk_box.attr("checked", true);
-								}else if(result.error_code==3){
-									common.popup.show(null, '#seat-limit-popup');
-								}
+							}else if(result.error_code==3){
+								common.popup.show(null, '#seat-limit-popup');
 							}
-							_this.__hideLoader(el);
-						},
-						error: function(){
-							alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
-							_this.__hideLoader(el);
 						}
-					});
-				}
+						_this.__hideLoader(el);
+					},
+					error: function(){
+						alert('เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง');
+						_this.__hideLoader(el);
+					}
+				});
 			}
 
 		});

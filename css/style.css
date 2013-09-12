@@ -149,10 +149,10 @@ form input {
 }
 
 /* test css */
-/**/
+/*
 .page-seat #seat-container .row a { background:blue; opacity: .7; }
 .page-seat #seat-container .row div { background:gray; opacity: .7; }
-
+*/
 /* end test css */
 
 .page-seat #seat-container { position:absolute; background-repeat:no-repeat; background-color:transparent; }

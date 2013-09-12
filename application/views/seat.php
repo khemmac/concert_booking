@@ -7,7 +7,7 @@
 	<div id="content">
 		<div id="zone-info">
 			<ul>
-				<li class="zone<?= $zone['class'] ?>">Zone&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper($zone['zone']) ?></li>
+				<li>Zone&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper($zone['zone']) ?></li>
 				<li>Class&nbsp;&nbsp;&nbsp;<?= strtoupper($zone['class']) ?></li>
 				<li>Blog&nbsp;&nbsp;&nbsp;&nbsp;<?= strtoupper($zone['blog']) ?></li>
 			</ul>
@@ -19,7 +19,10 @@
 		<?= form_hidden('zone_name', $zone['name']) ?>
 			<div id="seat-container" style="background-image: url('<?= base_url('images/seat/plan/'.$zone_name.'.png'); ?>')">
 				<div id="chair-container">
+					<?=$this->load->view('includes/partials/seat-chair','', TRUE)?>
+
 					<?php
+					/*
 						$row_index = 1;
 						foreach(array_reverse($zone['seats']) AS $row_name=>$chair_list):
 					?>
@@ -27,6 +30,7 @@
 					<?php
 							$row_index++;
 
+							$position_index=1;
 							foreach($chair_list AS $chair_key => $chair):
 								if($chair['no']>0):
 									$chair_id = $chair['id'];
@@ -46,14 +50,17 @@
 									endif;
 								else:
 									?>
-										<div class="pos pos-<?= $chiar_position ?>"></div>
+										<div class="pos pos-<?= $position_index ?>"></div>
 									<?php
 								endif;
+								$position_index++;
 							endforeach;
 					?>
 						</div>
 					<?php
 						endforeach;
+
+					 */
 					?>
 				</div>
 			</div>

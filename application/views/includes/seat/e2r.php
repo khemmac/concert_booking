@@ -1,5 +1,5 @@
 <style type="text/css">
-	#seat-container { top:162px; left:58px; width:514px; height:538px; top:35px; left:155px; }
+	#seat-container { top:162px; left:58px; width:599px; height:610px; top:-10px; left:129px; }
 
 	#chair-container { position:absolute; top:16px; left:45px; }
 

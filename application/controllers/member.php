@@ -26,7 +26,7 @@ class Member extends CI_Controller {
 	function login(){
 		$user_test = $this->input->post('username');
 		// fix for test
-		if(!empty($user_test)&&$user_test!='fanzone001'){
+		if(!empty($user_test)&&$user_test!='fanzone001'&&$user_test!='khemmac'){
 			echo 'not for test';
 			return;
 		}
