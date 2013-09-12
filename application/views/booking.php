@@ -42,9 +42,34 @@
 		}
 		return $r;
 	}
+	function get_card_fee($seat_list){
+		return count($seat_list) * 20;
+	}
+	function get_discount($booking_type, $seat_list){
+		$r = 0;
+		$sum_price = get_sum_price($seat_list);
+		if($booking_type==3){
+			if(count($seat_list)>=100)
+				$r = $sum_price * 15 / 100;
+			else if(count($seat_list)>=50)
+				$r = $sum_price * 10 / 100;
+			else if(count($seat_list)>=30)
+				$r = $sum_price * 5 / 100;
+		}else if($booking_type==2){
+			return 0;
+		}
+		return $r;
+	}
+	function get_total_price($booking_type, $seat_list){
+		return get_sum_price($seat_list) + (count($seat_list) * 20) - get_discount($booking_type, $seat_list);
+	}
+	$card_fee = get_card_fee($booking_list);
+	$discount = get_discount($booking_data['type'], $booking_list);
+	$total = get_total_price($booking_data['type'], $booking_list);
 	foreach($zone_list AS $key_z => $z):
 		$seat_list = get_seat_by_zone($booking_list, $z);
 		$zone_price = get_zone_price($booking_list, $z);
+
 ?>
 			<tr class="tbody <?= ($key_z==0)?'first':'' ?>">
 				<td class="bg-left"></td>
@@ -55,10 +80,18 @@
 				<td class="item-price"><?= number_format($zone_price) ?></td>
 				<td class="price"><?= number_format($zone_price * count($seat_list)) ?></td>
 				<?php if($key_z==0): ?>
-					<td class="status" align="center" rowspan="<?= count($zone_list) + 4 ?>" valign="middle" style="padding:5px;">
+					<td class="status" align="center" rowspan="<?= count($zone_list) + (4+((!empty($discount) && $discount>0)?1:0)) ?>" valign="middle" style="padding:5px;">
 						กรุณาชำระเงิน
+						<?php if($booking_data['type']==3): ?>
+						<br />ภายในวันที่ 20/09/2013
+						<br />ก่อนเวลา 18.00
+						<?php elseif($booking_data['type']==2): ?>
 						<br />ภายในวันที่ <?= util_helper_format_date(util_helper_add_six_hour(new DateTime())) ?>
 						<br />ก่อนเวลา <?= util_helper_format_time(util_helper_add_six_hour(new DateTime())) ?>
+						<?php else: ?>
+						<br />ภายในวันที่ <?= util_helper_format_date(util_helper_add_four_hour(new DateTime())) ?>
+						<br />ก่อนเวลา <?= util_helper_format_time(util_helper_add_four_hour(new DateTime())) ?>
+						<?php endif; ?>
 					</td>
 				<?php endif; ?>
 				<td class="bg-right"></td>
@@ -79,19 +112,27 @@
 			<tr class="tbody">
 				<td class="bg-left"></td>
 				<td colspan="4" class="sum-price" align="right">ค่าธรรมเนียมการออกบัตร (20 บาทต่อใบ)</td>
-				<td class="price"><?= count($seat_list) * 20 ?></td>
+				<td class="price"><?= number_format($card_fee) ?></td>
 				<td class="bg-right"></td>
 			</tr>
+			<?php if(!empty($discount) && $discount>0): ?>
+				<tr class="tbody">
+					<td class="bg-left"></td>
+					<td colspan="4" class="sum-price" align="right">ส่วนลด</td>
+					<td class="price"><?= number_format($discount) ?></td>
+					<td class="bg-right"></td>
+				</tr>
+			<?php endif; ?>
 			<tr class="tbody last">
 				<td class="bg-left"></td>
 				<td colspan="4" class="sum-price" align="right">ราคารวมทั้งหมด</td>
-				<td class="price"><strong><?= number_format(get_sum_price($booking_list) + (count($seat_list) * 20)) ?>.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
+				<td class="price"><strong><?= number_format($total) ?>.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
 				<td class="bg-right"></td>
 			</tr>
 			<tr class="tfoot">
 				<td colspan="8">footer</td>
 			</tr>
-			<tr class="tfoot-text tfoot-text-early">
+			<tr class="tfoot-text tfoot-text-fanzone">
 				<td colspan="8">footer</td>
 			</tr>
 			<tr class="tfoot-buttons" align="center">

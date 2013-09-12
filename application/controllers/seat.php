@@ -29,6 +29,12 @@ class Seat extends CI_Controller {
 		$user_id = get_user_session_id($this);
 		$user_obj = get_user_session($this);
 
+		$has_booked = $this->booking_model->has_booked($user_id);
+		if($has_booked){
+			redirect('sbs2013?popup=zone-booked-limit-popup');
+			return;
+		}
+
 		// check booking type
 		$booking_type = 1;
 		if($user_obj['type']==2)

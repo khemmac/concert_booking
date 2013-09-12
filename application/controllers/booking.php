@@ -25,42 +25,17 @@ class Booking extends CI_Controller {
 			redirect('member/login?rurl='.uri_string());
 		$user_id = get_user_session_id($this);
 
+		$has_booked = $this->booking_model->has_booked($user_id);
+		if($has_booked){
+			redirect('sbs2013?popup=zone-booked-limit-popup');
+			return;
+		}
+
 		// check booking id
 		$booking_id = end($this->uri->segments);
 		if(!is_numeric($booking_id))
 			redirect('zone');
-/*
-		$this->db->select('id,code');
-		$this->db->limit(1);
-		$query = $this->db->get_where('booking', array('id'=>$booking_id));
-		$b_result = array();
-		if($query->num_rows()>0)
-			$b_result = $query->first_row('array');
 
-		// load booking with seat data
-		$user_id = get_user_session_id($this);
-		$booking_data = $this->seat_model->load_booking_seat($booking_id);
-
-		// load profile data
-		$this->db->select('thName,code');
-		$this->db->where('id', $user_id);
-		$this->db->limit(1);
-		$query = $this->db->get('person');
-
-		$person_data = $query->first_row('array');
-
-		$zone_distinct_list = array();
-		foreach($booking_data AS $b_obj){
-			$exist = false;
-			foreach($zone_distinct_list AS $z){
-				if($b_obj['zone_name']==$z){
-					$exist = true; break;
-				}
-			}
-			if(!$exist)
-				array_push($zone_distinct_list, $b_obj['zone_name']);
-		}
-*/
 		$result_data = $this->booking_model->prepare_print_data($user_id, $booking_id);
 
 		$this->phxview->RenderView('booking', $result_data);

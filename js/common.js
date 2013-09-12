@@ -59,6 +59,9 @@ Common.prototype = {
 		});
 */
 	},
+	initToolTip: function(){
+		$('.concert-tooltip').qtip();
+	},
 	popup : {
 		init : function(){
 			var _this=this;
@@ -161,6 +164,8 @@ $(function(){
 	var common = window['common'] = new Common();
 
 	common.initFormTip();
+
+	common.initToolTip();
 
 	common.popup.init();
 

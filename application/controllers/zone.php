@@ -26,6 +26,12 @@ class Zone extends CI_Controller {
 		$user_id = get_user_session_id($this);
 		$user_obj = get_user_session($this);
 
+		$has_booked = $this->booking_model->has_booked($user_id);
+		if($has_booked){
+			redirect('sbs2013?popup=zone-booked-limit-popup');
+			return;
+		}
+
 		$reach_limit = $this->booking_model->reach_limit($user_id);
 		if($reach_limit){
 			redirect('booking/check?popup=seat-limit-popup');
@@ -101,6 +107,8 @@ class Zone extends CI_Controller {
 		$booking_id = $this->input->post('booking_id');
 		$booking_data = $this->seat_model->load_booking_seat($booking_id);
 
+		if(count($booking_data)<30)
+			redirect('zone/'.$booking_id.'?popup=zone-fanzone-minimum-popup');
 		if(count($booking_data)>0)
 			redirect('booking/'.$booking_id);
 		else

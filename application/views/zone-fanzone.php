@@ -59,7 +59,7 @@
 			<?php endif; ?>
 		</div>
 
-		<div id="booking-info" style="border:0px solid #f00; position:absolute; top:330px; right:16px; width:271px; height:117px;">
+		<div id="booking-info" style="border:0px solid #f00; position:absolute; top:330px; left:672px; width:271px; height:117px;">
 			<table cellpadding="2" cellspacing="0" border="0" style="color:white;">
 				<tr>
 					<td align="right"><?= language_helper_is_th($this)?'โซน':'Zone' ?> :</td>
@@ -83,7 +83,8 @@
 				</tr>
 				<tr>
 					<td align="right"><?= language_helper_is_th($this)?'ที่นั่ง':'Seats' ?> :</td>
-					<td><?= (count($seats)>0)?strtoupper(implode(', ', $seats)):'-' ?></td>
+					<td><?= number_format(count($seats)) ?>
+						(<a href="#" class="concert-tooltip" title="<?= strtoupper(implode(', ', $seats)) ?>"><?= language_helper_is_th($this)?'รายละเอียด':'Detail' ?></a>)</td>
 				</tr>
 				<tr>
 					<td align="right"><?= language_helper_is_th($this)?'ราคารวม':'Total' ?> :</td>

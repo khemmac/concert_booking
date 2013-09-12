@@ -16,6 +16,12 @@
 		return $date;
 	}
 
+	function util_helper_add_four_hour($dt_str) {
+		$date = util_helper_parse_date($dt_str);
+		date_add($date, date_interval_create_from_date_string('+ 4 hours'));
+		return $date;
+	}
+
 	function util_helper_add_six_hour($dt_str) {
 		$date = util_helper_parse_date($dt_str);
 		date_add($date, date_interval_create_from_date_string('+ 6 hours'));
