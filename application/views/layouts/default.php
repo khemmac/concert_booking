@@ -1,5 +1,5 @@
 <?php
-	$sv = '?v=1.0';
+	$sv = '?v=1.1';
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -157,6 +157,10 @@ Only Festival ticket, we reserve the right to refuse to issue a replacement tick
 			<span style="top:149px;" class="p-pay">xxxxxxxxxxxxxx</span>
 			<span style="top:176px;" class="p-bank">xxxxxxxxxxxxxx</span>
 			<a href="#ok" class="ok"></a>
+			<a href="#close" class="close"></a>
+		</div>
+
+		<div id="login-fanzone-only-popup" class="window">
 			<a href="#close" class="close"></a>
 		</div>
 

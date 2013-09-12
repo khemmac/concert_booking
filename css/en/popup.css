@@ -149,3 +149,14 @@
 #transfer-confirm-popup a.ok:hover { background-position:0px -44px; }
 #transfer-confirm-popup a.close { background-position:-112px 0px; left:323px; }
 #transfer-confirm-popup a.close:hover { background-position:-112px -44px; }
+
+/* login fanzone only popup */
+#login-fanzone-only-popup {
+	width:439px; height:258px; position:relative;
+	background:transparent url('../../images/en/popup/login-fanzone-only-popup.png') no-repeat;
+}
+#login-fanzone-only-popup a.close {
+	position:absolute; top:145px; left:179px; width:85px; height:30px; text-indent:-2000px;
+	background:transparent url("../../images/en/register/button-ok.png") no-repeat 0px 0px; cursor:pointer;
+}
+#login-fanzone-only-popup a.close:hover { background-position:0px -30px; }

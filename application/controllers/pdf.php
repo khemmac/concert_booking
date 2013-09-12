@@ -1,27 +1,48 @@
 <?php
 
 function get_seat_by_zone($seat_list, $z_name){
-	$r = array();
-	foreach($seat_list AS $o_seat){
-		if($o_seat['zone_name']==$z_name)
-			array_push($r, $o_seat['seat_name']);
+		$r = array();
+		foreach($seat_list AS $o_seat){
+			if($o_seat['zone_name']==$z_name)
+				array_push($r, $o_seat['seat_name']);
+		}
+		return $r;
 	}
-	return $r;
-}
-function get_zone_price($seat_list, $z_name){
-	foreach($seat_list AS $o_seat){
-		if($o_seat['zone_name']==$z_name)
-			return $o_seat['price'];
+	function get_zone_price($seat_list, $z_name){
+		foreach($seat_list AS $o_seat){
+			if($o_seat['zone_name']==$z_name)
+				return $o_seat['price'];
+		}
+		return 0;
 	}
-	return 0;
-}
-function get_sum_price($seat_list){
-	$r = 0;
-	foreach($seat_list AS $o_seat){
-		$r += $o_seat['price'];
+	function get_sum_price($seat_list){
+		$r = 0;
+		foreach($seat_list AS $o_seat){
+			$r += $o_seat['price'];
+		}
+		return $r;
 	}
-	return $r;
-}
+	function get_card_fee($seat_list){
+		return count($seat_list) * 20;
+	}
+	function get_discount($booking_type, $seat_list){
+		$r = 0;
+		$sum_price = get_sum_price($seat_list);
+		if($booking_type==3){
+			if(count($seat_list)>=100)
+				$r = $sum_price * 15 / 100;
+			else if(count($seat_list)>=50)
+				$r = $sum_price * 10 / 100;
+			else if(count($seat_list)>=30)
+				$r = $sum_price * 5 / 100;
+		}else if($booking_type==2){
+			return 0;
+		}
+		return $r;
+	}
+	function get_total_price($booking_type, $seat_list){
+		return get_sum_price($seat_list) + (count($seat_list) * 20) - get_discount($booking_type, $seat_list);
+	}
 
 class Pdf extends CI_Controller {
 
@@ -318,86 +339,6 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 		$pdf->writeHTML($tbl, true, false, false, false, '');
 		// ***** END BODY LIST *****
 
-/*
-		// ***** DEFINED TABLE DATA *****
-		$pdf->SetFillColor(204, 204, 204);
-		$pdf->SetTextColor(0);
-		$pdf->SetDrawColor(0, 0, 0);
-		$pdf->SetLineWidth(0.2);
-		$pdf->SetFont('', 'B', '16');
-		// Header
-		$w = array(20, 35, 40, 25, 41, 41);
-
-		$header = array('รายการที่','โซนที่นั่ง','เลขที่นั่ง','จำนวนที่นั่ง','ราคาต่อหน่วย','ราคา');
-
-		$num_headers = count($header);
-		for($i = 0; $i < $num_headers; ++$i) {
-			$pdf->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
-		}
-		$pdf->Ln();
-		// Color and font restoration
-		$pdf->SetFillColor(224, 235, 255);
-		$pdf->SetTextColor(0);
-		$pdf->SetFont('');
-		// Data
-		$fill = 0;
-		foreach($zone_list as $key_z=>$row) {
-			$seat_list = get_seat_by_zone($booking_list, $row);
-			$zone_price = get_zone_price($booking_list, $row);
-
-			$pdf->Cell($w[0], 6, $key_z+1, 'LRTB', 0, 'C', $fill);
-			$pdf->Cell($w[1], 6, strtoupper($row), 'LRTB', 0, 'L', $fill);
-			$pdf->Cell($w[2], 6, strtoupper(implode(', ', $seat_list)), 'LRTB', 0, 'L', $fill);
-			$pdf->Cell($w[3], 6, number_format(count($seat_list)), 'LRTB', 0, 'C', $fill);
-			$pdf->Cell($w[4], 6, number_format($zone_price), 'LRTB', 0, 'R', $fill);
-			$pdf->Cell($w[5], 6, number_format($zone_price * count($seat_list)), 'LRTB', 0, 'R', $fill);
-			$pdf->Ln();
-			$fill=!$fill;
-		}
-		$pdf->SetFillColor(220, 220, 220);
-
-		// SUM
-		$pdf->Cell(array_sum(array($w[0],$w[1],$w[2],$w[3],$w[4]))
-			, 6, 'ราคารวม', 'LRTB', 0, 'R', 1);
-		$pdf->Cell($w[5], 6, number_format(get_sum_price($booking_list)), 'LRTB', 0, 'R', 1);
-		$pdf->Ln();
-
-		// CHECK TRANSFER
-		$pdf->Cell(array_sum(array($w[0],$w[1],$w[2],$w[3],$w[4]))
-			, 6, 'เงินตรวจสอบโอน', 'LRTB', 0, 'R', 1);
-		$pdf->Cell($w[5], 6, '0.'.str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT), 'LRTB', 0, 'R', 1);
-		$pdf->Ln();
-
-		// CARD
-		$pdf->Cell(array_sum(array($w[0],$w[1],$w[2],$w[3],$w[4]))
-			, 6, 'จำนวนเงินสำหรับทำบัตรแข็ง', 'LRTB', 0, 'R', 1);
-		$pdf->Cell($w[5], 6, '20', 'LRTB', 0, 'R', 1);
-		$pdf->Ln();
-
-		// total
-		$pdf->SetFont('', 'B');
-		$pdf->Cell(array_sum(array($w[0],$w[1],$w[2],$w[3],$w[4]))
-			, 6, 'ราคาสุทธิ', 'LRTB', 0, 'R', 1);
-		$pdf->Cell($w[5], 6, number_format(get_sum_price($booking_list)+20).'.'.str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT), 'LRTB', 0, 'R', 1);
-		$pdf->Ln();
-
-		//$pdf->Cell(array_sum($w), 0, '', 'T');
-		// ***** END DEFINED TABLE DATA *****
-*/
-
-
-/*
-		$pdf->Ln();
-		$pdf->SetFont('', '');
-		$pdf->SetFillColor(223, 128, 0);
-		$pdf->SetTextColor(0, 0, 0);
-		$pdf->MultiCell(0, 0,
-'กรุณาพิมพ์หลักฐานฉบับนี้ไว้ พร้อมบัตรประชาชนตัวจริง เพื่อนำมารับบัตรจริงรุ่น Limited Edition
-เฉพาะ 2,000 ใบแรกเท่านั้นในวันที่ xx/xx/xxxx เวลา 00:00 น. ณ xxxxxxxxxxxxxx
-และส่วนที่เหลือกรุณาเก็บหลักฐานนี้ไว้เพื่อนำมารับบัตรจริง
-โดยวันและสถานที่จะแจ้งให้ทราบอีกครั้ง', 1, 'C', 1, 1);
-*/
-
 		// ***** FOOTER INFO *****
 		$pdf->SetFont('', 'B', 18);
 		$pdf->MultiCell(0, 0, 'เงื่อนไขการชำระเงิน',0, 'L', 0, 1);
@@ -570,70 +511,78 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 
 		$pdf->Ln();
 
-		// ***** DEFINED TABLE DATA *****
-		$pdf->SetFillColor(204, 204, 204);
-		$pdf->SetTextColor(0);
-		$pdf->SetDrawColor(0, 0, 0);
+
+		// ***** BODY LIST *****
 		$pdf->SetLineWidth(0.2);
-		$pdf->SetFont('', 'B', '16');
-		// Header
-		$w = array(20, 35, 40, 25, 41, 41);
+		$pdf->SetFont('', '', '16');
+		$tbl = '';
+		$tbl .= '<table cellpadding="4" cellspacing="0" width="100%" border="1">
+					<tr>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">รายการ</td>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">โซนที่นั่ง</td>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">จำนวนที่นั่ง</td>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">ราคาต่อหน่วย</td>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">ราคา</td>
+						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">สถานะ</td>
+					</tr>';
+	$card_fee = get_card_fee($booking_list);
+	$discount = get_discount($booking_data['type'], $booking_list);
+	$total = get_total_price($booking_data['type'], $booking_list);
+	foreach($zone_list AS $key_z => $z):
+		$seat_list = get_seat_by_zone($booking_list, $z);
+		$zone_price = get_zone_price($booking_list, $z);
 
-		$header = array('รายการที่','โซนที่นั่ง','เลขที่นั่ง','จำนวนที่นั่ง','ราคาต่อหน่วย','ราคา');
+		$tbl .= '<tr>
+						<td style="background-color:white;" align="center">'.($key_z+1) .'</td>
+						<td style="background-color:white;" align="center">'. strtoupper($z) .'</td>
+						<td style="background-color:white;" align="center">'. count($seat_list) .'</td>
+						<td style="background-color:white;" align="center">'. number_format($zone_price) .'</td>
+						<td style="background-color:white;" align="center">'. number_format($zone_price * count($seat_list)) .'</td>';
+					if($key_z==0):
+						$tbl .= '<td style="background-color:white;" align="center" rowspan="'. (count($zone_list)+(4+((!empty($discount) && $discount>0)?1:0))) .'" valign="top" style="padding:5px;">
+								กรุณาชำระเงิน';
+							if($booking_data['type']==3):
+								$tbl .= '<br />ภายในวันที่ 20/09/2013
+										<br />ก่อนเวลา 18.00';
+							elseif($booking_data['type']==2):
+								$tbl .= 'ภายในวันที่ '.util_helper_format_date(util_helper_add_six_hour(new DateTime()));
+								$tbl .= '<br />ก่อนเวลา '.util_helper_format_time(util_helper_add_six_hour(new DateTime()));
+							else:
+								$tbl .= '<br />ภายในวันที่ '.util_helper_format_date(util_helper_add_four_hour(new DateTime()));
+								$tbl .= '<br />ก่อนเวลา '.util_helper_format_time(util_helper_add_four_hour(new DateTime()));
+							endif;
+						$tbl.='</td>';
+					endif;
+		$tbl .= '</tr>';
+	endforeach;
 
-		$num_headers = count($header);
-		for($i = 0; $i < $num_headers; ++$i) {
-			$pdf->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
+		$tbl .= '<tr>
+						<td style="background-color:white;" align="right" colspan="4">ราคารวม</td>
+						<td style="background-color:white;" align="center">'. number_format(get_sum_price($booking_list)) .'</td>
+					</tr>
+					<tr>
+						<td style="background-color:white;" align="right" colspan="4">เงินตรวจสอบโอน</td>
+						<td style="background-color:white;" align="center">0.'. str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) .'</td>
+					</tr>
+					<tr>
+						<td style="background-color:white;" align="right" colspan="4">จำนวนเงินสำหรับทำบัตรแข็ง</td>
+						<td style="background-color:white;" align="center">'.number_format($card_fee).'</td>
+					</tr>';
+
+		if(!empty($discount) && $discount>0){
+			$tbl .= '<tr class="tbody">
+						<td style="background-color:white;" align="right" colspan="4">ส่วนลด</td>
+						<td style="background-color:white;" align="center">'.number_format($discount).'</td>
+				</tr>';
 		}
-		$pdf->Ln();
-		// Color and font restoration
-		$pdf->SetFillColor(224, 235, 255);
-		$pdf->SetTextColor(0);
-		$pdf->SetFont('');
-		// Data
-		$fill = 0;
-		foreach($zone_list as $key_z=>$row) {
-			$seat_list = get_seat_by_zone($booking_list, $row);
-			$zone_price = get_zone_price($booking_list, $row);
-
-			$pdf->Cell($w[0], 6, $key_z+1, 'LRTB', 0, 'C', $fill);
-			$pdf->Cell($w[1], 6, strtoupper($row), 'LRTB', 0, 'L', $fill);
-			$pdf->Cell($w[2], 6, strtoupper(implode(', ', $seat_list)), 'LRTB', 0, 'L', $fill);
-			$pdf->Cell($w[3], 6, number_format(count($seat_list)), 'LRTB', 0, 'C', $fill);
-			$pdf->Cell($w[4], 6, number_format($zone_price), 'LRTB', 0, 'R', $fill);
-			$pdf->Cell($w[5], 6, number_format($zone_price * count($seat_list)), 'LRTB', 0, 'R', $fill);
-			$pdf->Ln();
-			$fill=!$fill;
-		}
-		$pdf->SetFillColor(220, 220, 220);
-
-		// SUM
-		$pdf->Cell(array_sum(array($w[0],$w[1],$w[2],$w[3],$w[4]))
-			, 6, 'ราคารวม', 'LRTB', 0, 'R', 1);
-		$pdf->Cell($w[5], 6, number_format(get_sum_price($booking_list)), 'LRTB', 0, 'R', 1);
-		$pdf->Ln();
-
-		// CHECK TRANSFER
-		$pdf->Cell(array_sum(array($w[0],$w[1],$w[2],$w[3],$w[4]))
-			, 6, 'เงินตรวจสอบโอน', 'LRTB', 0, 'R', 1);
-		$pdf->Cell($w[5], 6, '0.'.str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT), 'LRTB', 0, 'R', 1);
-		$pdf->Ln();
-
-		// CARD
-		$pdf->Cell(array_sum(array($w[0],$w[1],$w[2],$w[3],$w[4]))
-			, 6, 'ค่าธรรมเนียมการออกบัตร (20 บาทต่อใบ)', 'LRTB', 0, 'R', 1);
-		$pdf->Cell($w[5], 6, '20', 'LRTB', 0, 'R', 1);
-		$pdf->Ln();
-
-		// total
-		$pdf->SetFont('', 'B');
-		$pdf->Cell(array_sum(array($w[0],$w[1],$w[2],$w[3],$w[4]))
-			, 6, 'ราคาสุทธิ', 'LRTB', 0, 'R', 1);
-		$pdf->Cell($w[5], 6, number_format(get_sum_price($booking_list)+20).'.'.str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT), 'LRTB', 0, 'R', 1);
-		$pdf->Ln();
-
-		//$pdf->Cell(array_sum($w), 0, '', 'T');
-		// ***** END DEFINED TABLE DATA *****
+		$tbl .= '<tr>
+						<td style="background-color:white;" align="right" colspan="4">ราคารวมทั้งหมด</td>
+						<td style="background-color:white;" align="center"><strong>'. number_format($total) .'.'. str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) .'</strong></td>
+					</tr>
+				</table>';
+		//echo $tbl;
+		$pdf->writeHTML($tbl, true, false, false, false, '');
+		// ***** END BODY LIST *****
 
 
 		$pdf->Ln();
@@ -646,7 +595,7 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 เวลาและสถานที่จะแจ้งให้ทราบอีกครั้ง', 1, 'C', 1, 1);
 
 
-		$pdf->SetY(-40);
+		$pdf->SetY(-30);
 
 		// ***** BARCODE *****
 		// define barcode style

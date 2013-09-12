@@ -39,7 +39,7 @@ class Transfer extends CI_Controller {
 					array(
 						'field'		=> 'slip',
 						'label'		=> 'สลิปการโอนเงิน',
-						'rules'		=> 'trim|required|file_required'
+						'rules'		=> 'trim|file_required'
 					)
 				);
 		$this->form_validation->set_rules($rules);

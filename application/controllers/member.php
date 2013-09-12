@@ -24,27 +24,6 @@ class Member extends CI_Controller {
 	}
 
 	function login(){
-		$user_test = $this->input->post('username');
-		// fix for test
-		if(!empty($user_test)&&$user_test!='fanzone001'&&$user_test!='khemmac'){
-			echo 'not for test';
-			return;
-		}
-
-		// fix user for test
-		/*
-		$user_test = $this->input->post('username');
-		if(!empty($user_test)){
-			if($user_test=='khemmac' || $user_test=='testsbs1' || $user_test=='testsbs2'
-			 || $user_test=='testsbs3' || $user_test=='testsbs4' || $user_test=='testsbs5'){
-			 	// user is for test correct
-			 }else{
-			 	echo 'USER IS NOT FOR TEST';
-				return;
-			 }
-		}
-		*/
-
 		//$r_url = $this->input->post('rurl');
 
 		//if(empty($r_url))
@@ -73,6 +52,14 @@ class Member extends CI_Controller {
 			$this->phxview->RenderView('login');
 			$this->phxview->RenderLayout('default');
 		} else {
+			// fix fanzone only
+			$user_obj = get_user_session($this);
+			if($user_obj['type']!=2){
+				delete_user_session($this);
+				redirect('sbs2013?popup=login-fanzone-only-popup');
+				return;
+			}
+
 			redirect($r_url);
 		}
 	}
@@ -101,13 +88,13 @@ class Member extends CI_Controller {
 			// send email
 			$this->email_model->send_register_success($original_data);
 
-			if(period_helper_pre_register()){
+			//if(period_helper_pre_register()){
 				redirect('member/register_pre_success');
-			}else{
+			//}else{
 				// auto login
-				$this->person_model->login($this->input->post('username'), $this->input->post('password'));
-				redirect('member/register_success');
-			}
+			//	$this->person_model->login($this->input->post('username'), $this->input->post('password'));
+			//	redirect('member/register_success');
+			//}
 		}
 	}
 

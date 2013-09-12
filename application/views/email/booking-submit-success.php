@@ -1,23 +1,23 @@
-<div style="background-color:#000000; width:800px;">
+<div style="width:800px;">
 	<table cellpadding="0" cellspacing="0" width="100%" border="0">
 		<tr>
-			<td align="center"><h1 style="color:white;">หลักฐานการจองบัตร SBS MTV 2013</h1></td>
+			<td align="center"><h1>หลักฐานการจองบัตร SBS MTV 2013</h1></td>
 		</tr>
 		<tr>
 			<td align="center">
 				<table cellpadding="5" cellspacing="0" width="80%" border="0">
 					<tr>
-						<td style="color:white;">คุณ <?= $person['thName'] ?></td>
-						<td align="center" style="color:white;" rowspan="2"><strong style="font-weight:bold;">รหัสการจอง</strong><br /><?= $booking_data['code'] ?></td>
+						<td>คุณ <?= $person['thName'] ?></td>
+						<td align="center" rowspan="2"><strong style="font-weight:bold;">รหัสการจอง</strong><br /><?= $booking_data['code'] ?></td>
 					</tr>
 					<tr>
-						<td style="color:white;">รหัสบัตรประชาชน <?= $person['code'] ?></td>
+						<td>รหัสบัตรประชาชน <?= $person['code'] ?></td>
 					</tr>
 					<tr>
-						<td style="color:white;" colspan="2">อีเมล์ <?= $person['email'] ?></td>
+						<td colspan="2">อีเมล์ <?= $person['email'] ?></td>
 					</tr>
 					<tr>
-						<td style="color:white;" colspan="2">เบอร์โทรศัพท์ <?= $person['tel'] ?></td>
+						<td colspan="2">เบอร์โทรศัพท์ <?= $person['tel'] ?></td>
 					</tr>
 				</table>
 			</td>
@@ -25,15 +25,14 @@
 		<tr><td height="30"></td></tr>
 		<tr>
 			<td align="center">
-				<table cellpadding="4" cellspacing="0" width="90%" border="1" style="background-color:black;">
+				<table cellpadding="4" cellspacing="0" width="90%" border="1">
 					<tr>
-						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">รายการ</td>
-						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">โซนที่นั่ง</td>
-						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">เลขที่นั่ง</td>
-						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">จำนวนที่นั่ง</td>
-						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">ราคาต่อหน่วย</td>
-						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">ราคา</td>
-						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">สถานะ</td>
+						<td style="color:white; background-color:black; font-weight: bold; background-color:#18171c;" align="center">รายการ</td>
+						<td style="color:white; background-color:black; font-weight: bold; background-color:#18171c;" align="center">โซนที่นั่ง</td>
+						<td style="color:white; background-color:black; font-weight: bold; background-color:#18171c;" align="center">จำนวนที่นั่ง</td>
+						<td style="color:white; background-color:black; font-weight: bold; background-color:#18171c;" align="center">ราคาต่อหน่วย</td>
+						<td style="color:white; background-color:black; font-weight: bold; background-color:#18171c;" align="center">ราคา</td>
+						<td style="color:white; background-color:black; font-weight: bold; background-color:#18171c;" align="center">สถานะ</td>
 					</tr>
 <?php
 	function get_seat_by_zone($seat_list, $z_name){
@@ -58,41 +57,78 @@
 		}
 		return $r;
 	}
+	function get_card_fee($seat_list){
+		return count($seat_list) * 20;
+	}
+	function get_discount($booking_type, $seat_list){
+		$r = 0;
+		$sum_price = get_sum_price($seat_list);
+		if($booking_type==3){
+			if(count($seat_list)>=100)
+				$r = $sum_price * 15 / 100;
+			else if(count($seat_list)>=50)
+				$r = $sum_price * 10 / 100;
+			else if(count($seat_list)>=30)
+				$r = $sum_price * 5 / 100;
+		}else if($booking_type==2){
+			return 0;
+		}
+		return $r;
+	}
+	function get_total_price($booking_type, $seat_list){
+		return get_sum_price($seat_list) + (count($seat_list) * 20) - get_discount($booking_type, $seat_list);
+	}
+	$card_fee = get_card_fee($booking_list);
+	$discount = get_discount($booking_data['type'], $booking_list);
+	$total = get_total_price($booking_data['type'], $booking_list);
 	foreach($zone_list AS $key_z => $z):
 		$seat_list = get_seat_by_zone($booking_list, $z);
 		$zone_price = get_zone_price($booking_list, $z);
 ?>
 					<tr>
-						<td style="background-color:white;" align="center"><?= $key_z+1 ?></td>
-						<td style="background-color:white;" align="center"><?= strtoupper($z) ?></td>
-						<td style="background-color:white;" align="center"><?= strtoupper(implode(', ', $seat_list)) ?></td>
-						<td style="background-color:white;" align="center"><?= count($seat_list) ?></td>
-						<td style="background-color:white;" align="center"><?= number_format($zone_price) ?></td>
-						<td style="background-color:white;" align="center"><?= number_format($zone_price * count($seat_list)) ?></td>
+						<td align="center"><?= $key_z+1 ?></td>
+						<td align="center"><?= strtoupper($z) ?></td>
+						<td align="center"><?= count($seat_list) ?></td>
+						<td align="center"><?= number_format($zone_price) ?></td>
+						<td align="center"><?= number_format($zone_price * count($seat_list)) ?></td>
 					<?php if($key_z==0): ?>
-						<td style="background-color:white;" align="center" rowspan="<?= count($zone_list) + 4 ?>" valign="top" style="padding:5px;">
+						<td align="center" valign="middle" rowspan="<?= count($zone_list) + (4+((!empty($discount) && $discount>0)?1:0)) ?>" valign="top" style="padding:5px;">
 							กรุณาชำระเงิน
+							<?php if($booking_data['type']==3): ?>
+							<br />ภายในวันที่ 20/09/2013
+							<br />ก่อนเวลา 18.00
+							<?php elseif($booking_data['type']==2): ?>
 							<br />ภายในวันที่ <?= util_helper_format_date(util_helper_add_six_hour(new DateTime())) ?>
 							<br />ก่อนเวลา <?= util_helper_format_time(util_helper_add_six_hour(new DateTime())) ?>
+							<?php else: ?>
+							<br />ภายในวันที่ <?= util_helper_format_date(util_helper_add_four_hour(new DateTime())) ?>
+							<br />ก่อนเวลา <?= util_helper_format_time(util_helper_add_four_hour(new DateTime())) ?>
+							<?php endif; ?>
 						</td>
 					<?php endif; ?>
 					</tr>
 <?php endforeach; ?>
 					<tr>
-						<td style="background-color:white;" align="right" colspan="5">ราคารวม</td>
-						<td style="background-color:white;" align="center"><?= number_format(get_sum_price($booking_list)) ?></td>
+						<td align="right" colspan="4">ราคารวม</td>
+						<td align="center"><?= number_format(get_sum_price($booking_list)) ?></td>
 					</tr>
 					<tr>
-						<td style="background-color:white;" align="right" colspan="5">เงินตรวจสอบโอน</td>
-						<td style="background-color:white;" align="center">0.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></td>
+						<td align="right" colspan="4">เงินตรวจสอบโอน</td>
+						<td align="center">0.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></td>
 					</tr>
 					<tr>
-						<td style="background-color:white;" align="right" colspan="5">ค่าธรรมเนียมการออกบัตร (20 บาทต่อใบ)</td>
-						<td style="background-color:white;" align="center">20</td>
+						<td align="right" colspan="4">ค่าธรรมเนียมการออกบัตร (20 บาทต่อใบ)</td>
+						<td align="center"><?= number_format($card_fee) ?></td>
 					</tr>
+					<?php if(!empty($discount) && $discount>0): ?>
+						<tr class="tbody">
+							<td align="right" colspan="4">ส่วนลด</td>
+							<td align="center"><?= number_format($discount) ?></td>
+						</tr>
+					<?php endif; ?>
 					<tr>
-						<td style="background-color:white;" align="right" colspan="5">ราคารวมทั้งหมด</td>
-						<td style="background-color:white;" align="center"><strong><?= number_format(get_sum_price($booking_list) + 20) ?>.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
+						<td align="right" colspan="4">ราคารวมทั้งหมด</td>
+						<td align="center"><strong><?= number_format(get_sum_price($booking_list) + 20) ?>.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
 					</tr>
 				</table>
 			</td>
@@ -104,7 +140,7 @@
 			<td align="center">
 				<table cellpadding="5" cellspacing="0" border="0" width="95%">
 					<tr>
-						<td style="color:white;">
+						<td>
 							<h3>เงื่อนไขการชำระเงิน</h3>
 							<ol>
 								<li>กรุณาชำระผ่านธนาคารดังต่อไปนี้
@@ -130,7 +166,17 @@
 										</li>
 									</ul>
 								</li>
-								<li>ชำระเงินภายใน 4 ชั่วโมง</li>
+								<li>ชำระเงินภายใน
+							<?php if($booking_data['type']==3): ?>
+							วันที่ 20/09/2013 ก่อนเวลา 18.00 น.
+							<?php elseif($booking_data['type']==2): ?>
+							6 ชั่วโมง
+							<?php else: ?>
+							4 ชั่วโมง
+							<?php endif; ?>
+									หากไม่ชำระเงินภายในเวลาดังกล่าว มิฉะนั้นจะถือว่าท่านสละสิทธิ์ในการจองบัตร รายละเอียดการจองของท่านจะถูกลบจากระบบ
+									โดยทางผู้จัดจะไม่รับผิดชอบใดๆทั้งสิ้น
+								</li>
 								<li>กรุณานำหลักฐานการชำระเงินมายืนยันการแจ้งโอนเงิน ผ่านทาง <a href="http://www.boostplus.co.th" target="_blank">www.boostplus.co.th</a> ในหัวข้อแจ้งโอนเงิน
 								</li>
 								<li>หากแจ้งโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการจอง หลังจากแจ้งโอนเงินในเวลาประมาณ 48 ชม.</li>
