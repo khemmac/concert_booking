@@ -71,7 +71,7 @@ Class Tranfer_model extends CI_Model
 	}
 
 	function loadBookingContents($ids=""){
-		$query = $this->db->Query("select b.*,p.thName person_name,p.email,p.tel from booking b inner join person p on b.person_id=p.id where b.id in($ids)");
+		$query = $this->db->Query("select b.*,p.thName person_name,p.email,p.tel from booking b inner join person p on b.person_id=p.id where b.code in('".$ids."')");
 		return $query->result_array();
 	}
 
