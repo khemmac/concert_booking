@@ -9,7 +9,7 @@ class Transfer extends CI_Controller {
 
 		//load model
 		$this->load->model('tranfer_model','',TRUE);
-
+		$this->load->model("email_model",'',TRUE);
 		$this->output->set_header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0', FALSE);
 		$this->output->set_header('Cache-Control: max-age=-1281, public, must-revalidate, proxy-revalidate', FALSE);
@@ -46,6 +46,7 @@ class Transfer extends CI_Controller {
 			$this->phxview->RenderView('transfer');
 			$this->phxview->RenderLayout('default');
 		} else {
+			$ids = $this->input->post('code');
 			$img_name ="";
 			if(isset($_FILES['slip']['name'])){
 				$date = new DateTime();
@@ -56,6 +57,19 @@ class Transfer extends CI_Controller {
 				move_uploaded_file($_FILES['slip']['tmp_name'],$file_path.$img_name);
 			}
 			$this->tranfer_model->money_tranfer($img_name);
+			
+			$list = $this->tranfer_model->loadBookingContents($ids);
+			foreach($list as $o){
+				$obj = array("email"=>$o["email"]
+							,"code" =>$o["code"]
+							,"pay_date"=>$o["pay_date"]
+							,"pay_money"=>$o["pay_money"]
+							,"bank_name"=>$o["bank_name"]);
+				$this->email_model->approve_tranfer($obj);
+			}
+			
+			
+			
 			redirect('booking/complete', 'refresh');
 		}
 	}
