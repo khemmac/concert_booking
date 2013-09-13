@@ -54,7 +54,13 @@ class Member extends CI_Controller {
 		} else {
 			// fix fanzone only
 			$user_obj = get_user_session($this);
-			if($user_obj['type']!=2){
+
+			if($user_obj['username']=='testsbs1' || $user_obj['username']=='testsbs2'
+			|| $user_obj['username']=='testsbs3' || $user_obj['username']=='testsbs4'
+			|| $user_obj['username']=='testsbs5' || $user_obj['username']=='khemmac'
+			){
+				// ปล่อยผ่านได้
+			}else if($user_obj['type']!=2){
 				delete_user_session($this);
 				redirect('sbs2013?popup=login-fanzone-only-popup');
 				return;

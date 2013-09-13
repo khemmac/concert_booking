@@ -54,4 +54,29 @@ Class Email_model extends CI_Model
 		$body = $this->load->view('email/booking-submit-success', $data, true);
 		$this->send_mailer($reciever, $subject, $body);
 	}
+
+	public function test(){
+		require("./application/libraries/phpmailer/class.phpmailer.php");
+		$mail = new PHPMailer();
+		$mail->IsSMTP();
+		$mail->CharSet		= "utf-8";
+		$mail->Host			= "ssl://smtp.gmail.com";
+		$mail->Port			= "465";
+		$mail->SMTPAuth		= true;
+		$mail->Username		= "sbs.mtv.2013@gmail.com";
+		$mail->Password		= "boost1234";
+
+		$mail->From			= "sbs.mtv.2013@gmail.com";
+		$mail->FromName		= "Boostplus";
+		$mail->IsHTML(true);
+
+		for($i=1;$i<=3;$i++){
+			$mail->AddAddress('khemmac@gmail.com');
+			$mail->Subject		=  'test multiple '.$i;
+			$mail->Body			= 'test multiple body '.$i;
+			$result = $mail->send();
+
+			$mail->ClearAddresses();
+		}
+	}
 }

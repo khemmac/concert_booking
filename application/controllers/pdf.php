@@ -467,7 +467,7 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 		$pdf->SetFooterMargin(0);//PDF_MARGIN_FOOTER);
 
 		//set auto page breaks
-		$pdf->SetAutoPageBreak(FALSE, 1);//(TRUE, PDF_MARGIN_BOTTOM);
+		$pdf->SetAutoPageBreak(TRUE, 1);//(TRUE, PDF_MARGIN_BOTTOM);
 
 		//set image scale factor
 		//$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
@@ -516,7 +516,7 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 		$pdf->SetLineWidth(0.2);
 		$pdf->SetFont('', '', '16');
 		$tbl = '';
-		$tbl .= '<table cellpadding="4" cellspacing="0" width="100%" border="1">
+		$tbl .= '<table cellpadding="3" cellspacing="0" width="100%" border="1">
 					<tr>
 						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">รายการ</td>
 						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">โซนที่นั่ง</td>
@@ -585,7 +585,6 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 		// ***** END BODY LIST *****
 
 
-		$pdf->Ln();
 		$pdf->SetFont('', '');
 		$pdf->SetFillColor(223, 128, 0);
 		$pdf->SetTextColor(0, 0, 0);
@@ -595,7 +594,7 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 เวลาและสถานที่จะแจ้งให้ทราบอีกครั้ง', 1, 'C', 1, 1);
 
 
-		$pdf->SetY(-30);
+		$pdf->SetY(-25);
 
 		// ***** BARCODE *****
 		// define barcode style
@@ -604,7 +603,7 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 			'align' => 'C',
 			'stretch' => false,
 			'fitwidth' => true,
-			'cellfitalign' => '',
+			'cellfitalign' => 'R',
 			'border' => true,
 			'hpadding' => 'auto',
 			'vpadding' => 'auto',
@@ -617,9 +616,42 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 		);
 
 		// Standard 2 of 5
-		//$pdf->Cell(0, 0, 'Standard 2 of 5', 0, 1);
 		$pdf->write1DBarcode($booking_data['id'], 'S25', '', '', '', 18, 0.4, $style, 'N');
 		// ***** END BARCODE *****
+
+		if($booking_data['type']==3){
+
+			// ***** SEATS DETAIL *****
+			// add a page
+			$pdf->AddPage();
+			$pdf->SetLineWidth(0.2);
+			$pdf->SetFont('', '', '16');
+			$tbl = '';
+			$tbl .= '<table cellpadding="4" cellspacing="0" width="100%" border="1">
+						<tr>
+							<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">โซนที่นั่ง</td>
+							<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">เลขที่นั่ง</td>
+						</tr>';
+
+		foreach($zone_list AS $key_z => $z):
+			$seat_list = get_seat_by_zone($booking_list, $z);
+
+			$tbl .= '<tr>
+						<td style="background-color:white;" align="center">'. strtoupper($z) .'</td>
+						<td style="background-color:white;" align="center">'. strtoupper(implode(', ', $seat_list)) .'</td>
+					</tr>';
+		endforeach;
+
+			$tbl .= '</table>';
+			//echo $tbl;
+			$pdf->writeHTML($tbl, true, false, false, false, '');
+			// ***** END SEATS DETAIL *****
+
+			// ***** BARCODE *****
+			$pdf->SetY(-25);
+			$pdf->write1DBarcode($booking_data['id'], 'S25', '', '', '', 18, 0.4, $style, 'N');
+			// ***** END BARCODE *****
+		}
 
 		// set javascript
 		$is_print = $this->input->get('print');

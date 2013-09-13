@@ -127,7 +127,7 @@
 			<?php if(!empty($discount) && $discount>0): ?>
 				<tr class="tbody">
 					<td class="bg-left"></td>
-					<td colspan="4" class="sum-price" align="right">ส่วนลด</td>
+					<td colspan="4" class="sum-price" align="right">ส่วนลด <?= cal_helper_get_discount_detail($booking_data['type'], $booking_list) ?></td>
 					<td class="price"><?= number_format($discount) ?></td>
 					<td class="bg-right"></td>
 				</tr>

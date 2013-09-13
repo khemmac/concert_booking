@@ -12,6 +12,7 @@ class Zone_early extends CI_Controller {
 		// load model
 		$this->load->model('booking_model','',TRUE);
 		$this->load->model('seat_model','',TRUE);
+		$this->load->model('early_model','',TRUE);
 
 		$this->output->set_header('Cache-Control: no-cache, no-store, must-revalidate, max-age=0');
 		$this->output->set_header('Cache-Control: post-check=0, pre-check=0', FALSE);
@@ -20,10 +21,6 @@ class Zone_early extends CI_Controller {
 	}
 
 	function index(){
-		// fix disable session user
-		delete_user_session($this);
-		redirect('sbs2013');
-		return;
 
 		if(!is_user_session_exist($this))
 			redirect('member/login?rurl='.uri_string());
@@ -53,13 +50,13 @@ class Zone_early extends CI_Controller {
 			));
 			if($query->num_rows()<=0){
 				// prepare booking data
-				$booking_id = $this->booking_model->prepare($user_id);
+				$booking_id = $this->booking_model->prepare($user_id, 1);
 				redirect('zone_early/'.$booking_id);
 				return;
 			}
 		}else{
 			// prepare booking data
-			$booking_id = $this->booking_model->prepare($user_id);
+			$booking_id = $this->booking_model->prepare($user_id, 1);
 			redirect('zone_early/'.$booking_id);
 			return;
 		}
@@ -93,10 +90,6 @@ class Zone_early extends CI_Controller {
 	}
 
 	function submit(){
-		// fix disable session user
-		delete_user_session($this);
-		redirect('sbs2013');
-		return;
 
 		if(!is_user_session_exist($this))
 			redirect('member/login');
@@ -112,8 +105,45 @@ class Zone_early extends CI_Controller {
 	}
 
 	function soldout(){
-		$this->phxview->RenderView('zone-early-soldout');
+		if(!is_user_session_exist($this))
+			redirect('member/login?rurl='.uri_string());
+		$user_id = get_user_session_id($this);
+
+		$has_booked = $this->booking_model->has_booked($user_id);
+		if($has_booked){
+			redirect('sbs2013?popup=zone-booked-limit-popup');
+			return;
+		}
+
+		// check has reserve
+		$is_reserved = $this->early_model->is_reserved($user_id);
+
+		$this->phxview->RenderView('zone-early-soldout', array(
+			'is_reserved'=>$is_reserved
+		));
 		$this->phxview->RenderLayout('default');
+	}
+
+	function soldout_submit(){
+		if(!is_user_session_exist($this))
+			redirect('member/login?rurl='.uri_string());
+		$user_id = get_user_session_id($this);
+
+		$has_booked = $this->booking_model->has_booked($user_id);
+		if($has_booked){
+			redirect('sbs2013?popup=zone-booked-limit-popup');
+			return;
+		}
+
+		// check has reserve
+		$is_reserved = $this->early_model->is_reserved($user_id);
+		if($is_reserved){
+			redirect('zone_early/soldout');
+		}else{
+			$this->early_model->reserve($user_id, $this->input->post('amount'));
+
+			redirect('zone_early/soldout?popup=zone-early-success-popup');
+		}
 	}
 
 }

@@ -73,6 +73,10 @@
 			<a href="#close" class="close"></a>
 		</div>
 
+		<div id="zone-early-success-popup" class="window">
+			<a href="#close" class="close"></a>
+		</div>
+
 		<div id="contact-us-popup" class="window">
 			<a href="#close" class="close"></a>
 		</div>

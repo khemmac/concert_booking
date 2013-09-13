@@ -40,6 +40,11 @@ class Test extends CI_Controller {
 		echo 'success';
 	}
 
+	function send_mails(){
+		$this->email_model->test();
+		echo '<br />success';
+	}
+
 	function check_port(){
 		$fp = fsockopen('ssl://smtp.googlemail.com', 465, $errno, $errstr, 5);
 		if (!$fp) {

@@ -29,18 +29,27 @@
 		</ul>
 		<?= form_close() ?>
 
-		<div id="remark-info"></div>
+		<div id="remark-info">
+			<div style="position:absolute; top:15px; left:0px; width:185px; height:26px; background:transparent url('<?= base_url('images/zone/price.gif') ?>') no-repeat;">
+			</div>
+		</div>
 
 		<div id="booking-info" style="border:0px solid #f00; position:absolute; top:330px; right:16px; width:271px; height:117px;">
 			<table cellpadding="2" cellspacing="0" border="0" style="color:white;">
 				<tr>
-					<td align="right">โซน :</td>
+					<td align="right"><?= language_helper_is_th($this)?'โซน':'Zone' ?> :</td>
 					<td>
 <?php
 	if(count($zones)>0):
 		$zones_arr = array();
 		foreach($zones AS $z):
-			array_push($zones_arr, anchor('seat_early/'.$booking_id, strtoupper($z), 'title="'.$z.'"'));
+			$zone_data = zone_helper_get_zone($z);
+			if($z=='a3')
+				array_push($zones_arr, anchor('seat_early/'.$booking_id, strtoupper($z), 'title="'.$z.'"'));
+			else if($zone_data['type']=='u')
+				array_push($zones_arr, anchor('seat_u/'.$z.'/'.$booking_id, strtoupper($z), 'title="'.$z.'"'));
+			else
+				array_push($zones_arr, anchor('seat/'.$z.'/'.$booking_id, strtoupper($z), 'title="'.$z.'"'));
 		endforeach;
 		echo implode(', ', $zones_arr);
 	endif;
@@ -48,12 +57,12 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="right">บัตร :</td>
-					<td><?= (count($seats)>0)?count($seats):'-' ?> ใบ</td>
+					<td align="right"><?= language_helper_is_th($this)?'บัตร':'Tickets' ?> :</td>
+					<td><?= (count($seats)>0)?count($seats):'-' ?> <?= language_helper_is_th($this)?'ใบ':'items' ?> :</td>
 				</tr>
 				<tr>
-					<td align="right">ราคารวม :</td>
-					<td><?= number_format($price) ?> B.-</td>
+					<td align="right"><?= language_helper_is_th($this)?'ราคารวม':'Total' ?> :</td>
+					<td><?= number_format($price) ?> <?= language_helper_is_th($this)?'บาท':'Baht' ?></td>
 				</tr>
 			</table>
 		</div>
