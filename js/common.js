@@ -63,6 +63,7 @@ Common.prototype = {
 		$('.concert-tooltip').qtip();
 	},
 	popup : {
+		queue: [],
 		init : function(){
 			var _this=this;
 			//if close button is clicked
@@ -97,8 +98,12 @@ Common.prototype = {
 			});
 		},
 		show : function(el, popup_id){
+			var _this=this;
 			// check another window is show
-			if($('#boxes > .window:visible').length>0) return;
+			if($('#boxes > .window:visible').length>0){
+				this.queue.push(popup_id);
+				return;
+			}
 
 			//Get the A tag
 			// id is optional
@@ -128,8 +133,13 @@ Common.prototype = {
 			$(id).fadeIn(200);
 		},
 		hide : function(){
-			//$('#mask, .window').hide();
-			$('#mask, .window').fadeOut(100);
+			var _this=this;
+			$('#mask, .window').fadeOut(100, function(){
+				if(_this.queue.length>0){
+					var qId = _this.queue.pop();
+					_this.show(null, qId);
+				}
+			});
 		}
 	},
 	combo : {
