@@ -106,8 +106,76 @@
 			<tr class="tfoot">
 				<td colspan="8">footer</td>
 			</tr>
-			<tr class="tfoot-text tfoot-text-fanzone">
-				<td colspan="8">footer</td>
+			<?php
+				$txt_cls = 'tfoot-text-fanzone';
+				if($booking_data['type']==1)
+					$txt_cls = 'tfoot-text-early';
+				else if($booking_data['type']==2)
+					$txt_cls = 'tfoot-text-presale';
+			?>
+			<tr class="tfoot-text <?= $txt_cls ?>">
+				<td colspan="8" valign="top" style="text-indent:0px; color:white; background:transparent url('<?= base_url('images/booking/table_shadow.png') ?>') no-repeat;">
+					<h3 style="margin:20px 0px 0px 20px; padding:0px;">เงื่อนไขการชำระเงิน</h3>
+					<ol style="margin:5px 0px 0px 70px; padding:0px;">
+						<li>กรุณาชำระผ่านธนาคารดังต่อไปนี้
+							<table cellpadding="2" cellspacing="0" border="0">
+								<tr>
+									<td valign="middle">
+										&nbsp;<img src="<?= base_url('images/common/blank.gif') ?>" style="width:13px; height:17px; background:transparent url('<?= base_url('images/booking/bank-logo.gif') ?>') no-repeat 0px 0px;" />&nbsp;
+									</td>
+									<td>
+										ธนาคารกรุงเทพ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										สาขาลาดพร้าว
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										บัญชีกระแสรายวัน เลขที่บัญชี
+										129-3-16258-0
+									</td>
+								</tr>
+								<tr>
+									<td valign="middle">
+										&nbsp;<img src="<?= base_url('images/common/blank.gif') ?>" style="width:13px; height:17px; background:transparent url('<?= base_url('images/booking/bank-logo.gif') ?>') no-repeat 0px -17px;" />&nbsp;
+									</td>
+									<td>
+										ธนาคารกสิกรไทย&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										สาขาลาดพร้าวซอย10
+										&nbsp;&nbsp;&nbsp;
+										บัญชีกระแสรายวัน เลขที่บัญชี
+										752-1-02075-4
+									</td>
+								</tr>
+								<tr>
+									<td valign="middle">
+										&nbsp;<img src="<?= base_url('images/common/blank.gif') ?>" style="width:13px; height:17px; background:transparent url('<?= base_url('images/booking/bank-logo.gif') ?>') no-repeat 0px -34px;" />&nbsp;
+									</td>
+									<td>
+										ธนาคารไทยพาณิชย์&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										สาขาลาดพร้าวซอย10
+										&nbsp;&nbsp;&nbsp;
+										บัญชีกระแสรายวัน เลขที่บัญชี
+										047-3-03581-2
+									</td>
+								</tr>
+							</table>
+						</li>
+						<li>กรุณาชำระเงินภายในวันที่
+							<?php if($booking_data['type']==3): ?>
+							20/09/2013 ก่อนเวลา 18.00
+							<?php elseif($booking_data['type']==2): ?>
+							6 ชั่วโมง
+							<?php else: ?>
+							4 ชั่วโมง
+							<?php endif; ?>
+							หากไม่ชำระเงินภายในเวลาดังกล่าว มิฉะนั้นจะถือว่าท่านสละสิทธิ์ในการจองบัตร รายละเอียดการจองของท่านจะถูกลบจากระบบ
+							โดยทางผู้จัดจะไม่รับผิดชอบใดๆทั้งสิ้น
+						</li>
+						<li>กรุณานำหลักฐานการชำระเงินมายืนยันการแจ้งโอนเงิน ผ่านทาง <a href="http://www.boostplus.co.th" target="_blank">www.boostplus.co.th</a> ในหัวข้อแจ้งโอนเงิน</li>
+						<li>หากแจ้งโอนเงินเรียบร้อยแล้ว กรุณาตรวจสอบสถานะการจอง หลังจากแจ้งโอนเงินในเวลาประมาณ 48 ชม. (ไม่นับวันหยุดราชการ)</li>
+					</ol>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="8"><div style="height:36px; width:719px; margin:10px 0px 10px 0px; background:transparent url('<?= base_url('images/booking/booking-footer-text-early.png') ?>') no-repeat 0px -235px"></div></td>
 			</tr>
 			<tr class="tfoot-buttons" align="center">
 				<td colspan="8">
