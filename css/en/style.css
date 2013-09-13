@@ -249,7 +249,7 @@ form input {
 
 .page-booking .list .tfoot-text td { height:281px; background:transparent url("../../images/en/booking/booking-footer-text-early.png") no-repeat; text-indent:-3000px; }
 
-.page-booking .list .tfoot-text-fanzone td { background:transparent url("../../images/en/booking/booking-footer-text-fanzone.png") no-repeat; }
+.page-booking .list .tfoot-text-fanzone td { height:317px; background:transparent url("../../images/en/booking/booking-footer-text-fanzone.png") no-repeat; }
 .page-booking .list .tfoot-text-presale td { background:transparent url("../../images/en/booking/booking-footer-text-presale.png") no-repeat; }
 
 .page-booking #content form ul {

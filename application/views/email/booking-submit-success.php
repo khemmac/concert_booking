@@ -50,37 +50,11 @@
 		}
 		return 0;
 	}
-	function get_sum_price($seat_list){
-		$r = 0;
-		foreach($seat_list AS $o_seat){
-			$r += $o_seat['price'];
-		}
-		return $r;
-	}
-	function get_card_fee($seat_list){
-		return count($seat_list) * 20;
-	}
-	function get_discount($booking_type, $seat_list){
-		$r = 0;
-		$sum_price = get_sum_price($seat_list);
-		if($booking_type==3){
-			if(count($seat_list)>=100)
-				$r = $sum_price * 15 / 100;
-			else if(count($seat_list)>=50)
-				$r = $sum_price * 10 / 100;
-			else if(count($seat_list)>=30)
-				$r = $sum_price * 5 / 100;
-		}else if($booking_type==2){
-			return 0;
-		}
-		return $r;
-	}
-	function get_total_price($booking_type, $seat_list){
-		return get_sum_price($seat_list) + (count($seat_list) * 20) - get_discount($booking_type, $seat_list);
-	}
-	$card_fee = get_card_fee($booking_list);
-	$discount = get_discount($booking_data['type'], $booking_list);
-	$total = get_total_price($booking_data['type'], $booking_list);
+
+	$sum_price = cal_helper_get_sum_price($booking_list);
+	$card_fee = cal_helper_get_card_fee($booking_list);
+	$discount = cal_helper_get_discount($booking_data['type'], $booking_list);
+	$total = cal_helper_get_total_price($booking_data['type'], $booking_list);
 	foreach($zone_list AS $key_z => $z):
 		$seat_list = get_seat_by_zone($booking_list, $z);
 		$zone_price = get_zone_price($booking_list, $z);
@@ -110,7 +84,7 @@
 <?php endforeach; ?>
 					<tr>
 						<td align="right" colspan="4">ราคารวม</td>
-						<td align="center"><?= number_format(get_sum_price($booking_list)) ?></td>
+						<td align="center"><?= number_format($sum_price) ?></td>
 					</tr>
 					<tr>
 						<td align="right" colspan="4">เงินตรวจสอบโอน</td>
@@ -122,13 +96,13 @@
 					</tr>
 					<?php if(!empty($discount) && $discount>0): ?>
 						<tr class="tbody">
-							<td align="right" colspan="4">ส่วนลด</td>
+							<td align="right" colspan="4">ส่วนลด <?= cal_helper_get_discount_detail($booking_data['type'], $booking_list) ?></td>
 							<td align="center"><?= number_format($discount) ?></td>
 						</tr>
 					<?php endif; ?>
 					<tr>
 						<td align="right" colspan="4">ราคารวมทั้งหมด</td>
-						<td align="center"><strong><?= number_format(get_sum_price($booking_list) + 20) ?>.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
+						<td align="center"><strong><?= number_format($total) ?>.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
 					</tr>
 				</table>
 			</td>

@@ -525,9 +525,9 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">ราคา</td>
 						<td style="color:white; font-weight: bold; background-color:#18171c;" align="center">สถานะ</td>
 					</tr>';
-	$card_fee = get_card_fee($booking_list);
-	$discount = get_discount($booking_data['type'], $booking_list);
-	$total = get_total_price($booking_data['type'], $booking_list);
+	$card_fee = cal_helper_get_card_fee($booking_list);
+	$discount = cal_helper_get_discount($booking_data['type'], $booking_list);
+	$total = cal_helper_get_total_price($booking_data['type'], $booking_list);
 	foreach($zone_list AS $key_z => $z):
 		$seat_list = get_seat_by_zone($booking_list, $z);
 		$zone_price = get_zone_price($booking_list, $z);
@@ -571,7 +571,7 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 
 		if(!empty($discount) && $discount>0){
 			$tbl .= '<tr class="tbody">
-						<td style="background-color:white;" align="right" colspan="4">ส่วนลด</td>
+						<td style="background-color:white;" align="right" colspan="4">ส่วนลด '.cal_helper_get_discount_detail($booking_data['type'], $booking_list).'</td>
 						<td style="background-color:white;" align="center">'.number_format($discount).'</td>
 				</tr>';
 		}

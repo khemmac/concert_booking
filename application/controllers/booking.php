@@ -1,7 +1,5 @@
 <?php
 class Booking extends CI_Controller {
-
-
 	function __construct()
 	{
 		parent::__construct();
@@ -47,14 +45,20 @@ class Booking extends CI_Controller {
 			redirect('member/login');
 		$user_id = get_user_session_id($this);
 
+		$booking_id=$this->input->post('booking_id');
+
+		$data = $this->booking_model->prepare_print_data($user_id, $booking_id);
+		$card_fee = cal_helper_get_card_fee($data['booking_list']);
+		$discount = cal_helper_get_discount($data['booking_data']['type'], $data['booking_list']);
+		$total = cal_helper_get_total_price($data['booking_data']['type'], $data['booking_list']);
+
 		// check limit
 		$booking_id=$this->input->post('booking_id');
 		$this->db->where('id', $booking_id);
 		$this->db->where('person_id', $user_id);
 		$this->db->set('booking_date','NOW()',false);
 		$this->db->set('updateDate','NOW()',false);
-		$this->db->set('total_money','((SELECT sum(z.price+20) FROM seat s JOIN zone z ON s.zone_id=z.id AND s.booking_id='.$booking_id.')
-										+(RIGHT('.$booking_id.', 2)/100))',false);
+		$this->db->set('total_money',$total.'.'.str_pad(substr($booking_id, -2), 2, '0', STR_PAD_LEFT));
 		$this->db->update('booking', array(
 			'status'=>2
 		));
@@ -69,21 +73,7 @@ class Booking extends CI_Controller {
 		}else{
 			redirect('booking/'.$r_data['booking_id']);
 		}
-/*
-		// get booking round
-		$booking_round = $this->booking_model->get_booking_round();
 
-		// call sp
-		$sql = "CALL sp_booking_confirm (?, ?)";
-		$parameters = array($user_id, $booking_round);
-		$query = $this->db->query($sql, $parameters);
-
-		if($query->num_rows()>0){
-			$r_data = $query->first_row('array');
-			redirect('booking/complete/'.$r_data['booking_id']);
-		}else
-			redirect('zone');
-*/
 	}
 
 	function complete(){

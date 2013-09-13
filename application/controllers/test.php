@@ -24,14 +24,20 @@ class Test extends CI_Controller {
 	}
 
 	function send_mail(){
-		$this->email_model->send_booking_submit(22, 44);
-		/*
+		//$this->email_model->send_booking_submit(22, 44);
+/*
 		$this->email_model->send_register_success(array(
 			'username'=>'ssssss',
 			'password'=>'bbbbbbbb',
 			'email'=>'khemmac@gmail.com'
 		));
-		*/
+*/
+		$this->email_model->send_profile_success(array(
+					'username'=>'khemmac',
+					'password'=>'123456',
+					'email'=>'khemmac@gmail.com'
+				));
+		echo 'success';
 	}
 
 	function check_port(){

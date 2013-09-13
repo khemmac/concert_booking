@@ -111,10 +111,13 @@ class Member extends CI_Controller {
 	function profile(){
 		// get session id
 		$user_id = 0;
-		if(is_user_session_exist($this))
+		if(is_user_session_exist($this)){
 			$user_id = get_user_session_id($this);
-		else
+			$user_data = get_user_session($this);
+		}else
 			redirect('member/login?rurl='.uri_string());
+
+		$original_data = $_POST;
 
 		$rules = $this->person_model->get_profile_rules();
 		$this->form_validation->set_rules($rules);
@@ -137,6 +140,16 @@ class Member extends CI_Controller {
 			$this->phxview->RenderLayout('default');
 		}else{
 			$this->person_model->update();
+
+			$pwd = $original_data['password_new'];
+			if(!empty($pwd)){
+				// send email
+				$this->email_model->send_profile_success(array(
+					'username'=>$user_data['username'],
+					'password'=>$pwd,
+					'email'=>$original_data['email']
+				));
+			}
 
 			redirect('member/profile_success');
 		}

@@ -9,10 +9,10 @@ Class Email_model extends CI_Model
 		$mail->Host			= "ssl://smtp.gmail.com";
 		$mail->Port			= "465";
 		$mail->SMTPAuth		= true;
-		$mail->Username		= "SBS.kpop.2013@gmail.com";
+		$mail->Username		= "sbs.mtv.2013@gmail.com";
 		$mail->Password		= "boost1234";
 
-		$mail->From			= "SBS.kpop.2013@gmail.com";
+		$mail->From			= "sbs.mtv.2013@gmail.com";
 		$mail->FromName		= "Boostplus";
 		$mail->AddAddress($reciever);
 		$mail->AddBCC('khemmac@hotmail.com');
@@ -30,6 +30,13 @@ Class Email_model extends CI_Model
 		$reciever = $user_data['email'];
 		$subject = 'ยินดีต้อนรับผู้จองบัตร Early Bird & Presale';
 		$body = $this->load->view('email/register-success', $user_data, true);
+		$this->send_mailer($reciever, $subject, $body);
+	}
+
+	public function send_profile_success($user_data){
+		$reciever = $user_data['email'];
+		$subject = 'ข้อมูลการแก้ไขรหัสผ่าน SBS MTV 2013';
+		$body = $this->load->view('email/profile-success', $user_data, true);
 		$this->send_mailer($reciever, $subject, $body);
 	}
 
