@@ -79,4 +79,13 @@ Class Email_model extends CI_Model
 			$mail->ClearAddresses();
 		}
 	}
+	
+	public function approve_tranfer($user_data){
+		$reciever = $user_data['email'];
+		$subject = 'ยืนยันการแจ้งโอนเงิน';
+		$body = $this->load->view('email/approve-tranfer-notify', $user_data, true);
+		$this->send_mailer($reciever, $subject, $body);
+		$res = array("success"=>true);
+		return $res;
+	}
 }

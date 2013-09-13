@@ -46,6 +46,7 @@ class Transfer extends CI_Controller {
 			$this->phxview->RenderView('transfer');
 			$this->phxview->RenderLayout('default');
 		} else {
+			$ids = $this->input->post('code');
 			$img_name ="";
 			if(isset($_FILES['slip']['name'])){
 				$date = new DateTime();
@@ -56,6 +57,19 @@ class Transfer extends CI_Controller {
 				move_uploaded_file($_FILES['slip']['tmp_name'],$file_path.$img_name);
 			}
 			$this->tranfer_model->money_tranfer($img_name);
+			
+			$list = $this->tranfer_model->loadBookingContents($ids);
+			foreach($list as $o){
+				$obj = array("email"=>$o["email"]
+							,"code" =>$o["code"]
+							,"pay_date"=>$o["pay_date"]
+							,"pay_money"=>$o["pay_money"]
+							,"bank_name"=>$o["bank_name"]);
+				$this->email_model->approve_tranfer($obj);
+			}
+			
+			
+			
 			redirect('booking/complete', 'refresh');
 		}
 	}
