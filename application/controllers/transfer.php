@@ -35,13 +35,12 @@ class Transfer extends CI_Controller {
 						'field'		=> 'pay_money_satang',
 						'label'		=> 'จำนวนเงินที่โอน (สตางค์)',
 						'rules'		=> 'trim|required|numeric|exact_length[2]'
-					),
-					array(
-						'field'		=> 'slip',
-						'label'		=> 'สลิปการโอนเงิน',
-						'rules'		=> 'trim|file_required'
 					)
 				);
+		if (empty($_FILES['slip']['name']))
+		{
+			$this->form_validation->set_rules('slip', 'หลักฐานการโอนเงิน', 'required');
+		}
 		$this->form_validation->set_rules($rules);
 		if($this->form_validation->run() == FALSE) {
 			$this->phxview->RenderView('transfer');

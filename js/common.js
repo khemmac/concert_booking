@@ -97,6 +97,9 @@ Common.prototype = {
 			});
 		},
 		show : function(el, popup_id){
+			// check another window is show
+			if($('#boxes > .window:visible').length>0) return;
+
 			//Get the A tag
 			// id is optional
 			var id = popup_id || $(el).attr('href');
