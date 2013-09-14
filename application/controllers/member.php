@@ -56,6 +56,7 @@ class Member extends CI_Controller {
 			$user_obj = get_user_session($this);
 
 			$is_early = $user_obj['type']==1 && period_helper_early();
+			$is_presale = $user_obj['type']==1 && period_helper_presale();
 			$is_fanzone = $user_obj['type']==2 && period_helper_fanzone();
 
 			if(($user_obj['username']=='testsbs1' || $user_obj['username']=='testsbs2'
@@ -66,6 +67,10 @@ class Member extends CI_Controller {
 				redirect($r_url);
 			}
 			if($is_early){
+				// ปล่อยผ่านได้
+				redirect($r_url);
+			}
+			if($is_presale){
 				// ปล่อยผ่านได้
 				redirect($r_url);
 			}

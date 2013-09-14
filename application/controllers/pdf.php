@@ -605,7 +605,7 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 		$pdf->SetFillColor(223, 128, 0);
 		$pdf->SetTextColor(0, 0, 0);
 		$pdf->MultiCell(0, 0,
-'กรุณาพิมพ์หลักฐานฉบับนี้ไว้ พร้อมบัตรประชาชนตัวจริง เพื่อนำมารับบัตรจริงรุ่น Limited Edition
+'กรุณาพิมพ์หลักฐานฉบับนี้ไว้ พร้อมบัตรประชาชนตัวจริง เพื่อนำมารับบัตรจริง'.(($booking_data['type']==1)?'รุ่น Limited Edition':'').'
 ในวันงาน SBS K-POP MUSIC FESTIVAL 2013 วันที่ 20/10/2013
 เวลาและสถานที่จะแจ้งให้ทราบอีกครั้ง', 1, 'C', 1, 1);
 
