@@ -73,4 +73,17 @@ class Test extends CI_Controller {
 		echo $booking_id;
 	}
 
+	function booking_remove(){
+		$booking_id = $this->input->get('id');
+		$this->db->where('booking_id', $booking_id);
+		$this->db->set('booking_id', NULL);
+		$this->db->set('is_booked', 0);
+		$this->db->update('seat');
+
+		$this->db->where('id', $booking_id);
+		$this->db->delete('booking');
+
+		echo 'success';
+	}
+
 }

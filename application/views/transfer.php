@@ -5,7 +5,7 @@
 		<?= form_open_multipart(); ?>
 		<?php
 			$days = array();
-			for($i=14;$i<=21;$i++)
+			for($i=15;$i<=21;$i++)
 				$days[$i] = $i;
 
 

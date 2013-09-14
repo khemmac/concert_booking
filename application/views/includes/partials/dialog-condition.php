@@ -47,6 +47,33 @@
 ?>
 
 <?php if(language_helper_is_en($this)): ?>
+	<h3 style="text-align:center;">How to purchase Presale Ticket (Festival ticket at the standing area)</h3>
+<h5 style="text-align:center;">On Sunday 15th September at 08.30 am. – Wednesday 18th September at 12.00 pm.</h5>
+<h5 style="text-align:center;">Special Privilege for Presale booking</h5>
+<p style="text-align:center;font-weight:normal; font-size:smaller;">
+	Get 500 Baht discount from regular price/ticket of every zone (except 6,000 Baht ticket in A3 zone)
+	<br />Get Limited Edition ticket (5,000 Baht ticket in zone A2 and A4 only)
+	<br />Get Fast Track entry privilege to the concert venue (arranging from Payment Confirmation order)
+</p>
+<ol style="font-weight:normal; font-size:smaller;">
+	<li>Enter www.boostplus.co.th choose SBS K-POP FESTIVAL 2013 LIVE IN BANGKOK</li>
+	<li>Complete the registeration form by providing all required information. Please log in with your existing username and password every time before continue to the next step.</li>
+	<li>After logging in, choose “Booking”, and choose your desire zone. A maximum of 6 seats can be purchased per customer.
+		<br />**After submitting, no changes or modification can be made under any circumstances.</li>
+	<li>When the booking form is completed, the system will inform you the booking ID, booking and payment details (which includes a charge of 20 Baht/ticket).</li>
+	<li>Please note that your transfer must be made *at actual informed total amount (including Satang) within 6 hours after submitting.
+		<br />**If no transfer made within the giving period, the system will considered your booking is cancelled. We shall not held responsible for lossing your ticket in this case.</li>
+	<li>Please note that your transfer is made, please submit your proof of transfer (payment slip) by uploading on to “Payment Confirmation” at www.boostplus.co.th</li>
+	<li>After 48 hours of confirming your payment, your booking status can be tracking at “Booking Status” button on www.boostplus.co.th
+		<br />*If you find any error/incorrect information please contact us through the provided contact below.</li>
+	<li>Please print out the confirmation document and payment slip as document of proof to receive the original ticket(s)</li>
+	<li>You can receive your ticket(s) on Sunday 20th October 2013 at the venue (the detail will be inform) by presenting your Early Bird/ Pre- Sale online booking confirmation along with your ID card in order to secure your ticket.</li>
+</ol>
+<h5>
+Caution: Only Festival ticket, we reserve the right to refuse to issue a replacement ticket for lost or stolen.
+</h5>
+
+<!--
 <h3 style="text-align:center;">Early Bird booking process</h3>
 <h4 style="text-align:center;">(Only Zone A3: Festival ticket 6,000 Baht)<h4>
 <h4 style="text-align:center;">Saturday 14<sup>th</sup> September at 8:30 am. – 11.30 pm.<h4>
@@ -73,8 +100,34 @@ Contact 02-938-5959 - 130 , 084-342-2230 and 089-811-1901
 Caution:
 Only Festival ticket, we reserve the right to refuse to issue a replacement ticket for lost or stolen.
 </h5>
-
+-->
 <?php else: ?>
+	<h3 style="text-align:center;">ขั้นตอนการซื้อบัตรPre-Sale(บัตรยืนในโซนสนามทั้งหมด)</h3>
+	<h5 style="text-align:center;">วันอาทิตย์ที่ 15 กันยายน เวลา 08.30 น. ถึงวันพุธที่ 18 กันยายน เวลา 12.00 น.</h5>
+	<h5 style="text-align:center;">สิทธิพิเศษสำหรับผู้ซื้อบัตร Pre-Sale</h5>
+	<p style="text-align:center;font-weight:normal; font-size:smaller;">
+		ได้รับส่วนลดพิเศษ 500 บาทจากราคาปกติ/ใบทุกโซน (ยกเว้นบัตร 6,000 บาท)
+		<br />บัตรราคา 5000 บาท (ซื้อในช่วง Pre-Sale) ได้รับบัตร Limited Edition
+		<br />ได้รับสิทธิในการเข้างานในช่องทางพิเศษโดยจัดลำดับตามการชำระเงิน (FAST TRACK)
+	</p>
+<ol style="font-weight:normal; font-size:smaller;">
+	<li>เข้าสู่ <a style="color:black; text-decoration:underline;" href="<?= site_url('') ?>">www.boostplus.co.th</a> เลือกSBS K-POP FESTIVAL 2013 LIVE IN BANGKOK</li>
+	<li>ทำการRegister เพื่อเข้าสู่ระบบโดยต้องกรอกข้อมูลให้ครบถ้วนทุกช่องเมื่อ Register เรียบร้อยแล้วผู้จองจะต้องทำการLog in ก่อนทุกครั้งโดยใช้ Username และPassword ของตนเองเท่านั้น</li>
+	<li>เมื่อเข้าระบบเรียบร้อยแล้วเลือกหัวข้อ“ซื้อบัตร”กดเลือกโซนที่ต้องการโดยการจองหนึ่งครั้งสามารถเลือกจำนวนการจองได้ไม่เกินจำนวน 6 ที่ **หากกดยืนยันการจองแล้วผู้จองไม่สามารถแก้ไขได้ในทุกกรณี</li>
+	<li>เมื่อกรอกรายละเอียดการจองเรียบร้อยแล้วระบบจะแจ้งรหัสการจอง, จำนวนเงิน , เลขที่บัญชีและธนาคารที่ต้องโอนเงิน (ค่าธรรมเนียมออกบัตร20 บาทต่อใบ)</li>
+	<li>กรุณาโอนเงินภายในระยะเวลา 6ชั่วโมงภายหลังจากกดยืนยันการจองยอดเงินที่ต้องชำระจะต้องมีเศษสตางค์เพื่อสะดวกในการตรวจสอบกรุณาโอนเงินตามยอดที่แจ้ง**หากไม่โอนเงินภายในระยะเวลาดังกล่าวจะถือว่าท่านสละสิทธิ์การจองทางผู้จัดจะไม่รับผิดชอบในกรณีใดๆทั้งสิ้น</li>
+	<li>หลังจากโอนเงินเรียบร้อยแล้วกรุณาแจ้งข้อมูลการโอนเงินกลับมาภายใน6ชั่วโมงพร้อมอัพโหลดสลิปการโอนเงินมาที่www.boostplus.co.thเลือกหัวข้อ“แจ้งโอนเงิน”</li>
+	<li>หลังการแจ้งการโอนเงิน48 ชั่วโมงขอให้ผู้จองเข้ามาตรวจสอบสถานะการจองอีกครั้งในwww.boostplus.co.thเลือกหัวข้อ“ตรวจสอบสถานะบัตร” หากพบว่าข้อมูลไม่ถูกต้องกรุณาแจ้งกลับมายังเจ้าหน้าที่ตามเบอร์ติดต่อที่ระบุไว้ให้</li>
+	<li>กรุณา print ใบจองเก็บไว้เป็นหลักฐานเพื่อใช้แลกรับบัตรจริงในวันงาน</li>
+	<li>ผู้จองสามารถมารับบัตรจริงได้ในวันอาทิตย์ที่ 20 ตุลาคม 2556 บริเวณหน้างาน(เวลาและสถานที่จะแจ้งให้ทราบอีกครั้ง)โดยนำหลักฐานการจองบัตร(ใบยืนยันการจอง) ในรอบEarly Bird และPre Saleผ่านทางช่องทางออนไลน์พร้อมบัตรประชาชนตามชื่อที่ระบุในใบจองมาเป็นหลักฐานในการรับบัตร</li>
+</ol>
+<h5>
+
+ข้อควรระวัง
+กรณีรับบัตรเข้างานแล้ว ถ้าลูกค้าทำบัตรโซนยืนสูญหาย ทางผู้จัดงานไม่รับผิดชอบ ต่อความเสียหาย และไม่สามารถออกบัตรใหม่ให้กับลูกค้าได้ ลูกค้าต้องซื้อบัตร เข้างานใหม่เท่านั้น
+</h5>
+
+	<!--
 <h3 style="text-align:center;">ขั้นตอนการซื้อบัตร Early Bird</h3>
 <h4 style="text-align:center;">(เฉพาะโซนA3 บัตรยืนราคา6,000 บาท)<h4>
 <h4 style="text-align:center;">วันเสาร์ที่14 กันยายน 2556 ตั้งแต่เวลา 8.30 – 23.30 น.<h4>
@@ -99,7 +152,7 @@ Only Festival ticket, we reserve the right to refuse to issue a replacement tick
 	กรณีรับบัตรเข้างานแล้ว ถ้าลูกค้าทำบัตรโซนยืนสูญหาย ทางผู้จัดงานไม่รับผิดชอบ ต่อความเสียหาย และไม่สามารถออกบัตรใหม่ให้กับลูกค้าได้ ลูกค้าต้องซื้อบัตร เข้างานใหม่เท่านั้น
 </span></li>
 </ul>
-
+-->
 
 <?php endif; ?>
 
@@ -116,7 +169,7 @@ Only Festival ticket, we reserve the right to refuse to issue a replacement tick
 	<?php if(!empty($user_obj) && $user_obj['type']==2): ?>
 	<a style="color:black; text-decoration:underline;" href="<?= base_url('images/pdf/term_condition_fanzone.pdf?v=1') ?>" target="_blank"><?= language_helper_is_en($this)?'Download conditions.':'ดาวน์โหลดข้อกำหนดและเงื่อนไข' ?></a>
 	<?php else: ?>
-	<a style="color:black; text-decoration:underline;" href="<?= base_url('images/pdf/term_condition'.(language_helper_is_en($this)?'_en':'').'.pdf?v=1') ?>" target="_blank"><?= language_helper_is_en($this)?'Download conditions.':'ดาวน์โหลดข้อกำหนดและเงื่อนไข' ?></a>
+	<a style="color:black; text-decoration:underline;" href="<?= base_url('images/pdf/term_condition_presale'.(language_helper_is_en($this)?'_en':'').'.pdf?v=1') ?>" target="_blank"><?= language_helper_is_en($this)?'Download conditions.':'ดาวน์โหลดข้อกำหนดและเงื่อนไข' ?></a>
 	<?php endif; ?>
 </div>
 

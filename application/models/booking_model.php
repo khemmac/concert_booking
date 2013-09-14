@@ -103,8 +103,14 @@ WHERE id=? AND booking_id=(SELECT b.id FROM booking b WHERE b.person_id=? AND b.
 			return $res['id'];
 		}
 
-		function generate_code($round){
-			$round_code = ($round==1)?'E':'P';
+		function generate_code($booking_type){
+			$round_code = 'E';
+			if($booking_type==1)
+				$round_code = 'E';
+			else if($booking_type==2)
+				$round_code = 'P';
+			else if($booking_type==3)
+				$round_code = 'F';
 			$trail_code = '';
 			for($i=0;$i<4;$i++)
 				$trail_code.=substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), 0, 1);
@@ -114,7 +120,7 @@ WHERE id=? AND booking_id=(SELECT b.id FROM booking b WHERE b.person_id=? AND b.
 
 		$code_result = '';
 		while(empty($code_result)){
-			$code_result = generate_code($this->get_booking_round());
+			$code_result = generate_code($booking_type);
 			$sql = "SELECT id FROM booking WHERE code=?";
 			$query = $this->db->query($sql, array($code_result));
 
