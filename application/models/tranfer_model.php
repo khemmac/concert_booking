@@ -75,4 +75,28 @@ Class Tranfer_model extends CI_Model
 		return $query->result_array();
 	}
 
+	function clearBookingData(){
+		$sql="select 
+				*
+				from
+				booking 
+				where 
+				(UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(createDate) >= 6*60*60 and type=1 and status in(1,2))
+				OR
+				(UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(createDate) >= 8*60*60 and type=2 and status in(1,2))
+				";
+				
+		$query = $this->db->Query($sql);
+		$list = $query->result_array();		
+		$results = array();
+		foreach($list as $o){
+			$ids = $o["id"];
+			$queryUpdate = $this->db->Query("update seat set booking_id=null,is_booked=0,updateDate=NOW() where booking_id = $ids");
+			$queryDelete = $this->db->Query("delete from booking where id = $ids");
+			array_push($results,$o);
+		}
+		
+		return $results;
+	}
+
 }
