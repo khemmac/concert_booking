@@ -23,13 +23,18 @@ class Zone_entrance extends CI_Controller {
 		$user_id = get_user_session_id($this);
 		$user_obj = get_user_session($this);
 
+		$is_usertest = (($user_obj['username']=='testsbs1' || $user_obj['username']=='testsbs2'
+			|| $user_obj['username']=='testsbs3' || $user_obj['username']=='testsbs4'
+			|| $user_obj['username']=='testsbs5'
+			));
+
 		// load user
 		if($user_obj['type']==2){
 			redirect('zone');
 		}else if($user_obj['type']==1){
-			if(period_helper_presale())
+			if(period_helper_presale() || $is_usertest)
 				redirect('zone_presale');
-			else if(period_helper_early())
+			else if(period_helper_early() || $is_usertest)
 				redirect('zone_early');
 			else
 				redirect('sbs2013');
