@@ -51,7 +51,7 @@
 <h4 style="text-align:center;">(Only Zone A3: Festival ticket 6,000 Baht)<h4>
 <h4 style="text-align:center;">Saturday 14<sup>th</sup> September at 8:30 am. – 11.30 pm.<h4>
 <h4 style="text-align:center;">Early Bird booking privilege Early Bird<h4>
-<h4 style="text-align:center;">บัตรLimited Edition / Fast Track (รายละเอียดเพิ่มเติมจะแจ้งให้ทราบอีกครั้ง)<h4>
+<h4 style="text-align:center;">Limited Edition/ Fast Track ticket (the details will be informed)<h4>
 <ol style="font-weight:normal; font-size:smaller;">
 	<li>Enter <a style="color:black; text-decoration:underline;" href="<?= site_url('') ?>">www.boostplus.co.th</a> Choose SBS K-POP FESTIVAL 2013 LIVE IN BANGKOK</li>
 	<li>Register for Early Bird booking by completing the required information</li>
@@ -101,9 +101,9 @@ Only Festival ticket, we reserve the right to refuse to issue a replacement tick
 <?php endif; ?>
 
 <?php if(language_helper_is_en($this)): ?>
-<h4 style="text-align:center;">Contact 02-938-5959 - 130 , 084-342-2230 and 089-811-1801</h4>
+<h4 style="text-align:center;">Contact 02-938-5959 - 130 , 084-342-2230 and 089-811-1901</h4>
 <?php else: ?>
-<h4 style="text-align:center;">ติดต่อสอบถามโทร 02-938-5959 ต่อ 130 , 084-342-2230 และ 089-811-1801</h4>
+<h4 style="text-align:center;">ติดต่อสอบถามโทร 02-938-5959 ต่อ 130 , 084-342-2230 และ 089-811-1901</h4>
 <?php endif; ?>
 <div style="text-align:center;">
 	<img src="<?= base_url('images/common/condition-logo.gif') ?>" style="border:0px;" />

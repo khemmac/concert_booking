@@ -55,24 +55,34 @@ class Member extends CI_Controller {
 			// fix fanzone only
 			$user_obj = get_user_session($this);
 
-			if($user_obj['username']=='testsbs1' || $user_obj['username']=='testsbs2'
+			$is_early = $user_obj['type']==1 && period_helper_early();
+			$is_fanzone = $user_obj['type']==2 && period_helper_fanzone();
+
+			if(($user_obj['username']=='testsbs1' || $user_obj['username']=='testsbs2'
 			|| $user_obj['username']=='testsbs3' || $user_obj['username']=='testsbs4'
-			|| $user_obj['username']=='testsbs5' || $user_obj['username']=='khemmac'
-			){
+			|| $user_obj['username']=='testsbs5'
+			)){
 				// ปล่อยผ่านได้
-			}else if($user_obj['type']!=2){
-				delete_user_session($this);
-				redirect('sbs2013?popup=login-fanzone-only-popup');
-				return;
+				redirect($r_url);
+			}
+			if($is_early){
+				// ปล่อยผ่านได้
+				redirect($r_url);
+			}
+			if($is_fanzone){
+				// ปล่อยผ่านได้
+				redirect($r_url);
 			}
 
-			redirect($r_url);
+			delete_user_session($this);
+			redirect('sbs2013?popup=login-fanzone-only-popup');
+			return;
 		}
 	}
 
 	function logout(){
 		delete_user_session($this);
-		redirect('index', 'refresh');
+		redirect('sbs2013');
 	}
 
 	function register(){
