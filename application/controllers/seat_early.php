@@ -36,6 +36,21 @@ class Seat_early extends CI_Controller {
 		if(empty($zone_name) || empty($zone))
 			redirect('zone_early');
 
+		// load blank seat
+		$this->db->select('id');
+		$this->db->limit(6);
+		$this->db->where('booking_id IS NULL');
+		$query = $this->db->get_where('seat', array(
+			'zone_id'=>3,
+			'is_booked'=>0
+		));
+		$result = $query->result_array();
+		$query->free_result();
+		// ถ้า seat มีมากกว่าที่เลือก
+		if(count($result)<6){
+			redirect('zone_early/soldout');
+		}
+
 		// check booking id
 		$booking_id = $this->uri->segment(2);
 		if(is_numeric($booking_id)){

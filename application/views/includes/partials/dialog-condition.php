@@ -50,20 +50,25 @@
 <h3 style="text-align:center;">Early Bird booking process</h3>
 <h4 style="text-align:center;">(Only Zone A3: Festival ticket 6,000 Baht)<h4>
 <h4 style="text-align:center;">Saturday 14<sup>th</sup> September at 8:30 am. – 11.30 pm.<h4>
-<h4 style="text-align:center;">Early Bird booking privilege Early Bird<h4>
+<h4 style="text-align:center;">Early Bird booking privilege<h4>
 <h4 style="text-align:center;">Limited Edition/ Fast Track ticket (the details will be informed)<h4>
 <ol style="font-weight:normal; font-size:smaller;">
 	<li>Enter <a style="color:black; text-decoration:underline;" href="<?= site_url('') ?>">www.boostplus.co.th</a> Choose SBS K-POP FESTIVAL 2013 LIVE IN BANGKOK</li>
-	<li>Register for Early Bird booking by completing the required information</li>
-	<li>Please log in with existing username and password every time. After logging in, choose “Booking”, and choose Zone A3. A maximum of 6 seats can be purchased per customer.
-**After submitting, no changes or modification can be made under any circumstances.</li>
-	<li>When the booking form is completed, the system will inform you the booking reference no., booking and payment details (which includes a charge of 20 Baht/ticket).</li>
-	<li>Please note that your transfer must be made *at actual informed total balance (including Satang) within 4 hours after submitting.</li>
-	<li>After your transfer is made, please submit your proof of transfer (payment slip) by uploading on to “Payment Confirmation” at www.boostplus.co.th within 4 hours.</li>
-	<li>After 48 hours of confirming your payment, your booking status can be tracking at “Booking Status” button on www.boostplus.co.th *If you find any error/incorrect information please contact us through provided contact below.</li>
-	<li>Please print out the confirmation document and payment slip to get the original ticket(s) at the venue</li>
-	<li>You can receive your ticket(s) on Sunday 20th October 2013 at the venue (the detail will be inform) by presenting your Early Bird/ Pre- Sale online booking confirmation document along with your ID card in order to secure your ticket.</li>
+	<li>Register for Early Bird booking by completing the required information on registration form.</li>
+	<li>Log in with existing username and password every time before you continue the next process. After logging in, choose “Booking”, and choose Zone A3. Please note that a maximum of 6 seats can be purchased per customer. **After submitting, no changes or modification can be made under any circumstances.</li>
+	<li>When the booking form is completed, the system will inform you the booking reference no.(Booking ID), booking and payment details (which includes a charge of 20 Baht/ticket).</li>
+	<li>Please note that the transfer must be made *at actual informed total amount (including Satang) within 4 hours after submitting.</li>
+	<li>Once your transfer is made, please submit your proof of transfer (payment slip) by uploading on to “Payment Confirmation” at www.boostplus.co.th within 4 hours.</li>
+	<li>After 48 hours of confirming your payment, your booking status can be tracking at “Booking Status” on www.boostplus.co.th *If you find any error/incorrect information please contact us through provided contact below.</li>
+	<li>Please print out the confirmation document and payment slip as a document of proof to receive the original ticket(s).</li>
+	<li>You can receive your ticket(s) on Sunday 20th October 2013 at the venue (the detail will be informed) by presenting your Early Bird/ Pre- Sale online booking confirmation document along with your ID card in order to secure your ticket.</li>
 </ol>
+
+Caution:
+Only Festival ticket, we reserve the right to refuse to issue a replacement ticket for lost or stolen.
+
+Contact 02-938-5959 - 130 , 084-342-2230 and 089-811-1901
+
 <h5>
 Caution:
 Only Festival ticket, we reserve the right to refuse to issue a replacement ticket for lost or stolen.

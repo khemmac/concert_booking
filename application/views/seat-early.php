@@ -30,7 +30,7 @@
 		<?= form_close() ?>
 
 		<ul class="b-back-ctnr">
-			<li><a href="<?= site_url('zone_early/'.$booking_id) ?>" title="เลือกโซนที่นั่งอื่นๆ" class="b-back-zone"></a></li>
+			<li><a href="<?= site_url('zone_early/'.$booking_id) ?>" title="เลือกโซนที่นั่งอื่นๆ" class="b-back-zone">&nbsp;</a></li>
 		</ul>
 	</div>
 </div>
