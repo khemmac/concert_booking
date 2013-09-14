@@ -86,46 +86,4 @@ class Zone_presale extends CI_Controller {
 			redirect('zone_presale?popup=zone-blank-seat-popup');
 	}
 
-	function soldout(){
-		if(!is_user_session_exist($this))
-			redirect('member/login?rurl='.uri_string());
-		$user_id = get_user_session_id($this);
-
-		$has_booked = $this->booking_model->has_booked($user_id);
-		if($has_booked){
-			redirect('sbs2013?popup=zone-booked-limit-popup');
-			return;
-		}
-
-		// check has reserve
-		$is_reserved = $this->early_model->is_reserved($user_id);
-
-		$this->phxview->RenderView('zone-early-soldout', array(
-			'is_reserved'=>$is_reserved
-		));
-		$this->phxview->RenderLayout('default');
-	}
-
-	function soldout_submit(){
-		if(!is_user_session_exist($this))
-			redirect('member/login?rurl='.uri_string());
-		$user_id = get_user_session_id($this);
-
-		$has_booked = $this->booking_model->has_booked($user_id);
-		if($has_booked){
-			redirect('sbs2013?popup=zone-booked-limit-popup');
-			return;
-		}
-
-		// check has reserve
-		$is_reserved = $this->early_model->is_reserved($user_id);
-		if($is_reserved){
-			redirect('zone_early/soldout');
-		}else{
-			$this->early_model->reserve($user_id, $this->input->post('amount'));
-
-			redirect('zone_early/soldout?popup=zone-early-success-popup');
-		}
-	}
-
 }
