@@ -96,7 +96,14 @@
 					</tr>
 					<?php if(!empty($discount) && $discount>0): ?>
 						<tr class="tbody">
-							<td align="right" colspan="4">ส่วนลด <?= cal_helper_get_discount_detail($booking_data['type'], $booking_list) ?></td>
+							<td align="right" colspan="4">
+								ส่วนลด
+								<?php if($booking_data['type']==2): ?>
+									(500 บาทต่อใบ)
+								<?php elseif($booking_data['type']==3): ?>
+									(<?= cal_helper_get_discount_detail($booking_data['type'], $booking_list) ?>)
+								<?php endif; ?>
+							</td>
 							<td align="center"><?= number_format($discount) ?></td>
 						</tr>
 					<?php endif; ?>

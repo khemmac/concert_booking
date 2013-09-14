@@ -127,7 +127,10 @@ class Zone extends CI_Controller {
 			'is_booked'=>0
 		));
 
-		redirect($r_url.'/'.$booking_id);
+		if($r_url=='zone_presale')
+			redirect($r_url);
+		else
+			redirect($r_url.'/'.$booking_id);
 	}
 
 	function generate(){

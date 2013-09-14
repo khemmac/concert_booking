@@ -97,7 +97,9 @@
 					<td class="bg-left"></td>
 					<td colspan="4" class="sum-price" align="right">
 						<?= language_helper_is_th($this)?'ส่วนลด':'Special Discount' ?>
-						<?php if($booking_data['type']==1): ?>
+						<?php if($booking_data['type']==2): ?>
+							(500 <?= language_helper_is_th($this)?'บาทต่อใบ':'Baht/ticket'?>)
+						<?php elseif($booking_data['type']==3): ?>
 							(<?= cal_helper_get_discount_detail($booking_data['type'], $booking_list) ?><?= language_helper_is_th($this)?'':' off' ?>)
 						<?php endif; ?>
 					</td>

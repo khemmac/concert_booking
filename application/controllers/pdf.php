@@ -581,7 +581,13 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 
 		if(!empty($discount) && $discount>0){
 			$tbl .= '<tr class="tbody">
-						<td style="background-color:white;" align="right" colspan="4">ส่วนลด '.cal_helper_get_discount_detail($booking_data['type'], $booking_list).'</td>
+						<td style="background-color:white;" align="right" colspan="4">ส่วนลด';
+						if($booking_data['type']==2):
+							$tbl .= ' (500 บาทต่อใบ)';
+						elseif($booking_data['type']==3):
+							$tbl .= ' ('.cal_helper_get_discount_detail($booking_data['type'], $booking_list).')';
+						endif;
+				$tbl .= '</td>
 						<td style="background-color:white;" align="center">'.number_format($discount).'</td>
 				</tr>';
 		}
