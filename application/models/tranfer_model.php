@@ -82,12 +82,13 @@ Class Tranfer_model extends CI_Model
 				from
 				booking 
 				where 
-				(UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(createDate) >= 6*60*60 and type=1 and status in(1,2))
-				OR
 				(UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(createDate) >= 8*60*60 and type=2 and status in(1,2))
 				OR
 				(UNIX_TIMESTAMP(NOW()) >= UNIX_TIMESTAMP('2013-09-20 18:00:00') and type=3 and status in(1,2))
 				";
+				
+				/*(UNIX_TIMESTAMP(NOW())-UNIX_TIMESTAMP(createDate) >= 6*60*60 and type=1 and status in(1,2))
+				OR*/
 				
 		$query = $this->db->Query($sql);
 		$list = $query->result_array();
