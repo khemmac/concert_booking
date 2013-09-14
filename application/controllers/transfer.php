@@ -54,10 +54,10 @@ class Transfer extends CI_Controller {
 				$path = $_FILES['slip']['name'];
 				$ext = pathinfo($path, PATHINFO_EXTENSION);
 				$img_name = $time.'.'.$ext;
-				move_uploaded_file($_FILES['slip']['tmp_name'],$file_path.$img_name);
+				//move_uploaded_file($_FILES['slip']['tmp_name'],$file_path.$img_name);
+				$this->ReSizeImage($file_path.$img_name,1100,700,$_FILES['slip']);
 			}
 			$this->tranfer_model->money_tranfer($img_name);
-			
 			$list = $this->tranfer_model->loadBookingContents($ids);
 			foreach($list as $o){
 				$obj = array("email"=>$o["email"]
@@ -68,13 +68,11 @@ class Transfer extends CI_Controller {
 				$this->email_model->approve_tranfer($obj);
 			}
 			
-			
-			
 			redirect('booking/complete', 'refresh');
 		}
 	}
 
-	function check_code_valid(){
+ 	function check_code_valid(){
 		$result = $this->tranfer_model->loadBooking();
 		//if(!empty($result)){
 		if($result->num_rows() > 0) {
@@ -85,4 +83,43 @@ class Transfer extends CI_Controller {
 		}
 	}
 
+	function ReSizeImage($target,$w,$h,$tmp){
+		 if(strtolower($this->extention($tmp['name']))=='.jpg'){
+			 $image_full = imagecreatefromjpeg($tmp['tmp_name']);	
+		 }else if(strtolower($this->extention($tmp['name']))=='.gif'){
+			 $image_full = imagecreatefromgif($tmp['tmp_name']);	
+		 }else if(strtolower($this->extention($tmp['name']))=='.png'){
+			 $image_full = imagecreatefrompng($tmp['tmp_name']);	
+		 }
+	
+		$image_small = imagecreatetruecolor($w,$h);
+	
+		list($width, $height, $type, $attr) = getimagesize($tmp['tmp_name']);
+		
+		imagecopyresampled($image_small,$image_full,0,0,0,0,$w,$h,$width,$height);
+		
+		if(strtolower($this->extention($tmp['name']))=='.jpg'){
+			imagejpeg($image_small,$target);
+			
+		 }else if(strtolower($this->extention($tmp['name']))=='.gif'){
+			imagegif($image_small,$target);	
+		 }else if(strtolower($this->extention($tmp['name']))=='.png'){
+			imagepng($image_small,$target);
+		 }
+	
+		imagedestroy($image_full);
+		imagedestroy($image_small);
+	
+	 }
+	
+	function extention($filename){
+	   $exten = strtolower(strrchr($filename, '.'));
+	   $file_extention = array('.jpg','.gif','.png');
+	   if(!in_array($exten,$file_extention)){
+		return false ;   
+	   }else{
+		return $exten ;   
+	   }		
+	}
+	
 }
