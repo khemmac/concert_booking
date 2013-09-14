@@ -27,7 +27,12 @@ class Zone_entrance extends CI_Controller {
 		if($user_obj['type']==2){
 			redirect('zone');
 		}else if($user_obj['type']==1){
-			redirect('zone_early');
+			if(period_helper_presale())
+				redirect('zone_presale');
+			else if(period_helper_early())
+				redirect('zone_early');
+			else
+				redirect('sbs2013');
 		}
 
 	}

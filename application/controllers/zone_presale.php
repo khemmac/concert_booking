@@ -1,5 +1,5 @@
 <?php
-class Zone_early extends CI_Controller {
+class Zone_presale extends CI_Controller {
 
 
 	function __construct()
@@ -21,7 +21,7 @@ class Zone_early extends CI_Controller {
 	}
 
 	function index(){
-		$booking_type = 1;
+		$booking_type = 2;
 
 		if(!is_user_session_exist($this))
 			redirect('member/login?rurl='.uri_string());
@@ -40,37 +40,9 @@ class Zone_early extends CI_Controller {
 			return;
 		}
 
-		// check condition
-		$booking_id = $id = end($this->uri->segments);
-		if(is_numeric($booking_id)){
-			// load booking
-			$this->db->limit(1);
-			$query = $this->db->get_where('booking', array(
-				'id'=>$booking_id,
-				'status'=>1
-			));
-			if($query->num_rows()<=0){
-				// prepare booking data
-				$booking_id = $this->booking_model->prepare($user_id, $booking_type);
-				redirect('zone_early/'.$booking_id);
-				return;
-			}
-		}else{
-			// prepare booking data
-			$booking_id = $this->booking_model->prepare($user_id, $booking_type);
-			redirect('zone_early/'.$booking_id);
-			return;
-		}
-
-		// force soldout **********************************
-		$this->db->where('booking_id=(select id from booking where id='.$booking_id.' AND status=1)');
-		$query = $this->db->get_where('seat');
-		if($query->num_rows()<=0){
-			redirect('zone_early/soldout');
-			return;
-		}
-		// end force soldout ******************************
-
+		// get current booking id
+		$booking_id = 0;
+		$booking_id = $this->booking_model->prepare($user_id, $booking_type);
 
 		$booking_data = $this->seat_model->load_booking_seat($booking_id);
 		// populate data
@@ -92,10 +64,10 @@ class Zone_early extends CI_Controller {
 
 			array_push($result['seats'], $b_data['seat_name']);
 
-			$result['price']+=$b_data['price'];
+			$result['price']+=$b_data['price']-500;
 		}
 
-		$this->phxview->RenderView('zone-early', $result);
+		$this->phxview->RenderView('zone-presale', $result);
 		$this->phxview->RenderLayout('default');
 	}
 
@@ -111,16 +83,15 @@ class Zone_early extends CI_Controller {
 		if(count($booking_data)>0)
 			redirect('booking/'.$booking_id);
 		else
-			redirect('zone_early/'.$booking_id.'?popup=zone-blank-seat-popup');
+			redirect('zone_presale?popup=zone-blank-seat-popup');
 	}
 
 	function soldout(){
-		$booking_type = 1;
 		if(!is_user_session_exist($this))
 			redirect('member/login?rurl='.uri_string());
 		$user_id = get_user_session_id($this);
 
-		$has_booked = $this->booking_model->has_booked($user_id, $booking_type);
+		$has_booked = $this->booking_model->has_booked($user_id);
 		if($has_booked){
 			redirect('sbs2013?popup=zone-booked-limit-popup');
 			return;
@@ -136,13 +107,11 @@ class Zone_early extends CI_Controller {
 	}
 
 	function soldout_submit(){
-		$booking_type = 1;
-
 		if(!is_user_session_exist($this))
 			redirect('member/login?rurl='.uri_string());
 		$user_id = get_user_session_id($this);
 
-		$has_booked = $this->booking_model->has_booked($user_id, $booking_type);
+		$has_booked = $this->booking_model->has_booked($user_id);
 		if($has_booked){
 			redirect('sbs2013?popup=zone-booked-limit-popup');
 			return;

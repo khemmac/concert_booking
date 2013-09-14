@@ -20,13 +20,14 @@ class Zone extends CI_Controller {
 	}
 
 	function index(){
+		$booking_type = 3;
 
 		if(!is_user_session_exist($this))
 			redirect('member/login?rurl='.uri_string());
 		$user_id = get_user_session_id($this);
 		$user_obj = get_user_session($this);
 
-		$has_booked = $this->booking_model->has_booked($user_id);
+		$has_booked = $this->booking_model->has_booked($user_id, $booking_type);
 		if($has_booked){
 			redirect('sbs2013?popup=zone-booked-limit-popup');
 			return;
@@ -37,13 +38,6 @@ class Zone extends CI_Controller {
 			redirect('booking/check?popup=seat-limit-popup');
 			return;
 		}
-
-		// check booking type
-		$booking_type = 1;
-		if($user_obj['type']==2)
-			$booking_type = 3;
-		else if(period_helper_presale())
-			$booking_type = 2;
 
 		// check condition
 		$booking_id = $id = end($this->uri->segments);

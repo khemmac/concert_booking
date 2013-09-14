@@ -27,10 +27,11 @@ Class Booking_model extends CI_Model
 			return true;
 	}
 
-	function has_booked($user_id){
+	function has_booked($user_id, $booking_type){
 		$this->db->select('count(id) AS cnt');
 		$this->db->where('person_id', $user_id);
 		$this->db->where('status >', 1);
+		$this->db->where('type', $booking_type);
 		$query = $this->db->get('booking');
 
 		$cnt = $query->first_row()->cnt;
@@ -94,7 +95,8 @@ WHERE id=? AND booking_id=(SELECT b.id FROM booking b WHERE b.person_id=? AND b.
 		$this->db->order_by('id', 'desc');
 		$query = $this->db->get_where('booking', array(
 			'person_id'=>$user_id,
-			'status'=>1
+			'status'=>1,
+			'type'=>$booking_type
 		));
 		if($query->num_rows()>0){
 			$res = $query->first_row('array');

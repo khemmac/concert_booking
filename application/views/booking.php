@@ -97,7 +97,10 @@
 					<td class="bg-left"></td>
 					<td colspan="4" class="sum-price" align="right">
 						<?= language_helper_is_th($this)?'ส่วนลด':'Special Discount' ?>
-						(<?= cal_helper_get_discount_detail($booking_data['type'], $booking_list) ?><?= language_helper_is_th($this)?'':' off' ?>)</td>
+						<?php if($booking_data['type']==1): ?>
+							(<?= cal_helper_get_discount_detail($booking_data['type'], $booking_list) ?><?= language_helper_is_th($this)?'':' off' ?>)
+						<?php endif; ?>
+					</td>
 					<td class="price"><?= number_format($discount) ?></td>
 					<td class="bg-right"></td>
 				</tr>

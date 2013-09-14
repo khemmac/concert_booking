@@ -23,18 +23,18 @@ class Booking extends CI_Controller {
 			redirect('member/login?rurl='.uri_string());
 		$user_id = get_user_session_id($this);
 
-		$has_booked = $this->booking_model->has_booked($user_id);
-		if($has_booked){
-			redirect('sbs2013?popup=zone-booked-limit-popup');
-			return;
-		}
-
 		// check booking id
 		$booking_id = end($this->uri->segments);
 		if(!is_numeric($booking_id))
 			redirect('zone');
 
 		$result_data = $this->booking_model->prepare_print_data($user_id, $booking_id);
+
+		$has_booked = $this->booking_model->has_booked($user_id, $result_data['booking_data']['type']);
+		if($has_booked){
+			redirect('sbs2013?popup=zone-booked-limit-popup');
+			return;
+		}
 
 		$this->phxview->RenderView('booking', $result_data);
 		$this->phxview->RenderLayout('default');

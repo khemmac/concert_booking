@@ -22,7 +22,7 @@
 			else if(count($seat_list)>=30)
 				$r = $sum_price * 5 / 100;
 		}else if($booking_type==2){
-			return 0;
+			$r = count($seat_list)*500;
 		}
 		return $r;
 	}

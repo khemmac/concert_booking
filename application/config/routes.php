@@ -51,6 +51,11 @@ $route['seat_early/(:num)'] = 'seat_early/index/$1';
 // add route for zone_early segment
 $route['zone_early/(:num)'] = 'zone_early/index/$1';
 
+// add route for seat presale segment
+$route['seat_presale/soldout/(:any)'] = 'seat_presale/soldout/$1';
+$route['seat_presale/submit'] = 'seat_presale/submit';
+$route['seat_presale/(:any)'] = 'seat_presale/index/$1';
+
 // add route for seat u (ยืน) segment
 $route['seat_u/submit'] = 'seat_u/submit';
 $route['seat_u/(:any)'] = 'seat_u/index/$1';
