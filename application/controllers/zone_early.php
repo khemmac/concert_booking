@@ -61,6 +61,15 @@ class Zone_early extends CI_Controller {
 			return;
 		}
 
+		// force soldout **********************************
+		$this->db->where('booking_id=(select id from booking where id='.$booking_id.' AND status=1)');
+		$query = $this->db->get_where('seat');
+		if($query->num_rows()<=0){
+			redirect('zone_early/soldout');
+			return;
+		}
+		// end force soldout ******************************
+
 
 		$booking_data = $this->seat_model->load_booking_seat($booking_id);
 		// populate data

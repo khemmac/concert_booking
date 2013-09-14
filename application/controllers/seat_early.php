@@ -73,6 +73,15 @@ class Seat_early extends CI_Controller {
 			return;
 		}
 
+		// force soldout **********************************
+		$this->db->where('booking_id=(select id from booking where id='.$booking_id.' AND status=1)');
+		$query = $this->db->get_where('seat');
+		if($query->num_rows()<=0){
+			redirect('zone_early/soldout');
+			return;
+		}
+		// end force soldout ******************************
+
 		$this->db->limit(1);
 		$query = $this->db->get_where('zone', array(
 			'name'=>$zone_name
