@@ -39,7 +39,8 @@ Class Tranfer_model extends CI_Model
 		$this->db->select('code');
 		$this->db->where('person_id', $user_id);
 		$this->db->where('code', $this->input->post('code'));
-		$this->db->where('status', '2'); //2=ยืนยันการจอง
+		$where = "status in(2,9)";
+		$this->db->where($where); //2=ยืนยันการจอง
 		return $this->db->get('booking');
 	}
 
