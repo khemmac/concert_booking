@@ -23,9 +23,6 @@
 			<area shape="polygon" coords="348,345,380,349,425,382,424,401,350,398" href="<?= site_url('seat_presale/c3') ?>" title="C3">
 		</map>
 
-		<a href="<?= site_url('seat_early/'.$booking_id) ?>" title="A3"
-			style="display:block; position:absolute; top:238px; left:308px; width:36px; height:28px;"></a>
-
 		<?= form_open('zone_presale/submit'); ?>
 		<?= form_hidden('booking_id', $booking_id) ?>
 		<ul class="submit-container">

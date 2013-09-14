@@ -21,6 +21,9 @@ class Zone_early extends CI_Controller {
 	}
 
 	function index(){
+		// ปิดการจอง early bird
+		redirect('zone_early/soldout');
+
 		$booking_type = 1;
 
 		if(!is_user_session_exist($this))

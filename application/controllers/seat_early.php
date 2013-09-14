@@ -21,6 +21,9 @@ class Seat_early extends CI_Controller {
 	}
 
 	function index(){
+		// ปิดการจอง early bird
+		redirect('zone_early/soldout');
+
 		$booking_type = 2;
 		$this->benchmark->mark('overall_start');
 
