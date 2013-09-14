@@ -81,22 +81,22 @@
 				<?php if($key_z==0): ?>
 					<td class="status" rowspan="<?= count($zone_list) + (4+((!empty($discount) && $discount>0)?1:0)) ?>" valign="middle" align="center" style="padding:5px;">
 					<?php if($booking_data['status']==4): ?>
-						ชำระเงินแล้ว
-						วันที่ <?= util_helper_format_date(util_helper_parse_date($booking_data['pay_date'])) ?>
-						เวลา <?= util_helper_format_time(util_helper_parse_date($booking_data['pay_date'])) ?>
+						<?= language_helper_is_th($this)?'ชำระเงินแล้ว':'Paid' ?>
+						<?= language_helper_is_th($this)?'วันที่':'Date' ?> <?= util_helper_format_date(util_helper_parse_date($booking_data['pay_date'])) ?>
+						<?= language_helper_is_th($this)?'เวลา':'Time' ?> <?= util_helper_format_time(util_helper_parse_date($booking_data['pay_date'])) ?>
 					<?php elseif($booking_data['status']==3): ?>
-						เจ้าหน้าที่กำลังตรวจสอบการโอนเงินของท่าน
+						<?= language_helper_is_th($this)?'เจ้าหน้าที่กำลังตรวจสอบการโอนเงินของท่าน':'Awaiting Status' ?>
 					<?php elseif($booking_data['status']==2): ?>
-						กรุณาชำระเงิน
+						<?= language_helper_is_th($this)?'กรุณาชำระเงิน<br />ภายในวันที่':'Please made your transfer<br />within' ?>
 						<?php if($booking_data['type']==3): ?>
-						<br />ภายในวันที่ 20/09/2013
-						<br />ก่อนเวลา 18.00
+						20/09/2013
+						<br /><?= language_helper_is_th($this)?'ก่อนเวลา':'before' ?> 18.00
 						<?php elseif($booking_data['type']==2): ?>
-						<br />ภายในวันที่ <?= util_helper_format_date(util_helper_add_six_hour(new DateTime())) ?>
-						<br />ก่อนเวลา <?= util_helper_format_time(util_helper_add_six_hour(new DateTime())) ?>
+						<?= util_helper_format_date(util_helper_add_six_hour($booking_data['booking_date'])) ?>
+						<br /><?= language_helper_is_th($this)?'ก่อนเวลา':'before' ?> <?= util_helper_format_time(util_helper_add_six_hour($booking_data['booking_date'])) ?>
 						<?php else: ?>
-						<br />ภายในวันที่ <?= util_helper_format_date(util_helper_add_four_hour(new DateTime())) ?>
-						<br />ก่อนเวลา <?= util_helper_format_time(util_helper_add_four_hour(new DateTime())) ?>
+						<?= util_helper_format_date(util_helper_add_four_hour($booking_data['booking_date'])) ?>
+						<br /><?= language_helper_is_th($this)?'ก่อนเวลา':'before' ?> <?= util_helper_format_time(util_helper_add_four_hour($booking_data['booking_date'])) ?>
 						<?php endif; ?>
 					<?php else: ?>
 						-
@@ -108,33 +108,35 @@
 <?php endforeach; ?>
 			<tr class="tbody">
 				<td class="bg-left"></td>
-				<td colspan="4" class="sum-price" align="right">ราคารวม</td>
+				<td colspan="4" class="sum-price" align="right"><?= language_helper_is_th($this)?'ราคารวม':'Total Price' ?></td>
 				<td class="price"><?= number_format(get_sum_price($booking_list)) ?></td>
 				<td class="bg-right"></td>
 			</tr>
 			<tr class="tbody">
 				<td class="bg-left"></td>
-				<td colspan="4" class="sum-price" align="right">เงินตรวจสอบโอน</td>
+				<td colspan="4" class="sum-price" align="right"><?= language_helper_is_th($this)?'เงินตรวจสอบโอน':'Check for transfer' ?></td>
 				<td class="price">0.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></td>
 				<td class="bg-right"></td>
 			</tr>
 			<tr class="tbody">
 				<td class="bg-left"></td>
-				<td colspan="4" class="sum-price" align="right">ค่าธรรมเนียมการออกบัตร (20 บาทต่อใบ)</td>
+				<td colspan="4" class="sum-price" align="right"><?= language_helper_is_th($this)?'ค่าธรรมเนียมการออกบัตร (20 บาทต่อใบ)':'Which includes a charge (20 Baht/ticket)' ?></td>
 				<td class="price"><?= number_format($card_fee) ?></td>
 				<td class="bg-right"></td>
 			</tr>
 			<?php if(!empty($discount) && $discount>0): ?>
 				<tr class="tbody">
 					<td class="bg-left"></td>
-					<td colspan="4" class="sum-price" align="right">ส่วนลด <?= cal_helper_get_discount_detail($booking_data['type'], $booking_list) ?></td>
+					<td colspan="4" class="sum-price" align="right">
+						<?= language_helper_is_th($this)?'ส่วนลด':'Special Discount' ?>
+						(<?= cal_helper_get_discount_detail($booking_data['type'], $booking_list) ?><?= language_helper_is_th($this)?'':' off' ?>)</td>
 					<td class="price"><?= number_format($discount) ?></td>
 					<td class="bg-right"></td>
 				</tr>
 			<?php endif; ?>
 			<tr class="tbody last">
 				<td class="bg-left"></td>
-				<td colspan="4" class="sum-price" align="right">ราคารวมทั้งหมด</td>
+				<td colspan="4" class="sum-price" align="right"><?= language_helper_is_th($this)?'ราคารวมทั้งหมด':'Grand Total' ?></td>
 				<td class="price"><strong><?= number_format($total) ?>.<?= str_pad(substr($booking_data['id'], -2), 2, '0', STR_PAD_LEFT) ?></strong></td>
 				<td class="bg-right"></td>
 			</tr>
@@ -144,7 +146,7 @@
 <?php if($booking_data['status']==4): ?>
 			<tr class="tfoot-text">
 				<td colspan="8" valign="top" align="center">
-					<div style="margin-top:124px; height:100px; color:red; text-indent: -3000px;">
+					<div style="margin-top:124px; height:100px; color:red; text-indent: -10000px;">
 						กรุณาพิมพ์หลักฐานฉบับนี้ไว้ พร้อมบัตรประชาชนตัวจริง เพื่อนำมารับบัตรจริงรุ่น Limited Edition
 						เฉพาะ 2,000 ใบแรกเท่านั้นในวันที่ xx/xx/xxxx เวลา 00:00 น. ณ xxxxxxxxxxxxxx
 						และส่วนที่เหลือกรุณาเก็บหลักฐานนี้ไว้เพื่อนำมารับบัตรจริง

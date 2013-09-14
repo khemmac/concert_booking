@@ -2,7 +2,7 @@
 	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 
 	<div id="content">
-<?php if($is_reserved): ?>
+<?php if(true)/*($is_reserved)*/: ?>
 		<img src="<?= base_url("/images/zone/plan-early-soldout.gif") ?>"
 			style="width:590px; height:623px; position:absolute; top:115px; left:203px;" />
 <?php else: ?>

@@ -539,18 +539,28 @@ $tbl = '<table cellspacing="0" cellpadding="3" border="0">
 						<td style="background-color:white;" align="center">'. number_format($zone_price) .'</td>
 						<td style="background-color:white;" align="center">'. number_format($zone_price * count($seat_list)) .'</td>';
 					if($key_z==0):
-						$tbl .= '<td style="background-color:white;" align="center" rowspan="'. (count($zone_list)+(4+((!empty($discount) && $discount>0)?1:0))) .'" valign="top" style="padding:5px;">
-								กรุณาชำระเงิน';
+						$tbl .= '<td style="background-color:white;" align="center" rowspan="'. (count($zone_list)+(4+((!empty($discount) && $discount>0)?1:0))) .'" valign="top" style="padding:5px;">';
+						if($booking_data['status']==4):
+							$tbl .= 'ชำระเงินแล้ว
+							<br />วันที่ '.util_helper_format_date(util_helper_parse_date($booking_data['pay_date'])).'
+							<br />เวลา '.util_helper_format_time(util_helper_parse_date($booking_data['pay_date']));
+						elseif($booking_data['status']==3):
+							$tbl .= 'เจ้าหน้าที่กำลังตรวจสอบการโอนเงินของท่าน';
+						elseif($booking_data['status']==2):
+							$tbl .= 'กรุณาชำระเงิน';
 							if($booking_data['type']==3):
-								$tbl .= '<br />ภายในวันที่ 20/09/2013
-										<br />ก่อนเวลา 18.00';
+								$tbl .= 'ภายในวันที่ 20/09/2013
+								<br />ก่อนเวลา 18.00';
 							elseif($booking_data['type']==2):
-								$tbl .= 'ภายในวันที่ '.util_helper_format_date(util_helper_add_six_hour(new DateTime()));
-								$tbl .= '<br />ก่อนเวลา '.util_helper_format_time(util_helper_add_six_hour(new DateTime()));
+								$tbl .= '<br />ภายในวันที่ '. util_helper_format_date(util_helper_add_six_hour($booking_data['booking_date'])) .'
+								<br />ก่อนเวลา '. util_helper_format_time(util_helper_add_six_hour($booking_data['booking_date']));
 							else:
-								$tbl .= '<br />ภายในวันที่ '.util_helper_format_date(util_helper_add_four_hour(new DateTime()));
-								$tbl .= '<br />ก่อนเวลา '.util_helper_format_time(util_helper_add_four_hour(new DateTime()));
+								$tbl .= '<br />ภายในวันที่ '. util_helper_format_date(util_helper_add_four_hour($booking_data['booking_date'])) .'
+								<br />ก่อนเวลา '. util_helper_format_time(util_helper_add_four_hour($booking_data['booking_date']));
 							endif;
+						else:
+							$tbl .= '-';
+						endif;
 						$tbl.='</td>';
 					endif;
 		$tbl .= '</tr>';

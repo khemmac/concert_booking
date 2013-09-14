@@ -247,10 +247,7 @@ form input {
 .page-booking .list td.status { border-bottom:0px; }
 .page-booking .list .tfoot td { height:19px; background:transparent url("../../images/en/booking/table_footer.png") no-repeat; text-indent:-3000px; }
 
-.page-booking .list .tfoot-text td { height:281px; background:transparent url("../../images/en/booking/booking-footer-text-early.png") no-repeat; text-indent:-3000px; }
-
-.page-booking .list .tfoot-text-fanzone td { height:317px; background:transparent url("../../images/en/booking/booking-footer-text-fanzone.png") no-repeat; }
-.page-booking .list .tfoot-text-presale td { background:transparent url("../../images/en/booking/booking-footer-text-presale.png") no-repeat; }
+.page-booking .list .tfoot-text td { }
 
 .page-booking #content form ul {
 	width:329px; height:91px; margin:0px; padding:0px; list-style:none;
@@ -300,14 +297,14 @@ form input {
 .page-booking-complete .header span.booking-code { position:absolute; top:183px; left:648px; width:178px; text-align:center; color:black; }
 .page-booking-complete .list { width: 723px; margin-left:128px; }
 .page-booking-complete .list td { padding:0px; }
-.page-booking-complete .list .thead td { height:33px; background:transparent url("../../images/en/booking-complete/table_header_1.png") no-repeat; text-indent:-3000px; }
+.page-booking-complete .list .thead td { height:33px; background:transparent url("../../images/en/booking/table_header.png") no-repeat; text-indent:-3000px; }
 .page-booking-complete .list .thead td.no { background-position:-19px 0px; }
 .page-booking-complete .list .thead td.zone { background-position:-100px 0px; }
-.page-booking-complete .list .thead td.seat-no { background-position:-184px 0px; }
-.page-booking-complete .list .thead td.seat-count { background-position:-303px 0px; }
-.page-booking-complete .list .thead td.item-price { background-position:-398px 0px; }
-.page-booking-complete .list .thead td.price { background-position:-494px 0px; }
-.page-booking-complete .list .thead td.status { background-position:-574px 0px; }
+.page-booking-complete .list .thead td.seat-no { background-position:-233px 0px; }
+.page-booking-complete .list .thead td.seat-count { background-position:-227px 0px; }
+.page-booking-complete .list .thead td.item-price { background-position:-360px 0px; }
+.page-booking-complete .list .thead td.price { background-position:-493px 0px; }
+.page-booking-complete .list .thead td.status { background-position:-573px 0px; }
 .page-booking-complete .list .thead td.bg-right { background-position:-706px 0px; }
 
 .page-booking-complete .list .tbody td { background-color:#FFFFFF; padding:3px 0px 3px 0px; }

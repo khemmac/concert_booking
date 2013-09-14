@@ -21,9 +21,9 @@
 			array(
 				'name'=>'a3',
 				'type'=>'u',
-				'seat'=>array('1'=>'1-605'),
-				'position'=>array('1'=>'1-605'),
-				'max_col' => 600
+				'seat'=>array('1'=>'1-555'),
+				'position'=>array('1'=>'1-555'),
+				'max_col' => 550
 			),
 			array(
 				'name'=>'a4',
