@@ -127,7 +127,7 @@
 				<td colspan="8" valign="top" style="text-indent:0px; color:white; background:transparent url('<?= base_url('images/booking/table_shadow.png') ?>') no-repeat;">
 					<h3 style="margin:20px 0px 0px 20px; padding:0px;"><?= language_helper_is_th($this)?'เงื่อนไขการชำระเงิน':'Payment Terms' ?></h3>
 					<ol style="margin:5px 0px 0px 70px; padding:0px;">
-						<li><?= language_helper_is_th($this)?'กรุณาชำระผ่านธนาคารดังต่อไปนี้':'Please note that money transfers should be sent to' ?>
+						<li><?= language_helper_is_th($this)?'กรุณาชำระผ่านธนาคารดังต่อไปนี้ (ชื่อบัญชี บริษัท บูสท์ พลัส จำกัด / Boost Plus Co.,Ltd.)':'Please note that money transfers should be sent to (ชื่อบัญชี บริษัท บูสท์ พลัส จำกัด / Boost Plus Co.,Ltd.)' ?>
 							<table cellpadding="2" cellspacing="0" border="0">
 								<tr>
 									<td valign="middle">
