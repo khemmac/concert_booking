@@ -11,7 +11,9 @@
 		<?= language_helper_is_th($this)?$user_session_obj['thName']:$user_session_obj['enName'] ?>
 	</li>
 	<?php else: ?>
+		<?php if(!period_helper_close()): // ถ้ายังไม่ปิด ?>
 	<li><a class="menu-register" href="<?= site_url('member/register') ?>"></a></li>
 	<li><a class="menu-login" href="<?= site_url('member/login') ?>"></a></li>
+		<?php endif; ?>
 	<?php endif; ?>
 </ul>

@@ -19,7 +19,17 @@ class Zone extends CI_Controller {
 		$this->output->set_header('Pragma: no-cache');
 	}
 
+	function close(){
+		$this->phxview->RenderView('zone-close');
+		$this->phxview->RenderLayout('default');
+	}
+
 	function index(){
+		if(period_helper_fanzone_close()){
+			redirect('zone/close');
+			return;
+		}
+
 		$booking_type = 3;
 
 		if(!is_user_session_exist($this))
@@ -132,7 +142,7 @@ class Zone extends CI_Controller {
 		else
 			redirect($r_url.'/'.$booking_id);
 	}
-
+/* // development only
 	function generate(){
 		function split_seat($s){
 			$result = array();
@@ -239,7 +249,7 @@ class Zone extends CI_Controller {
 
 		$this->db->trans_complete();
 	}
-
+*/
 	function create_cache(){
 		$this->benchmark->mark('cache_start');
 
