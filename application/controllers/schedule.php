@@ -25,7 +25,7 @@ class Schedule extends CI_Controller {
 	    $list =	$this->tranfer_model->clearBookingData();
 		$str =  "";
 		foreach($list as $o){
-			$str = json_encode($o)."\n";		
+			$str .= json_encode($o)."\n";		
 		}
 
 		//$str =  "schedule task is down by technical";
