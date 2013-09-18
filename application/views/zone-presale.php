@@ -2,7 +2,7 @@
 	<?=$this->load->view('includes/inc-main-menu','', TRUE)?>
 
 	<div id="content">
-		<img usemap="#zone-map" src="<?= base_url("/images/zone/plan-presale.gif") ?>" style="width:590px; height:623px; position:absolute; left:32px;" />
+		<img usemap="#zone-map" src="<?= base_url("/images/zone/plan-presale.gif") ?>" style="width:590px; height:624px; position:absolute; left:32px;" />
 		<map name="zone-map">
 			<area shape="rectrangle" coords="165,235,216,285" href="<?= site_url('seat_presale/a1') ?>" title="A1">
 			<area shape="polygon" coords="220,235,259,234,260,248,278,285,221,285" href="<?= site_url('seat_presale/a2') ?>" title="A2">

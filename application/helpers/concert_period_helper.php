@@ -53,3 +53,13 @@
 			return (($cur_time >= strtotime('2013-09-15 08:30:00')) && ($cur_time <= strtotime('2013-09-18 12:00:00')));
 		//}
 	}
+
+	function period_helper_close() {
+		$cur_time = strtotime("now");
+		return ($cur_time > strtotime('2013-09-18 12:00:00'));
+	}
+
+	function period_helper_fanzone_close() {
+		$cur_time = strtotime("now");
+		return ($cur_time >= strtotime('2013-09-20 12:00:00'));
+	}

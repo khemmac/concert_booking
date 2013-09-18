@@ -21,6 +21,11 @@ class Zone_early extends CI_Controller {
 	}
 
 	function index(){
+		if(period_helper_close()){
+			redirect('zone/close');
+			return;
+		}
+
 		// ปิดการจอง early bird
 		redirect('zone_early/soldout');
 
