@@ -54,8 +54,8 @@ class Transfer extends CI_Controller {
 				$path = $_FILES['slip']['name'];
 				$ext = pathinfo($path, PATHINFO_EXTENSION);
 				$img_name = $time.'.'.$ext;
-				//move_uploaded_file($_FILES['slip']['tmp_name'],$file_path.$img_name);
-				$this->ReSizeImage($file_path.$img_name,1100,700,$_FILES['slip']);
+				move_uploaded_file($_FILES['slip']['tmp_name'],$file_path.$img_name);
+				//$this->ReSizeImage($file_path.$img_name,1100,700,$_FILES['slip']);
 			}
 			$this->tranfer_model->money_tranfer($img_name);
 			$list = $this->tranfer_model->loadBookingContents($ids);
