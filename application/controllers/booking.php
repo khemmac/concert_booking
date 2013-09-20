@@ -63,6 +63,22 @@ class Booking extends CI_Controller {
 			'status'=>2
 		));
 
+		// write booking log
+		$this->load->helper('path');
+		$cache_path = set_realpath(APPPATH.'logs/booking');
+
+		try {
+			$fname =  date('m-d').'.txt';
+			$fh = fopen($cache_path . $fname, 'w');
+			$log_str = '------ BOOKING SUBMIT ------'.PHP_EOL;
+			$time_str = date('H-i-s');
+			$log_str .= $time_str.' - id : '.$booking_id.PHP_EOL;
+			$log_str .= $time_str.' - user : '.$user_id.PHP_EOL;
+			$log_str .= $time_str.' - sql : '.$this->db->last_query().PHP_EOL;
+			fwrite($fh, $log_str);
+			fclose($fh);
+		 } catch (Exception $e) {}
+
 		if($this->db->affected_rows()==1){
 			// send mail
 			try {

@@ -86,4 +86,10 @@ class Test extends CI_Controller {
 		echo 'success';
 	}
 
+	function fix_booking_total_money(){
+		$query = $this->db->get('booking');
+		$list = $query->result_array();
+		//foreach()
+	}
+
 }
