@@ -54,25 +54,45 @@ class Transfer extends CI_Controller {
 				$path = $_FILES['slip']['name'];
 				$ext = pathinfo($path, PATHINFO_EXTENSION);
 				$img_name = $time.'.'.$ext;
-				move_uploaded_file($_FILES['slip']['tmp_name'],$file_path.$img_name);
-				//$this->ReSizeImage($file_path.$img_name,1100,700,$_FILES['slip']);
-			}
-			$this->tranfer_model->money_tranfer($img_name);
-			$list = $this->tranfer_model->loadBookingContents($ids);
-			foreach($list as $o){
-				$obj = array("email"=>$o["email"]
-							,"code" =>$o["code"]
-							,"pay_date"=>$o["pay_date"]
-							,"pay_money"=>$o["pay_money"]
-							,"bank_name"=>$o["bank_name"]);
-				$this->email_model->approve_tranfer($obj);
+				//move_uploaded_file($_FILES['slip']['tmp_name'],$file_path.$img_name);
+				$this->ReSizeImage($file_path.$img_name,1100,700,$_FILES['slip']);
+			
+				$this->tranfer_model->money_tranfer($img_name);
+				$list = $this->tranfer_model->loadBookingContents($ids);
+				foreach($list as $o){
+					$obj = array("email"=>$o["email"]
+								,"code" =>$o["code"]
+								,"pay_date"=>$o["pay_date"]
+								,"pay_money"=>$o["pay_money"]
+								,"bank_name"=>$o["bank_name"]);
+					$this->email_model->approve_tranfer($obj);
+				}
+				
+				redirect('booking/complete', 'refresh');
+			}else{
+				$this->phxview->RenderView('transfer');
+				$this->phxview->RenderLayout('default');
 			}
 			
-			redirect('booking/complete', 'refresh');
 		}
 	}
 
- 	function check_code_valid(){
+ 	function send_email(){
+		$code = $_GET["code"];
+		$list = $this->tranfer_model->loadBookingContents($code);
+		foreach($list as $o){
+			$obj = array("email"=>$o["email"]
+						,"code" =>$o["code"]
+						,"pay_date"=>$o["pay_date"]
+						,"pay_money"=>$o["pay_money"]
+						,"bank_name"=>$o["bank_name"]);
+			$this->email_model->approve_tranfer($obj);
+		}
+		$res = array("success"=>true);
+		echo json_encode($res);
+	}
+	
+	function check_code_valid(){
 		$result = $this->tranfer_model->loadBooking();
 		//if(!empty($result)){
 		if($result->num_rows() > 0) {
