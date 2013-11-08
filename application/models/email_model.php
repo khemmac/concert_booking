@@ -15,11 +15,11 @@ Class Email_model extends CI_Model
 		$mail->From			= "sbs.mtv.2013@gmail.com";
 		$mail->FromName		= "Boostplus";
 		$mail->AddAddress($reciever);
-		$mail->AddBCC('khemmac@hotmail.com');
+		//$mail->AddBCC('khemmac@hotmail.com');
 		$mail->AddBCC('khemmac@gmail.com');
-		$mail->AddBCC('aon.iti10@gmail.com');
-		$mail->AddBCC('aon_iti10@hotmail.com');
-		$mail->AddBCC('SBS.mtv.2013@gmail.com');
+		//$mail->AddBCC('aon.iti10@gmail.com');
+		//$mail->AddBCC('aon_iti10@hotmail.com');
+		//$mail->AddBCC('SBS.mtv.2013@gmail.com');
 		$mail->IsHTML(true);
 		$mail->Subject		=  $subject;
 		$mail->Body			= $body;
@@ -79,7 +79,7 @@ Class Email_model extends CI_Model
 			$mail->ClearAddresses();
 		}
 	}
-	
+
 	public function approve_tranfer($user_data){
 		$reciever = $user_data['email'];
 		$subject = 'ยืนยันการแจ้งโอนเงิน';

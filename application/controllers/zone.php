@@ -25,11 +25,12 @@ class Zone extends CI_Controller {
 	}
 
 	function index(){
+/*
 		if(period_helper_fanzone_close()){
 			redirect('zone/close');
 			return;
 		}
-
+*/
 		$booking_type = 3;
 
 		if(!is_user_session_exist($this))

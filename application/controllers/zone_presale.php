@@ -21,11 +21,12 @@ class Zone_presale extends CI_Controller {
 	}
 
 	function index(){
+/*
 		if(period_helper_close()){
 			redirect('zone/close');
 			return;
 		}
-
+*/
 		$booking_type = 2;
 
 		if(!is_user_session_exist($this))

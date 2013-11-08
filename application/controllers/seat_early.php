@@ -22,7 +22,7 @@ class Seat_early extends CI_Controller {
 
 	function index(){
 		// ปิดการจอง early bird
-		redirect('zone_early/soldout');
+		//redirect('zone_early/soldout');
 
 		$booking_type = 2;
 		$this->benchmark->mark('overall_start');
@@ -83,12 +83,14 @@ class Seat_early extends CI_Controller {
 		}
 
 		// force soldout **********************************
+		/*
 		$this->db->where('booking_id=(select id from booking where id='.$booking_id.' AND status=1)');
 		$query = $this->db->get_where('seat');
 		if($query->num_rows()<=0){
 			redirect('zone_early/soldout');
 			return;
 		}
+		*/
 		// end force soldout ******************************
 
 		$this->db->limit(1);
